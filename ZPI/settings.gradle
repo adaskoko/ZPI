@@ -1,0 +1,2 @@
+rootProject.name = "ZPI"
+include ':app'
