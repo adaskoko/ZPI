@@ -2,9 +2,11 @@ package com.example.zpi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.example.zpi.models.ProductToTake;
 import com.example.zpi.models.User;
@@ -27,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        User user = new User();
+        /*User user = new User();
         user.setEmail("test_dao@test.com");
         user.setBirthDate(new Date());
         user.setJoiningDate(new Date());
@@ -41,7 +43,11 @@ public class MainActivity extends AppCompatActivity {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-        }).start();
+        }).start();*/
+    }
 
+    public void goToLogin(View view) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 }
