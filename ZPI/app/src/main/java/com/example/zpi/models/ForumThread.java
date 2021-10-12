@@ -3,8 +3,8 @@ import java.io.Serializable;
 import javax.persistence.*;
 @Entity
 @Table(name="Thread")
-public class Thread implements Serializable {
-	public Thread() {
+public class ForumThread implements Serializable {
+	public ForumThread() {
 	}
 	
 	@Column(name="ID", nullable=false, unique=true, length=10)	

@@ -15,9 +15,9 @@ public class Comment implements Serializable {
 	@Column(name="Content", nullable=false, length=255)	
 	private String content;
 	
-	@ManyToOne(targetEntity= Thread.class, fetch=FetchType.LAZY)
+	@ManyToOne(targetEntity= ForumThread.class, fetch=FetchType.LAZY)
 	@JoinColumn(name="ThreadID", referencedColumnName="ID", nullable=false)
-	private Thread thread;
+	private ForumThread thread;
 	
 	@ManyToOne(targetEntity= User.class, fetch=FetchType.LAZY)
 	@JoinColumn(name="UserID", referencedColumnName="ID", nullable=false)
@@ -39,11 +39,11 @@ public class Comment implements Serializable {
 		return content;
 	}
 	
-	public void setThread(Thread value) {
+	public void setThread(ForumThread value) {
 		this.thread = value;
 	}
 	
-	public Thread getThread() {
+	public ForumThread getThread() {
 		return thread;
 	}
 	

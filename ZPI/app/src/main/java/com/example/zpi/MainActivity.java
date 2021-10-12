@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.example.zpi.models.ProductToTake;
 import com.example.zpi.models.User;
+import com.example.zpi.repositories.UserDao;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
@@ -26,7 +27,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        new GetExample().execute();
+        //new GetExample().execute();
+
+        User user = new User();
+        user.setEmail("test_dao@test.com");
+        user.setBirthDate(new Date());
+        user.setJoiningDate(new Date());
+        user.setName("test name");
+        user.setPassword("test password");
+        user.setSurname("test surname");
+
+        new Thread(() -> {
+            try {
+                new UserDao(BaseConnection.getConnectionSource()).create(user);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }).start();
+
+
     }
 
     private class SaveExample extends AsyncTask<Void, Void, Void>{
