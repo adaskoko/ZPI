@@ -18,6 +18,12 @@ public class User implements Serializable {
 		this.joiningDate = Calendar.getInstance().getTime();
 	}
 
+	public User(String name, String surname, String email) {
+		this.name = name;
+		this.surname = surname;
+		this.email = email;
+	}
+
 	@Column(name="ID", nullable=false, unique=true, length=10)
 	@Id	
 	@GeneratedValue(generator="USER_ID_GENERATOR")	
