@@ -1,11 +1,10 @@
 package com.example.zpi.repositories;
 
-import com.example.zpi.BaseConnection;
+import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.models.User;
 import com.j256.ormlite.dao.BaseDaoImpl;
 import com.j256.ormlite.support.ConnectionSource;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 

@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
+import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.models.User;
 import com.example.zpi.repositories.UserDao;
 
@@ -23,8 +23,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void login(View view) {
-        EditText mail = (EditText) findViewById(R.id.mail);
-        EditText password = (EditText) findViewById(R.id.password);
+        EditText mail = (EditText) findViewById(R.id.mailET);
+        EditText password = (EditText) findViewById(R.id.passwordET);
 
         new Thread(() -> {
             try {

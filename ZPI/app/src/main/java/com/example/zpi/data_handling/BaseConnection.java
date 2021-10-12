@@ -1,4 +1,4 @@
-package com.example.zpi;
+package com.example.zpi.data_handling;
 
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
