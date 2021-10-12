@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ZPI</string>
+    <string name="login_button_text">Logowanko</string>
+    <string name="register_button_text">Zarejestruj</string>
 </resources>

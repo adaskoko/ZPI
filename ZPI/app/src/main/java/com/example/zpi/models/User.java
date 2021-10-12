@@ -1,13 +1,24 @@
 package com.example.zpi.models;
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.persistence.*;
 @Entity
 @Table(name="User")
 public class User implements Serializable {
 	public User() {
 	}
-	
-	@Column(name="ID", nullable=false, unique=true, length=10)	
+
+	public User(String name, String surname, String email, String password) {
+		this.name = name;
+		this.surname = surname;
+		this.email = email;
+		this.password = password;
+		this.joiningDate = Calendar.getInstance().getTime();
+	}
+
+	@Column(name="ID", nullable=false, unique=true, length=10)
 	@Id	
 	@GeneratedValue(generator="USER_ID_GENERATOR")	
 	private int ID;
