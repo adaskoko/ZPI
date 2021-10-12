@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.models.User;
 import com.example.zpi.repositories.UserDao;
