@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.login);
     }
 
     @Override
@@ -38,8 +38,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void login(View view) {
-        EditText mail = (EditText) findViewById(R.id.mailET);
-        EditText password = (EditText) findViewById(R.id.passwordET);
+        EditText mail = (EditText) findViewById(R.id.et_login);
+        EditText password = (EditText) findViewById(R.id.et_password);
 
         new Thread(() -> {
             try {
@@ -60,5 +60,12 @@ public class LoginActivity extends AppCompatActivity {
                 throwables.printStackTrace();
             }
         }).start();
+    }
+
+
+    public void forgotPassword(View view) {
+    }
+
+    public void register(View view) {
     }
 }

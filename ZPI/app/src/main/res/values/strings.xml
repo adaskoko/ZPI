@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">ZPI</string>
-    <string name="login_button_text">Logowanko</string>
-    <string name="register_button_text">Zarejestruj</string>
+    <string name="register"><u>Zarejestruj się!</u></string>
+    <string name="forgottenPass"><u>Zapomniałeś hasła?</u></string>
+    <string name="createAcc">Utwórz konto</string>
+    <string name="gotoLog">Przejdź do logowania</string>
 </resources>

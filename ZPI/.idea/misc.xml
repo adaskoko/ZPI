@@ -5,11 +5,14 @@
       <map>
         <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/activity_login.xml" value="0.14990942028985507" />
         <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/activity_register.xml" value="0.13489583333333333" />
+        <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/login.xml" value="0.2" />
+        <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/logincopy.xml" value="0.259375" />
+        <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/register.xml" value="0.264" />
+        <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/register_succesfull.xml" value="0.259375" />
+        <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/successful_register.xml" value="0.17617753623188406" />
         <entry key="..\:/SEM_7/ZPI/ZPI/ZPI/app/src/main/res/layout/activity_main.xml" value="0.22735507246376813" />
         <entry key="..\:/SEM_7/ZPI/ZPI/ZPI/app/src/main/res/layout/activity_register.xml" value="0.22735507246376813" />
-        <entry key="..\:/SEM_7/ZPI/ZPI_V.2/ZPI/ZPI/app/src/main/res/layout/activity_login.xml" value="0.20677083333333332" />
-        <entry key="..\:/SEM_7/ZPI/ZPI_V.2/ZPI/ZPI/app/src/main/res/layout/activity_main.xml" value="0.18958333333333333" />
-        <entry key="..\:/SEM_7/ZPI/ZPI_V.2/ZPI/ZPI/app/src/main/res/layout/activity_update_user.xml" value="0.20677083333333332" />
       </map>
     </option>
   </component>

@@ -2,6 +2,7 @@ package com.example.zpi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,15 +20,15 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.register);
     }
 
     public void register(View view) {
-        EditText name = (EditText) findViewById(R.id.nameET);
-        EditText surname = (EditText) findViewById(R.id.surnameET);
-        EditText email = (EditText) findViewById(R.id.emailET);
-        EditText password = (EditText) findViewById(R.id.passwordET);
-        EditText renamePassword = (EditText) findViewById(R.id.renamePasswordET);
+        EditText name = (EditText) findViewById(R.id.tv_name);
+        EditText surname = (EditText) findViewById(R.id.tv_surname);
+        EditText email = (EditText) findViewById(R.id.tv_email);
+        EditText password = (EditText) findViewById(R.id.tv_password);
+        EditText renamePassword = (EditText) findViewById(R.id.tv_password2);
 
         if (!password.getText().toString().equals(renamePassword.getText().toString())) {
             Toast.makeText(this, "Hasla sa rozne", Toast.LENGTH_SHORT).show();
@@ -42,6 +43,8 @@ public class RegisterActivity extends AppCompatActivity {
                         Log.i("rejestreacja", "Uzytkownik dodany");
                         user = new User(name.getText().toString(), surname.getText().toString(), email.getText().toString(), password.getText().toString());
                         userDao.create(user);
+                        Intent intent = new Intent(this, RegisterSuccesfullActivity.class);
+                        startActivity(intent);
                     }
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
