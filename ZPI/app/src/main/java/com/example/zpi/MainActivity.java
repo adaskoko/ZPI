@@ -7,7 +7,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
+import com.example.zpi.data_handling.SharedPreferencesHandler;
 import com.example.zpi.models.ProductToTake;
 import com.example.zpi.models.User;
 import com.example.zpi.repositories.UserDao;
@@ -44,6 +46,18 @@ public class MainActivity extends AppCompatActivity {
                 throwables.printStackTrace();
             }
         }).start();*/
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        User user = SharedPreferencesHandler.getLoggedInUser(getApplicationContext());
+
+        if (user != null){
+            Log.i("user", user.toString());
+            Toast.makeText(this, user.getEmail(), Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     public void goToLogin(View view) {

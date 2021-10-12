@@ -2,11 +2,15 @@ package com.example.zpi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import com.example.zpi.data_handling.BaseConnection;
+import com.example.zpi.data_handling.SharedPreferencesHandler;
 import com.example.zpi.models.User;
 import com.example.zpi.repositories.UserDao;
 
@@ -21,6 +25,18 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        User user = SharedPreferencesHandler.getLoggedInUser(getApplicationContext());
+
+        if (user != null){
+            Log.i("user", user.toString());
+            Toast.makeText(this, user.getEmail(), Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
     public void login(View view) {
         EditText mail = (EditText) findViewById(R.id.mailET);
         EditText password = (EditText) findViewById(R.id.passwordET);
@@ -33,6 +49,9 @@ public class LoginActivity extends AppCompatActivity {
                 }else{
                     if(user.getPassword().equals(password.getText().toString())){
                         Log.i("logowanko", "Hasło gitara");
+                        SharedPreferencesHandler.saveLoggedInUser(getApplicationContext(), user);
+                        Intent intent = new Intent(this, MainActivity.class);
+                        startActivity(intent);
                     }else{
                         Log.i("logowanko", "Hasło nie gitara");
                     }
