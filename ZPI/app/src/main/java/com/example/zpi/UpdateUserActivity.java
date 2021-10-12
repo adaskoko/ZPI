@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.zpi.data_handling.BaseConnection;
+import com.example.zpi.data_handling.SharedPreferencesHandler;
 import com.example.zpi.models.User;
 import com.example.zpi.repositories.UserDao;
 import com.j256.ormlite.support.DatabaseConnection;
@@ -34,18 +36,17 @@ public class UpdateUserActivity extends AppCompatActivity {
         name = findViewById(R.id.nameET);
         surname = findViewById(R.id.surnameET);
         mail = findViewById(R.id.mailET);
-        //loggedUser = SharedPreferencesHandler.getLoggedInUser(this);
+        loggedUser = SharedPreferencesHandler.getLoggedInUser(getApplicationContext());
 
-        name.setText("imie", TextView.BufferType.EDITABLE);
-        surname.setText("nazwisko", TextView.BufferType.EDITABLE);
-        mail.setText("mail", TextView.BufferType.EDITABLE);
+        name.setText(loggedUser.getName(), TextView.BufferType.EDITABLE);
+        surname.setText(loggedUser.getSurname(), TextView.BufferType.EDITABLE);
+        mail.setText(loggedUser.getEmail(), TextView.BufferType.EDITABLE);
     }
 
     public void update(View view) {
-        //User updatedUser = new User(name.getText().toString(), surname.getText().toString(), mail.getText().toString());
         loggedUser.setName(name.getText().toString());
         loggedUser.setSurname(surname.getText().toString());
-        //SharedPreferencesHandler.saveLoggedInUser(updatedUser);
+        SharedPreferencesHandler.saveLoggedInUser(getApplicationContext(), loggedUser);
         new Thread(() -> {
             try {
                 UserDao userDao = new UserDao(BaseConnection.getConnectionSource());
