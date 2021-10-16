@@ -4,4 +4,7 @@
     <string name="forgottenPass"><u>Zapomniałeś hasła?</u></string>
     <string name="createAcc">Utwórz konto</string>
     <string name="gotoLog">Przejdź do logowania</string>
+    <string name="back">Powrót</string>
+    <string name="logout">Wyloguj się</string>
+    <string name="deleteAcc"><u>Usuń konto</u></string>
 </resources>

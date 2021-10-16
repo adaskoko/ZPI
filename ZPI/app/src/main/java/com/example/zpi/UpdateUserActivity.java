@@ -2,6 +2,7 @@ package com.example.zpi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -18,27 +19,30 @@ public class UpdateUserActivity extends AppCompatActivity {
 
     EditText name;
     EditText surname;
-    EditText mail;
+    TextView mail;
+    EditText password;
     User loggedUser;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_user);
+        setContentView(R.layout.activity_update_user_1);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        name = findViewById(R.id.nameET);
-        surname = findViewById(R.id.surnameET);
-        mail = findViewById(R.id.et_login);
         loggedUser = SharedPreferencesHandler.getLoggedInUser(getApplicationContext());
+        name = findViewById(R.id.name);
+        surname = findViewById(R.id.surname);
+        mail = findViewById(R.id.email);
+        password=findViewById(R.id.password);
 
         name.setText(loggedUser.getName(), TextView.BufferType.EDITABLE);
         surname.setText(loggedUser.getSurname(), TextView.BufferType.EDITABLE);
         mail.setText(loggedUser.getEmail(), TextView.BufferType.EDITABLE);
+        password.setText(loggedUser.getPassword(), TextView.BufferType.EDITABLE);
     }
 
     public void update(View view) {
@@ -53,5 +57,40 @@ public class UpdateUserActivity extends AppCompatActivity {
                 throwables.printStackTrace();
             }
         }).start();
+    }
+
+    public void editName(View v) {
+        name.getText().clear();
+    }
+    public void editSurname(View v) {
+        surname.getText().clear();
+    }
+    public void goToEditPassword(View v) {
+        Intent intent = new Intent(this, ChangeUserPasswordActivity.class);
+        startActivity(intent);
+    }
+    public void logout(View v) {
+        //SharedPreferencesHandler-wywalić usera, mi wywala błąd w tym shared więc nie wiem jak to zrobić
+        Intent intent=new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+    public void goToChat(View v) {
+        //chat not yet implemented
+    }
+    public void deleteAccount(View v) {
+        loggedUser = SharedPreferencesHandler.getLoggedInUser(getApplicationContext());
+        new Thread(() -> {
+            try {
+                UserDao userDao = new UserDao(BaseConnection.getConnectionSource());
+                userDao.delete(loggedUser);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }).start();
+        Intent intent=new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+    public void back(View v) {
+        //back activity (wycieczka?) not yet implemented
     }
 }

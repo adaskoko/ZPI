@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     android:backgroundTint="#E5E5E5">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -141,7 +145,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <EditText
+            <TextView
                 android:id="@+id/email"
                 android:layout_width="340dp"
                 android:layout_height="43dp"
@@ -150,7 +154,7 @@
                 android:background="@drawable/rounded"
                 android:drawableTint="@color/white"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                 />
 
         </RelativeLayout>
 
@@ -205,6 +209,17 @@
             android:textColor="@color/black" />-->
 
         <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/przycisk_confirm"
+            android:layout_gravity="center"
+            android:layout_marginBottom="15dp"
+            android:onClick="update">
+
+        </ImageButton>
+
+        <ImageButton
             android:id="@+id/btn_logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -228,14 +243,16 @@
             android:id="@+id/btn_delAcc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="@string/deleteAcc"
             android:layout_marginLeft="60dp"
+            android:layout_marginBottom="20dp"
             android:clickable="true"
-            android:onClick="deleteAccount">
-        </TextView>
+            android:onClick="deleteAccount"
+            android:text="@string/deleteAcc"
+            android:textColor="@color/black"
+            android:textSize="28dp"></TextView>
 
 
     </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

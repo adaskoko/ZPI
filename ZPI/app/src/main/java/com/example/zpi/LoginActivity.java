@@ -49,11 +49,13 @@ public class LoginActivity extends AppCompatActivity {
                 }else{
                     if(user.getPassword().equals(password.getText().toString())){
                         Log.i("logowanko", "Hasło gitara");
+                        Toast.makeText(this, "Gitara", Toast.LENGTH_SHORT);
                         SharedPreferencesHandler.saveLoggedInUser(getApplicationContext(), user);
-                        Intent intent = new Intent(this, MainActivity.class);
+                        Intent intent = new Intent(this, UpdateUserActivity.class);
                         startActivity(intent);
                     }else{
                         Log.i("logowanko", "Hasło nie gitara");
+                        Toast.makeText(this, "Nie gitara", Toast.LENGTH_SHORT);
                     }
                 }
             } catch (SQLException throwables) {
