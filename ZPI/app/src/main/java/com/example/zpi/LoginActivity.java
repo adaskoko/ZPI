@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.zpi.data_handling.BaseConnection;
@@ -19,10 +20,16 @@ import java.sql.SQLException;
 
 public class LoginActivity extends AppCompatActivity {
 
+    EditText mail;
+    EditText password;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+
+        mail = (EditText) findViewById(R.id.et_login);
+        password = (EditText) findViewById(R.id.et_pass);
     }
 
     @Override
@@ -31,15 +38,12 @@ public class LoginActivity extends AppCompatActivity {
         User user = SharedPreferencesHandler.getLoggedInUser(getApplicationContext());
 
         if (user != null){
-            Log.i("user", user.toString());
-            Toast.makeText(this, user.getEmail(), Toast.LENGTH_SHORT).show();
+            mail.setText(user.getEmail(), TextView.BufferType.EDITABLE);
+            password.setText(user.getPassword(), TextView.BufferType.EDITABLE);
         }
-
     }
 
     public void login(View view) {
-        EditText mail = (EditText) findViewById(R.id.et_login);
-        EditText password = (EditText) findViewById(R.id.et_password);
 
         new Thread(() -> {
             try {
@@ -49,13 +53,11 @@ public class LoginActivity extends AppCompatActivity {
                 }else{
                     if(user.getPassword().equals(password.getText().toString())){
                         Log.i("logowanko", "Hasło gitara");
-                        Toast.makeText(this, "Gitara", Toast.LENGTH_SHORT);
                         SharedPreferencesHandler.saveLoggedInUser(getApplicationContext(), user);
                         Intent intent = new Intent(this, UpdateUserActivity.class);
                         startActivity(intent);
                     }else{
                         Log.i("logowanko", "Hasło nie gitara");
-                        Toast.makeText(this, "Nie gitara", Toast.LENGTH_SHORT);
                     }
                 }
             } catch (SQLException throwables) {

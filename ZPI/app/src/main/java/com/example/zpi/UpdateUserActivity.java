@@ -28,17 +28,17 @@ public class UpdateUserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_user_1);
-    }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        loggedUser = SharedPreferencesHandler.getLoggedInUser(getApplicationContext());
         name = findViewById(R.id.name);
         surname = findViewById(R.id.surname);
         mail = findViewById(R.id.email);
         password=findViewById(R.id.password);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loggedUser = SharedPreferencesHandler.getLoggedInUser(getApplicationContext());
         name.setText(loggedUser.getName(), TextView.BufferType.EDITABLE);
         surname.setText(loggedUser.getSurname(), TextView.BufferType.EDITABLE);
         mail.setText(loggedUser.getEmail(), TextView.BufferType.EDITABLE);
@@ -70,7 +70,7 @@ public class UpdateUserActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void logout(View v) {
-        //SharedPreferencesHandler-wywalić usera, mi wywala błąd w tym shared więc nie wiem jak to zrobić
+        SharedPreferencesHandler.deleteLoggedInUser(getApplicationContext());
         Intent intent=new Intent(this, LoginActivity.class);
         startActivity(intent);
     }

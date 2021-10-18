@@ -22,11 +22,20 @@ public class SharedPreferencesHandler {
         prefsEditor.apply();
     }
 
+    public static void deleteLoggedInUser(Context context){
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        prefsEditor.putString("user", null);
+        prefsEditor.apply();
+    }
+
     public static User getLoggedInUser(Context context){
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
         Gson gson = new Gson();
         String json = mPrefs.getString("user", "");
         Log.i("get", json);
+        if (json == null)
+            return null;
         return gson.fromJson(json, User.class);
     }
 

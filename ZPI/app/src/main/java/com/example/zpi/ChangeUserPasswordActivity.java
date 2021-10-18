@@ -33,7 +33,7 @@ public class ChangeUserPasswordActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         loggedUser = SharedPreferencesHandler.getLoggedInUser(getApplicationContext());
-        oldPassword = findViewById(R.id.et_password);
+        oldPassword = findViewById(R.id.et_oldPass);
         newPassword = findViewById(R.id.et_newPass);
         newPassword2 = findViewById(R.id.et_newPass2);
 
@@ -50,17 +50,20 @@ public class ChangeUserPasswordActivity extends AppCompatActivity {
                     try {
                         UserDao userDao = new UserDao(BaseConnection.getConnectionSource());
                         userDao.update(loggedUser);
+                        SharedPreferencesHandler.saveLoggedInUser(getApplicationContext(), loggedUser);
+
+                        finish();
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }
                 }).start();
             }else{
-                Toast.makeText(this, "Podane hasła się różnią, spróbuj ponownie", Toast.LENGTH_LONG);
+                Toast.makeText(this, "Podane hasła się różnią, spróbuj ponownie", Toast.LENGTH_LONG).show();
                 newPassword.getText().clear();
                 newPassword2.getText().clear();
             }
         }else{
-            Toast.makeText(this,"Hasło nieprawidłowe",Toast.LENGTH_SHORT);
+            Toast.makeText(this,"Hasło nieprawidłowe",Toast.LENGTH_SHORT).show();
             oldPassword.getText().clear();
             newPassword.getText().clear();
             newPassword2.getText().clear();

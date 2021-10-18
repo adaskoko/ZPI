@@ -7,135 +7,144 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/tlo_cale"
-        android:orientation="vertical">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/tv_login"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Zaloguj się"
-            android:paddingTop="30dp"
-            android:fontFamily="@font/poppins_light"
-            android:textSize="25sp"
-            android:textColor="@color/black"
-            android:layout_marginTop="250dp"
-            android:layout_gravity="center"
-            android:textStyle="bold"
-            android:layout_marginBottom="30dp">
+            android:background="@drawable/tlo_cale"
+            android:orientation="vertical">
 
-        </TextView>
+            <TextView
+                android:id="@+id/tv_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="250dp"
+                android:layout_marginBottom="30dp"
+                android:fontFamily="@font/poppins_light"
+                android:paddingTop="30dp"
+                android:text="Zaloguj się"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold">
 
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Login"
-            android:fontFamily="@font/poppins_light"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:layout_marginLeft="80dp"
-            android:layout_marginBottom="10dp">
+            </TextView>
 
-        </TextView>
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="80dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/poppins_light"
+                android:text="Login"
+                android:textColor="@color/black"
+                android:textSize="18sp">
 
-        <EditText
-            android:id="@+id/et_login"
-            android:layout_width="250dp"
-            android:layout_height="45dp"
-            android:background="@drawable/rounded"
-            android:drawableTint="@color/white"
-            android:ems="10"
-            android:foregroundTint="#FFFFFF"
-            android:inputType="text"
+            </TextView>
 
-            android:layout_marginBottom="20dp"
-            android:layout_gravity="center"
-            />
+            <EditText
+                android:id="@+id/et_login"
+                android:layout_width="250dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/rounded"
+                android:drawableTint="@color/white"
+                android:ems="10"
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hasło"
-            android:fontFamily="@font/poppins_light"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:layout_marginLeft="80dp"
-            android:layout_marginBottom="10dp">
+                android:foregroundTint="#FFFFFF"
+                android:inputType="text" />
 
-        </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="80dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/poppins_light"
+                android:text="Hasło"
+                android:textColor="@color/black"
+                android:textSize="18sp">
 
-        <EditText
-            android:id="@+id/et_pass"
-            android:layout_width="250dp"
-            android:layout_height="45dp"
-            android:background="@drawable/rounded"
-            android:drawableTint="#FFFFFF"
-            android:ems="10"
-            android:foregroundTint="#FFFFFF"
-            android:inputType="textPassword"
-            android:layout_gravity="center"
-            android:layout_marginBottom="8dp"/>
+            </TextView>
 
-
-        <TextView
-            android:id="@+id/tv_forgot"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:fontFamily="@font/poppins_light"
-            android:onClick="forgotPassword"
-            android:text="@string/forgottenPass"
-            android:textColor="#403636"
-            android:textStyle="bold"
-            android:textSize="13sp"
-            android:layout_gravity="right"
-            android:layout_marginRight="80dp"
-            android:layout_marginBottom="20dp"/>
-
-        <ImageButton
-            android:id="@+id/btn_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@android:color/transparent"
-            android:src="@drawable/przycisk_login"
-            android:onClick="login"
-            android:layout_marginBottom="20dp">
-
-        </ImageButton>
-
-        <TextView
-            android:id="@+id/tv_account"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nie masz jeszcze konta?"
-            android:textColor="@color/black"
-            android:fontFamily="@font/poppins_light"
-            android:textSize="14sp"
-            android:layout_gravity="center">
-
-        </TextView>
+            <EditText
+                android:id="@+id/et_pass"
+                android:layout_width="250dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/rounded"
+                android:drawableTint="#FFFFFF"
+                android:ems="10"
+                android:foregroundTint="#FFFFFF"
+                android:inputType="textPassword" />
 
 
-        <TextView
-            android:id="@+id/tv_register"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:fontFamily="@font/poppins_light"
-            android:onClick="register"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:text="@string/register"
-            android:textSize="14sp"
-            android:layout_gravity="center"/>
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tv_forgot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="80dp"
+                android:layout_marginBottom="20dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/poppins_light"
+                android:onClick="forgotPassword"
+                android:text="@string/forgottenPass"
+                android:textColor="#403636"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/btn_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:background="@android:color/transparent"
+                android:onClick="login"
+                android:src="@drawable/przycisk_login">
+
+            </ImageButton>
+
+            <TextView
+                android:id="@+id/tv_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_light"
+                android:text="Nie masz jeszcze konta?"
+                android:textColor="@color/black"
+                android:textSize="14sp">
+
+            </TextView>
+
+
+            <TextView
+                android:id="@+id/tv_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/poppins_light"
+                android:onClick="register"
+                android:text="@string/register"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

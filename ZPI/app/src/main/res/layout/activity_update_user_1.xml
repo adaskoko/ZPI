@@ -24,12 +24,13 @@
                 android:id="@+id/btn_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:src="@drawable/strzalka"
-                android:layout_weight="1"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="25dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
                 android:onClick="back"
-                android:layout_marginLeft="15dp">
+                android:src="@drawable/strzalka"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck">
 
             </ImageButton>
 
@@ -72,7 +73,8 @@
                 android:background="@drawable/rounded"
                 android:drawableTint="@color/white"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <ImageButton
                 android:id="@+id/btn_editName"
@@ -83,7 +85,8 @@
                 android:layout_alignBottom="@id/name"
                 android:background="@android:color/transparent"
                 android:onClick="editName"
-                android:src="@drawable/pencil_simple">
+                android:src="@drawable/pencil_simple"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck">
 
             </ImageButton>
 
@@ -115,18 +118,20 @@
                 android:background="@drawable/rounded"
                 android:drawableTint="@color/white"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
             <ImageButton
                 android:id="@+id/btn_editSur"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:src="@drawable/pencil_simple"
-                android:layout_alignBottom="@id/surname"
                 android:layout_alignTop="@+id/surname"
                 android:layout_alignRight="@id/surname"
-                android:onClick="editSurname"/>
+                android:layout_alignBottom="@id/surname"
+                android:background="@android:color/transparent"
+                android:onClick="editSurname"
+                android:src="@drawable/pencil_simple"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         </RelativeLayout>
 
@@ -154,7 +159,8 @@
                 android:background="@drawable/rounded"
                 android:drawableTint="@color/white"
                 android:ems="10"
-                 />
+                android:gravity="center_vertical"
+                android:textSize="18sp" />
 
         </RelativeLayout>
 
@@ -182,7 +188,8 @@
                 android:background="@drawable/rounded"
                 android:drawableTint="@color/white"
                 android:ems="10"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
             <ImageButton
                 android:id="@+id/btn_editPass"
@@ -193,7 +200,8 @@
                 android:layout_alignBottom="@id/password"
                 android:background="@android:color/transparent"
                 android:onClick="goToEditPassword"
-                android:src="@drawable/pencil_simple" />
+                android:src="@drawable/pencil_simple"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         </RelativeLayout>
 
@@ -211,11 +219,12 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:src="@drawable/przycisk_confirm"
             android:layout_gravity="center"
             android:layout_marginBottom="15dp"
-            android:onClick="update">
+            android:background="@android:color/transparent"
+            android:onClick="update"
+            android:src="@drawable/przycisk_confirm"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck">
 
         </ImageButton>
 
@@ -223,21 +232,22 @@
             android:id="@+id/btn_logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:layout_marginBottom="30dp"
             android:background="@android:color/transparent"
             android:onClick="logout"
             app:srcCompat="@drawable/przycisk_logout"
-            android:layout_marginLeft="150dp"
-            android:layout_marginBottom="30dp"/>
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <ImageButton
             android:id="@+id/btn_chat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="300dp"
             android:background="@android:color/transparent"
             android:onClick="goToChat"
             android:src="@drawable/przycisk_czat"
-            android:layout_marginLeft="300dp">
-        </ImageButton>
+            tools:ignore="SpeakableTextPresentCheck"/>
 
         <TextView
             android:id="@+id/btn_delAcc"
@@ -249,7 +259,7 @@
             android:onClick="deleteAccount"
             android:text="@string/deleteAcc"
             android:textColor="@color/black"
-            android:textSize="28dp"></TextView>
+            android:textSize="28dp"/>
 
 
     </LinearLayout>
