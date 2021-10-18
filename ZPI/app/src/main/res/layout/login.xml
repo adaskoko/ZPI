@@ -10,6 +10,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/tlo_cale"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,7 +19,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/tlo_cale"
+            android:layout_gravity="center_horizontal"
             android:orientation="vertical">
 
             <TextView
@@ -39,9 +40,9 @@
 
             <TextView
                 android:id="@+id/tv_name"
-                android:layout_width="wrap_content"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="80dp"
+                android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/poppins_light"
                 android:text="Login"
@@ -52,8 +53,8 @@
 
             <EditText
                 android:id="@+id/et_login"
-                android:layout_width="250dp"
-                android:layout_height="45dp"
+                android:layout_width="280dp"
+                android:layout_height="48dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/rounded"
@@ -64,9 +65,9 @@
                 android:inputType="text" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="80dp"
+                android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/poppins_light"
                 android:text="Hasło"
@@ -77,8 +78,8 @@
 
             <EditText
                 android:id="@+id/et_pass"
-                android:layout_width="250dp"
-                android:layout_height="45dp"
+                android:layout_width="280dp"
+                android:layout_height="48dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/rounded"
@@ -90,16 +91,16 @@
 
             <TextView
                 android:id="@+id/tv_forgot"
-                android:layout_width="wrap_content"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginRight="80dp"
-                android:layout_marginBottom="20dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="25dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:fontFamily="@font/poppins_light"
                 android:onClick="forgotPassword"
                 android:text="@string/forgottenPass"
+                android:textAlignment="textEnd"
                 android:textColor="#403636"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -131,8 +132,8 @@
 
             <TextView
                 android:id="@+id/tv_register"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="143dp"
+                android:layout_height="38dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="16dp"
                 android:clickable="true"
@@ -140,6 +141,7 @@
                 android:fontFamily="@font/poppins_light"
                 android:onClick="register"
                 android:text="@string/register"
+                android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="bold" />

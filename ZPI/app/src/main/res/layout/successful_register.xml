@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E5E5E5">
+    android:background="#FFFFFF">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,11 +15,10 @@
             android:id="@+id/car"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="right"
             android:layout_marginStart="35dp"
             android:layout_marginBottom="30dp"
-            app:srcCompat="@drawable/logo"
-            android:layout_gravity="right"
-            />
+            app:srcCompat="@drawable/logo" />
 
         <!--<ImageView
             android:id="@+id/fastTravel"
@@ -31,19 +30,17 @@
             android:id="@+id/info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/info"
             android:layout_gravity="center"
-            android:layout_marginBottom="40dp"/>
+            android:layout_marginBottom="40dp"
+            app:srcCompat="@drawable/info" />
 
-        <Button
-            android:id="@+id/login"
+        <ImageView
+            android:id="@+id/go_to_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#408A3E"
-            android:fontFamily="@font/poppins_light"
+            android:layout_gravity="center"
             android:onClick="goToLogin"
-            android:text="@string/gotoLog"
-            android:layout_gravity="center"/>
+            app:srcCompat="@drawable/przycisk_go_to_login" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
