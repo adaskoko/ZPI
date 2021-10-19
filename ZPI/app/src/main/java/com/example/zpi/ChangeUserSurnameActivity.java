@@ -33,10 +33,10 @@ public class ChangeUserSurnameActivity extends AppCompatActivity {
         newSurnameET = findViewById(R.id.et_newSurname);
     }
 
-    public void updateName(View v){
+    public void updateSurname(View v){
         String newSurname = newSurnameET.getText().toString();
         if (!newSurname.isEmpty()) {
-            loggedUser.setName(newSurname);
+            loggedUser.setSurname(newSurname);
             new Thread(() -> {
                 try {
                     UserDao userDao = new UserDao(BaseConnection.getConnectionSource());
