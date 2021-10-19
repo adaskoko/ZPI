@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,7 +25,7 @@ public class ChangeUserPasswordActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.change_password);
+        setContentView(R.layout.activity_change_password);
     }
 
     @Override
@@ -52,11 +51,13 @@ public class ChangeUserPasswordActivity extends AppCompatActivity {
                         userDao.update(loggedUser);
                         SharedPreferencesHandler.saveLoggedInUser(getApplicationContext(), loggedUser);
 
-                        finish();
+                        //finish();
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }
                 }).start();
+                Intent intent = new Intent(this, ChangePasswordSuccessfulActivity.class);
+                startActivity(intent);
             }else{
                 Toast.makeText(this, "Podane hasła się różnią, spróbuj ponownie", Toast.LENGTH_LONG).show();
                 newPassword.getText().clear();

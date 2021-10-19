@@ -11,7 +11,7 @@ public class ChangePasswordSuccessfulActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.successful_pasw_change);
+        setContentView(R.layout.activity_change_password_sucessful);
     }
 
     public void goBack(View view) {

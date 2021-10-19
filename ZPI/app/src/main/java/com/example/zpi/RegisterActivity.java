@@ -20,7 +20,7 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.register);
+        setContentView(R.layout.activity_register);
     }
 
     public void register(View view) {
@@ -43,7 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
                         Log.i("rejestreacja", "Uzytkownik dodany");
                         user = new User(name.getText().toString(), surname.getText().toString(), email.getText().toString(), password.getText().toString());
                         userDao.create(user);
-                        Intent intent = new Intent(this, RegisterSuccesfullActivity.class);
+                        Intent intent = new Intent(this, RegisterSuccesfulActivity.class);
                         startActivity(intent);
                     }
                 } catch (SQLException throwables) {

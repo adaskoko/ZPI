@@ -27,7 +27,7 @@ public class UpdateUserActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_user_1);
+        setContentView(R.layout.activity_update_user);
 
         name = findViewById(R.id.name);
         surname = findViewById(R.id.surname);
@@ -61,22 +61,31 @@ public class UpdateUserActivity extends AppCompatActivity {
 
     public void editName(View v) {
         name.getText().clear();
+        Intent intent = new Intent(this, ChangeUserNameActivity.class);
+        startActivity(intent);
     }
+
     public void editSurname(View v) {
         surname.getText().clear();
+        Intent intent = new Intent(this, ChangeUserSurnameActivity.class);
+        startActivity(intent);
     }
+
     public void goToEditPassword(View v) {
         Intent intent = new Intent(this, ChangeUserPasswordActivity.class);
         startActivity(intent);
     }
+
     public void logout(View v) {
         SharedPreferencesHandler.deleteLoggedInUser(getApplicationContext());
         Intent intent=new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
+
     public void goToChat(View v) {
         //chat not yet implemented
     }
+
     public void deleteAccount(View v) {
         loggedUser = SharedPreferencesHandler.getLoggedInUser(getApplicationContext());
         new Thread(() -> {
@@ -90,6 +99,7 @@ public class UpdateUserActivity extends AppCompatActivity {
         Intent intent=new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
+
     public void back(View v) {
         //back activity (wycieczka?) not yet implemented
     }

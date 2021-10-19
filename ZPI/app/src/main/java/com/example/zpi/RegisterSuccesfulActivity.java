@@ -6,12 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class RegisterSuccesfullActivity extends AppCompatActivity {
+public class RegisterSuccesfulActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.successful_register);
+        setContentView(R.layout.activity_successful_register);
     }
 
     public void goToLogin(View view) {
