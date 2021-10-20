@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.zpi.models.PreparationPoint;
 import com.example.zpi.models.ProductToTake;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ToTakeThingsViewModel extends ViewModel {
@@ -15,13 +16,13 @@ public class ToTakeThingsViewModel extends ViewModel {
 
     public LiveData<List<ProductToTake>> getProductToTakeList() {
         if (toTakeMLD == null) {
-            toTakeMLD = new MutableLiveData<>();
-            loadProdouctToTake();
+            toTakeMLD = new MutableLiveData<>(new ArrayList<>());
+            loadProductToTake();
         }
         return toTakeMLD;
     }
 
-    private void loadProdouctToTake() {
+    private void loadProductToTake() {
         // Do an asynchronous operation to fetch points.
     }
 }

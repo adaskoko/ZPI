@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.zpi.models.PreparationPoint;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ToDoViewModel extends ViewModel {
@@ -14,7 +15,7 @@ public class ToDoViewModel extends ViewModel {
 
     public LiveData<List<PreparationPoint>> getPreparationPointList() {
         if (preparationPointMLD == null) {
-            preparationPointMLD = new MutableLiveData<>();
+            preparationPointMLD = new MutableLiveData<>(new ArrayList<>());
             loadPreparationPoint();
         }
         return preparationPointMLD;

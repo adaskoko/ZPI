@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,6 +28,7 @@ public class ToDoFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
+        toDoViewModel = new ViewModelProvider(this).get(ToDoViewModel.class);
         binding = FragmentToDoBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
@@ -36,13 +36,13 @@ public class ToDoFragment extends Fragment {
         todoRV.setLayoutManager(new LinearLayoutManager(getContext()));
         todoRV.setHasFixedSize(true);
 
-        TodoAdapter todoAdapter = new TodoAdapter();
-        todoRV.setAdapter(todoAdapter);
+        TodoRecyclerViewAdapter todoRecyclerViewAdapter = new TodoRecyclerViewAdapter();
+        todoRV.setAdapter(todoRecyclerViewAdapter);
 
-        toDoViewModel = new ViewModelProvider(this).get(ToDoViewModel.class);
         toDoViewModel.getPreparationPointList().observe(getViewLifecycleOwner(), new Observer<List<PreparationPoint>>() {
             @Override
             public void onChanged(@Nullable List<PreparationPoint> list) {
+                // update  list
                 Toast.makeText(getContext(), "Updated list", Toast.LENGTH_SHORT).show();
             }
         });

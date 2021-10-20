@@ -4,16 +4,24 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.zpi.models.TripPoint;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class PlanViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
+    private MutableLiveData<List<TripPoint>> tripPointMLD;
 
-    public PlanViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+    public LiveData<List<TripPoint>> getTripPointList() {
+        if (tripPointMLD == null) {
+            tripPointMLD = new MutableLiveData<>(new ArrayList<>());
+            loadTripPoint();
+        }
+        return tripPointMLD;
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    private void loadTripPoint() {
+        // Do an asynchronous operation to fetch points.
     }
 }

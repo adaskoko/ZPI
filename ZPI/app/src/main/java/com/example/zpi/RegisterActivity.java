@@ -24,11 +24,11 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void register(View view) {
-        EditText name = (EditText) findViewById(R.id.et_name);
-        EditText surname = (EditText) findViewById(R.id.et_surname);
-        EditText email = (EditText) findViewById(R.id.et_email);
-        EditText password = (EditText) findViewById(R.id.et_password);
-        EditText renamePassword = (EditText) findViewById(R.id.et_password2);
+        EditText name = findViewById(R.id.et_name);
+        EditText surname = findViewById(R.id.et_surname);
+        EditText email = findViewById(R.id.et_email);
+        EditText password = findViewById(R.id.et_password);
+        EditText renamePassword = findViewById(R.id.et_password2);
 
         if (!password.getText().toString().equals(renamePassword.getText().toString())) {
             Toast.makeText(this, "Hasla sa rozne", Toast.LENGTH_SHORT).show();

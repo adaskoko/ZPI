@@ -28,8 +28,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mail = (EditText) findViewById(R.id.et_login);
-        password = (EditText) findViewById(R.id.et_pass);
+        mail = findViewById(R.id.et_login);
+        password = findViewById(R.id.et_pass);
     }
 
     @Override
