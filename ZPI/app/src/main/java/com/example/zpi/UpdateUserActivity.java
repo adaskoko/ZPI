@@ -60,13 +60,11 @@ public class UpdateUserActivity extends AppCompatActivity {
     }
 
     public void editName(View v) {
-        name.getText().clear();
         Intent intent = new Intent(this, ChangeUserNameActivity.class);
         startActivity(intent);
     }
 
     public void editSurname(View v) {
-        surname.getText().clear();
         Intent intent = new Intent(this, ChangeUserSurnameActivity.class);
         startActivity(intent);
     }

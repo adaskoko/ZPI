@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.zpi.bottomnavigation.BottomNavigationActivity;
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.data_handling.SharedPreferencesHandler;
 import com.example.zpi.models.User;
@@ -43,7 +44,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void login(View view) {
-
         new Thread(() -> {
             try {
                 User user = new UserDao(BaseConnection.getConnectionSource()).findByEmail(mail.getText().toString());
@@ -53,7 +53,8 @@ public class LoginActivity extends AppCompatActivity {
                     if(user.getPassword().equals(password.getText().toString())){
                         Log.i("logowanko", "Hasło gitara");
                         SharedPreferencesHandler.saveLoggedInUser(getApplicationContext(), user);
-                        Intent intent = new Intent(this, UpdateUserActivity.class);
+                        //Intent intent = new Intent(this, UpdateUserActivity.class);
+                        Intent intent = new Intent(this, BottomNavigationActivity.class);
                         startActivity(intent);
                     }else{
                         Log.i("logowanko", "Hasło nie gitara");
