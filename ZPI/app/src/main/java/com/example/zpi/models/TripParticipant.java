@@ -6,21 +6,27 @@ import javax.persistence.*;
 public class TripParticipant implements Serializable {
 	public TripParticipant() {
 	}
-	
-	@Column(name="ID", nullable=false, unique=true, length=10)	
+
+	public TripParticipant(User user, Role role, Trip trip) {
+		this.user = user;
+		this.role = role;
+		this.trip = trip;
+	}
+
+	@Column(name="ID", nullable=false, unique=true, length=10)
 	@Id	
 	@GeneratedValue(generator="TRIPPARTICIPANT_ID_GENERATOR")	
 	private int ID;
 	
-	@ManyToOne(targetEntity= User.class, fetch=FetchType.LAZY)
+	@ManyToOne(targetEntity= User.class, fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
 	@JoinColumn(name="UserID", referencedColumnName="ID", nullable=false)
 	private User user;
 	
-	@ManyToOne(targetEntity=Role.class, fetch=FetchType.LAZY)	
+	@ManyToOne(targetEntity=Role.class, fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
 	@JoinColumn(name="RoleID", referencedColumnName="ID", nullable=false)
 	private Role role;
 	
-	@ManyToOne(targetEntity=Trip.class, fetch=FetchType.LAZY)	
+	@ManyToOne(targetEntity=Trip.class, fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
 	@JoinColumn(name="TripID", referencedColumnName="ID", nullable=false)
 	private Trip trip;
 	

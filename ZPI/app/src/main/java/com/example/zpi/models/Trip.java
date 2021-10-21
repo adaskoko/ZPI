@@ -1,5 +1,7 @@
 package com.example.zpi.models;
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.*;
 @Entity
 @Table(name="Trip")
@@ -25,7 +27,14 @@ public class Trip implements Serializable {
 	@Column(name="EndDate", nullable=false)	
 	@Temporal(TemporalType.DATE)	
 	private java.util.Date endDate;
-	
+
+	public Trip(String name, String description, Date startDate, Date endDate) {
+		this.name = name;
+		this.description = description;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
+
 	private void setID(int value) {
 		this.ID = value;
 	}
