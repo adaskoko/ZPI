@@ -21,6 +21,10 @@ public class ProductToTake implements Serializable {
 	@ManyToOne(targetEntity= User.class, fetch=FetchType.LAZY)
 	@JoinColumn(name="UserID", referencedColumnName="ID", nullable=false)
 	private User user;
+
+	@ManyToOne(targetEntity= Trip.class, fetch=FetchType.LAZY)
+	@JoinColumn(name="TripID", referencedColumnName="ID", nullable=false)
+	private Trip trip;
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -53,7 +57,15 @@ public class ProductToTake implements Serializable {
 	public User getUser() {
 		return user;
 	}
-	
+
+	public Trip getTrip() {
+		return trip;
+	}
+
+	public void setTrip(Trip trip) {
+		this.trip = trip;
+	}
+
 	public String toString() {
 		return String.valueOf(getID());
 	}
