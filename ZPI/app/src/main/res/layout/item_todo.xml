@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:paddingHorizontal="10dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp">
+
+    <ImageView
+        android:id="@+id/myImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rounded_component" />
+
+
+    <CheckBox
+        android:id="@+id/todoChB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/titleTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/poppins_light"
+        android:text="Koce"
+        android:textColor="@color/black"
+        android:textSize="15sp"></TextView>
+
+    <TextView
+        android:id="@+id/personTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titleTV"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/poppins_light"
+        android:text="Karolina Nowak"
+        android:textColor="@color/black"
+        android:textSize="12sp">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/deadlineTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/personTV"
+        android:layout_centerInParent="true"
+        android:text="21.10.2021"
+        android:textSize="12sp">
+
+    </TextView>
+
+</RelativeLayout>

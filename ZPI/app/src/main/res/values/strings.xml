@@ -11,4 +11,13 @@
     <string name="change_name">Zmień imie</string>
     <string name="change_surname">Zmień nazwisko</string>
     <string name="new_surname">Nowe nazwisko</string>
+    <string name="title_activity_bottom_navigation">BottomNavigationActivity</string>
+    <string name="title_todo">TODO</string>
+    <string name="title_list_numbers">Plan</string>
+    <string name="title_to_take_things">ToTake</string>
+    <string name="title_map">Map</string>
+    <string name="title_finance">Bank</string>
+    <string name="more"><u>więcej</u></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

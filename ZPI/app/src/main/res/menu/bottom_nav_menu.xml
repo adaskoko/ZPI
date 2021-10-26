@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_todo"
+        android:icon="@drawable/ic_check_square_offset"
+        android:title="@string/title_todo" />
+
+    <item
+        android:id="@+id/navigation_to_take_things"
+        android:icon="@drawable/ic_resource_package"
+        android:title="@string/title_to_take_things" />
+
+    <item
+        android:id="@+id/navigation_plan"
+        android:icon="@drawable/ic_list_numbers"
+        android:title="@string/title_list_numbers" />
+
+    <item
+        android:id="@+id/navigation_map"
+        android:icon="@drawable/ic_path"
+        android:title="@string/title_map" />
+
+    <item
+        android:id="@+id/navigation_finance"
+        android:icon="@drawable/ic_bank"
+        android:title="@string/title_finance" />
+
+</menu>

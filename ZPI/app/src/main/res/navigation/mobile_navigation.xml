@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_todo">
+    <fragment
+        android:id="@+id/navigation_todo"
+        android:name="com.example.zpi.bottomnavigation.ui.todo.ToDoFragment"
+        android:label="fragment_to_do"
+        tools:layout="@layout/fragment_to_do" />
+    <fragment
+        android:id="@+id/navigation_to_take_things"
+        android:name="com.example.zpi.bottomnavigation.ui.totake.ToTakeThingsFragment"
+        android:label="fragment_to_take_things"
+        tools:layout="@layout/fragment_to_take_things" />
+    <fragment
+        android:id="@+id/navigation_finance"
+        android:name="com.example.zpi.bottomnavigation.ui.finance.FinanceFragment"
+        android:label="fragment_finance"
+        tools:layout="@layout/fragment_finance" />
+    <fragment
+        android:id="@+id/navigation_map"
+        android:name="com.example.zpi.bottomnavigation.ui.map.MapFragment"
+        android:label="fragment_map"
+        tools:layout="@layout/fragment_map" />
+    <fragment
+        android:id="@+id/navigation_plan"
+        android:name="com.example.zpi.bottomnavigation.ui.plan.PlanFragment"
+        android:label="fragment_plan"
+        tools:layout="@layout/fragment_plan" />
+</navigation>

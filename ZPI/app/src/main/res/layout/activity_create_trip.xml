@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="100">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#263238"
+            android:orientation="vertical"
+            android:layout_marginBottom="20dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tlo_details"
+                android:layout_gravity="center">
+            </ImageView>
+
+        </LinearLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp">
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/strzalka"
+                        android:layout_weight="1"
+                        android:layout_marginRight="50dp">
+                    </ImageButton>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="10"
+                        android:text="Utwórz nową wycieczkę"
+                        android:fontFamily="@font/poppins_light"
+                        android:textColor="@color/black"
+                        android:textSize="20sp">
+                    </TextView>
+
+                </TableRow>
+
+
+
+                <TextView
+                    android:id="@+id/tv_tripName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nazwa"
+                    android:fontFamily="@font/poppins_light"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="30dp"/>
+
+                <EditText
+                    android:id="@+id/et_tripName"
+                    android:layout_width="340dp"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/rounded"
+                    android:drawableTint="@color/white"
+                    android:ems="10"
+                    android:inputType="textPassword"
+                    android:layout_marginLeft="30dp"
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck">
+                </EditText>
+
+                <TextView
+                    android:id="@+id/tv_tripDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Opis"
+                    android:fontFamily="@font/poppins_light"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="30dp"/>
+
+                <EditText
+                    android:id="@+id/et_tripDesc"
+                    android:layout_width="340dp"
+                    android:layout_height="150dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/rounded"
+                    android:drawableTint="@color/white"
+                    android:ems="10"
+                    android:inputType="textPassword"
+                    android:layout_marginLeft="30dp"
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck">
+                </EditText>
+
+                <TextView
+                    android:id="@+id/tv_tripBegin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Data rozpoczęcia"
+                    android:fontFamily="@font/poppins_light"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="30dp"/>
+
+                <EditText
+                    android:id="@+id/et_tripBegin"
+                    android:layout_width="340dp"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/rounded"
+                    android:drawableTint="@color/white"
+                    android:ems="10"
+                    android:inputType="textPassword"
+                    android:layout_marginLeft="30dp"
+                    android:hint="rrrr-mm-dd"
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck">
+                </EditText>
+
+                <TextView
+                    android:id="@+id/tv_tripEnd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Data zakończenia"
+                    android:fontFamily="@font/poppins_light"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="30dp"/>
+
+                <EditText
+                    android:id="@+id/et_tripEnd"
+                    android:layout_width="340dp"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/rounded"
+                    android:drawableTint="@color/white"
+                    android:ems="10"
+                    android:inputType="textPassword"
+                    android:layout_marginLeft="30dp"
+                    android:hint="rrrr-mm-dd"
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck">
+                </EditText>
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/przycisk_utworz_wycieczke"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="20dp">
+
+                </ImageButton>
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
