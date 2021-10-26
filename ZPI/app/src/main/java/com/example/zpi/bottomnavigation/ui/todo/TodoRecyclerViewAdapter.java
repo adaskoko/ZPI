@@ -19,6 +19,10 @@ public class TodoRecyclerViewAdapter extends RecyclerView.Adapter<TodoRecyclerVi
 
     private List<PreparationPoint> todoList = new ArrayList<>();
 
+    public TodoRecyclerViewAdapter(List<PreparationPoint> todoList) {
+        this.todoList = todoList;
+    }
+
     @NonNull
     @Override
     public TodoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -52,6 +56,7 @@ public class TodoRecyclerViewAdapter extends RecyclerView.Adapter<TodoRecyclerVi
         private final TextView personTV;
         private final TextView titleTV;
         private final TextView deadlineTV;
+
         public TodoViewHolder(@NonNull View itemView) {
             super(itemView);
             todoChB = itemView.findViewById(R.id.todoChB);

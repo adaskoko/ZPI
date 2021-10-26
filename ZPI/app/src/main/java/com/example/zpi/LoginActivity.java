@@ -41,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
             mail.setText(user.getEmail(), TextView.BufferType.EDITABLE);
             password.setText(user.getPassword(), TextView.BufferType.EDITABLE);
         }
+
     }
 
     public void login(View view) {
