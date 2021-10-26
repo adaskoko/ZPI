@@ -32,7 +32,7 @@ public class TodoRecyclerViewAdapter extends RecyclerView.Adapter<TodoRecyclerVi
         PreparationPoint todo = todoList.get(position);
         holder.todoChB.setActivated(false); // jak bazie jest informacja czy rzecz została juz zrobiona
         holder.personTV.setText(todo.getUser().getName());
-        holder.dateTV.setText(todo.getDeadline().toString());
+        holder.deadlineTV.setText(todo.getDeadline().toString());
         holder.titleTV.setText(todo.getName());
     }
 
@@ -50,15 +50,12 @@ public class TodoRecyclerViewAdapter extends RecyclerView.Adapter<TodoRecyclerVi
 
         private final CheckBox todoChB;
         private final TextView personTV;
-        private final TextView dateTV;
         private final TextView titleTV;
-        private final TextView deadlineTV; // tego nie trzeba ustawiać bo zawsze ma wartośc "Termin"
-
+        private final TextView deadlineTV;
         public TodoViewHolder(@NonNull View itemView) {
             super(itemView);
             todoChB = itemView.findViewById(R.id.todoChB);
             personTV = itemView.findViewById(R.id.personTV);
-            dateTV = itemView.findViewById(R.id.dateTV);
             titleTV = itemView.findViewById(R.id.titleTV);
             deadlineTV = itemView.findViewById(R.id.deadlineTV);
         }
