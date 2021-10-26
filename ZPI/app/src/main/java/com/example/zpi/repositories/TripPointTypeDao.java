@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class TripPointTypeDao extends BaseDaoImpl<TripPointType, Integer> implements ITripPointTypeDao {
-    protected TripPointTypeDao(ConnectionSource connectionSource) throws SQLException {
+    public TripPointTypeDao(ConnectionSource connectionSource) throws SQLException {
         super(connectionSource, TripPointType.class);
     }
 

@@ -17,7 +17,7 @@ import java.util.Date;
 import java.util.List;
 
 public class TripPointDao extends BaseDaoImpl<TripPoint, Integer> implements ITripPointDao {
-    protected TripPointDao(ConnectionSource connectionSource) throws SQLException {
+    public TripPointDao(ConnectionSource connectionSource) throws SQLException {
         super(connectionSource, TripPoint.class);
     }
 

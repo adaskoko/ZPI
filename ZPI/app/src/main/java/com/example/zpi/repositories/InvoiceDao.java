@@ -10,7 +10,7 @@ import com.j256.ormlite.support.ConnectionSource;
 import java.sql.SQLException;
 
 public class InvoiceDao extends BaseDaoImpl<Invoice, Integer> implements IInvoiceDao {
-    protected InvoiceDao(ConnectionSource connectionSource) throws SQLException {
+    public InvoiceDao(ConnectionSource connectionSource) throws SQLException {
         super(connectionSource, Invoice.class);
     }
 }

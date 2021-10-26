@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class PreparationPointDao extends BaseDaoImpl<PreparationPoint, Integer> implements IPreparationPointDao {
-    protected PreparationPointDao(ConnectionSource connectionSource) throws SQLException {
+    public PreparationPointDao(ConnectionSource connectionSource) throws SQLException {
         super(connectionSource, PreparationPoint.class);
     }
 

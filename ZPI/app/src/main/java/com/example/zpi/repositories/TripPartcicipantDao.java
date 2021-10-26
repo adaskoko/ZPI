@@ -14,7 +14,7 @@ import java.util.List;
 
 public class TripPartcicipantDao extends BaseDaoImpl<TripParticipant, Integer> implements ITripParticipantDao {
 
-    protected TripPartcicipantDao(ConnectionSource connectionSource) throws SQLException {
+    public TripPartcicipantDao(ConnectionSource connectionSource) throws SQLException {
         super(connectionSource, TripParticipant.class);
     }
 

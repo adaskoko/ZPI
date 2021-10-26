@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ProductToTakeDao extends BaseDaoImpl<ProductToTake, Integer> implements IProductToTakeDao {
 
-    protected ProductToTakeDao(ConnectionSource connectionSource) throws SQLException {
+    public ProductToTakeDao(ConnectionSource connectionSource) throws SQLException {
         super(connectionSource, ProductToTake.class);
     }
 
