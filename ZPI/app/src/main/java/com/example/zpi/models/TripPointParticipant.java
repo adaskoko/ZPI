@@ -6,6 +6,12 @@ import javax.persistence.*;
 public class TripPointParticipant implements Serializable {
 	public TripPointParticipant() {
 	}
+
+	public TripPointParticipant(double charge, User user, TripPoint tripPoint) {
+		this.charge = charge;
+		this.user = user;
+		this.tripPoint = tripPoint;
+	}
 	
 	@Column(name="ID", nullable=false, unique=true, length=10)	
 	@Id	
@@ -22,7 +28,7 @@ public class TripPointParticipant implements Serializable {
 	@ManyToOne(targetEntity=TripPoint.class, fetch=FetchType.LAZY)	
 	@JoinColumn(name="TripPointID", referencedColumnName="ID", nullable=false)
 	private TripPoint tripPoint;
-	
+
 	private void setID(int value) {
 		this.ID = value;
 	}

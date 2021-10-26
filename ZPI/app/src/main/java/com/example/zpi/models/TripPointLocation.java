@@ -6,6 +6,12 @@ import javax.persistence.*;
 public class TripPointLocation implements Serializable {
 	public TripPointLocation() {
 	}
+
+	public TripPointLocation(double latitude, double longitude, String address) {
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.address = address;
+	}
 	
 	@Column(name="ID", nullable=false, unique=true, length=10)	
 	@Id	
@@ -21,9 +27,9 @@ public class TripPointLocation implements Serializable {
 	@Column(name="Address", nullable=false, length=255)	
 	private String address;
 	
-	@OneToOne(mappedBy="tripPointLocation", targetEntity=TripPoint.class, fetch=FetchType.LAZY)	
-	private TripPoint tripPoint;
-	
+	/*@OneToOne(mappedBy="tripPointLocation", targetEntity=TripPoint.class, fetch=FetchType.LAZY)
+	private TripPoint tripPoint;*/
+
 	private void setID(int value) {
 		this.ID = value;
 	}
@@ -56,13 +62,13 @@ public class TripPointLocation implements Serializable {
 		return address;
 	}
 	
-	public void setTripPoint(TripPoint value) {
+	/*public void setTripPoint(TripPoint value) {
 		this.tripPoint = value;
 	}
 	
 	public TripPoint getTripPoint() {
 		return tripPoint;
-	}
+	}*/
 	
 	public String toString() {
 		return String.valueOf(getID());

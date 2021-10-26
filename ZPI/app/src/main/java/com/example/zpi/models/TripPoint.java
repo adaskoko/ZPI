@@ -50,8 +50,8 @@ public class TripPoint implements Serializable {
 	@JoinColumn(name="TripID", referencedColumnName="ID", nullable=false)
 	private Trip trip;
 
-	@OneToOne(mappedBy="tripPoint", targetEntity=Invoice.class, fetch=FetchType.LAZY)	
-	private Invoice invoice;
+	/*@OneToOne(mappedBy="tripPoint", targetEntity=Invoice.class, fetch=FetchType.LAZY)
+	private Invoice invoice;*/
 
 	private void setID(int value) {
 		this.ID = value;
@@ -117,13 +117,13 @@ public class TripPoint implements Serializable {
 		return trip;
 	}
 	
-	public void setInvoice(Invoice value) {
+	/*public void setInvoice(Invoice value) {
 		this.invoice = value;
 	}
 	
 	public Invoice getInvoice() {
 		return invoice;
-	}
+	}*/
 	
 	public String toString() {
 		return String.valueOf(getID());
