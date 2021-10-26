@@ -46,7 +46,7 @@ public class TripPointDaoTest {
     }
 
     @Test
-    //@Ignore("Saving to database")
+    @Ignore("Saving to database")
     public void addUserToTripPoint() {
         try {
             User user = new UserDao(connectionSource).queryForEq("ID", 24).get(0);

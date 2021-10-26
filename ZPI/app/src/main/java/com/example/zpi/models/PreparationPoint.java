@@ -1,10 +1,20 @@
 package com.example.zpi.models;
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.*;
 @Entity
 @Table(name="PreparationPoint")
 public class PreparationPoint implements Serializable {
 	public PreparationPoint() {
+	}
+
+	public PreparationPoint(String name, String description, Date deadline, User user, Trip trip) {
+		this.name = name;
+		this.description = description;
+		this.deadline = deadline;
+		this.user = user;
+		this.trip = trip;
 	}
 	
 	@Column(name="ID", nullable=false, unique=true, length=10)	
@@ -29,7 +39,7 @@ public class PreparationPoint implements Serializable {
 	@ManyToOne(targetEntity= Trip.class, fetch=FetchType.LAZY)
 	@JoinColumn(name="TripID", referencedColumnName="ID", nullable=false)
 	private Trip trip;
-	
+
 	private void setID(int value) {
 		this.ID = value;
 	}
