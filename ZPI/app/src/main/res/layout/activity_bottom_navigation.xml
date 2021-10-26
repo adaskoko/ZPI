@@ -8,82 +8,69 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/trip_bar_bg">
+
 
         <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="#263238"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="40dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <ImageButton
                 android:id="@+id/btn_backToMainTripWindow"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_weight="1"
                 android:backgroundTint="@android:color/transparent"
-                android:src="@drawable/strzalka_biala"
+                android:src="@drawable/ic_back"
                 tools:ignore="SpeakableTextPresentCheck">
 
             </ImageButton>
 
-            <TextView
-                android:id="@+id/tv_tripname"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Weekend w berlinie"
-                android:fontFamily="@font/poppins_light"
-                android:textColor="@color/white"
-                android:textSize="28sp"
-                android:textStyle="bold">
+                android:layout_gravity="start"
+                android:layout_weight="30"
+                android:orientation="vertical">
 
-            </TextView>
-
-            <TextView
-                android:id="@+id/tv_tripdate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="@color/white"
-                android:text="13.10.2021 - 16.10.2021"
-                android:textSize="16sp">
-
-            </TextView>
-
-            <RelativeLayout
-                android:id="@+id/rel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:id="@+id/image"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/tv_tripname"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:src="@drawable/tlo_details">
-                </ImageView>
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Weekend w Berlinie"
+                    android:textColor="@color/white"
+                    android:textSize="28sp"
+                    android:textStyle="bold">
 
-                <Button
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tv_tripdate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@id/image"
-                    android:layout_marginStart="50dp">
-                </Button>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/image"
-                    android:layout_marginEnd="50dp">
-                </Button>
-            </RelativeLayout>
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="13.10.2021 - 16.10.2021"
+                    android:textColor="@color/white"
+                    android:textSize="14sp">
 
-
+                </TextView>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
