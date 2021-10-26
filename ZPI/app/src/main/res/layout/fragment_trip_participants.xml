@@ -18,13 +18,13 @@
         android:text="Uczestnicy"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@id/participants"
+        app:layout_constraintBottom_toTopOf="@id/participantsRV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/participants"
+        android:id="@+id/participantsRV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +40,7 @@
         android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/participants"
+        app:layout_constraintTop_toBottomOf="@id/participantsRV"
         app:srcCompat="@drawable/button_edit" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
