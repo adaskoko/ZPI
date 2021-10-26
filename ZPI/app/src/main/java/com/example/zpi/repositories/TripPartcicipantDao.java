@@ -20,7 +20,6 @@ public class TripPartcicipantDao extends BaseDaoImpl<TripParticipant, Integer> i
 
     @Override
     public List<TripParticipant> getByUser(User user) throws SQLException {
-        Log.i("userId", String.valueOf(user.getID()));
         return super.queryForEq("UserID", user.getID());
     }
 
