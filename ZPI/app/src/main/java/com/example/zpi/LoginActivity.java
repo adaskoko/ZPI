@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
                         Log.i("logowanko", "Hasło gitara");
                         SharedPreferencesHandler.saveLoggedInUser(getApplicationContext(), user);
                         //Intent intent = new Intent(this, UpdateUserActivity.class);
-                        Intent intent = new Intent(this, BottomNavigationActivity.class);
+                        Intent intent = new Intent(this, TripListActivity.class);
                         startActivity(intent);
                     }else{
                         Log.i("logowanko", "Hasło nie gitara");

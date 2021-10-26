@@ -21,7 +21,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageButton
-                    android:id="@+id/btn_backToMainTripWindow"
+                    android:id="@+id/btn_account_details"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/strzalka_biala"
@@ -33,7 +33,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tv_tripname"
+                    android:id="@+id/tv_your_trips"
                     android:textColor="@color/white"
                     android:fontFamily="@font/poppins_light"
 

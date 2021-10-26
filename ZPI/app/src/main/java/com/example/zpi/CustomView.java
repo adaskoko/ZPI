@@ -29,7 +29,7 @@ public class CustomView extends RelativeLayout {
 
     private void init(){
         inflate(getContext(), R.layout.component_content, this);
-        tripName = findViewById(R.id.tv_tripname);
+        tripName = findViewById(R.id.tv_your_trips);
         tripDate = findViewById(R.id.tv_tripdate);
     }
 
