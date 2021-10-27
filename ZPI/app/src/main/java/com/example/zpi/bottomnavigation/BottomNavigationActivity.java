@@ -1,6 +1,8 @@
 package com.example.zpi.bottomnavigation;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -13,6 +15,7 @@ import com.example.zpi.R;
 
 
 import com.example.zpi.databinding.ActivityBottomNavigationBinding;
+import com.example.zpi.models.Trip;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class BottomNavigationActivity extends AppCompatActivity {
@@ -22,6 +25,10 @@ public class BottomNavigationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Intent intent = getIntent();
+        Trip trip = (Trip) intent.getSerializableExtra("TRIP");
+        Toast.makeText(this, trip.getName(), Toast.LENGTH_SHORT).show();
 
         binding = ActivityBottomNavigationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

@@ -4,12 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.zpi.adapters.TripAdapter;
+import com.example.zpi.bottomnavigation.BottomNavigationActivity;
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.data_handling.SharedPreferencesHandler;
 import com.example.zpi.models.Trip;
@@ -86,5 +89,11 @@ public class TripListActivity extends AppCompatActivity {
             LinearLayoutManager pastLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
             pastTripsRV.setLayoutManager(pastLayoutManager);
         });
+    }
+
+    public void goToTrip(View view) {
+        Intent intent = new Intent(this, BottomNavigationActivity.class);
+        intent.putExtra("TRIP", currentTrip);
+        startActivity(intent);
     }
 }
