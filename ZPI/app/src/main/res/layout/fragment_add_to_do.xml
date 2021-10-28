@@ -38,19 +38,20 @@
                     android:fontFamily="@font/poppins_light"
                     android:text="Nazwa"
                     android:textColor="@color/black"
-                    android:textSize="18sp"></TextView>
+                    android:textSize="18sp"/>
 
                 <EditText
                     android:id="@+id/nameOfTrip"
                     android:layout_width="330dp"
                     android:layout_height="50dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
+                    android:autofillHints="no" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -59,19 +60,20 @@
                     android:fontFamily="@font/poppins_light"
                     android:text="Opis"
                     android:textColor="@color/black"
-                    android:textSize="18sp"></TextView>
+                    android:textSize="18sp"/>
 
                 <EditText
                     android:id="@+id/descOfTrip"
                     android:layout_width="330dp"
                     android:layout_height="180dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
                     android:ems="10"
                     android:inputType="text"
-                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
+                    android:importantForAutofill="no" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -80,25 +82,26 @@
                     android:fontFamily="@font/poppins_light"
                     android:text="Termin"
                     android:textColor="@color/black"
-                    android:textSize="18sp"></TextView>
+                    android:textSize="18sp"/>
 
                 <EditText
                     android:id="@+id/dateOfTrip"
                     android:layout_width="330dp"
                     android:layout_height="50dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
                     android:ems="10"
                     android:hint="rrrr-mm-dd"
                     android:inputType="date"
-                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
+                    android:importantForAutofill="no" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:fontFamily="@font/poppins_light"
                     android:text="Osoba odpowiedzialna"
                     android:textColor="@color/black"
@@ -110,7 +113,7 @@
                     android:id="@+id/assignedTo"
                     android:layout_width="330dp"
                     android:layout_height="50dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:layout_marginBottom="30dp"
                     android:background="@android:drawable/btn_dropdown"
                     android:spinnerMode="dropdown" />
@@ -123,7 +126,8 @@
                     android:layout_marginBottom="5dp"
                     android:backgroundTint="@android:color/transparent"
                     android:onClick="TODO"
-                    android:src="@drawable/przycisk_dodaj"></ImageButton>
+                    android:src="@drawable/przycisk_dodaj">
+                </ImageButton>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
