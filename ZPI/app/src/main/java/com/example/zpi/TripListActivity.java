@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.zpi.adapters.TripAdapter;
 import com.example.zpi.bottomnavigation.BottomNavigationActivity;
@@ -76,6 +77,12 @@ public class TripListActivity extends AppCompatActivity {
     private void setUpUpcomingRecyclerView(){
         runOnUiThread(() -> {
             TripAdapter upcomingAdapter = new TripAdapter(upcomingTrips);
+            upcomingAdapter.setOnItemClickListener(new TripAdapter.ClickListener() {
+                @Override
+                public void onItemClick(int position, View v) {
+                    goToTrip(upcomingTrips.get(position));
+                }
+            });
             upcomingTripsRV.setAdapter(upcomingAdapter);
             LinearLayoutManager upcomingLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
             upcomingTripsRV.setLayoutManager(upcomingLayoutManager);
@@ -85,6 +92,12 @@ public class TripListActivity extends AppCompatActivity {
     private void setUpPastRecyclerView(){
         runOnUiThread(() -> {
             TripAdapter pastAdapter = new TripAdapter(pastTrips);
+            pastAdapter.setOnItemClickListener(new TripAdapter.ClickListener() {
+                @Override
+                public void onItemClick(int position, View v) {
+                    goToTrip(pastTrips.get(position));
+                }
+            });
             pastTripsRV.setAdapter(pastAdapter);
             LinearLayoutManager pastLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
             pastTripsRV.setLayoutManager(pastLayoutManager);
@@ -92,8 +105,12 @@ public class TripListActivity extends AppCompatActivity {
     }
 
     public void goToTrip(View view) {
+        goToTrip(currentTrip);
+    }
+
+    public void goToTrip(Trip trip){
         Intent intent = new Intent(this, BottomNavigationActivity.class);
-        intent.putExtra("TRIP", currentTrip);
+        intent.putExtra("TRIP", trip);
         startActivity(intent);
     }
 }

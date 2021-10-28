@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
 
     List<Trip> trips;
+    private ClickListener clickListener;
 
     public TripAdapter(List<Trip> trips) {
         this.trips = trips;
@@ -46,12 +47,16 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
         tripDatesTV.setText(simpleDateFormat.format(trip.getStartDate()) + " - " + simpleDateFormat.format(trip.getEndDate()));
     }
 
+    public void setOnItemClickListener(ClickListener clickListener) {
+        this.clickListener = clickListener;
+    }
+
     @Override
     public int getItemCount() {
         return trips.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView tripNameTV;
         public TextView tripDatesTV;
@@ -60,7 +65,19 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
             super(itemView);
             tripNameTV = (TextView) itemView.findViewById(R.id.tv_trip_name);
             tripDatesTV = (TextView) itemView.findViewById(R.id.tv_trip_dates);
+
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            clickListener.onItemClick(getAdapterPosition(), view);
+        }
+
+    }
+
+    public interface ClickListener {
+        void onItemClick(int position, View v);
     }
 
 
