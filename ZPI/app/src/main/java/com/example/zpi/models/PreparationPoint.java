@@ -31,6 +31,9 @@ public class PreparationPoint implements Serializable {
 	@Column(name="Deadline", nullable=false)	
 	@Temporal(TemporalType.DATE)	
 	private java.util.Date deadline;
+
+	@Column(name="Done", nullable=true)
+	private boolean done;
 	
 	@ManyToOne(targetEntity= User.class, fetch=FetchType.LAZY)
 	@JoinColumn(name="UserID", referencedColumnName="ID", nullable=false)
@@ -70,6 +73,14 @@ public class PreparationPoint implements Serializable {
 	
 	public java.util.Date getDeadline() {
 		return deadline;
+	}
+
+	public boolean isDone() {
+		return done;
+	}
+
+	public void setDone(boolean done) {
+		this.done = done;
 	}
 	
 	public void setUser(User value) {

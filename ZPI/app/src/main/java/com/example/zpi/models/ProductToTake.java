@@ -25,6 +25,9 @@ public class ProductToTake implements Serializable {
 	
 	@Column(name="Ammount", nullable=false, length=10)	
 	private int ammount;
+
+	@Column(name="Done", nullable=true)
+	private boolean done;
 	
 	@ManyToOne(targetEntity= User.class, fetch=FetchType.LAZY)
 	@JoinColumn(name="UserID", referencedColumnName="ID", nullable=false)
@@ -56,6 +59,14 @@ public class ProductToTake implements Serializable {
 	
 	public int getAmmount() {
 		return ammount;
+	}
+
+	public boolean isDone() {
+		return done;
+	}
+
+	public void setDone(boolean done) {
+		this.done = done;
 	}
 	
 	public void setUser(User value) {

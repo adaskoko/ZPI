@@ -2,12 +2,15 @@ package com.example.zpi.repositories;
 
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.models.PreparationPoint;
+import com.example.zpi.models.ProductToTake;
 import com.example.zpi.models.Trip;
 import com.example.zpi.models.User;
+import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.sql.SQLException;
@@ -49,5 +52,23 @@ public class PreparationPointDaoTest {
             throwables.printStackTrace();
         }
 
+    }
+
+    @Test
+    @Ignore("Saving to database")
+    public void createTest(){
+        try {
+            Trip trip = new TripDao(connectionSource).queryForEq("ID", 1).get(0);
+            User user = new UserDao(connectionSource).queryForEq("ID", 24).get(0);
+
+
+            PreparationPointDao prepDao = new PreparationPointDao(connectionSource);
+
+            PreparationPoint preparationPoint = new PreparationPoint("test done", "opis testowy", new Date(System.currentTimeMillis()), user, trip);
+            preparationPoint.setDone(true);
+            prepDao.create(preparationPoint);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }
