@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
@@ -31,6 +32,11 @@ public class ToTakeThingsFragment extends Fragment implements ToTakeThingRecycle
     private ToTakeThingsViewModel toTakeThingsViewModel;
     private FragmentToTakeThingsBinding binding;
     private ToTakeThingRecyclerViewAdapter toTakeThingRecyclerViewAdapter;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
