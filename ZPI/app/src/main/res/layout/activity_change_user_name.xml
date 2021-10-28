@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,24 +10,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TableRow
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp">
+            android:layout_marginBottom="36dp">
 
             <ImageButton
                 android:id="@+id/btn_back"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="25dp"
-                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_marginTop="36dp"
                 android:background="@android:color/transparent"
                 android:onClick="backToDetails"
-                android:src="@drawable/strzalka"
+                android:src="@drawable/ic_back"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck">
 
             </ImageButton>
@@ -35,22 +39,24 @@
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/poppins_light"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="36dp"
+                android:fontFamily="@font/poppins_bold"
                 android:gravity="center"
                 android:text="@string/change_name"
+                android:textAlignment="viewStart"
                 android:textColor="@color/black"
-                android:textSize="30sp"
+                android:textSize="22sp"
                 android:textStyle="bold" />
 
         </TableRow>
 
         <TextView
             android:id="@+id/tv_newName"
-            android:layout_width="325dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_light"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/poppins"
             android:text="@string/new_name"
             android:textColor="@color/black"
             android:textSize="16sp">
@@ -59,7 +65,7 @@
 
         <EditText
             android:id="@+id/et_newName"
-            android:layout_width="325dp"
+            android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/rounded"
@@ -77,7 +83,7 @@
             android:layout_gravity="center"
             android:background="@android:color/transparent"
             android:onClick="updateName"
-            android:src="@drawable/przycisk_confirm"
+            android:src="@drawable/button_confirm"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck">
 
         </ImageButton>

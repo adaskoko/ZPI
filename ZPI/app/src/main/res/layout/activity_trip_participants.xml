@@ -35,7 +35,7 @@
                 android:layout_gravity="start"
                 android:layout_weight="1"
                 android:backgroundTint="@android:color/transparent"
-                android:src="@drawable/ic_back"
+                android:src="@drawable/ic_back_white"
                 tools:ignore="SpeakableTextPresentCheck">
 
             </ImageButton>

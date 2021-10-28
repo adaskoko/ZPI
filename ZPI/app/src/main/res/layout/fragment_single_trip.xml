@@ -22,7 +22,7 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="40dp"
             android:layout_weight="4"
-            android:fontFamily="@font/poppins_light"
+            android:fontFamily="@font/poppins_medium"
             android:gravity="start|center_vertical"
             android:text="Zdjęcia z wycieczki"
             android:textColor="@color/black"
@@ -51,7 +51,7 @@
     <TextView
         android:id="@+id/textView2"
         android:layout_width="0dp"
-        android:layout_height="125dp"
+        android:layout_height="140dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="40dp"
@@ -68,7 +68,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
@@ -80,15 +80,17 @@
         <ImageView
             android:id="@+id/participantsB"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:scaleType="fitStart"
             android:src="@drawable/button_participants" />
 
         <ImageView
             android:id="@+id/forumB"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:scaleType="fitEnd"
             android:src="@drawable/button_forum" />
     </LinearLayout>
 
