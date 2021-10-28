@@ -58,7 +58,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginBottom="30dp"
         android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown" />
+        android:spinnerMode="dialog" />
 
     <ImageButton
         android:id="@+id/btn_addToTakeThing"

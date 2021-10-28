@@ -36,7 +36,6 @@
                     android:id="@+id/tv_tripname"
                     android:textColor="@color/white"
                     android:fontFamily="@font/poppins_light"
-
                     android:textSize="28sp"
                     android:textStyle="bold"
                     android:layout_weight="30"

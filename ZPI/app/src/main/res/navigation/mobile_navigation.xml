@@ -9,12 +9,20 @@
         android:id="@+id/navigation_todo"
         android:name="com.example.zpi.bottomnavigation.ui.todo.ToDoFragment"
         android:label="fragment_to_do"
-        tools:layout="@layout/fragment_to_do" />
+        tools:layout="@layout/fragment_to_do" >
+        <action
+            android:id="@+id/action_navigation_todo_to_addToDoFragment"
+            app:destination="@id/addToDoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_to_take_things"
         android:name="com.example.zpi.bottomnavigation.ui.totake.ToTakeThingsFragment"
         android:label="fragment_to_take_things"
-        tools:layout="@layout/fragment_to_take_things" />
+        tools:layout="@layout/fragment_to_take_things" >
+        <action
+            android:id="@+id/action_navigation_to_take_things_to_addToTakeThingFragment"
+            app:destination="@id/addToTakeThingFragment" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_finance"
         android:name="com.example.zpi.bottomnavigation.ui.finance.FinanceFragment"
@@ -30,4 +38,22 @@
         android:name="com.example.zpi.bottomnavigation.ui.plan.PlanFragment"
         android:label="fragment_plan"
         tools:layout="@layout/fragment_plan" />
+    <fragment
+        android:id="@+id/addToDoFragment"
+        android:name="com.example.zpi.bottomnavigation.ui.todo.AddToDoFragment"
+        android:label="fragment_add_to_do"
+        tools:layout="@layout/fragment_add_to_do" >
+        <action
+            android:id="@+id/action_addToDoFragment_to_navigation_todo"
+            app:destination="@id/navigation_todo" />
+    </fragment>
+    <fragment
+        android:id="@+id/addToTakeThingFragment"
+        android:name="com.example.zpi.bottomnavigation.ui.totake.AddToTakeThingFragment"
+        android:label="fragment_add_to_take_thing"
+        tools:layout="@layout/fragment_add_to_take_thing" >
+        <action
+            android:id="@+id/action_addToTakeThingFragment_to_navigation_to_take_things"
+            app:destination="@id/navigation_to_take_things" />
+    </fragment>
 </navigation>

@@ -1,10 +1,18 @@
 package com.example.zpi.models;
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.*;
 @Entity
 @Table(name="ProductToTake")
 public class ProductToTake implements Serializable {
 	public ProductToTake() {
+	}
+
+	public ProductToTake(String name, User user, Trip trip) {
+		this.name = name;
+		this.user = user;
+		this.trip = trip;
 	}
 	
 	@Column(name="ID", nullable=false, unique=true, length=10)	
