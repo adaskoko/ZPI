@@ -1,17 +1,15 @@
 package com.example.zpi.bottomnavigation.ui.todo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,11 +19,8 @@ import com.example.zpi.R;
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.databinding.FragmentToDoBinding;
 import com.example.zpi.models.PreparationPoint;
-import com.example.zpi.models.ProductToTake;
 import com.example.zpi.models.Trip;
 import com.example.zpi.repositories.PreparationPointDao;
-import com.example.zpi.repositories.ProductToTakeDao;
-import com.example.zpi.repositories.TripDao;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -36,6 +31,7 @@ public class ToDoFragment extends Fragment implements TodoRecyclerViewAdapter.On
     private ToDoViewModel toDoViewModel;
     private FragmentToDoBinding binding;
     private TodoRecyclerViewAdapter todoRecyclerViewAdapter;
+    private Trip currTrip;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,10 +51,13 @@ public class ToDoFragment extends Fragment implements TodoRecyclerViewAdapter.On
         todoRV.setHasFixedSize(true);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(todoRV);
 
+        Intent intent = getActivity().getIntent();
+        currTrip = (Trip) intent.getSerializableExtra("TRIP");
+
         new Thread(() -> {
             try {
-                Trip trip = new TripDao(BaseConnection.getConnectionSource()).queryForEq("ID", 1).get(0);
-                List<PreparationPoint> todos = new PreparationPointDao(BaseConnection.getConnectionSource()).getPreparationPointsByTrip(trip);
+//                Trip trip = new TripDao(BaseConnection.getConnectionSource()).queryForEq("ID", 1).get(0);
+                List<PreparationPoint> todos = new PreparationPointDao(BaseConnection.getConnectionSource()).getPreparationPointsByTrip(currTrip);
 
                 Log.i("todo size fragemnt", String.valueOf(todos.size()));
                 getActivity().runOnUiThread(() -> {

@@ -43,14 +43,9 @@ public class ToTakeThingRecyclerViewAdapter extends RecyclerView.Adapter<ToTakeT
     public void onBindViewHolder(final ToTakeThingViewHolder holder, int position) {
         ProductToTake product = productToTakeList.get(position);
         holder.mItem = product;
-        holder.toTakeChB.setActivated(true); //jak w bazie jest zapisane chb
+        holder.toTakeChB.setActivated(product.isDone()); //jak w bazie jest zapisane chb
         holder.titleTV.setText(product.getName().toString());
         holder.personTV.setText(product.getUser().getName().toString());
-    }
-
-    public void setToTakeList(List<ProductToTake> list) {
-        this.productToTakeList = list;
-        notifyDataSetChanged();
     }
 
     @Override
@@ -95,6 +90,7 @@ public class ToTakeThingRecyclerViewAdapter extends RecyclerView.Adapter<ToTakeT
 
             this.toTakeThingListener = toTakeThingListener;
             itemView.getRoot().setOnClickListener(this);
+            toTakeChB.setOnClickListener(v -> mItem.setDone(!mItem.isDone()));
         }
 
         @Override

@@ -42,7 +42,8 @@ public class TodoRecyclerViewAdapter extends RecyclerView.Adapter<TodoRecyclerVi
     @Override
     public void onBindViewHolder(@NonNull TodoViewHolder holder, int position) {
         PreparationPoint todo = todoList.get(position);
-        holder.todoChB.setActivated(true); // jak bazie jest informacja czy rzecz została juz zrobiona
+        holder.mItem = todo;
+        holder.todoChB.setActivated(todo.isDone());
         holder.personTV.setText(todo.getUser().getName());
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String strDate = dateFormat.format(todo.getDeadline());
@@ -73,7 +74,7 @@ public class TodoRecyclerViewAdapter extends RecyclerView.Adapter<TodoRecyclerVi
     }
 
     class TodoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
+        private PreparationPoint mItem;
         private final CheckBox todoChB;
         private final TextView personTV;
         private final TextView titleTV;
@@ -89,6 +90,7 @@ public class TodoRecyclerViewAdapter extends RecyclerView.Adapter<TodoRecyclerVi
 
             this.onTodoListener = onTodoListener;
             itemView.setOnClickListener(this);
+            todoChB.setOnClickListener(c -> mItem.setDone(!mItem.isDone()));
         }
 
         @Override

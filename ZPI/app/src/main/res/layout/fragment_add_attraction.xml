@@ -40,7 +40,7 @@
                     android:textSize="18sp"></TextView>
 
                 <EditText
-                    android:id="@+id/nameAccET"
+                    android:id="@+id/nameTripPointET"
                     android:layout_width="330dp"
                     android:layout_height="50dp"
                     android:layout_marginLeft="30dp"
@@ -83,7 +83,7 @@
                     android:textSize="18sp"></TextView>
 
                 <EditText
-                    android:id="@+id/adressOfAccET"
+                    android:id="@+id/adressOfTripPointET"
                     android:layout_width="330dp"
                     android:layout_height="50dp"
                     android:layout_marginLeft="30dp"
@@ -99,12 +99,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:fontFamily="@font/poppins_light"
-                    android:text="Data zameldowania"
+                    android:text="Data"
                     android:textColor="@color/black"
                     android:textSize="18sp"></TextView>
 
                 <EditText
-                    android:id="@+id/dateOfAccET"
+                    android:id="@+id/dateOfTripPointET"
                     android:layout_width="330dp"
                     android:layout_height="50dp"
                     android:layout_marginLeft="30dp"
@@ -121,7 +121,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:fontFamily="@font/poppins_light"
-                    android:text="Godzina zameldowania"
+                    android:text="Godzina"
                     android:textColor="@color/black"
                     android:textSize="18sp"></TextView>
 
@@ -130,7 +130,7 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/hhOfAccET"
+                        android:id="@+id/hhOfTripPointET"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginLeft="30dp"
@@ -151,7 +151,7 @@
                         android:textSize="20sp"></TextView>
 
                     <EditText
-                        android:id="@+id/mmOfAcctET"
+                        android:id="@+id/mmOfTripPointET"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginBottom="15dp"
@@ -163,98 +163,6 @@
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 </TableRow>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:fontFamily="@font/poppins_light"
-                    android:text="Data wymeldowania"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"></TextView>
-
-                <EditText
-                    android:id="@+id/dateOfAccET2"
-                    android:layout_width="330dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginBottom="15dp"
-                    android:background="@drawable/rounded"
-                    android:drawableTint="@color/white"
-                    android:ems="10"
-                    android:hint="rrrr-mm-dd"
-                    android:inputType="date"
-                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:fontFamily="@font/poppins_light"
-                    android:text="Godzina wymeldowania"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"></TextView>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/hhOfAccET2"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginBottom="15dp"
-                        android:background="@drawable/rounded"
-                        android:drawableTint="@color/white"
-                        android:ems="10"
-                        android:hint="HH"
-                        android:inputType="date"
-                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_light"
-                        android:text=":"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"></TextView>
-
-                    <EditText
-                        android:id="@+id/mmOfAcctET2"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="15dp"
-                        android:background="@drawable/rounded"
-                        android:drawableTint="@color/white"
-                        android:ems="10"
-                        android:hint="MM"
-                        android:inputType="date"
-                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-                </TableRow>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:fontFamily="@font/poppins_light"
-                    android:text="Uwagi"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"></TextView>
-
-                <EditText
-                    android:id="@+id/descACCET"
-                    android:layout_width="330dp"
-                    android:layout_height="100dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginBottom="15dp"
-                    android:background="@drawable/rounded"
-                    android:drawableTint="@color/white"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
 
                 <ImageButton
                     android:id="@+id/btn_addPrepPoint"

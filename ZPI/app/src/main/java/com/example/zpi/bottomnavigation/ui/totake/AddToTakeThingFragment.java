@@ -1,5 +1,6 @@
 package com.example.zpi.bottomnavigation.ui.totake;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -50,12 +51,12 @@ public class AddToTakeThingFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentAddToTakeThingBinding.inflate(inflater, container, false);
 
-//        Intent intent = getActivity().getIntent();
-//        currTrip = (Trip) intent.getSerializableExtra("TRIP");
+        Intent intent = getActivity().getIntent();
+        currTrip = (Trip) intent.getSerializableExtra("TRIP");
 
         new Thread(() -> {
             try {
-                currTrip = new TripDao(BaseConnection.getConnectionSource()).queryForEq("ID", 1).get(0);
+//                currTrip = new TripDao(BaseConnection.getConnectionSource()).queryForEq("ID", 1).get(0);
                 List<User> userList = new UserDao(BaseConnection.getConnectionSource()).getUsersFromTrip(currTrip);
                 Log.i("todo size fragemnt", String.valueOf(userList.size()));
                 getActivity().runOnUiThread(() -> {
@@ -98,6 +99,5 @@ public class AddToTakeThingFragment extends Fragment {
             }
         }).start();
         NavHostFragment.findNavController(this).navigate(R.id.action_addToTakeThingFragment_to_navigation_to_take_things);
-
     }
 }
