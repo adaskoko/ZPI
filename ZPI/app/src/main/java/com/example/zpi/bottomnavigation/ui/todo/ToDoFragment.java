@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -27,6 +28,8 @@ import java.util.List;
 
 
 public class ToDoFragment extends Fragment implements TodoRecyclerViewAdapter.OnTodoListener {
+
+    public final static String TODO_KEY = "TODO";
 
     private ToDoViewModel toDoViewModel;
     private FragmentToDoBinding binding;
@@ -79,6 +82,10 @@ public class ToDoFragment extends Fragment implements TodoRecyclerViewAdapter.On
 
     @Override
     public void onTodoClick(int position) {
+        PreparationPoint point = todoRecyclerViewAdapter.getTodo(position);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(TODO_KEY, point);
+        Navigation.findNavController(getView()).navigate(R.id.todoDetailsFragment, bundle);
         Log.i("todo click", "clicked:" + position);
     }
 

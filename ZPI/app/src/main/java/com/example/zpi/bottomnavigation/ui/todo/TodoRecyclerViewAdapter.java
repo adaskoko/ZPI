@@ -73,6 +73,10 @@ public class TodoRecyclerViewAdapter extends RecyclerView.Adapter<TodoRecyclerVi
         notifyItemRemoved(position);
     }
 
+    public PreparationPoint getTodo(int position) {
+        return todoList.get(position);
+    }
+
     class TodoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private PreparationPoint mItem;
         private final CheckBox todoChB;

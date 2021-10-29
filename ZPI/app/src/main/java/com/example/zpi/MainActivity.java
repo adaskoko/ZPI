@@ -30,22 +30,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        /*User user = new User();
-        user.setEmail("test_dao@test.com");
-        user.setBirthDate(new Date());
-        user.setJoiningDate(new Date());
-        user.setName("test name");
-        user.setPassword("test password");
-        user.setSurname("test surname");
-
-        new Thread(() -> {
-            try {
-                new UserDao(BaseConnection.getConnectionSource()).create(user);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-        }).start();*/
     }
 
     @Override
@@ -55,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (user != null){
             Log.i("user", user.toString());
-            Toast.makeText(this, user.getEmail(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, user.getEmail(), Toast.LENGTH_SHORT).show();
         }
 
     }

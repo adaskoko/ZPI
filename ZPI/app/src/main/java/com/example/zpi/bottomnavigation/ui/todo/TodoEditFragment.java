@@ -1,66 +1,147 @@
 package com.example.zpi.bottomnavigation.ui.todo;
 
+import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.DatePicker;
+import android.widget.Toast;
 
 import com.example.zpi.R;
+import com.example.zpi.data_handling.BaseConnection;
+import com.example.zpi.databinding.FragmentTodoEditBinding;
+import com.example.zpi.models.PreparationPoint;
+import com.example.zpi.models.Trip;
+import com.example.zpi.models.User;
+import com.example.zpi.repositories.PreparationPointDao;
+import com.example.zpi.repositories.UserDao;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link TodoEditFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class TodoEditFragment extends Fragment {
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public TodoEditFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment TodoEditFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static TodoEditFragment newInstance(String param1, String param2) {
-        TodoEditFragment fragment = new TodoEditFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+public class TodoEditFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
+    
+    private PreparationPoint actPoint;
+    private FragmentTodoEditBinding binding;
+    private Trip actTrip;
+    private User chosenUser;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            actPoint = (PreparationPoint) getArguments().get(ToDoFragment.TODO_KEY);
         }
+        Intent intent = getActivity().getIntent();
+        actTrip = (Trip) intent.getSerializableExtra("TRIP");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_todo_edit, container, false);
+        binding = FragmentTodoEditBinding.inflate(inflater, container, false);
+        new Thread(() -> {
+            try {
+                List<User> userList = new UserDao(BaseConnection.getConnectionSource()).getUsersFromTrip(actTrip);
+                Log.i("todo size fragemnt", String.valueOf(userList.size()));
+                getActivity().runOnUiThread(() -> {
+                    PersonSpinnerAdapter personAdapter = new PersonSpinnerAdapter(requireContext(), userList);
+                    binding.assignedTo.setAdapter(personAdapter);
+                });
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }).start();
+        fillEditText();
+        binding.assignedTo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                chosenUser = (User) parent.getItemAtPosition(position);
+                String clickedUSer = chosenUser.getName();
+                Toast.makeText(getContext(), clickedUSer + " selected", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        binding.tvPontDate.setOnClickListener(c -> showDatePickerDialog());
+        binding.btnConfirm.setOnClickListener(c -> saveTodo());
+        return binding.getRoot();
+    }
+
+    private void saveTodo() {
+        String title = binding.etTodoName.getText().toString();
+        String description = binding.etTodoDesc.getText().toString();
+        String deadline = binding.tvPontDate.getText().toString();
+        Boolean isDone = binding.cbDone.isChecked();
+        Date date = null;
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            date = dateFormat.parse(deadline);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if (date == null  && chosenUser == null) {
+            Log.i("todo", "todo zle");
+        } else {
+            Date finalDate = date;
+            new Thread(() -> {
+                try {
+                    PreparationPointDao pointDao = new PreparationPointDao(BaseConnection.getConnectionSource());
+                    actPoint.setName(title);
+                    actPoint.setDescription(description);
+                    actPoint.setDeadline(finalDate);
+                    actPoint.setDone(isDone);
+                    pointDao.update(actPoint);
+                    Log.i("todo", "todo edited");
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }).start();
+        }
+        NavHostFragment.findNavController(this).navigate(R.id.action_todoEditFragment_to_navigation_todo);
+    }
+
+    private void fillEditText() {
+        binding.etTodoName.setText(actPoint.getName());
+        binding.etTodoDesc.setText(actPoint.getDescription());
+        binding.cbDone.setChecked(actPoint.isDone());
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String date = dateFormat.format(actPoint.getDeadline());
+        binding.tvPontDate.setText(date);
+    }
+
+    private void showDatePickerDialog() {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
+                this,
+                Calendar.YEAR,
+                Calendar.MONTH,
+                Calendar.DAY_OF_MONTH
+        );
+        datePickerDialog.show();
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        month = month + 1;
+        String date = dayOfMonth + "-" + month +"-"+ year;
+        binding.tvPontDate.setText(date);
     }
 }

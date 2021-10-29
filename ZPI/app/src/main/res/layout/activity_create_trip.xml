@@ -48,7 +48,7 @@
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:background="@drawable/strzalka"></ImageButton>
+                            android:background="@drawable/strzalka"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -57,7 +57,7 @@
                             android:fontFamily="@font/poppins_medium"
                             android:text="Utwórz nową wycieczkę"
                             android:textColor="@color/black"
-                            android:textSize="20sp"></TextView>
+                            android:textSize="20sp"/>
 
                     </TableRow>
 

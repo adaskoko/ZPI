@@ -1,66 +1,83 @@
 package com.example.zpi.bottomnavigation.ui.todo;
 
+import static com.example.zpi.bottomnavigation.ui.todo.ToDoFragment.TODO_KEY;
+
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.zpi.R;
+import com.example.zpi.data_handling.BaseConnection;
+import com.example.zpi.databinding.FragmentTodoDetailsBinding;
+import com.example.zpi.models.PreparationPoint;
+import com.example.zpi.repositories.PreparationPointDao;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link TodoDetailsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
+
 public class TodoDetailsFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public TodoDetailsFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment TodoDetailsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static TodoDetailsFragment newInstance(String param1, String param2) {
-        TodoDetailsFragment fragment = new TodoDetailsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private PreparationPoint actPoint;
+    FragmentTodoDetailsBinding binding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            //actPoint = (PreparationPoint) getArguments().getSerializable(ToDoFragment.TODO_KEY);
+            actPoint = (PreparationPoint) getArguments().get(TODO_KEY);
         }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_todo_details, container, false);
+        binding = FragmentTodoDetailsBinding.inflate(inflater, container, false);
+        fillTextView();
+        binding.btnDelete.setOnClickListener(c -> delete());
+        binding.btnEdit.setOnClickListener(c -> edit());
+        return binding.getRoot();
+    }
+
+    private void fillTextView() {
+        binding.pointNameTV.setText(actPoint.getName());
+        binding.tvPointDesc.setText(actPoint.getDescription());
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        binding.tvPontDate.setText(dateFormat.format(actPoint.getDeadline()));
+        binding.tvPersonResponsible.setText(actPoint.getUser().getName());
+        Log.i("todo", String.valueOf(actPoint.getUser().getSurname() == null));
+
+        binding.cbDone.setChecked(actPoint.isDone());
+    }
+
+    private void delete() {
+        new Thread(() -> {
+            try {
+                PreparationPointDao pointDao = new PreparationPointDao(BaseConnection.getConnectionSource());
+                pointDao.delete(actPoint);
+                Log.i("todo", "usunieto todo");
+
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }).start();
+        NavHostFragment.findNavController(this).navigate(R.id.action_todoDetailsFragment_to_navigation_todo);
+    }
+
+    private void edit() {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(TODO_KEY, actPoint);
+        NavHostFragment.findNavController(this).navigate(R.id.action_todoDetailsFragment_to_todoEditFragment, bundle);
+        //Navigation.findNavController(getView()).navigate(R.id.todoEditFragment, bundle);
     }
 }
