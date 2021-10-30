@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -21,6 +22,7 @@ import com.example.zpi.models.User;
 import com.example.zpi.repositories.TripDao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TripListActivity extends AppCompatActivity {
@@ -28,8 +30,8 @@ public class TripListActivity extends AppCompatActivity {
     RecyclerView upcomingTripsRV;
     RecyclerView pastTripsRV;
 
-    List<Trip> upcomingTrips;
-    List<Trip> pastTrips;
+    ArrayList<Trip> upcomingTrips;
+    ArrayList<Trip> pastTrips;
 
     Trip currentTrip;
 
@@ -50,8 +52,8 @@ public class TripListActivity extends AppCompatActivity {
                 User user = SharedPreferencesHandler.getLoggedInUser(getApplicationContext());
                 TripDao tripDao = new TripDao(BaseConnection.getConnectionSource());
 
-                upcomingTrips = tripDao.getFutureTripsForUser(user);
-                pastTrips = tripDao.getPastTripsForUser(user);
+                upcomingTrips = (ArrayList<Trip>) tripDao.getFutureTripsForUser(user);
+                pastTrips = (ArrayList<Trip>) tripDao.getPastTripsForUser(user);
                 currentTrip = tripDao.getCurrentTripForUser(user);
 
                 setUpUpcomingRecyclerView();
@@ -111,6 +113,20 @@ public class TripListActivity extends AppCompatActivity {
     public void goToTrip(Trip trip){
         Intent intent = new Intent(this, BottomNavigationActivity.class);
         intent.putExtra("TRIP", trip);
+        startActivity(intent);
+    }
+
+    public void moreUpcoming(View view) {
+        Intent intent = new Intent(this, TripGridActivity.class);
+        intent.putExtra("TRIPS", upcomingTrips);
+        intent.putExtra("TITLE", "Nadchodzące");
+        startActivity(intent);
+    }
+
+    public void morePast(View view) {
+        Intent intent = new Intent(this, TripGridActivity.class);
+        intent.putExtra("TRIPS", pastTrips);
+        intent.putExtra("TITLE", "Minione");
         startActivity(intent);
     }
 }

@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ZPI">
         <activity
+            android:name=".TripGridActivity"
+            android:exported="true" />
+        <activity
             android:name=".TripListActivity"
             android:exported="true" />
         <activity

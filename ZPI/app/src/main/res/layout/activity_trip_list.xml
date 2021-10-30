@@ -123,7 +123,8 @@
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:paddingHorizontal="40dp"
-            android:paddingVertical="18dp">
+            android:paddingTop="16dp"
+            android:paddingBottom="0dp">
 
             <TextView
                 android:id="@+id/textView3"
@@ -141,6 +142,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
+                android:onClick="moreUpcoming"
                 android:text="więcej"
                 android:textColor="@color/black" />
         </LinearLayout>
@@ -155,7 +157,7 @@
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:paddingHorizontal="40dp"
-            android:paddingVertical="18dp">
+            android:paddingTop="16dp">
 
             <TextView
                 android:id="@+id/textView4"
@@ -173,6 +175,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
+                android:onClick="morePast"
                 android:text="więcej"
                 android:textColor="@color/black" />
         </LinearLayout>
