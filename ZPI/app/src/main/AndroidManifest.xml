@@ -13,11 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ZPI">
         <activity
-            android:name=".TripGridActivity"
-            android:exported="true" />
+            android:name=".MatchingUsersActivity"
+            android:exported="false" />
         <activity
-            android:name=".TripListActivity"
-            android:exported="true" />
+            android:name=".InviteUsersActivity"
+            android:exported="false" />
         <activity
             android:name=".TripMainActivity"
             android:exported="false" />
