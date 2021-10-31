@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".bottomnavigation.ui.totake.AddToTakeThingFragment"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
+        android:fontFamily="@font/poppins_light"
+        android:text="Dodaj produkt do zabrania"
+        android:textColor="@color/black"
+        android:textSize="24sp">
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:fontFamily="@font/poppins_light"
+        android:text="Nazwa"
+        android:textColor="@color/black"
+        android:textSize="18sp">
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/nameOfThingToTakeET"
+        android:layout_width="330dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/rounded"
+        android:drawableTint="@color/white"
+        android:ems="10"
+        android:inputType="textPersonName"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:fontFamily="@font/poppins_light"
+        android:text="Osoba odpowiedzialna"
+        android:textColor="@color/black"
+        android:textSize="18sp"/>
+
+    <Spinner
+        android:id="@+id/assignedTo"
+        android:layout_width="330dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="30dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dialog" />
+
+    <ImageButton
+        android:id="@+id/btn_addToTakeThing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="5dp"
+        android:backgroundTint="@android:color/transparent"
+        android:onClick="TODO"
+        android:src="@drawable/przycisk_dodaj"/>
+
+</LinearLayout>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="100">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/top_bar_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/trip_bar_bg_short"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginEnd="40dp"
+                    android:orientation="vertical">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginBottom="24dp">
+
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/strzalka"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Utwórz nową wycieczkę"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"/>
+
+                    </TableRow>
+
+
+                    <TextView
+                        android:id="@+id/tv_tripName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:text="Nazwa"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/et_tripName"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="12dp"
+                        android:background="@drawable/rounded"
+                        android:drawableTint="@color/white"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"></EditText>
+
+                    <TextView
+                        android:id="@+id/tv_tripDesc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:text="Opis"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/et_tripDesc"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginBottom="12dp"
+                        android:background="@drawable/rounded"
+                        android:drawableTint="@color/white"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"></EditText>
+
+                    <TextView
+                        android:id="@+id/tv_tripBegin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:text="Data rozpoczęcia"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/et_tripBegin"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="12dp"
+                        android:background="@drawable/rounded"
+                        android:drawableTint="@color/white"
+                        android:ems="10"
+                        android:fontFamily="@font/poppins"
+                        android:hint="rrrr-mm-dd"
+                        android:inputType="text"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"></EditText>
+
+                    <TextView
+                        android:id="@+id/tv_tripEnd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:text="Data zakończenia"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/et_tripEnd"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="40dp"
+                        android:background="@drawable/rounded"
+                        android:drawableTint="@color/white"
+                        android:ems="10"
+                        android:fontFamily="@font/poppins"
+                        android:hint="rrrr-mm-dd"
+                        android:inputType="text"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"></EditText>
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/button_create_trip">
+
+                    </ImageButton>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

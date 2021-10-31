@@ -152,45 +152,69 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitEnd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_car" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:fontFamily="@font/rubik_bold"
+            android:text="@string/logo"
+            android:textColor="#263238"
+            android:textSize="28sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="60dp"
             android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageView3">
 
-            <ImageView
-                android:id="@+id/car"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginBottom="20dp"
-                app:srcCompat="@drawable/logo" />
-
-            <ImageView
-                android:id="@+id/register"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="30dp"
-                app:srcCompat="@drawable/zarejestruj" />
+                android:layout_marginBottom="40dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Zarejestruj"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
 
             <TextView
                 android:id="@+id/tv_name"
-                android:layout_width="280dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
-                android:fontFamily="@font/poppins_light"
+                android:fontFamily="@font/poppins"
                 android:text="Imię"
                 android:textColor="@android:color/black"
-                android:textSize="18sp">
+                android:textSize="14sp">
 
             </TextView>
 
             <EditText
                 android:id="@+id/et_name"
-                android:layout_width="280dp"
+                android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="12dp"
                 android:background="@drawable/rounded"
                 android:drawableTint="@color/white"
                 android:ems="10"
@@ -199,21 +223,21 @@
 
             <TextView
                 android:id="@+id/tv_surame"
-                android:layout_width="280dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
-                android:fontFamily="@font/poppins_light"
+                android:fontFamily="@font/poppins"
                 android:text="Nazwisko"
                 android:textColor="@color/black"
-                android:textSize="18sp">
+                android:textSize="14sp">
 
             </TextView>
 
             <EditText
                 android:id="@+id/et_surname"
-                android:layout_width="280dp"
+                android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="12dp"
                 android:background="@drawable/rounded"
                 android:drawableTint="@color/white"
                 android:ems="10"
@@ -222,21 +246,21 @@
 
             <TextView
                 android:id="@+id/tv_email"
-                android:layout_width="280dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
-                android:fontFamily="@font/poppins_light"
+                android:fontFamily="@font/poppins"
                 android:text="Email"
                 android:textColor="@color/black"
-                android:textSize="18sp">
+                android:textSize="14sp">
 
             </TextView>
 
             <EditText
                 android:id="@+id/et_email"
-                android:layout_width="280dp"
+                android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="12dp"
                 android:background="@drawable/rounded"
                 android:drawableTint="@color/white"
                 android:ems="10"
@@ -245,19 +269,19 @@
 
             <TextView
                 android:id="@+id/tv_pass"
-                android:layout_width="280dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
-                android:fontFamily="@font/poppins_light"
+                android:fontFamily="@font/poppins"
                 android:text="Hasło"
                 android:textColor="@color/black"
-                android:textSize="18sp"></TextView>
+                android:textSize="14sp"></TextView>
 
             <EditText
                 android:id="@+id/et_password"
-                android:layout_width="280dp"
+                android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="12dp"
                 android:background="@drawable/rounded"
                 android:drawableTint="@color/white"
                 android:ems="10"
@@ -266,19 +290,19 @@
 
             <TextView
                 android:id="@+id/tv_pass2"
-                android:layout_width="280dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
-                android:fontFamily="@font/poppins_light"
+                android:fontFamily="@font/poppins"
                 android:text="Powtórz hasło"
                 android:textColor="@color/black"
-                android:textSize="18sp">
+                android:textSize="14sp">
 
             </TextView>
 
             <EditText
                 android:id="@+id/et_password2"
-                android:layout_width="280dp"
+                android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginBottom="40dp"
                 android:background="@drawable/rounded"
@@ -295,7 +319,7 @@
                 android:layout_marginBottom="30dp"
                 android:background="@android:color/transparent"
                 android:onClick="register"
-                android:src="@drawable/przycisk_create_acc">
+                android:src="@drawable/button_create_account">
 
             </ImageButton>
 

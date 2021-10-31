@@ -1,10 +1,22 @@
 package com.example.zpi.models;
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.*;
 @Entity
 @Table(name="TripPoint")
 public class TripPoint implements Serializable {
 	public TripPoint() {
+	}
+
+	public TripPoint(String name, Date arrivalDate, Date departureDate, String remarks, TripPointType tripPointType, TripPointLocation tripPointLocation, Trip trip) {
+		this.name = name;
+		this.arrivalDate = arrivalDate;
+		this.departureDate = departureDate;
+		this.remarks = remarks;
+		this.tripPointType = tripPointType;
+		this.tripPointLocation = tripPointLocation;
+		this.trip = trip;
 	}
 	
 	@Column(name="ID", nullable=false, unique=true, length=10)	
@@ -38,9 +50,9 @@ public class TripPoint implements Serializable {
 	@JoinColumn(name="TripID", referencedColumnName="ID", nullable=false)
 	private Trip trip;
 
-	@OneToOne(mappedBy="tripPoint", targetEntity=Invoice.class, fetch=FetchType.LAZY)	
-	private Invoice invoice;
-	
+	/*@OneToOne(mappedBy="tripPoint", targetEntity=Invoice.class, fetch=FetchType.LAZY)
+	private Invoice invoice;*/
+
 	private void setID(int value) {
 		this.ID = value;
 	}
@@ -105,13 +117,13 @@ public class TripPoint implements Serializable {
 		return trip;
 	}
 	
-	public void setInvoice(Invoice value) {
+	/*public void setInvoice(Invoice value) {
 		this.invoice = value;
 	}
 	
 	public Invoice getInvoice() {
 		return invoice;
-	}
+	}*/
 	
 	public String toString() {
 		return String.valueOf(getID());

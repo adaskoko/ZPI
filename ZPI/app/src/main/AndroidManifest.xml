@@ -13,6 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ZPI">
         <activity
+            android:name=".TripListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".TripMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CreateTripActivity"
+            android:exported="false" />
+        <activity
             android:name=".bottomnavigation.BottomNavigationActivity"
             android:exported="false"
             android:label="@string/title_activity_bottom_navigation" />

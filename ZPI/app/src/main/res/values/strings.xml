@@ -7,8 +7,8 @@
     <string name="back">Powrót</string>
     <string name="logout">Wyloguj się</string>
     <string name="deleteAcc"><u>Usuń konto</u></string>
-    <string name="new_name">Nowe imie</string>
-    <string name="change_name">Zmień imie</string>
+    <string name="new_name">Nowe imię</string>
+    <string name="change_name">Zmień imię</string>
     <string name="change_surname">Zmień nazwisko</string>
     <string name="new_surname">Nowe nazwisko</string>
     <string name="title_activity_bottom_navigation">BottomNavigationActivity</string>
@@ -17,4 +17,12 @@
     <string name="title_to_take_things">ToTake</string>
     <string name="title_map">Map</string>
     <string name="title_finance">Bank</string>
+    <string name="logo">FastTravel</string>
+    <string name="password_change">Twoje hasło zostało pomyślnie zmienione.</string>
+    <string name="register_success">Rejestracja przebiegła pomyślnie. Możesz teraz zalogować się na swoje konto.</string>
+    <string name="more"><u>więcej</u></string>
+    <string name="delete"><u>usuń</u></string>
+    <string name="success"><b>Sukces</b></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

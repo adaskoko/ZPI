@@ -6,19 +6,37 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
+    <ImageView
+        android:id="@+id/logoIV"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitEnd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_car" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:fontFamily="@font/rubik_bold"
+        android:text="@string/logo"
+        android:textColor="#263238"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/car"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginStart="35dp"
-            android:layout_marginBottom="30dp"
-            app:srcCompat="@drawable/logo" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logoIV">
 
         <!--<ImageView
             android:id="@+id/fastTravel"
@@ -26,13 +44,28 @@
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/fasttravel" />-->
 
-        <ImageView
-            android:id="@+id/info"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/successTV2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_marginBottom="56sp"
+            android:fontFamily="@font/rubik_bold"
+            android:text="@string/success"
+            android:textAlignment="center"
+            android:textColor="#263238"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
             android:layout_marginBottom="40dp"
-            app:srcCompat="@drawable/info" />
+            android:fontFamily="@font/poppins"
+            android:text="@string/register_success"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            tools:layout_marginEnd="40dp" />
 
         <ImageView
             android:id="@+id/go_to_login"
@@ -40,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:onClick="goToLogin"
-            app:srcCompat="@drawable/przycisk_go_to_login" />
+            app:srcCompat="@drawable/button_go_to_login" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

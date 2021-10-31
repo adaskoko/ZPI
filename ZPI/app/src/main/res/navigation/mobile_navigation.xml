@@ -4,17 +4,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/navigation_todo">
+    app:startDestination="@id/singleTripFragment">
     <fragment
         android:id="@+id/navigation_todo"
         android:name="com.example.zpi.bottomnavigation.ui.todo.ToDoFragment"
         android:label="fragment_to_do"
-        tools:layout="@layout/fragment_to_do" />
+        tools:layout="@layout/fragment_to_do" >
+        <action
+            android:id="@+id/action_navigation_todo_to_addToDoFragment"
+            app:destination="@id/addToDoFragment" />
+        <action
+            android:id="@+id/action_navigation_todo_to_todoDetailsFragment"
+            app:destination="@id/todoDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_to_take_things"
         android:name="com.example.zpi.bottomnavigation.ui.totake.ToTakeThingsFragment"
         android:label="fragment_to_take_things"
-        tools:layout="@layout/fragment_to_take_things" />
+        tools:layout="@layout/fragment_to_take_things" >
+        <action
+            android:id="@+id/action_navigation_to_take_things_to_addToTakeThingFragment"
+            app:destination="@id/addToTakeThingFragment" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_finance"
         android:name="com.example.zpi.bottomnavigation.ui.finance.FinanceFragment"
@@ -30,4 +41,51 @@
         android:name="com.example.zpi.bottomnavigation.ui.plan.PlanFragment"
         android:label="fragment_plan"
         tools:layout="@layout/fragment_plan" />
+    <fragment
+        android:id="@+id/addToDoFragment"
+        android:name="com.example.zpi.bottomnavigation.ui.todo.AddToDoFragment"
+        android:label="fragment_add_to_do"
+        tools:layout="@layout/fragment_add_to_do" >
+        <action
+            android:id="@+id/action_addToDoFragment_to_navigation_todo"
+            app:destination="@id/navigation_todo" />
+    </fragment>
+    <fragment
+        android:id="@+id/addToTakeThingFragment"
+        android:name="com.example.zpi.bottomnavigation.ui.totake.AddToTakeThingFragment"
+        android:label="fragment_add_to_take_thing"
+        tools:layout="@layout/fragment_add_to_take_thing" >
+        <action
+            android:id="@+id/action_addToTakeThingFragment_to_navigation_to_take_things"
+            app:destination="@id/navigation_to_take_things" />
+    </fragment>
+    <fragment
+        android:id="@+id/singleTripFragment"
+        android:name="com.example.zpi.SingleTripFragment"
+        android:label="fragment_single_trip"
+        tools:layout="@layout/fragment_single_trip" />
+    <fragment
+        android:id="@+id/todoDetailsFragment"
+        android:name="com.example.zpi.bottomnavigation.ui.todo.TodoDetailsFragment"
+        android:label="TodoDetailsFragment"
+        tools:layout="@layout/fragment_todo_details">
+        <action
+            android:id="@+id/action_todoDetailsFragment_to_todoEditFragment"
+            app:destination="@id/todoEditFragment" />
+        <argument
+            android:name="currTodo"
+            app:argType="com.example.zpi.models.PreparationPoint" />
+        <action
+            android:id="@+id/action_todoDetailsFragment_to_navigation_todo"
+            app:destination="@id/navigation_todo" />
+    </fragment>
+    <fragment
+        android:id="@+id/todoEditFragment"
+        android:name="com.example.zpi.bottomnavigation.ui.todo.TodoEditFragment"
+        android:label="TodoEditFragment"
+        tools:layout="@layout/fragment_todo_edit">
+        <action
+            android:id="@+id/action_todoEditFragment_to_navigation_todo"
+            app:destination="@id/navigation_todo" />
+    </fragment>
 </navigation>
