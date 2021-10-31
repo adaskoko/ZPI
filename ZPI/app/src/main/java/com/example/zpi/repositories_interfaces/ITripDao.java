@@ -13,9 +13,11 @@ import java.util.List;
 public interface ITripDao extends Dao<Trip, Integer> {
     public void createTrip(String name, String description, Date startDate, Date endDate, User user) throws SQLException;
     public void addUserToTrip(Trip trip, User user, Role role) throws SQLException;
+    public void addRegularParticipant(Trip trip, User user) throws SQLException;
 
     public List<Trip> getTripsForUser(User user) throws SQLException;
     public Trip getCurrentTripForUser(User user) throws SQLException;
     public List<Trip> getPastTripsForUser(User user) throws SQLException;
     public List<Trip> getFutureTripsForUser(User user) throws SQLException;
+    public List<Trip> getTripByNameAndDate(String tripName, Date startDate, Date endDate) throws SQLException;
 }

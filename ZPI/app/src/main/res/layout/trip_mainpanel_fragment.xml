@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".bottomnavigation.ui.trip.TripMainpanelFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Zdjęcia z wycieczki:"
+                android:textSize="24sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_light"
+                android:layout_marginLeft="30dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginRight="60sp">
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/more"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_light"
+                android:textSize="14sp"
+                android:onClick="">
+            </TextView>
+        </TableRow>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/nie_ma_zdjec"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp">
+        </ImageView>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/transparent"
+                android:src="@drawable/uczestnicy"
+                android:layout_weight="1"
+                android:onClick="">
+            </ImageButton>
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/transparent"
+                android:src="@drawable/forum"
+                android:layout_weight="1"
+                android:onClick="">
+            </ImageButton>
+        </TableRow>
+
+    </LinearLayout>
+</FrameLayout>

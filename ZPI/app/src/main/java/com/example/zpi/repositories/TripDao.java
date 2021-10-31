@@ -13,7 +13,9 @@ import com.j256.ormlite.support.ConnectionSource;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TripDao extends BaseDaoImpl<Trip, Integer> implements ITripDao {
 
@@ -35,6 +37,13 @@ public class TripDao extends BaseDaoImpl<Trip, Integer> implements ITripDao {
     @Override
     public void addUserToTrip(Trip trip, User user, Role role) throws SQLException {
         TripParticipant tripParticipant = new TripParticipant(user, role, trip);
+        new TripPartcicipantDao(BaseConnection.getConnectionSource()).create(tripParticipant);
+    }
+
+    @Override
+    public void addRegularParticipant(Trip trip, User user) throws SQLException {
+        Role participant=DaoManager.createDao(connectionSource, Role.class).queryForEq("ID", 2).get(0);
+        TripParticipant tripParticipant=new TripParticipant(user, participant, trip);
         new TripPartcicipantDao(BaseConnection.getConnectionSource()).create(tripParticipant);
     }
 
@@ -108,5 +117,14 @@ public class TripDao extends BaseDaoImpl<Trip, Integer> implements ITripDao {
         }
 
         return trips;
+    }
+
+    @Override
+    public List<Trip> getTripByNameAndDate(String tripName, Date startDate, Date endDate) throws SQLException{
+        Map<String, Object> values = new HashMap<String, Object>();
+        values.put("Name", tripName);
+        values.put("StartDate", startDate);
+        values.put("EndDate", endDate);
+        return super.queryForFieldValues(values);
     }
 }

@@ -76,8 +76,9 @@
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
                     android:ems="10"
-                    android:inputType="textPassword"
+                    android:inputType="text"
                     android:layout_marginLeft="30dp"
+                    android:fontFamily="@font/poppins_light"
                     tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck">
                 </EditText>
 
@@ -99,8 +100,9 @@
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
                     android:ems="10"
-                    android:inputType="textPassword"
+                    android:inputType="text"
                     android:layout_marginLeft="30dp"
+                    android:fontFamily="@font/poppins_light"
                     tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck">
                 </EditText>
 
@@ -122,9 +124,10 @@
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
                     android:ems="10"
-                    android:inputType="textPassword"
+                    android:inputType="text"
                     android:layout_marginLeft="30dp"
                     android:hint="rrrr-mm-dd"
+                    android:fontFamily="@font/poppins_light"
                     tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck">
                 </EditText>
 
@@ -142,22 +145,23 @@
                     android:id="@+id/et_tripEnd"
                     android:layout_width="340dp"
                     android:layout_height="48dp"
+                    android:layout_marginLeft="30dp"
                     android:layout_marginBottom="20dp"
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
                     android:ems="10"
-                    android:inputType="textPassword"
-                    android:layout_marginLeft="30dp"
                     android:hint="rrrr-mm-dd"
-                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck">
-                </EditText>
+                    android:inputType="text"
+                    android:fontFamily="@font/poppins_light"
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"></EditText>
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/przycisk_utworz_wycieczke"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="20dp">
+                    android:layout_marginBottom="20dp"
+                    android:onClick="createTrip">
 
                 </ImageButton>
 

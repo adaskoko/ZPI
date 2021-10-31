@@ -12,7 +12,9 @@ import com.j256.ormlite.support.ConnectionSource;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UserDao extends BaseDaoImpl<User, Integer> implements IUserDao {
 
@@ -29,6 +31,20 @@ public class UserDao extends BaseDaoImpl<User, Integer> implements IUserDao {
         if(userResult.size() > 0)
            return userResult.get(0);
         return null;
+    }
+
+    @Override
+    public List<User> findByNameAndSurname(String name, String surname) throws SQLException {
+        Map<String, Object> data=new HashMap<String, Object>();
+        data.put("Name", name);
+        data.put("Surname", surname);
+        List<User> matchingUsers=super.queryForFieldValues(data);
+
+        if(matchingUsers.size()>0) {
+            return matchingUsers;
+        }else{
+            return null;
+        }
     }
 
     @Override
