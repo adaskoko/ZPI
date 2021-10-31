@@ -17,11 +17,11 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/map_pin_line"
+        android:src="@drawable/bed"
         />
 
     <TextView
-        android:id="@+id/pointTitleTV"
+        android:id="@+id/accTitleTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -32,10 +32,10 @@
         android:textSize="15sp"></TextView>
 
     <TextView
-        android:id="@+id/hourTV"
+        android:id="@+id/accDateTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/pointTitleTV"
+        android:layout_below="@+id/accTitleTV"
         android:layout_centerInParent="true"
         android:fontFamily="@font/poppins_light"
         android:text="Karolina Nowak"
@@ -45,10 +45,10 @@
     </TextView>
 
     <TextView
-        android:id="@+id/addressTV"
+        android:id="@+id/accAddressTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/hourTV"
+        android:layout_below="@+id/accDateTV"
         android:layout_centerInParent="true"
         android:text="21.10.2021"
         android:textSize="12sp">

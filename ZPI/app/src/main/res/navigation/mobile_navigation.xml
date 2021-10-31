@@ -25,7 +25,38 @@
         <action
             android:id="@+id/action_navigation_to_take_things_to_addToTakeThingFragment"
             app:destination="@id/addToTakeThingFragment" />
+        <action
+            android:id="@+id/action_navigation_to_take_things_to_toTakeThingsDetailsFragment"
+            app:destination="@+id/toTakeThingsDetailsFragment">
+        </action>
     </fragment>
+    <fragment
+        android:id="@+id/toTakeThingsDetailsFragment"
+        android:name="com.example.zpi.bottomnavigation.ui.totake.ToTakeThingDetailsFragment"
+        android:label="ToTakeThingDetailsFragment"
+        tools:layout="@layout/fragment_to_take_thing_details">
+        <action
+            android:id="@+id/action_toTakeThingDetailsFragment_to_toTakeThingsEditFragment"
+            app:destination="@id/toTakeThingsEditFragment" />
+        <argument
+            android:name="currProduct"
+            app:argType="com.example.zpi.models.ProductToTake" />
+        <action
+            android:id="@+id/action_toTakeThingDetailsFragment_to_navigation_to_take_things"
+            app:destination="@id/navigation_todo" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/toTakeThingsEditFragment"
+        android:name="com.example.zpi.bottomnavigation.ui.totake.ToTakeThingEditFragment"
+        android:label="ToTakeThingsEditFragment"
+        tools:layout="@layout/fragment_to_take_thing_edit">
+        <action
+            android:id="@+id/action_toTakeThhingsEditFragment_to_navigation_to_take_things"
+            app:destination="@id/navigation_todo" />
+    </fragment>
+
     <fragment
         android:id="@+id/navigation_finance"
         android:name="com.example.zpi.bottomnavigation.ui.finance.FinanceFragment"

@@ -36,6 +36,10 @@ public class PlanRecyclerViewAdapter extends RecyclerView.Adapter<PlanRecyclerVi
         return tripPointList.size();
     }
 
+    public TripPoint getTripPoint(int position){
+        return tripPointList.get(position);
+    }
+
     public class PlanViewHolder extends RecyclerView.ViewHolder {
         public final TextView mIdView;
         public final TextView mContentView;

@@ -1,66 +1,106 @@
 package com.example.zpi.bottomnavigation.ui.totake;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Toast;
 
 import com.example.zpi.R;
+import com.example.zpi.bottomnavigation.ui.todo.PersonSpinnerAdapter;
+import com.example.zpi.data_handling.BaseConnection;
+import com.example.zpi.databinding.FragmentToTakeThingEditBinding;
+import com.example.zpi.models.ProductToTake;
+import com.example.zpi.models.Trip;
+import com.example.zpi.models.User;
+import com.example.zpi.repositories.ProductToTakeDao;
+import com.example.zpi.repositories.UserDao;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ToTakeThingEditFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.sql.SQLException;
+import java.util.List;
+
 public class ToTakeThingEditFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private ProductToTake actPoint;
+    private FragmentToTakeThingEditBinding binding;
+    private Trip actTrip;
+    private User chosenUser;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public ToTakeThingEditFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ToTakeThingEditFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ToTakeThingEditFragment newInstance(String param1, String param2) {
-        ToTakeThingEditFragment fragment = new ToTakeThingEditFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            actPoint=(ProductToTake) getArguments().get(ToTakeThingsFragment.TOTAKE_KEY);
         }
+        Intent intent =getActivity().getIntent();
+        actTrip=(Trip)intent.getSerializableExtra("TRIP");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_to_take_thing_edit, container, false);
+        binding=FragmentToTakeThingEditBinding.inflate(inflater, container, false);
+        new Thread(() -> {
+            try {
+                List<User> userList = new UserDao(BaseConnection.getConnectionSource()).getUsersFromTrip(actTrip);
+                Log.i("todo size fragemnt", String.valueOf(userList.size()));
+                getActivity().runOnUiThread(() -> {
+                    PersonSpinnerAdapter personAdapter = new PersonSpinnerAdapter(requireContext(), userList);
+                    binding.spParticipants.setAdapter(personAdapter);
+                });
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }).start();
+
+        fillEtitTexts();
+
+        binding.spParticipants.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                chosenUser=(User) parent.getItemAtPosition(position);
+                String clickedUsr=chosenUser.getName();
+                //??nie brakuje tu tego actPoint.setUser(chosenUser);
+                Toast.makeText(getContext(),clickedUsr+" selected", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        binding.btnOk.setOnClickListener(c->saveToTake());
+        return binding.getRoot();
+    }
+
+    private void fillEtitTexts(){
+        binding.etToTakeName.setText(actPoint.getName());
+        binding.cbDone.setChecked(actPoint.isDone());
+    }
+
+    private void saveToTake(){
+        String title=binding.etToTakeName.getText().toString();
+        Boolean isDone=binding.cbDone.isChecked();
+
+        new Thread(() -> {
+            try {
+                ProductToTakeDao pointDao = new ProductToTakeDao(BaseConnection.getConnectionSource());
+                actPoint.setName(title);
+                actPoint.setDone(isDone);
+                pointDao.update(actPoint);
+                Log.i("todo", "todo edited");
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }).start();
+
+
     }
 }

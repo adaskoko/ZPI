@@ -37,6 +37,7 @@
             </TextView>
 
             <ImageButton
+                android:id="@+id/btn_editToTake"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@android:color/transparent"
@@ -91,6 +92,7 @@
                 </TableRow>
 
                 <ImageButton
+                    android:id="@+id/btn_deteleToTake"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@android:color/transparent"

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.zpi.databinding.FragmentPlanBinding;
+import com.example.zpi.models.Trip;
 import com.example.zpi.models.TripPoint;
 
 import java.util.List;
@@ -23,8 +25,16 @@ import java.util.List;
  */
 public class PlanFragment extends Fragment {
 
+    public final static String PLAN_KEY="PLAN";
+    private Trip currTrip;
     private PlanViewModel planViewModel;
     private FragmentPlanBinding binding;
+    private PlanRecyclerViewAdapter planRecyclerViewAdapter;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -54,5 +64,17 @@ public class PlanFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+
+    public void onPlanPointClick(int position){
+        TripPoint point=planRecyclerViewAdapter.getTripPoint(position);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(PLAN_KEY, point);
+        if(point.getTripPointType().equals("Atrakcja")){
+
+        }else{
+
+        }
     }
 }

@@ -35,8 +35,8 @@ public class ToTakeThingRecyclerViewAdapter extends RecyclerView.Adapter<ToTakeT
     @Override
     public ToTakeThingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_to_take, parent, false);
-        return new ToTakeThingViewHolder(ItemToTakeBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false), toTakeThingListener);
-        //return new ToTakeThingViewHolder(itemView, toTakeThingListener);
+        //return new ToTakeThingViewHolder(ItemToTakeBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false), toTakeThingListener);
+        return new ToTakeThingViewHolder(itemView, toTakeThingListener);
     }
 
     @Override
@@ -70,6 +70,10 @@ public class ToTakeThingRecyclerViewAdapter extends RecyclerView.Adapter<ToTakeT
         //notifyDataSetChanged();
         notifyItemRemoved(position);
     }
+    public ProductToTake getProduct(int position){
+        return productToTakeList.get(position);
+    }
+
 
     class ToTakeThingViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public ProductToTake mItem;
@@ -78,18 +82,18 @@ public class ToTakeThingRecyclerViewAdapter extends RecyclerView.Adapter<ToTakeT
         private final TextView titleTV;
         private final ToTakeThingListener toTakeThingListener;
 
-        public ToTakeThingViewHolder(@NonNull ItemToTakeBinding itemView, ToTakeThingListener toTakeThingListener) {
+        public ToTakeThingViewHolder(@NonNull View itemView, ToTakeThingListener toTakeThingListener) {
 //            super(itemView);
 //            toTakeChB = itemView.findViewById(R.id.toTakeChB);
 //            personTV = itemView.findViewById(R.id.personTV);
 //            titleTV = itemView.findViewById(R.id.titleTV);
-            super(itemView.getRoot());
-            toTakeChB = itemView.toTakeChB;
-            personTV = itemView.personTV;
-            titleTV = itemView.titleTV;
+            super(itemView);
+            toTakeChB = itemView.findViewById(R.id.toTakeChB);
+            personTV = itemView.findViewById(R.id.personTV);
+            titleTV = itemView.findViewById(R.id.titleTV);
 
             this.toTakeThingListener = toTakeThingListener;
-            itemView.getRoot().setOnClickListener(this);
+            itemView.setOnClickListener(this);
             toTakeChB.setOnClickListener(v -> mItem.setDone(!mItem.isDone()));
         }
 
@@ -97,6 +101,8 @@ public class ToTakeThingRecyclerViewAdapter extends RecyclerView.Adapter<ToTakeT
         public void onClick(View v) {
             toTakeThingListener.toTakeThingClick(getAbsoluteAdapterPosition());
         }
+
+
     }
 
     public interface ToTakeThingListener {
