@@ -51,6 +51,7 @@
                     android:layout_weight="1"
                     android:backgroundTint="@android:color/transparent"
                     android:src="@drawable/account_details"
+                    android:onClick="goToProfile"
                     tools:ignore="SpeakableTextPresentCheck">
 
                 </ImageButton>

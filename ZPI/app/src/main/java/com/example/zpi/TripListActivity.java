@@ -129,4 +129,9 @@ public class TripListActivity extends AppCompatActivity {
         intent.putExtra("TITLE", "Minione");
         startActivity(intent);
     }
+
+    public void goToProfile(View view) {
+        Intent intent = new Intent(this, UpdateUserActivity.class);
+        startActivity(intent);
+    }
 }
