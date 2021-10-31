@@ -9,12 +9,14 @@ import com.example.zpi.models.User;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -53,6 +55,22 @@ public class TripPointDaoTest {
             TripPoint tripPoint = new TripPointDao(connectionSource).queryForEq("ID", 2).get(0);
 
             new TripPointDao(connectionSource).addUserToTripPoint(user, tripPoint, 123.45);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    @Test
+    public void getTripPointsByUser() {
+    }
+
+    @Test
+    public void getTripPointsByTrip() {
+        try{
+            Trip trip = DaoManager.createDao(connectionSource, Trip.class).queryForEq("ID", 1).get(0);
+            List<TripPoint> points = new TripPointDao(connectionSource).getTripPointsByTrip(trip);
+
+            Assert.assertEquals(2, points.size());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

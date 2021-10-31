@@ -52,6 +52,12 @@
         <activity
             android:name=".ChangePasswordSuccessfulActivity"
             android:exported="true" />
+        <activity
+            android:name=".TripListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".TripGridActivity"
+            android:exported="true" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
