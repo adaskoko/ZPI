@@ -134,4 +134,9 @@ public class TripListActivity extends AppCompatActivity {
         Intent intent = new Intent(this, UpdateUserActivity.class);
         startActivity(intent);
     }
+
+    public void createNewTrip(View view) {
+        Intent intent = new Intent(this, CreateTripActivity.class);
+        startActivity(intent);
+    }
 }
