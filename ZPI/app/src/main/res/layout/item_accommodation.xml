@@ -1,58 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="70dp"
-    android:paddingHorizontal="10dp"
-    android:paddingTop="5dp"
-    android:paddingBottom="5dp">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/rounded_black_edge">
 
-    <ImageView
-        android:id="@+id/myImageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/rounded_component" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="34dp"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal">
 
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center_vertical"
+                android:layout_weight="1"
+                android:scaleType="fitStart"
+                app:srcCompat="@drawable/ic_accomodation" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/bed"
-        />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/accTitleTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:fontFamily="@font/poppins_light"
-        android:text="Koce"
-        android:textColor="@color/black"
-        android:textSize="15sp"></TextView>
+                <TextView
+                    android:id="@+id/accommodationNameTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/accommodation_name"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"></TextView>
 
-    <TextView
-        android:id="@+id/accDateTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/accTitleTV"
-        android:layout_centerInParent="true"
-        android:fontFamily="@font/poppins_light"
-        android:text="Karolina Nowak"
-        android:textColor="@color/black"
-        android:textSize="12sp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-    </TextView>
+                    <TextView
+                        android:id="@+id/startDateTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:text="@string/accommodation_start_date"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="14sp">
 
-    <TextView
-        android:id="@+id/accAddressTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/accDateTV"
-        android:layout_centerInParent="true"
-        android:text="21.10.2021"
-        android:textSize="12sp">
+                    </TextView>
 
-    </TextView>
+                    <TextView
+                        android:id="@+id/dateSeparatorTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:fontFamily="@font/poppins"
+                        android:text="-"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
 
-</RelativeLayout>
+                    <TextView
+                        android:id="@+id/endDateTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:text="@string/accommodation_end_date"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/addressTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:text="@string/accommodation_address"
+                    android:textAlignment="center"
+                    android:textColor="#757575"
+                    android:textSize="10sp">
+
+                </TextView>
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>

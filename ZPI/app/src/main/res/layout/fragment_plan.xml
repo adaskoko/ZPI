@@ -8,55 +8,94 @@
     tools:context=".bottomnavigation.ui.plan.PlanFragment">
 
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:textColor="@color/black"
-            android:fontFamily="@font/poppins_light"
-            android:text="Plan wycieczki "
-            android:layout_marginLeft="30dp"
-            android:layout_marginBottom="20dp">
-        </TextView>
-
-        <TableRow
-
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        <ImageButton
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@android:color/transparent"
-            android:src="@drawable/nowy_punkt"
-            android:layout_weight="1">
-        </ImageButton>
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:orientation="vertical">
 
-            <ImageButton
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/transparent"
-                android:src="@drawable/nowy_nocleg"
-                android:layout_weight="1">
-            </ImageButton>
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal">
 
-        </TableRow>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list"
-            android:name="com.example.zpi.PlanFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            app:layoutManager="LinearLayoutManager"
-            tools:context=".bottomnavigation.ui.plan.PlanFragment"
-            tools:listitem="@layout/item_plan"/>
-    </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="start|center_vertical"
+                    android:text="Plan wycieczki
+"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"></TextView>
+
+                <ImageView
+                    android:id="@+id/newPointB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitEnd"
+                    android:src="@drawable/button_new_point" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tripPointList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="LinearLayoutManager"
+                tools:listitem="@layout/item_plan_one_day" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="28dp"
+                android:layout_marginBottom="12dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="start|center_vertical"
+                    android:text="@string/accomodation"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"></TextView>
+
+                <ImageView
+                    android:id="@+id/newAccomodationB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitEnd"
+                    android:src="@drawable/button_new_point"
+                    app:srcCompat="@drawable/button_new_accomodation" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/accommodationList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="LinearLayoutManager"
+                tools:listitem="@layout/item_accommodation" />
+        </LinearLayout>
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

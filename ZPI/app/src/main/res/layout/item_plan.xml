@@ -1,58 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="70dp"
-    android:paddingHorizontal="10dp"
-    android:paddingTop="5dp"
-    android:paddingBottom="5dp">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/rounded_black_edge">
 
-    <ImageView
-        android:id="@+id/myImageView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/rounded_component" />
-
-
-    <ImageView
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/map_pin_line"
-        />
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginBottom="12dp"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/pointTitleTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:fontFamily="@font/poppins_light"
-        android:text="Koce"
-        android:textColor="@color/black"
-        android:textSize="15sp"></TextView>
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:layout_weight="1"
+            android:scaleType="fitStart"
+            app:srcCompat="@drawable/ic_map_pin" />
 
-    <TextView
-        android:id="@+id/hourTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/pointTitleTV"
-        android:layout_centerInParent="true"
-        android:fontFamily="@font/poppins_light"
-        android:text="Karolina Nowak"
-        android:textColor="@color/black"
-        android:textSize="12sp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical">
 
-    </TextView>
+            <TextView
+                android:id="@+id/pointTitleTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/point_name"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="16sp"></TextView>
 
-    <TextView
-        android:id="@+id/addressTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/hourTV"
-        android:layout_centerInParent="true"
-        android:text="21.10.2021"
-        android:textSize="12sp">
+            <TextView
+                android:id="@+id/hourTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:text="@string/point_start_time"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="14sp">
 
-    </TextView>
+            </TextView>
+
+            <TextView
+                android:id="@+id/addressTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:text="@string/point_address"
+                android:textAlignment="center"
+                android:textColor="#757575"
+                android:textSize="10sp">
+
+            </TextView>
+        </LinearLayout>
+    </LinearLayout>
+
 
 </RelativeLayout>
