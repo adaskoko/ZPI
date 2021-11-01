@@ -64,10 +64,13 @@
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/successful_pasw_change.xml" value="0.21920289855072464" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/user_spinner_row.xml" value="0.1" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/menu/bottom_nav_menu.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/drawable/circle.xml" value="0.3828125" />
+        <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/drawable/line.xml" value="0.3828125" />
+        <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/drawable/rounded.xml" value="0.3828125" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/drawable/rounded_black_edge.xml" value="0.3828125" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/activity_update_user.xml" value="0.35688405797101447" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/fragment_map.xml" value="0.35688405797101447" />
-        <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/fragment_plan.xml" value="0.264" />
+        <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/fragment_plan.xml" value="0.3176895306859206" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/fragment_to_do.xml" value="0.35688405797101447" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/fragment_to_take_thing_details.xml" value="0.35688405797101447" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/fragment_to_take_thing_edit.xml" value="0.35688405797101447" />
@@ -77,7 +80,7 @@
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/fragment_trip_participants.xml" value="0.35688405797101447" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/item_accommodation.xml" value="0.35688405797101447" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/item_plan.xml" value="0.6" />
-        <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/item_plan_one_day.xml" value="0.35688405797101447" />
+        <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/item_plan_one_day.xml" value="0.4" />
       </map>
     </option>
   </component>

@@ -6,28 +6,53 @@
     android:layout_height="match_parent"
     android:layout_marginBottom="12dp">
 
-    <TextView
-        android:id="@+id/dateTV"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins"
-        android:text="13.10"
-        android:textColor="@color/black"
-        android:textSize="16sp"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list"
-        android:name="com.example.zpi.PlanFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        app:layoutManager="LinearLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/dateTV"
-        tools:context=".bottomnavigation.ui.plan.PlanFragment"
-        tools:listitem="@layout/item_plan" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp">
+
+            <View
+                android:id="@+id/line"
+                android:layout_width="8dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="21dp"
+                android:background="#263238"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/dayDateTV"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/circle"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:text="13.10"
+                android:textColor="#F4FAF3"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/line" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list"
+            android:name="com.example.zpi.PlanFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            app:layoutManager="LinearLayoutManager"
+            tools:context=".bottomnavigation.ui.plan.PlanFragment"
+            tools:listitem="@layout/item_plan" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
