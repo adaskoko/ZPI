@@ -13,7 +13,9 @@ import java.util.List;
 
 public class PlanRecyclerViewAdapter extends RecyclerView.Adapter<PlanRecyclerViewAdapter.PlanViewHolder> {
 
-    private final List<TripPoint> tripPointList;
+    private List<TripPoint> tripPointList;
+    //??private final OnPlanListener onPlanListener;
+
 
     public PlanRecyclerViewAdapter(List<TripPoint> items) {
         tripPointList = items;

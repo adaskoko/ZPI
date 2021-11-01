@@ -11,9 +11,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.zpi.R;
 import com.example.zpi.databinding.FragmentPlanBinding;
 import com.example.zpi.models.Trip;
 import com.example.zpi.models.TripPoint;
@@ -72,9 +75,21 @@ public class PlanFragment extends Fragment {
         Bundle bundle = new Bundle();
         bundle.putSerializable(PLAN_KEY, point);
         if(point.getTripPointType().equals("Atrakcja")){
-
+            Navigation.findNavController(getView()).navigate(R.id.action_navigation_plan_to_AttractonDetailsFragment, bundle);
         }else{
-
+            Navigation.findNavController(getView()).navigate(R.id.action_navigation_plan_to_AccomodationDetailsFragment);
         }
     }
+
+    ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            //planRecyclerViewAdapter.deleteTodoPosition(viewHolder.getAbsoluteAdapterPosition());
+        }
+    };
 }

@@ -1,5 +1,6 @@
 package com.example.zpi.bottomnavigation.ui.plan;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,58 +10,44 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.zpi.R;
+import com.example.zpi.databinding.FragmentAddAccomodationBinding;
+import com.example.zpi.models.Trip;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AddAccomodationFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class AddAccomodationFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private FragmentAddAccomodationBinding binding;
+    private Trip currTrip;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public AddAccomodationFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AddAccomodationFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static AddAccomodationFragment newInstance(String param1, String param2) {
-        AddAccomodationFragment fragment = new AddAccomodationFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    public AddAccomodationFragment(){}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_accomodation, container, false);
+        binding=FragmentAddAccomodationBinding.inflate(inflater, container, false);
+
+        Intent intent = getActivity().getIntent();
+        currTrip = (Trip) intent.getSerializableExtra("TRIP");
+        binding.btnAddAccPoint.setOnClickListener(c->addAccomodation());
+        return binding.getRoot();
+    }
+
+    private void addAccomodation(){
+        String title=binding.nameAccET.getText().toString();
+        String address=binding.adressOfAccET.getText().toString();
+        String date_1=binding.dateOfAccET.getText().toString();
+        String hour_1=binding.hhOfAccET.getText().toString();
+        String minute_1=binding.mmOfAcctET.getText().toString();
+        String date_2=binding.dateOfAccET2.getText().toString();
+        String hour_2=binding.hhOfAccET2.getText().toString();
+        String minute_2=binding.mmOfAcctET2.getText().toString();
+
+        //parse, create and save
+
     }
 }

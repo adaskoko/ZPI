@@ -257,13 +257,12 @@
 
 
                 <ImageButton
-                    android:id="@+id/btn_addPrepPoint"
+                    android:id="@+id/btn_addAccPoint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginBottom="5dp"
                     android:backgroundTint="@android:color/transparent"
-                    android:onClick=""
                     android:src="@drawable/przycisk_dodaj"></ImageButton>
 
             </LinearLayout>

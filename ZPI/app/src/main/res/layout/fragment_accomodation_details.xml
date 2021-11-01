@@ -37,13 +37,14 @@
             </TextView>
 
             <ImageButton
+                android:id="@+id/btn_editAccomodation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@android:color/transparent"
                 android:src="@drawable/pencil_simple"
                 android:layout_gravity="right"
                 android:layout_weight="10"
-                android:onClick="">
+                >
             </ImageButton>
         </TableRow>
 
@@ -101,6 +102,7 @@
                     android:inputType="text"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -109,6 +111,8 @@
                     android:text="Godzina zameldowania"
                     android:textColor="@color/black"
                     android:textSize="18sp"></TextView>
+
+
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -151,6 +155,29 @@
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 </TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Data wymeldowania"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"></TextView>
+
+                <TextView
+                    android:id="@+id/tv_accDate2"
+                    android:layout_width="330dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/rounded"
+                    android:drawableTint="@color/white"
+                    android:ems="10"
+                    android:fontFamily="@font/poppins_light"
+                    android:textSize="14sp"
+                    android:inputType="text"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -229,12 +256,13 @@
 
 
                 <ImageButton
+                    android:id="@+id/btn_deleteAccomodation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@android:color/transparent"
                     android:src="@drawable/przycisk_usun_czerwony"
                     android:layout_gravity="center"
-                    android:onClick=""
+
                     >
                 </ImageButton>
 
