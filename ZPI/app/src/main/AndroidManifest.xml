@@ -13,8 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ZPI">
         <activity
-            android:name=".TripListActivity"
-            android:exported="true" />
+            android:name=".MatchingUsersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".InviteUsersActivity"
+            android:exported="false" />
         <activity
             android:name=".TripMainActivity"
             android:exported="false" />
@@ -48,6 +51,12 @@
             android:exported="true" />
         <activity
             android:name=".ChangePasswordSuccessfulActivity"
+            android:exported="true" />
+        <activity
+            android:name=".TripListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".TripGridActivity"
             android:exported="true" />
         <activity android:name=".MainActivity">
             <intent-filter>

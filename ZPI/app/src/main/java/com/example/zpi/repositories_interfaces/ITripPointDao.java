@@ -18,4 +18,5 @@ public interface ITripPointDao extends Dao<TripPoint, Integer> {
     public void addInvoiceToTripPoint(Invoice invoice, TripPoint tripPoint) throws SQLException;
     public void addUserToTripPoint(User user, TripPoint tripPoint, double charge) throws SQLException;
     public List<TripPoint> getTripPointsByUser(User user) throws SQLException;
+    public List<TripPoint> getTripPointsByTrip(Trip trip) throws SQLException;
 }
