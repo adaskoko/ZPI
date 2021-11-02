@@ -49,7 +49,8 @@ public class TripParticipantsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding=FragmentTripParticipantsBinding.inflate(inflater, container, false);
-        listView=(ListView) container.findViewById(R.id.participantsLV);
+        //listView=(ListView) binding.findViewById(R.id.participantsLV);
+        listView=binding.participantsLV;
         getTripParticipants();
         binding.btnEdit.setOnClickListener(c-> addUsers());
         View root = binding.getRoot();
