@@ -61,7 +61,7 @@ public class ToTakeThingEditFragment extends Fragment {
             }
         }).start();
 
-        fillEtitTexts();
+        fillEditTexts();
 
         binding.spParticipants.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

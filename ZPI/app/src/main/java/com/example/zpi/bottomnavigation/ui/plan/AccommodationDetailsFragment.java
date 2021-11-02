@@ -20,12 +20,12 @@ import com.example.zpi.repositories.TripPointDao;
 
 import java.sql.SQLException;
 
-public class AccomodationDetailsFragment extends Fragment {
+public class AccommodationDetailsFragment extends Fragment {
 
     private TripPoint actPoint;
     FragmentAccomodationDetailsBinding binding;
 
-    public AccomodationDetailsFragment() {
+    public AccommodationDetailsFragment() {
         // Required empty public constructor
     }
 

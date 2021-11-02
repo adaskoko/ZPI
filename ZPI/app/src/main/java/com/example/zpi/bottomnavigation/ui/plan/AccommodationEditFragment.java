@@ -98,7 +98,6 @@ public class AccommodationEditFragment extends Fragment implements View.OnClickL
                 actPoint.setRemarks(desc);
                 tripPointDao.update(actPoint);
                 Log.i("edit point", "point edited");
-                BaseConnection.closeConnection(BaseConnection.getConnectionSource());
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
