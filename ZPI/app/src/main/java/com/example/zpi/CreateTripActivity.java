@@ -68,6 +68,7 @@ public class CreateTripActivity extends AppCompatActivity {
                     Intent intent=new Intent(this, InviteUsersActivity.class);
                     intent.putExtra("CreateTrip", currentTrip);
                     startActivity(intent);
+                    //BaseConnection.closeConnection();
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }

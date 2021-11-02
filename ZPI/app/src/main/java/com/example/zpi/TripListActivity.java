@@ -21,6 +21,7 @@ import com.example.zpi.models.Trip;
 import com.example.zpi.models.User;
 import com.example.zpi.repositories.TripDao;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +60,10 @@ public class TripListActivity extends AppCompatActivity {
                 setUpUpcomingRecyclerView();
                 setUpPastRecyclerView();
                 setUpCurrentTrip();
-            } catch (SQLException throwables) {
+                tripDao.getConnectionSource().close();
+
+                //BaseConnection.closeConnection();
+            } catch (SQLException | IOException throwables) {
                 throwables.printStackTrace();
             }
 

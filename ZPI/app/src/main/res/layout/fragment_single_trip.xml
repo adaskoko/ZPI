@@ -78,21 +78,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView2">
 
-        <ImageView
-            android:id="@+id/participantsB"
+        <ImageButton
+            android:id="@+id/btn_participants"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:scaleType="fitStart"
-            android:src="@drawable/button_participants" />
+            android:src="@drawable/button_participants"
+            android:backgroundTint="@android:color/transparent"/>
 
-        <ImageView
-            android:id="@+id/forumB"
+        <ImageButton
+            android:id="@+id/btn_forum"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:scaleType="fitEnd"
-            android:src="@drawable/button_forum" />
+            android:src="@drawable/button_forum"
+            android:backgroundTint="@android:color/transparent"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

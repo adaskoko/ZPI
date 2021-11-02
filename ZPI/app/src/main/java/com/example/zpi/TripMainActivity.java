@@ -59,6 +59,7 @@ public class TripMainActivity extends AppCompatActivity {
             try {
                 TripDao tripDao = new TripDao(BaseConnection.getConnectionSource());
                 List<Trip> usersPastTrips=tripDao.getFutureTripsForUser(loggedUser);
+                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -70,6 +71,7 @@ public class TripMainActivity extends AppCompatActivity {
             try {
                 TripDao tripDao = new TripDao(BaseConnection.getConnectionSource());
                 List<Trip> usersPastTrips=tripDao.getPastTripsForUser(loggedUser);
+                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }

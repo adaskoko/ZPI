@@ -55,6 +55,7 @@ public class ToTakeThingEditFragment extends Fragment {
                     PersonSpinnerAdapter personAdapter = new PersonSpinnerAdapter(requireContext(), userList);
                     binding.spParticipants.setAdapter(personAdapter);
                 });
+                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -96,6 +97,7 @@ public class ToTakeThingEditFragment extends Fragment {
                 actPoint.setDone(isDone);
                 pointDao.update(actPoint);
                 Log.i("todo", "todo edited");
+                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }

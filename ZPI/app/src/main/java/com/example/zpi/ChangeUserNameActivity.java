@@ -45,6 +45,8 @@ public class ChangeUserNameActivity extends AppCompatActivity {
                     userDao.update(loggedUser);
                     SharedPreferencesHandler.saveLoggedInUser(getApplicationContext(), loggedUser);
 
+                    //BaseConnection.closeConnection();
+
                     finish();
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();

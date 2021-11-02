@@ -8,115 +8,111 @@
 
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/trip_bar_bg"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
+
 
         <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="#263238"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="40dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/btn_backToMainTripWindow"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:layout_weight="1"
-                android:backgroundTint="@android:color/transparent"
-                android:src="@drawable/strzalka_biala"
-                tools:ignore="SpeakableTextPresentCheck">
+                android:layout_weight="30"
+                android:orientation="vertical">
 
-            </ImageButton>
-
-            <TextView
-                android:id="@+id/tv_tripname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="@font/poppins_light"
-                android:textColor="@color/white"
-                android:textSize="28sp"
-                android:textStyle="bold">
-
-            </TextView>
-
-            <TextView
-                android:id="@+id/tv_tripdate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="@color/white"
-                android:textSize="16sp">
-
-            </TextView>
-
-            <RelativeLayout
-                android:id="@+id/rel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/image"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/tv_tripname"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:src="@drawable/tlo_details">
+                    android:fontFamily="@font/poppins_light"
+                    android:textColor="@color/white"
+                    android:textSize="28sp"
+                    android:textStyle="bold">
 
-                </ImageView>
-            </RelativeLayout>
+                </TextView>
 
+                <TextView
+                    android:id="@+id/tv_tripdate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/poppins_light"
+                    android:textColor="@color/white"
+                    android:textSize="14sp">
 
+                </TextView>
+            </LinearLayout>
         </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:fontFamily="@font/poppins_light"
+            android:fontFamily="@font/poppins_medium"
             android:text="Zaproś na wycieczkę"
             android:textColor="@color/black"
-            android:textSize="24sp"></TextView>
+            android:textSize="22sp"></TextView>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:fontFamily="@font/poppins_light"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/poppins_medium"
             android:text="Wyszukaj użytkowników"
             android:textColor="@color/black"
-            android:textSize="18sp"></TextView>
+            android:textSize="16sp"></TextView>
 
         <EditText
             android:id="@+id/et_personName"
-            android:layout_width="340dp"
+            android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/rounded"
             android:drawableTint="@color/white"
             android:ems="10"
-            android:fontFamily="@font/poppins_light"
+            android:fontFamily="@font/poppins"
             android:hint="imię i nazwisko"
             android:inputType="text"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"></EditText>
 
-        <ImageButton
+        <ImageView
+            android:id="@+id/imageView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:backgroundTint="@android:color/transparent"
+            android:layout_marginBottom="24dp"
             android:onClick="searchUsers"
-            android:src="@drawable/przycisk_wyszukaj"></ImageButton>
+            app:srcCompat="@drawable/button_search" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -126,51 +122,51 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:fontFamily="@font/poppins_light"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/poppins_medium"
                 android:text="Zaproszeni użytkownicy:"
                 android:textColor="@color/black"
-                android:textSize="18sp"></TextView>
+                android:textSize="16sp"></TextView>
 
             <ListView
                 android:id="@+id/lv_participants"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginBottom="20dp" />
+                android:layout_height="129dp"
+                android:layout_marginBottom="24dp" />
 
-            <ImageButton
+            <ImageView
+                android:id="@+id/imageView5"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="20dp"
-                android:backgroundTint="@android:color/transparent"
+                android:layout_marginBottom="24dp"
                 android:onClick="goToCurrentTripMainPanel"
-                android:src="@drawable/przycisk_gotowe"></ImageButton>
+                app:srcCompat="@drawable/button_ready" />
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/tv_lines"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="clip_horizontal"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="60dp"
-                android:layout_marginBottom="20dp"
-                android:fontFamily="@font/poppins_light"
-                android:maxLines="2"
-                android:text="Nie chcesz teraz \n zapraszać uczestników?"
-                android:textColor="@color/black"></TextView>
+                android:gravity="center">
 
-                <ImageButton
+                <TextView
+                    android:id="@+id/tv_lines"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/poppins_light"
+                    android:maxLines="2"
+                    android:text="Nie chcesz teraz zapraszać uczestników?"
+                    android:textColor="@color/black"></TextView>
+
+                <ImageButton
+                    android:id="@+id/btn_pomin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:backgroundTint="@android:color/transparent"
                     android:onClick="goToCurrentTripMainPanel"
-                    android:src="@drawable/przycisk_pomin"></ImageButton>
+                    android:src="@drawable/przycisk_pomin"
+                    ></ImageButton>
 
             </TableRow>
 

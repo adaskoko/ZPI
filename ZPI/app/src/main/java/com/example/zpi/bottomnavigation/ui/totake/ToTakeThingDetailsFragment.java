@@ -88,6 +88,7 @@ public class ToTakeThingDetailsFragment extends Fragment {
                 pointDao.delete(actPoint);
                 Log.i("todo", "usunieto todo");
 
+                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }

@@ -88,7 +88,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="30dp"
-                        android:text="Spakowane" />
+                        android:text="Spakowane"
+                        android:clickable="false"/>
                 </TableRow>
 
                 <ImageButton
@@ -98,7 +99,6 @@
                     android:backgroundTint="@android:color/transparent"
                     android:src="@drawable/przycisk_usun_czerwony"
                     android:layout_gravity="center"
-                    android:onClick=""
                     >
                 </ImageButton>
 

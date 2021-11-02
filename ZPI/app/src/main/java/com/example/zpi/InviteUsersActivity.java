@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.zpi.bottomnavigation.BottomNavigationActivity;
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.data_handling.SharedPreferencesHandler;
 import com.example.zpi.models.Trip;
@@ -85,6 +86,7 @@ public class InviteUsersActivity extends AppCompatActivity implements Serializab
                 if(foundTrip!=null){
                     trips.add(foundTrip);
                 }
+                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -122,6 +124,7 @@ public class InviteUsersActivity extends AppCompatActivity implements Serializab
                     participants.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 });
+                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -130,6 +133,8 @@ public class InviteUsersActivity extends AppCompatActivity implements Serializab
     }
 
     public void goToCurrentTripMainPanel(View v){
-
+        Intent intent = new Intent(this, BottomNavigationActivity.class);
+        intent.putExtra("TRIP", currentTrip);
+        startActivity(intent);
     }
 }
