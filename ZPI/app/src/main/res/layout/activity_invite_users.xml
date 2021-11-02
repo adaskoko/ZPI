@@ -118,75 +118,64 @@
             android:onClick="searchUsers"
             android:src="@drawable/przycisk_wyszukaj"></ImageButton>
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:fontFamily="@font/poppins_light"
+                android:text="Zaproszeni użytkownicy:"
+                android:textColor="@color/black"
+                android:textSize="18sp"></TextView>
+
+            <ListView
+                android:id="@+id/lv_participants"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginLeft="30dp"
+                android:layout_marginBottom="20dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:fontFamily="@font/poppins_light"
-                    android:text="Zaproszeni użytkownicy:"
-                    android:textColor="@color/black"
-                    android:textSize="18sp">
-                </TextView>
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@android:color/transparent"
+                android:onClick="goToCurrentTripMainPanel"
+                android:src="@drawable/przycisk_gotowe"></ImageButton>
 
-                <ListView
-                    android:id="@+id/lv_participants"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginBottom="20dp"
-                    />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_lines"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="clip_horizontal"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="60dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/poppins_light"
+                android:maxLines="2"
+                android:text="Nie chcesz teraz \n zapraszać uczestników?"
+                android:textColor="@color/black"></TextView>
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/przycisk_gotowe"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="20dp"
-                    android:onClick="goToCurrentTripMainPanel">
-                </ImageButton>
+                    android:onClick="goToCurrentTripMainPanel"
+                    android:src="@drawable/przycisk_pomin"></ImageButton>
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+            </TableRow>
 
-                <TextView
-                    android:id="@+id/tv_lines"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nie chcesz teraz \n zapraszać uczestników?"
-                    android:maxLines="2"
-                    android:layout_gravity="clip_horizontal"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/poppins_light"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginRight="60dp">
-                </TextView>
+        </LinearLayout>
 
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@android:color/transparent"
-                        android:src="@drawable/przycisk_pomin"
-                        android:onClick="goToCurrentTripMainPanel">
-                    </ImageButton>
-
-                </TableRow>
-
-            </LinearLayout>
-
-
-        </ScrollView>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

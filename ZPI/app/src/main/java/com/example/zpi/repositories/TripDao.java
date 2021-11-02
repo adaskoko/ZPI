@@ -35,6 +35,16 @@ public class TripDao extends BaseDaoImpl<Trip, Integer> implements ITripDao {
     }
 
     @Override
+    public void createTrip(Trip trip, User user) throws SQLException {
+        this.create(trip);
+
+        Role role = DaoManager.createDao(connectionSource, Role.class).queryForEq("ID", 1).get(0);
+
+        TripParticipant tripParticipant = new TripParticipant(user, role, trip);
+        new TripPartcicipantDao(BaseConnection.getConnectionSource()).create(tripParticipant);
+    }
+
+    @Override
     public void addUserToTrip(Trip trip, User user, Role role) throws SQLException {
         TripParticipant tripParticipant = new TripParticipant(user, role, trip);
         new TripPartcicipantDao(BaseConnection.getConnectionSource()).create(tripParticipant);
