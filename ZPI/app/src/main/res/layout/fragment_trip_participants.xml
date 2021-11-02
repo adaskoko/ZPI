@@ -18,12 +18,12 @@
         android:text="Uczestnicy"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@id/participantsRV"
+        app:layout_constraintBottom_toTopOf="@id/participantsLV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <!--<androidx.recyclerview.widget.RecyclerView
         android:id="@+id/participantsRV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,16 +31,27 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/participantsTV"
-        tools:listitem="@layout/item_participant" />
+        tools:listitem="@layout/item_participant" />-->
+    <ListView
+        android:id="@+id/participantsLV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/participantsTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </ListView>
+
 
     <ImageView
-        android:id="@+id/editB"
+        android:id="@+id/btn_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/participantsRV"
+        app:layout_constraintTop_toBottomOf="@id/participantsLV"
         app:srcCompat="@drawable/button_edit" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

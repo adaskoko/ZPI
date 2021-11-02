@@ -46,4 +46,26 @@ public class TripPointTypeDaoTest {
             throwables.printStackTrace();
         }
     }
+
+    @Test
+    public void getAtrakcjaTripPointType() {
+        try {
+            TripPointType type = new TripPointTypeDao(connectionSource).getAtrakcjaTripPointType();
+
+            Assert.assertEquals("Atrakcja", type.getName());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    @Test
+    public void getNoclegTripPointType() {
+        try {
+            TripPointType type = new TripPointTypeDao(connectionSource).getNoclegTripPointType();
+
+            Assert.assertEquals("Nocleg", type.getName());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 }

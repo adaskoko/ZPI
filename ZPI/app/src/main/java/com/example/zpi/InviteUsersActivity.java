@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.zpi.bottomnavigation.BottomNavigationActivity;
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.data_handling.SharedPreferencesHandler;
 import com.example.zpi.models.Trip;
@@ -47,18 +49,22 @@ public class InviteUsersActivity extends AppCompatActivity implements Serializab
         loggedUser = SharedPreferencesHandler.getLoggedInUser(getApplicationContext());
         currentTripName=findViewById(R.id.tv_tripname);
         currentTripDate=findViewById(R.id.tv_tripdate);
-        Trip createdTrip = (Trip)getIntent().getSerializableExtra("CreateTrip");
-        currentTrip=getTripFromDatabase(createdTrip);
+        currentTrip = (Trip)getIntent().getSerializableExtra("CreateTrip");
+        //currentTrip=getTripFromDatabase(createdTrip);
         currentTripName.setText(currentTrip.getName());
         String dateRange=currentTrip.getStartDate().toString()+" - "+currentTrip.getEndDate().toString();
         currentTripDate.setText(dateRange);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
         //list view of participants
         participants=findViewById(R.id.lv_participants);
-        List<String> tripPatricipants=getTripParticipants();
-        adapter = new ArrayAdapter<String>(this, R.layout.found_user_in_list, tripPatricipants);
-        //set adapter to listview
-        participants.setAdapter(adapter);
+        /*List<String> tripPatricipants=*/
+        getTripParticipants();
+        //Log.i("participants", String.valueOf(tripPatricipants.size()));
+
     }
 
     public void searchUsers(View v){
@@ -80,6 +86,7 @@ public class InviteUsersActivity extends AppCompatActivity implements Serializab
                 if(foundTrip!=null){
                     trips.add(foundTrip);
                 }
+                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -91,28 +98,43 @@ public class InviteUsersActivity extends AppCompatActivity implements Serializab
         }
     }
 
-    public List<String> getTripParticipants(){
-        List<String> participants=new ArrayList<String>();
+    public void getTripParticipants(){
+        List<String> parts=new ArrayList<String>();
 
         new Thread(() -> {
             try {
                 TripPartcicipantDao tpDao=new TripPartcicipantDao(BaseConnection.getConnectionSource());
                 List<TripParticipant> tripParticipants=tpDao.getByTrip(currentTrip);
+                Log.i("tripparticiopants z dao", String.valueOf(tripParticipants.size()));
                 if(tripParticipants!=null && tripParticipants.size()!=0) {
                     for (TripParticipant tp:tripParticipants) {
                         User u=tp.getUser();
+                        Log.i("user z dao", String.valueOf(u.getEmail()));
+
                         String currentRow=u.getName()+" "+ u.getSurname()+"("+u.getEmail()+")";
-                        participants.add(currentRow);
+                        parts.add(currentRow);
                     }
                 }
+
+                runOnUiThread(() -> {
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.found_user_in_list, parts);
+                    Log.i("parts z dao", String.valueOf(parts.size()));
+
+                    //set adapter to listview
+                    participants.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+                });
+                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
         }).start();
-        return participants;
+        //return participants;
     }
 
     public void goToCurrentTripMainPanel(View v){
-
+        Intent intent = new Intent(this, BottomNavigationActivity.class);
+        intent.putExtra("TRIP", currentTrip);
+        startActivity(intent);
     }
 }

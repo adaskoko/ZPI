@@ -1,64 +1,101 @@
 package com.example.zpi;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link TripParticipantsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.example.zpi.bottomnavigation.ui.todo.ToDoFragment;
+import com.example.zpi.data_handling.BaseConnection;
+import com.example.zpi.databinding.FragmentTripParticipantsBinding;
+import com.example.zpi.models.PreparationPoint;
+import com.example.zpi.models.Trip;
+import com.example.zpi.models.TripParticipant;
+import com.example.zpi.models.User;
+import com.example.zpi.repositories.TripPartcicipantDao;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class TripParticipantsFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private FragmentTripParticipantsBinding binding;
+    private Trip currTrip;
+    private ListView listView ;
+    private ArrayAdapter<String> adapter ;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public TripParticipantsFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment TripParticipantsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static TripParticipantsFragment newInstance(String param1, String param2) {
-        TripParticipantsFragment fragment = new TripParticipantsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        currTrip = (Trip) getArguments().get(SingleTripFragment.TRIP_KEY);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_trip_participants, container, false);
+        binding=FragmentTripParticipantsBinding.inflate(inflater, container, false);
+        //listView=(ListView) binding.findViewById(R.id.participantsLV);
+        listView=binding.participantsLV;
+        getTripParticipants();
+        binding.btnEdit.setOnClickListener(c-> addUsers());
+        View root = binding.getRoot();
+        return root;
     }
+
+    public void getTripParticipants(){
+        List<String> parts=new ArrayList<String>();
+
+        new Thread(() -> {
+            try {
+                TripPartcicipantDao tpDao=new TripPartcicipantDao(BaseConnection.getConnectionSource());
+                List<TripParticipant> tripParticipants=tpDao.getByTrip(currTrip);
+                Log.i("tripparticiopants z dao", String.valueOf(tripParticipants.size()));
+                if(tripParticipants!=null && tripParticipants.size()!=0) {
+                    for (TripParticipant tp:tripParticipants) {
+                        User u=tp.getUser();
+                        Log.i("user z dao", String.valueOf(u.getEmail()));
+
+                        String currentRow=u.getName()+" "+ u.getSurname()+"("+u.getEmail()+")";
+                        parts.add(currentRow);
+                    }
+                }
+
+                getActivity().runOnUiThread(() -> {
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.found_user_in_list, parts);
+                    Log.i("parts z dao", String.valueOf(parts.size()));
+
+                    //set adapter to listview
+                    listView.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+                });
+                //BaseConnection.closeConnection();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }).start();
+        //return participants;
+    }
+
+    public void addUsers(){
+        Intent intent=new Intent(getActivity(), InviteUsersActivity.class);
+        intent.putExtra("CreateTrip", currTrip);
+        startActivity(intent);
+    }
+
+
 }

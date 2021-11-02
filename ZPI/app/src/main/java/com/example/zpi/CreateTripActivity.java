@@ -64,10 +64,11 @@ public class CreateTripActivity extends AppCompatActivity {
                 try {
                     TripDao tripDao=new TripDao(BaseConnection.getConnectionSource());
                     Trip currentTrip=new Trip(tripname, tripdescription, dTripBegin, dTripEnd);
-                    tripDao.createTrip(tripname, tripdescription, dTripBegin, dTripEnd, loggedUser);
+                    tripDao.createTrip(currentTrip, loggedUser);
                     Intent intent=new Intent(this, InviteUsersActivity.class);
                     intent.putExtra("CreateTrip", currentTrip);
                     startActivity(intent);
+                    //BaseConnection.closeConnection();
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }

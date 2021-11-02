@@ -17,9 +17,6 @@
         <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/item_trip.xml" value="0.259375" />
         <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/login.xml" value="0.26403985507246375" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.24635416666666668" />
-        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/drawable/button_new_accomodation.xml" value="0.2546875" />
-        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/drawable/button_new_point.xml" value="0.2546875" />
-        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/drawable/circle.xml" value="0.2546875" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/drawable/ic_back.xml" value="0.24635416666666668" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.2546875" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/drawable/ic_trip_bar_image.xml" value="0.24635416666666668" />
@@ -35,8 +32,6 @@
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/activity_create_trip.xml" value="0.23731884057971014" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/activity_main.xml" value="0.20471014492753623" />
-        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/activity_trip_grid.xml" value="0.21666666666666667" />
-        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/activity_trip_list.xml" value="0.21666666666666667" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/activity_trip_main.xml" value="0.23731884057971014" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/activity_trip_participants.xml" value="0.23731884057971014" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/activity_update_user.xml" value="0.13802083333333334" />
@@ -62,8 +57,7 @@
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_item_list.xml" value="0.1743659420289855" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_map.xml" value="0.20471014492753623" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_notifications.xml" value="0.21920289855072464" />
-        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_plan.xml" value="0.264" />
-        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_single_trip.xml" value="0.21666666666666667" />
+        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_plan.xml" value="0.2" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_to_do.xml" value="0.176" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_to_take_thing_details.xml" value="0.16" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_to_take_things.xml" value="0.264" />
@@ -71,7 +65,6 @@
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/item_participant.xml" value="0.1160081053698075" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/item_participant_edit.xml" value="0.1160081053698075" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/item_plan.xml" value="0.4" />
-        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/item_plan_one_day.xml" value="0.23854166666666668" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/item_to_take.xml" value="0.4" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/item_todo.xml" value="0.176" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/item_trip.xml" value="0.2477355072463768" />

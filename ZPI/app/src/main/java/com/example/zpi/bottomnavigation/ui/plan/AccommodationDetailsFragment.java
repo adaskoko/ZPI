@@ -42,8 +42,8 @@ public class AccommodationDetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentAccomodationDetailsBinding.inflate(inflater, container, false);
         fillTextView();
-        binding.btnDeleteAccomodation.setOnClickListener(c -> delete());
-        binding.btnEditAccomodation.setOnClickListener(c -> edit());
+        binding.btnDeleteAccomodation.setOnClickListener(c->delete());
+        binding.btnEditAccomodation.setOnClickListener(c->edit());
         return binding.getRoot();
     }
 

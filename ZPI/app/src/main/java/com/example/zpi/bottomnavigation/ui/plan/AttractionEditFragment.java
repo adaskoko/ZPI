@@ -88,7 +88,6 @@ public class AttractionEditFragment extends Fragment implements DatePickerDialog
             try {
                 TripPointDao tripPointDao = new TripPointDao(BaseConnection.getConnectionSource());
                 tripPointDao.update(currPoint);
-                BaseConnection.closeConnection(BaseConnection.getConnectionSource());
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }

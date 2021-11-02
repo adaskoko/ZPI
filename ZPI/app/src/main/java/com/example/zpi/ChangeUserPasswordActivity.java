@@ -52,6 +52,7 @@ public class ChangeUserPasswordActivity extends AppCompatActivity {
                         SharedPreferencesHandler.saveLoggedInUser(getApplicationContext(), loggedUser);
 
                         //finish();
+                        //BaseConnection.closeConnection();
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }

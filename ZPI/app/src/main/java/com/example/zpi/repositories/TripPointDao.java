@@ -47,6 +47,17 @@ public class TripPointDao extends BaseDaoImpl<TripPoint, Integer> implements ITr
     }
 
     @Override
+    public void removeUserFromTripPoint(User user, TripPoint tripPoint) throws SQLException {
+        TripPointParticipantDao dao = new TripPointParticipantDao(connectionSource);
+        Map<String, Object> data = new HashMap<String, Object>();
+        data.put("UserID", user.getID());
+        data.put("TripPointID", tripPoint.getID());
+        List<TripPointParticipant> participants = dao.queryForFieldValues(data);
+        if (participants.size() > 0)
+            dao.delete(participants.get(0));
+    }
+
+    @Override
     public List<TripPoint> getTripPointsByUser(User user) throws SQLException {
         List<TripPointParticipant> participants = new TripPointParticipantDao(connectionSource).getParticipantsByUser(user);
         List<TripPoint> tripPoints = new ArrayList<>();
@@ -71,16 +82,5 @@ public class TripPointDao extends BaseDaoImpl<TripPoint, Integer> implements ITr
         }
 
         return points;
-    }
-
-    @Override
-    public void removeUserFromTripPoint(User user, TripPoint tripPoint) throws SQLException {
-        TripPointParticipantDao dao = new TripPointParticipantDao(connectionSource);
-        Map<String, Object> data = new HashMap<String, Object>();
-        data.put("UserID", user.getID());
-        data.put("TripPointID", tripPoint.getID());
-        List<TripPointParticipant> participants = dao.queryForFieldValues(data);
-        if (participants.size() > 0)
-            dao.delete(participants.get(0));
     }
 }
