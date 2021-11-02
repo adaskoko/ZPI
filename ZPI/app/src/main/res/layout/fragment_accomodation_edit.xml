@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="@font/poppins_light"
+            android:text="Edytuj nocleg"
+            android:textColor="@color/black"
+            android:textSize="24sp"></TextView>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Nazwa"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"></TextView>
+
+                <EditText
+                    android:id="@+id/et_nameAcc"
+                    android:layout_width="330dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/rounded"
+                    android:drawableTint="@color/white"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Adres"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"></TextView>
+
+                <EditText
+                    android:id="@+id/et_adressOfAcc"
+                    android:layout_width="330dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/rounded"
+                    android:drawableTint="@color/white"
+                    android:ems="10"
+                    android:inputType="text"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Data zameldowania"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"></TextView>
+
+                <EditText
+                    android:id="@+id/et_dateOfAcc"
+                    android:layout_width="330dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/rounded"
+                    android:drawableTint="@color/white"
+                    android:ems="10"
+                    android:inputType="date"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Godzina zameldowania"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"></TextView>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/et_hhOfAcc"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/rounded"
+                        android:drawableTint="@color/white"
+                        android:ems="10"
+                        android:inputType="date"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_light"
+                        android:text=":"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"></TextView>
+
+                    <EditText
+                        android:id="@+id/et_mmOfAcct"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/rounded"
+                        android:drawableTint="@color/white"
+                        android:ems="10"
+                        android:inputType="date"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                </TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Data wymeldowania"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"></TextView>
+
+                <EditText
+                    android:id="@+id/et_dateOfAcc2"
+                    android:layout_width="330dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/rounded"
+                    android:drawableTint="@color/white"
+                    android:ems="10"
+                    android:inputType="date"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Godzina wymeldowania"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"></TextView>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/et_hhOfAcc2"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/rounded"
+                        android:drawableTint="@color/white"
+                        android:ems="10"
+                        android:inputType="date"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_light"
+                        android:text=":"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"></TextView>
+
+                    <EditText
+                        android:id="@+id/et_mmOfAcct2"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/rounded"
+                        android:drawableTint="@color/white"
+                        android:ems="10"
+                        android:inputType="date"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                </TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Uwagi"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"></TextView>
+
+                <EditText
+                    android:id="@+id/et_descAcc"
+                    android:layout_width="330dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/rounded"
+                    android:drawableTint="@color/white"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+
+                <ImageButton
+                    android:id="@+id/btn_addPrepPoint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="5dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:onClick=""
+                    android:src="@drawable/przycisk_confirm"></ImageButton>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

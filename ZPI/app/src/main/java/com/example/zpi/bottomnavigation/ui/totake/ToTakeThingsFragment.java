@@ -1,5 +1,6 @@
 package com.example.zpi.bottomnavigation.ui.totake;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -29,9 +31,12 @@ import java.util.List;
 
 public class ToTakeThingsFragment extends Fragment implements ToTakeThingRecyclerViewAdapter.ToTakeThingListener {
 
+    public final static String TOTAKE_KEY="TOTAKE";
+
     private ToTakeThingsViewModel toTakeThingsViewModel;
     private FragmentToTakeThingsBinding binding;
     private ToTakeThingRecyclerViewAdapter toTakeThingRecyclerViewAdapter;
+    private Trip currTrip;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,10 +57,13 @@ public class ToTakeThingsFragment extends Fragment implements ToTakeThingRecycle
         toTakeThingsRV.setHasFixedSize(true);
         new ItemTouchHelper(itemTouchHelperCallbck).attachToRecyclerView(toTakeThingsRV);
 
+        Intent intent = getActivity().getIntent();
+        currTrip = (Trip) intent.getSerializableExtra("TRIP");
+
         new Thread(() -> {
             try {
-                Trip trip = new TripDao(BaseConnection.getConnectionSource()).queryForEq("ID", 1).get(0);
-                List<ProductToTake> products = new ProductToTakeDao(BaseConnection.getConnectionSource()).getProductsByTrip(trip);
+
+                List<ProductToTake> products = new ProductToTakeDao(BaseConnection.getConnectionSource()).getProductsByTrip(currTrip);
 
                 Log.i("to take size fragment", String.valueOf(products.size()));
                 getActivity().runOnUiThread(() -> {
@@ -74,6 +82,15 @@ public class ToTakeThingsFragment extends Fragment implements ToTakeThingRecycle
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    //@Override
+    public void onToTakeThingsClick(int position){
+        ProductToTake product=toTakeThingRecyclerViewAdapter.getProduct(position);
+        Bundle bundle=new Bundle();
+        bundle.putSerializable(TOTAKE_KEY, product);
+        Navigation.findNavController(getView()).navigate(R.id.toTakeThingsDetailsFragment, bundle);
+        Log.i("to take thing click", "clicked: "+ position);
     }
 
     ItemTouchHelper.SimpleCallback itemTouchHelperCallbck = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {

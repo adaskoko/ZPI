@@ -1,70 +1,272 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="100">
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="fill_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#263238"
-            android:orientation="vertical">
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="@font/poppins_light"
+            android:text="Dodaj punkt wycieczki"
+            android:textColor="@color/black"
+            android:textSize="24sp"></TextView>
 
-            <TableRow
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-                <ImageButton
-                    android:id="@+id/btn_account_details"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/strzalka_biala"
-                    android:backgroundTint="@android:color/transparent"
-                    android:layout_weight="1"
-                    android:layout_gravity="left">
-                </ImageButton>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tv_your_trips"
-                    android:textColor="@color/white"
+                    android:layout_marginLeft="30dp"
                     android:fontFamily="@font/poppins_light"
-                    android:textSize="28sp"
-                    android:textStyle="bold"
-                    android:layout_weight="30"
-                    android:layout_marginTop="15dp">
+                    android:text="Nazwa"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"></TextView>
 
-                </TextView>
+                <EditText
+                    android:id="@+id/nameAccET"
+                    android:layout_width="330dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/rounded"
+                    android:drawableTint="@color/white"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
-            </TableRow>
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tv_tripdate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="@color/white"
-                android:layout_gravity="center">
-            </TextView>
+                    <CheckBox
+                        android:id="@+id/pointCB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Atrakcja"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="90dp"/>
+
+                    <CheckBox
+                        android:id="@+id/accCB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Nocleg"
+                        android:layout_marginRight="30dp"/>
+                </TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Adres"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"></TextView>
+
+                <EditText
+                    android:id="@+id/adressOfAccET"
+                    android:layout_width="330dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/rounded"
+                    android:drawableTint="@color/white"
+                    android:ems="10"
+                    android:inputType="text"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Data zameldowania"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"></TextView>
+
+                <EditText
+                    android:id="@+id/dateOfAccET"
+                    android:layout_width="330dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/rounded"
+                    android:drawableTint="@color/white"
+                    android:ems="10"
+                    android:hint="rrrr-mm-dd"
+                    android:inputType="date"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Godzina zameldowania"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"></TextView>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/hhOfAccET"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/rounded"
+                        android:drawableTint="@color/white"
+                        android:ems="10"
+                        android:hint="HH"
+                        android:inputType="date"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_light"
+                        android:text=":"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"></TextView>
+
+                    <EditText
+                        android:id="@+id/mmOfAcctET"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/rounded"
+                        android:drawableTint="@color/white"
+                        android:ems="10"
+                        android:hint="MM"
+                        android:inputType="date"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                </TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Data wymeldowania"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"></TextView>
+
+                <EditText
+                    android:id="@+id/dateOfAccET2"
+                    android:layout_width="330dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/rounded"
+                    android:drawableTint="@color/white"
+                    android:ems="10"
+                    android:hint="rrrr-mm-dd"
+                    android:inputType="date"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Godzina wymeldowania"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"></TextView>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/hhOfAccET2"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/rounded"
+                        android:drawableTint="@color/white"
+                        android:ems="10"
+                        android:hint="HH"
+                        android:inputType="date"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_light"
+                        android:text=":"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"></TextView>
+
+                    <EditText
+                        android:id="@+id/mmOfAcctET2"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/rounded"
+                        android:drawableTint="@color/white"
+                        android:ems="10"
+                        android:hint="MM"
+                        android:inputType="date"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                </TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Uwagi"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"></TextView>
+
+                <EditText
+                    android:id="@+id/descACCET"
+                    android:layout_width="330dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/rounded"
+                    android:drawableTint="@color/white"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 
+                <ImageButton
+                    android:id="@+id/btn_addAccPoint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="5dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@drawable/przycisk_dodaj"></ImageButton>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/tlo_details"
-                android:layout_gravity="center">
+            </LinearLayout>
+        </ScrollView>
 
-            </ImageView>
-        </LinearLayout>
     </LinearLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

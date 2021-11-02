@@ -1,14 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.recyclerview.widget.RecyclerView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/list"
-    android:name="com.example.zpi.PlanFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
-    app:layoutManager="LinearLayoutManager"
-    tools:context=".bottomnavigation.ui.plan.PlanFragment"
-    tools:listitem="@layout/item_plan" />
+    tools:context=".bottomnavigation.ui.plan.PlanFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_light"
+            android:text="Plan wycieczki "
+            android:layout_marginLeft="30dp"
+            android:layout_marginBottom="20dp">
+        </TextView>
+
+        <TableRow
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/transparent"
+            android:src="@drawable/nowy_punkt"
+            android:layout_weight="1">
+        </ImageButton>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/transparent"
+                android:src="@drawable/nowy_nocleg"
+                android:layout_weight="1">
+            </ImageButton>
+
+        </TableRow>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/parent_list"
+            android:name="com.example.zpi.PlanFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            tools:context=".bottomnavigation.ui.plan.PlanFragment"
+            tools:listitem="@layout/plan_child_item"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

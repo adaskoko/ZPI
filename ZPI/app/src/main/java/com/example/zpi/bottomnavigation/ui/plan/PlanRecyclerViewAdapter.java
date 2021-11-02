@@ -1,55 +1,67 @@
 package com.example.zpi.bottomnavigation.ui.plan;
 
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.zpi.databinding.ItemPlanBinding;
+import com.example.zpi.R;
 import com.example.zpi.models.TripPoint;
 
 import java.util.List;
 
+
 public class PlanRecyclerViewAdapter extends RecyclerView.Adapter<PlanRecyclerViewAdapter.PlanViewHolder> {
 
-    private final List<TripPoint> tripPointList;
+    private List<Section> sectionList;
+    private PlanChildRecyclerViewAdapter.OnChildTripPointListener onChildTripPointListener;
 
-    public PlanRecyclerViewAdapter(List<TripPoint> items) {
-        tripPointList = items;
+
+    public PlanRecyclerViewAdapter(List<Section> sections, PlanChildRecyclerViewAdapter.OnChildTripPointListener onChildTripPointListener) {
+        this.sectionList = sections;
+        this.onChildTripPointListener = onChildTripPointListener;
+
+    }
+
+    @NonNull
+    @Override
+    public PlanViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        View view = layoutInflater.inflate(R.layout.plan_child_item, parent,false);
+        return new PlanViewHolder(view);
     }
 
     @Override
-    public PlanViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new PlanViewHolder(ItemPlanBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
-    }
+    public void onBindViewHolder(@NonNull PlanViewHolder holder, int position) {
+        Log.i("plan position", String.valueOf(position));
+        Section section = sectionList.get(position);
+        String sectionTitle = section.getTitle();
+        List<TripPoint> items = section.getPointList();
 
-    @Override
-    public void onBindViewHolder(final PlanViewHolder holder, int position) {
-        holder.tripPoint = tripPointList.get(position);
-        holder.mIdView.setText(String.valueOf(tripPointList.get(position).getID()));
-        holder.mContentView.setText(tripPointList.get(position).getName());
+        holder.sectionTitle.setText(sectionTitle);
+
+        PlanChildRecyclerViewAdapter childRecyclerViewAdapter = new PlanChildRecyclerViewAdapter(items, onChildTripPointListener);
+        holder.childList.setAdapter(childRecyclerViewAdapter);
     }
 
     @Override
     public int getItemCount() {
-        return tripPointList.size();
+        Log.i("plan section", String.valueOf(sectionList.size()));
+        return sectionList.size();
     }
 
-    public class PlanViewHolder extends RecyclerView.ViewHolder {
-        public final TextView mIdView;
-        public final TextView mContentView;
-        public TripPoint tripPoint;
+    class PlanViewHolder extends RecyclerView.ViewHolder {
+        private TextView sectionTitle;
+        private RecyclerView childList;
 
-        public PlanViewHolder(ItemPlanBinding binding) {
-            super(binding.getRoot());
-            mIdView = binding.itemNumber;
-            mContentView = binding.content;
-        }
-
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
+        public PlanViewHolder(@NonNull View itemView) {
+            super(itemView);
+            sectionTitle = itemView.findViewById(R.id.section_title);
+            childList = itemView.findViewById(R.id.child_list);
         }
     }
 }

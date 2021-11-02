@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/navigation_todo">
+    app:startDestination="@id/singleTripFragment">
     <fragment
         android:id="@+id/navigation_todo"
         android:name="com.example.zpi.bottomnavigation.ui.todo.ToDoFragment"
@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_navigation_todo_to_addToDoFragment"
             app:destination="@id/addToDoFragment" />
+        <action
+            android:id="@+id/action_navigation_todo_to_todoDetailsFragment"
+            app:destination="@id/todoDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_to_take_things"
@@ -22,7 +25,38 @@
         <action
             android:id="@+id/action_navigation_to_take_things_to_addToTakeThingFragment"
             app:destination="@id/addToTakeThingFragment" />
+        <action
+            android:id="@+id/action_navigation_to_take_things_to_toTakeThingsDetailsFragment"
+            app:destination="@+id/toTakeThingsDetailsFragment">
+        </action>
     </fragment>
+    <fragment
+        android:id="@+id/toTakeThingsDetailsFragment"
+        android:name="com.example.zpi.bottomnavigation.ui.totake.ToTakeThingDetailsFragment"
+        android:label="ToTakeThingDetailsFragment"
+        tools:layout="@layout/fragment_to_take_thing_details">
+        <action
+            android:id="@+id/action_toTakeThingDetailsFragment_to_toTakeThingsEditFragment"
+            app:destination="@id/toTakeThingsEditFragment" />
+        <argument
+            android:name="currProduct"
+            app:argType="com.example.zpi.models.ProductToTake" />
+        <action
+            android:id="@+id/action_toTakeThingDetailsFragment_to_navigation_to_take_things"
+            app:destination="@id/navigation_todo" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/toTakeThingsEditFragment"
+        android:name="com.example.zpi.bottomnavigation.ui.totake.ToTakeThingEditFragment"
+        android:label="ToTakeThingsEditFragment"
+        tools:layout="@layout/fragment_to_take_thing_edit">
+        <action
+            android:id="@+id/action_toTakeThhingsEditFragment_to_navigation_to_take_things"
+            app:destination="@id/navigation_todo" />
+    </fragment>
+
     <fragment
         android:id="@+id/navigation_finance"
         android:name="com.example.zpi.bottomnavigation.ui.finance.FinanceFragment"
@@ -33,11 +67,90 @@
         android:name="com.example.zpi.bottomnavigation.ui.map.MapFragment"
         android:label="fragment_map"
         tools:layout="@layout/fragment_map" />
+
     <fragment
         android:id="@+id/navigation_plan"
         android:name="com.example.zpi.bottomnavigation.ui.plan.PlanFragment"
         android:label="fragment_plan"
-        tools:layout="@layout/fragment_plan" />
+        tools:layout="@layout/fragment_plan" >
+        <action
+            android:id="@+id/action_navigation_plan_to_addAttractionFragment"
+            app:destination="@id/addAttractionFragment" />
+        <action
+            android:id="@+id/action_navigation_plan_to_addAccomodationFragment"
+            app:destination="@+id/addAccomodationFragment"/>
+        <action
+            android:id="@+id/action_navigation_plan_to_AttractionDetailsFragment"
+            app:destination="@+id/attractionDetailsFragment">
+        </action>
+        <action
+            android:id="@+id/action_navigation_plan_to_AccomodationDetailsFragment"
+            app:destination="@+id/accomodationDetailsFragment">
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/addAttractionFragment"
+        android:name="com.example.zpi.bottomnavigation.ui.plan.AddAttractionFragment"
+        android:label="fragment_add_attraction"
+        tools:layout="@layout/fragment_add_attraction">
+        <action
+            android:id="@+id/action_addAttraction_to_navigation_plan"
+            app:destination="@+id/navigation_plan"/>
+    </fragment>
+    <fragment
+        android:id="@+id/attractionDetailsFragment"
+        android:name="com.example.zpi.bottomnavigation.ui.plan.AttractionDetailsFragment"
+        android:label="fragment_attraction_details"
+        tools:layout="@layout/fragment_attraction_details">
+        <action
+            android:id="@+id/action_attractionDetailsFragment_to_attractionEditFragment"
+            app:destination="@id/attractionEditFragment" />
+        <argument
+            android:name="currAttraction"
+            app:argType="com.example.zpi.models.TripPoint" />
+        <action
+            android:id="@+id/action_attractionDetailsFragment_to_navigation_plan"
+            app:destination="@id/navigation_plan" />
+    </fragment>
+    <fragment
+        android:id="@+id/attractionEditFragment"
+        android:name="com.example.zpi.bottomnavigation.ui.plan.AttractionEditFragment"
+        android:label="fragment_attraction_edit"
+        tools:layout="@layout/fragment_attraction_edit">
+
+    </fragment>
+    <fragment
+        android:id="@+id/addAccomodationFragment"
+        android:name="com.example.zpi.bottomnavigation.ui.plan.AddAccomodationFragment"
+        android:label="fragment_add_accomodation"
+        tools:layout="@layout/fragment_add_accomodation">
+        <action
+            android:id="@+id/action_addAccomodation_to_navigation_plan"
+            app:destination="@+id/navigation_plan"/>
+    </fragment>
+    <fragment
+        android:id="@+id/accomodationDetailsFragment"
+        android:name="com.example.zpi.bottomnavigation.ui.plan.AccomodationDetailsFragment"
+        android:label="fragment_accomodation_details"
+        tools:layout="@layout/fragment_accomodation_details">
+        <action
+            android:id="@+id/action_accomodationDetailsFragment_to_accomodationEditFragment"
+            app:destination="@id/accomodationEditFragment" />
+        <argument
+            android:name="currAccomodation"
+            app:argType="com.example.zpi.models.TripPoint" />
+        <action
+            android:id="@+id/action_accomodationDetailsFragment_to_navigation_plan"
+            app:destination="@id/navigation_plan" />
+    </fragment>
+    <fragment
+        android:id="@+id/accomodationEditFragment"
+        android:name="com.example.zpi.bottomnavigation.ui.plan.AccomodationEditFragment"
+        android:label="fragment_accomodation_edit"
+        tools:layout="@layout/fragment_accomodation_edit">
+
+    </fragment>
+
     <fragment
         android:id="@+id/addToDoFragment"
         android:name="com.example.zpi.bottomnavigation.ui.todo.AddToDoFragment"
@@ -55,5 +168,34 @@
         <action
             android:id="@+id/action_addToTakeThingFragment_to_navigation_to_take_things"
             app:destination="@id/navigation_to_take_things" />
+    </fragment>
+    <fragment
+        android:id="@+id/singleTripFragment"
+        android:name="com.example.zpi.SingleTripFragment"
+        android:label="fragment_single_trip"
+        tools:layout="@layout/fragment_single_trip" />
+    <fragment
+        android:id="@+id/todoDetailsFragment"
+        android:name="com.example.zpi.bottomnavigation.ui.todo.TodoDetailsFragment"
+        android:label="TodoDetailsFragment"
+        tools:layout="@layout/fragment_todo_details">
+        <action
+            android:id="@+id/action_todoDetailsFragment_to_todoEditFragment"
+            app:destination="@id/todoEditFragment" />
+        <argument
+            android:name="currTodo"
+            app:argType="com.example.zpi.models.PreparationPoint" />
+        <action
+            android:id="@+id/action_todoDetailsFragment_to_navigation_todo"
+            app:destination="@id/navigation_todo" />
+    </fragment>
+    <fragment
+        android:id="@+id/todoEditFragment"
+        android:name="com.example.zpi.bottomnavigation.ui.todo.TodoEditFragment"
+        android:label="TodoEditFragment"
+        tools:layout="@layout/fragment_todo_edit">
+        <action
+            android:id="@+id/action_todoEditFragment_to_navigation_todo"
+            app:destination="@id/navigation_todo" />
     </fragment>
 </navigation>

@@ -58,11 +58,11 @@ public class AddToDoFragment extends Fragment implements DatePickerDialog.OnDate
         binding = FragmentAddToDoBinding.inflate(inflater, container, false);
         // Inflate the layout for this fragment
 
-//        Intent intent = getActivity().getIntent();
-//        currTrip = (Trip) intent.getSerializableExtra("TRIP");
+        Intent intent = getActivity().getIntent();
+        currTrip = (Trip) intent.getSerializableExtra("TRIP");
         new Thread(() -> {
             try {
-                currTrip = new TripDao(BaseConnection.getConnectionSource()).queryForEq("ID", 1).get(0);
+//                currTrip = new TripDao(BaseConnection.getConnectionSource()).queryForEq("ID", 1).get(0);
                 List<User> userList = new UserDao(BaseConnection.getConnectionSource()).getUsersFromTrip(currTrip);
                 Log.i("todo size fragemnt", String.valueOf(userList.size()));
                 getActivity().runOnUiThread(() -> {
