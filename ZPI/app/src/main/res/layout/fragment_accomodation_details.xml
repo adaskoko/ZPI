@@ -64,7 +64,7 @@
                     android:fontFamily="@font/poppins_light"
                     android:text="Adres"
                     android:textColor="@color/black"
-                    android:textSize="18sp"></TextView>
+                    android:textSize="18sp"/>
 
                 <TextView
                     android:id="@+id/tv_accAddress"

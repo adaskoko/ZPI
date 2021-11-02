@@ -29,7 +29,7 @@
         android:fontFamily="@font/poppins_light"
         android:text="Koce"
         android:textColor="@color/black"
-        android:textSize="15sp"></TextView>
+        android:textSize="15sp"/>
 
     <TextView
         android:id="@+id/hourTV"

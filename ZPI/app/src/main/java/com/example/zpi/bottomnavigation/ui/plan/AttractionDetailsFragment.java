@@ -5,6 +5,7 @@ import static com.example.zpi.bottomnavigation.ui.plan.PlanFragment.PLAN_KEY;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
@@ -46,43 +47,46 @@ public class AttractionDetailsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            actPoint=(TripPoint) getArguments().get("PLAN_KEY");
+            actPoint = (TripPoint) getArguments().get("PLAN_KEY");
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding= FragmentAttractionDetailsBinding.inflate(inflater, container, false);
+        binding = FragmentAttractionDetailsBinding.inflate(inflater, container, false);
+        //fillTextViews();
+        binding.btnDeleteAttraction.setOnClickListener(c -> delete());
+        binding.btnEditAttraction.setOnClickListener(c -> edit());
+        return binding.getRoot();
     }
 
     private void fillTextViews(){
         binding.pointNameTV.setText(actPoint.getName());
         //binding.tv_pointAddress.setText(actPoint.getA)
-        binding.tv_pointHH.setText(actPoint.getArrivalDate().getHours());
-        binding.tv_pointMM.setText(actPoint.getArrivalDate().getMinutes());
+        binding.tvPointHH.setText(actPoint.getArrivalDate().getHours());
+        binding.tvPointMM.setText(actPoint.getArrivalDate().getMinutes());
 
-        list=binding.lv_Participants;
-        ArrayList<String> participants= (ArrayList<String>) getPointParticipants();
-        adapter = new ArrayAdapter<String>(this, R.layout.user_spinner_row, participants);
+        list = binding.lvParticipants;
+        ArrayList<String> participants = (ArrayList<String>) getPointParticipants();
+        adapter = new ArrayAdapter<>(getContext(), R.layout.user_spinner_row, participants);
 
         list.setAdapter(adapter);
 
-        binding.btnDeleteAttraction.setOnClickListener(c->delete());
-        binding.btnEditAttraction.setOnClickListener(c->edit());
+
     }
 
     private List<String> getPointParticipants(){
-        List<String> participants=new ArrayList<String>();
+        List<String> participants = new ArrayList<>();
 
         new Thread(() -> {
             try {
-                TripPointParticipantDao tpDao=new TripPointParticipantDao(BaseConnection.getConnectionSource());
-                List<TripPointParticipant> tripPointParticipants=tpDao.getParticipantsByTripPoint(actPoint);
-                if(tripPointParticipants!=null && tripPointParticipants.size()!=0) {
-                    for (TripPointParticipant tp:tripPointParticipants) {
-                        User u=tp.getUser();
-                        String currentRow=u.getName()+" "+ u.getSurname()+"("+u.getEmail()+")";
+                TripPointParticipantDao tpDao = new TripPointParticipantDao(BaseConnection.getConnectionSource());
+                List<TripPointParticipant> tripPointParticipants = tpDao.getParticipantsByTripPoint(actPoint);
+                if (tripPointParticipants != null && tripPointParticipants.size() != 0) {
+                    for (TripPointParticipant tp : tripPointParticipants) {
+                        User u = tp.getUser();
+                        String currentRow = u.getName() + " " + u.getSurname() + "(" + u.getEmail() + ")";
                         participants.add(currentRow);
                     }
                 }
@@ -99,6 +103,7 @@ public class AttractionDetailsFragment extends Fragment {
                 TripPointDao pointDao = new TripPointDao(BaseConnection.getConnectionSource());
                 pointDao.delete(actPoint);
                 Log.i("todo", "usunieto todo");
+                Log.i("todo", String.valueOf(actPoint == null));
 
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
@@ -108,9 +113,9 @@ public class AttractionDetailsFragment extends Fragment {
     }
 
     private void edit(){
-        Bundle bundle=new Bundle();
+        Bundle bundle = new Bundle();
         bundle.putSerializable(PLAN_KEY, actPoint);
-        NavHostFragment.findNavController(this).navigate(R.id.action_attractionDetailsFragment_to_attractionEditFragment);
+        Log.i("attr", "edit");
+        Navigation.findNavController(getView()).navigate(R.id.action_attractionDetailsFragment_to_attractionEditFragment);
     }
-
 }

@@ -80,7 +80,7 @@
             android:id="@+id/action_navigation_plan_to_addAccomodationFragment"
             app:destination="@+id/addAccomodationFragment"/>
         <action
-            android:id="@+id/action_navigation_plan_to_AttractonDetailsFragment"
+            android:id="@+id/action_navigation_plan_to_AttractionDetailsFragment"
             app:destination="@+id/attractionDetailsFragment">
         </action>
         <action

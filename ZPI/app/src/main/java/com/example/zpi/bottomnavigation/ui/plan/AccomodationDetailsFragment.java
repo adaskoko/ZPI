@@ -33,14 +33,14 @@ public class AccomodationDetailsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            actPoint=(TripPoint) getArguments().get(PLAN_KEY);
+            actPoint = (TripPoint) getArguments().get(PLAN_KEY);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding=FragmentAccomodationDetailsBinding.inflate(inflater, container, false);
+        binding = FragmentAccomodationDetailsBinding.inflate(inflater, container, false);
         fillTextView();
         binding.btnDeleteAccomodation.setOnClickListener(c->delete());
         binding.btnEditAccomodation.setOnClickListener(c->edit());
@@ -50,15 +50,15 @@ public class AccomodationDetailsFragment extends Fragment {
     private void fillTextView(){
         binding.accNameTV.setText(actPoint.getName());
         //binding.tv_accAddress
-        binding.tv_accDate.setText(actPoint.getArrivalDate().toString());
-        binding.tv_accHH.setText(actPoint.getArrivalDate().getHours());
-        binding.tv_accMM.setText(actPoint.getArrivalDate().getMinutes());
+        binding.tvAccDate.setText(actPoint.getArrivalDate().toString());
+        binding.tvAccHH.setText(actPoint.getArrivalDate().getHours());
+        binding.tvAccMM.setText(actPoint.getArrivalDate().getMinutes());
 
-        binding.tv_accDate2.setText(actPoint.getDepartureDate().toString());
-        binding.tv_accHH2.setText(actPoint.getDepartureDate().getHours());
-        binding.tv_accMM2.setText(actPoint.getDepartureDate().getMinutes());
+        binding.tvAccDate2.setText(actPoint.getDepartureDate().toString());
+        binding.tvAccHH2.setText(actPoint.getDepartureDate().getHours());
+        binding.tvAccMM2.setText(actPoint.getDepartureDate().getMinutes());
 
-        binding.tv_accDetails.setText(actPoint.getRemarks());
+        binding.tvAccDetails.setText(actPoint.getRemarks());
 
     }
 

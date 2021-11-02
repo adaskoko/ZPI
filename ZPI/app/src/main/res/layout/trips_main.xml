@@ -168,11 +168,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
             android:visibility="visible"
-            android:borderWidth="0dp"
-            android:fabSize="mini"
             android:backgroundTint="#263238"
             app:tint="@color/white"
-            android:src="@drawable/chatTeardropDots"
+            android:src="@drawable/chat_teardrop_dots"
             android:onClick="gotoChat">
 
         </com.google.android.material.floatingactionbutton.FloatingActionButton>
