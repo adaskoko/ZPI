@@ -45,9 +45,9 @@ public class BottomNavigationActivity extends AppCompatActivity {
         startDate += endDate;
         binding.tvTripdate.setText(startDate);
         binding.btnBackToMainTripWindow.setOnClickListener(v -> {
-            Intent intent1 = new Intent(getApplicationContext(), TripListActivity.class);
-            startActivity(intent1);
-
+            //Intent intent1 = new Intent(getApplicationContext(), TripListActivity.class);
+            //startActivity(intent1);
+            onBackPressed();
         });
 
         BottomNavigationView navView = findViewById(R.id.nav_view);

@@ -2,7 +2,6 @@
     android:id="@+id/Row"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:textSize="15sp"
-    android:fontFamily="@font/poppins_light"
-    android:textColor="@color/black">
-</TextView>
+    android:fontFamily="@font/poppins"
+    android:textColor="@color/black"
+    android:textSize="12sp"></TextView>
