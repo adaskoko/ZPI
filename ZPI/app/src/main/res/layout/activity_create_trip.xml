@@ -9,7 +9,7 @@
         android:id="@+id/trip_bg_short"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@drawable/trip_bar_bg"
+        android:background="@drawable/trip_bar_bg_short"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
