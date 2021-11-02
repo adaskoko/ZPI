@@ -53,7 +53,7 @@ public class PlanFragment extends Fragment implements PlanChildRecyclerViewAdapt
                 points = new TripPointDao(BaseConnection.getConnectionSource()).getTripPointsByTrip(currTrip);
                 init();
                 Log.i("points size fragemnt", String.valueOf(points.size()));
-                BaseConnection.closeConnection();
+                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }

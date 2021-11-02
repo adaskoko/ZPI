@@ -69,7 +69,7 @@ public class AddToDoFragment extends Fragment implements DatePickerDialog.OnDate
                     PersonSpinnerAdapter personAdapter = new PersonSpinnerAdapter(requireContext(), userList);
                     binding.assignedTo.setAdapter(personAdapter);
                 });
-                BaseConnection.closeConnection();
+                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -127,7 +127,7 @@ public class AddToDoFragment extends Fragment implements DatePickerDialog.OnDate
                     PreparationPoint point = new PreparationPoint(title, description, finalDate, chosenUser, currTrip);
                     pointDao.create(point);
                     Log.i("todo", "todo dodane");
-                    BaseConnection.closeConnection();
+                    //BaseConnection.closeConnection();
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }

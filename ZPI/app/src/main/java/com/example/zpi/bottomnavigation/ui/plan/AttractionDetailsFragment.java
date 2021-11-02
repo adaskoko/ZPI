@@ -90,7 +90,7 @@ public class AttractionDetailsFragment extends Fragment {
                         participants.add(currentRow);
                     }
                 }
-                BaseConnection.closeConnection();
+                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -105,7 +105,7 @@ public class AttractionDetailsFragment extends Fragment {
                 pointDao.delete(actPoint);
                 Log.i("todo", "usunieto todo");
                 Log.i("todo", String.valueOf(actPoint == null));
-                BaseConnection.closeConnection();
+                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
