@@ -173,7 +173,17 @@
         android:id="@+id/singleTripFragment"
         android:name="com.example.zpi.SingleTripFragment"
         android:label="fragment_single_trip"
-        tools:layout="@layout/fragment_single_trip" />
+        tools:layout="@layout/fragment_single_trip" >
+        <action
+            android:id="@+id/action_singleTripFragment_to_tripParticipantsFragment"
+            app:destination="@+id/tripParticipantsFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/tripParticipantsFragment"
+        android:name="com.example.zpi.TripParticipantsFragment"
+        android:label="fragment_trip_participants"
+        tools:layout="@layout/fragment_trip_participants">
+    </fragment>
     <fragment
         android:id="@+id/todoDetailsFragment"
         android:name="com.example.zpi.bottomnavigation.ui.todo.TodoDetailsFragment"
