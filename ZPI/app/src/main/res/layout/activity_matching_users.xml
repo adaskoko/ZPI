@@ -7,55 +7,39 @@
     tools:context=".MatchingUsersActivity">
 
     <LinearLayout
+        android:id="@+id/tripBarShort"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/trip_bar_bg_short"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="#263238"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:id="@+id/rel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/image"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/tlo_details">
-
-                </ImageView>
-            </RelativeLayout>
-
-
-        </LinearLayout>
+        tools:layout_constraintTop_toBottomOf="@id/tripBarShort">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="24dp"
+            android:fontFamily="@font/poppins_medium"
             android:text="Wyniki wyszukiwania:"
-            android:fontFamily="@font/poppins_light"
             android:textColor="@color/black"
-            android:textSize="24sp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp">
-        </TextView>
+            android:textSize="20sp"></TextView>
 
         <ListView
             android:id="@+id/lv_results"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            />
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -77,11 +77,15 @@
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/activity_bottom_navigation.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/activity_create_trip.xml" value="0.264" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/activity_invite_users.xml" value="0.4" />
+        <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/activity_login.xml" value="0.4" />
+        <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/activity_matching_users.xml" value="0.23505434782608695" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/activity_trip_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/activity_trip_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/found_user_in_list.xml" value="0.23505434782608695" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/fragment_edit_trip_participants.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/fragment_plan.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/fragment_single_trip.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/fragment_trip_participants.xml" value="0.23505434782608695" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/trip_mainpanel_fragment.xml" value="0.1375" />
       </map>
     </option>

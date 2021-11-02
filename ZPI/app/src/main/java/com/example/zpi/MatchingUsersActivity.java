@@ -80,7 +80,7 @@ public class MatchingUsersActivity extends AppCompatActivity {
                 List <User> results=userDao.findByNameAndSurname(name, surname);
                 if(results!=null) {
                     for (User u : results) {
-                        String currentRow=u.getName()+" "+ u.getSurname()+"("+u.getEmail()+")";
+                        String currentRow=u.getName()+" "+ u.getSurname()+" ("+u.getEmail()+")";
                         returnList.add(currentRow);
                     }
                 }
