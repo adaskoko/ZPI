@@ -60,6 +60,14 @@ public class TripPointDao extends BaseDaoImpl<TripPoint, Integer> implements ITr
 
     @Override
     public List<TripPoint> getTripPointsByTrip(Trip trip) throws SQLException {
-        return super.queryForEq("TripID", trip.getID());
+        List<TripPoint> points = super.queryForEq("TripID", trip.getID());
+
+        TripPointTypeDao dao = new TripPointTypeDao(connectionSource);
+
+        for(TripPoint point : points){
+            dao.refresh(point.getTripPointType());
+        }
+
+        return points;
     }
 }
