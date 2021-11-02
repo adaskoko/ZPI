@@ -107,6 +107,10 @@ public class ToTakeThingsFragment extends Fragment implements ToTakeThingRecycle
 
     @Override
     public void toTakeThingClick(int position) {
-        Log.i("toTake click ", "clicked:" + position);
+        ProductToTake product=toTakeThingRecyclerViewAdapter.getProduct(position);
+        Bundle bundle=new Bundle();
+        bundle.putSerializable(TOTAKE_KEY, product);
+        Navigation.findNavController(getView()).navigate(R.id.toTakeThingsDetailsFragment, bundle);
+        Log.i("to take thing click", "clicked: "+ position);
     }
 }
