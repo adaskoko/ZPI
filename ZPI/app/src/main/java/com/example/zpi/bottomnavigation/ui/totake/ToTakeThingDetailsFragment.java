@@ -99,6 +99,6 @@ public class ToTakeThingDetailsFragment extends Fragment {
     private void edit(){
         Bundle bundle = new Bundle();
         bundle.putSerializable(TOTAKE_KEY, actPoint);
-        NavHostFragment.findNavController(this).navigate(R.id.action_toTakeThingDetailsFragment_to_toTakeThingsEditFragment);
+        NavHostFragment.findNavController(this).navigate(R.id.action_toTakeThingDetailsFragment_to_toTakeThingsEditFragment, bundle);
     }
 }
