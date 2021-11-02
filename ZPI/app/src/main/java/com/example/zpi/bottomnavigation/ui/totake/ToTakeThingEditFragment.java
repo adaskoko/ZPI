@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -102,7 +103,7 @@ public class ToTakeThingEditFragment extends Fragment {
                 throwables.printStackTrace();
             }
         }).start();
-
-
+        NavHostFragment.findNavController(this).navigate(R.id.action_toTakeThhingsEditFragment_to_navigation_to_take_things);
     }
+
 }
