@@ -20,13 +20,20 @@ import com.example.zpi.databinding.FragmentAddAttractionBinding;
 import com.example.zpi.models.Trip;
 import com.example.zpi.models.TripPoint;
 import com.example.zpi.models.TripPointLocation;
+import com.example.zpi.models.TripPointParticipant;
+import com.example.zpi.models.TripPointType;
+import com.example.zpi.models.User;
 import com.example.zpi.repositories.TripPointDao;
+import com.example.zpi.repositories.TripPointLocationDao;
+import com.example.zpi.repositories.TripPointParticipantDao;
+import com.example.zpi.repositories.TripPointTypeDao;
 
 import java.sql.SQLException;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -61,31 +68,27 @@ public class AddAttractionFragment extends Fragment implements DatePickerDialog.
         String hour = binding.hhOfTripPointET.getText().toString();
         String minute = binding.mmOfTripPointET.getText().toString();
         DateFormat dateFormat = new SimpleDateFormat("HH:mm dd-MM-yyyy");
-        Date date1;
+        Date arrivalDate = null;
+        String date = hour+":"+minute+" "+sDate;
         try {
-            String date = hour+":"+minute+" "+sDate;
-            date1 = dateFormat.parse(date);
+            arrivalDate = dateFormat.parse(date);
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        try {
-            TripPointDao tripPointDao = new TripPointDao(BaseConnection.getConnectionSource());
+        TripPointLocation tripPointLocation = new TripPointLocation(0.0, 0.0, address);
 
-            BaseConnection.closeConnection(BaseConnection.getConnectionSource());
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-        TripPointLocation tripPointLocation = new TripPointLocation();
-        tripPointLocation.setLatitude(0.0);
-        tripPointLocation.setLongitude(0.0);
-        tripPointLocation.setAddress(address);
-
-
-        //convert address to location
-        //create object
-        //save to database
+        Date finalArrivalDate = arrivalDate;
+        new Thread(() -> {
+            try {
+                TripPointDao tripPointDao = new TripPointDao(BaseConnection.getConnectionSource());
+                TripPointType tripPointType = new TripPointTypeDao(BaseConnection.getConnectionSource()).getAtrakcjaTripPointType();
+                tripPointDao.createTripPoint(title, finalArrivalDate, null, null, currTrip, tripPointLocation, tripPointType);
+                BaseConnection.closeConnection(BaseConnection.getConnectionSource());
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }).start();
 
         NavHostFragment.findNavController(this).navigate(R.id.action_addAttraction_to_navigation_plan);
     }
