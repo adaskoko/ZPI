@@ -67,6 +67,7 @@ public class ToDoFragment extends Fragment implements TodoRecyclerViewAdapter.On
                     todoRecyclerViewAdapter = new TodoRecyclerViewAdapter(todos, this);
                     todoRV.setAdapter(todoRecyclerViewAdapter);
                 });
+                BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }

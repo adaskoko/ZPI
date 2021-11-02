@@ -43,7 +43,7 @@ public class ToDoViewModel extends ViewModel {
                 List<PreparationPoint> todos = new PreparationPointDao(BaseConnection.getConnectionSource()).getPreparationPointsByTrip(trip);
                 preparationPointMLD = new MutableLiveData<>(todos);
                 Log.i("trips size", String.valueOf(todos.size()));
-
+                BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }

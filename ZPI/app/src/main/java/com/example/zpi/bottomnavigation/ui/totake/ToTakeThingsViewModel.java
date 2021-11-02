@@ -41,7 +41,7 @@ public class ToTakeThingsViewModel extends ViewModel {
                 List<ProductToTake> toTake = new ProductToTakeDao(BaseConnection.getConnectionSource()).getProductsByTrip(trip);
                 toTakeMLD = new MutableLiveData<>(toTake);
                 Log.i("trips size", String.valueOf(toTake.size()));
-
+                BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
