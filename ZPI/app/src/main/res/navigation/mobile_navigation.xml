@@ -42,8 +42,8 @@
             android:name="currProduct"
             app:argType="com.example.zpi.models.ProductToTake" />
         <action
-            android:id="@+id/action_toTakeThingDetailsFragment_to_navigation_to_take_things"
-            app:destination="@id/navigation_todo" />
+            android:id="@+id/action_toTakeThingsDetailsFragment_to_navigation_to_take_things"
+            app:destination="@id/navigation_to_take_things" />
 
     </fragment>
 
@@ -53,8 +53,8 @@
         android:label="ToTakeThingsEditFragment"
         tools:layout="@layout/fragment_to_take_thing_edit">
         <action
-            android:id="@+id/action_toTakeThhingsEditFragment_to_navigation_to_take_things"
-            app:destination="@id/navigation_todo" />
+            android:id="@+id/action_toTakeThingsEditFragment_to_navigation_to_take_things"
+            app:destination="@id/navigation_to_take_things" />
     </fragment>
 
     <fragment
@@ -118,10 +118,13 @@
         android:label="fragment_attraction_edit"
         tools:layout="@layout/fragment_attraction_edit">
 
+        <action
+            android:id="@+id/action_attractionEditFragment_to_navigation_plan"
+            app:destination="@id/navigation_plan" />
     </fragment>
     <fragment
         android:id="@+id/addAccomodationFragment"
-        android:name="com.example.zpi.bottomnavigation.ui.plan.AddAccomodationFragment"
+        android:name="com.example.zpi.bottomnavigation.ui.plan.AddAccommodationFragment"
         android:label="fragment_add_accomodation"
         tools:layout="@layout/fragment_add_accomodation">
         <action
@@ -130,7 +133,7 @@
     </fragment>
     <fragment
         android:id="@+id/accomodationDetailsFragment"
-        android:name="com.example.zpi.bottomnavigation.ui.plan.AccomodationDetailsFragment"
+        android:name="com.example.zpi.bottomnavigation.ui.plan.AccommodationDetailsFragment"
         android:label="fragment_accomodation_details"
         tools:layout="@layout/fragment_accomodation_details">
         <action
@@ -145,10 +148,13 @@
     </fragment>
     <fragment
         android:id="@+id/accomodationEditFragment"
-        android:name="com.example.zpi.bottomnavigation.ui.plan.AccomodationEditFragment"
+        android:name="com.example.zpi.bottomnavigation.ui.plan.AccommodationEditFragment"
         android:label="fragment_accomodation_edit"
         tools:layout="@layout/fragment_accomodation_edit">
 
+        <action
+            android:id="@+id/action_accommodationEditFragment_to_navigation_plan"
+            app:destination="@id/navigation_plan" />
     </fragment>
 
     <fragment

@@ -30,6 +30,7 @@
             android:layout_height="wrap_content">
 
         <ImageButton
+            android:id="@+id/btn_add_attraction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/transparent"
@@ -38,6 +39,7 @@
         </ImageButton>
 
             <ImageButton
+                android:id="@+id/btn_add_accommodation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@android:color/transparent"

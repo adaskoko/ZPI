@@ -90,7 +90,6 @@ public class AttractionDetailsFragment extends Fragment {
                         participants.add(currentRow);
                     }
                 }
-                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -105,7 +104,7 @@ public class AttractionDetailsFragment extends Fragment {
                 pointDao.delete(actPoint);
                 Log.i("todo", "usunieto todo");
                 Log.i("todo", String.valueOf(actPoint == null));
-                //BaseConnection.closeConnection();
+
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -117,6 +116,6 @@ public class AttractionDetailsFragment extends Fragment {
         Bundle bundle = new Bundle();
         bundle.putSerializable(PLAN_KEY, actPoint);
         Log.i("attr", "edit");
-        Navigation.findNavController(getView()).navigate(R.id.action_attractionDetailsFragment_to_attractionEditFragment);
+        NavHostFragment.findNavController(this).navigate(R.id.action_attractionDetailsFragment_to_attractionEditFragment, bundle);
     }
 }

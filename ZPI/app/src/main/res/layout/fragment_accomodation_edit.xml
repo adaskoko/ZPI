@@ -11,15 +11,16 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/accomm_title_et"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="30dp"
             android:fontFamily="@font/poppins_light"
             android:text="Edytuj nocleg"
             android:textColor="@color/black"
-            android:textSize="24sp"></TextView>
+            android:textSize="24sp"/>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -33,17 +34,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:fontFamily="@font/poppins_light"
                     android:text="Nazwa"
                     android:textColor="@color/black"
-                    android:textSize="18sp"></TextView>
+                    android:textSize="18sp"/>
 
                 <EditText
                     android:id="@+id/et_nameAcc"
                     android:layout_width="330dp"
                     android:layout_height="50dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
@@ -54,17 +55,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:fontFamily="@font/poppins_light"
                     android:text="Adres"
                     android:textColor="@color/black"
-                    android:textSize="18sp"></TextView>
+                    android:textSize="18sp"/>
 
                 <EditText
                     android:id="@+id/et_adressOfAcc"
                     android:layout_width="330dp"
                     android:layout_height="50dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
@@ -75,17 +76,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:fontFamily="@font/poppins_light"
                     android:text="Data zameldowania"
                     android:textColor="@color/black"
-                    android:textSize="18sp"></TextView>
+                    android:textSize="18sp"/>
 
                 <EditText
                     android:id="@+id/et_dateOfAcc"
                     android:layout_width="330dp"
                     android:layout_height="50dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
@@ -96,11 +97,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:fontFamily="@font/poppins_light"
                     android:text="Godzina zameldowania"
                     android:textColor="@color/black"
-                    android:textSize="18sp"></TextView>
+                    android:textSize="18sp"/>
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -110,7 +111,7 @@
                         android:id="@+id/et_hhOfAcc"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_marginLeft="30dp"
+                        android:layout_marginStart="30dp"
                         android:layout_marginBottom="15dp"
                         android:background="@drawable/rounded"
                         android:drawableTint="@color/white"
@@ -124,7 +125,7 @@
                         android:fontFamily="@font/poppins_light"
                         android:text=":"
                         android:textColor="@color/black"
-                        android:textSize="20sp"></TextView>
+                        android:textSize="20sp"/>
 
                     <EditText
                         android:id="@+id/et_mmOfAcct"
@@ -142,17 +143,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:fontFamily="@font/poppins_light"
                     android:text="Data wymeldowania"
                     android:textColor="@color/black"
-                    android:textSize="18sp"></TextView>
+                    android:textSize="18sp"/>
 
                 <EditText
                     android:id="@+id/et_dateOfAcc2"
                     android:layout_width="330dp"
                     android:layout_height="50dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
@@ -163,11 +164,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:fontFamily="@font/poppins_light"
                     android:text="Godzina wymeldowania"
                     android:textColor="@color/black"
-                    android:textSize="18sp"></TextView>
+                    android:textSize="18sp"/>
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -177,7 +178,7 @@
                         android:id="@+id/et_hhOfAcc2"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_marginLeft="30dp"
+                        android:layout_marginStart="30dp"
                         android:layout_marginBottom="15dp"
                         android:background="@drawable/rounded"
                         android:drawableTint="@color/white"
@@ -191,7 +192,7 @@
                         android:fontFamily="@font/poppins_light"
                         android:text=":"
                         android:textColor="@color/black"
-                        android:textSize="20sp"></TextView>
+                        android:textSize="20sp"/>
 
                     <EditText
                         android:id="@+id/et_mmOfAcct2"
@@ -209,17 +210,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:fontFamily="@font/poppins_light"
                     android:text="Uwagi"
                     android:textColor="@color/black"
-                    android:textSize="18sp"></TextView>
+                    android:textSize="18sp"/>
 
                 <EditText
                     android:id="@+id/et_descAcc"
                     android:layout_width="330dp"
                     android:layout_height="100dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
@@ -235,8 +236,8 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="5dp"
                     android:backgroundTint="@android:color/transparent"
-                    android:onClick=""
-                    android:src="@drawable/przycisk_confirm"></ImageButton>
+                    android:src="@drawable/przycisk_confirm"
+                    android:contentDescription="TODO" />
 
             </LinearLayout>
         </ScrollView>

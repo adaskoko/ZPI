@@ -85,15 +85,6 @@ public class ToTakeThingsFragment extends Fragment implements ToTakeThingRecycle
         binding = null;
     }
 
-    //@Override
-    public void onToTakeThingsClick(int position){
-        ProductToTake product=toTakeThingRecyclerViewAdapter.getProduct(position);
-        Bundle bundle=new Bundle();
-        bundle.putSerializable(TOTAKE_KEY, product);
-        Navigation.findNavController(getView()).navigate(R.id.toTakeThingsDetailsFragment, bundle);
-        Log.i("to take thing click", "clicked: "+ position);
-    }
-
     ItemTouchHelper.SimpleCallback itemTouchHelperCallbck = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {

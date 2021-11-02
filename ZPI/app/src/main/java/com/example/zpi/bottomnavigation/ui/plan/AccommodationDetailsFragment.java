@@ -49,7 +49,7 @@ public class AccomodationDetailsFragment extends Fragment {
 
     private void fillTextView(){
         binding.accNameTV.setText(actPoint.getName());
-        //binding.tv_accAddress
+
         binding.tvAccDate.setText(actPoint.getArrivalDate().toString());
         binding.tvAccHH.setText(actPoint.getArrivalDate().getHours());
         binding.tvAccMM.setText(actPoint.getArrivalDate().getMinutes());
@@ -67,8 +67,9 @@ public class AccomodationDetailsFragment extends Fragment {
             try {
                 TripPointDao pointDao = new TripPointDao(BaseConnection.getConnectionSource());
                 pointDao.delete(actPoint);
-                Log.i("todo", "usunieto nocleg");
-                //BaseConnection.closeConnection();
+                Log.i("point", "usunieto nocleg");
+                Log.i("point", String.valueOf(actPoint == null));
+
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
