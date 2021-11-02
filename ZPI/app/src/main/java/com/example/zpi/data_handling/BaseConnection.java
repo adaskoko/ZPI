@@ -18,8 +18,9 @@ public class BaseConnection {
         return null;
     }
 
-    public static void closeConnection(ConnectionSource connectionSource){
+    public static void closeConnection(){
         try {
+            ConnectionSource connectionSource = BaseConnection.getConnectionSource();
             connectionSource.close();
         } catch (IOException e) {
             e.printStackTrace();
