@@ -70,6 +70,8 @@ public class TripPointDaoTest {
             Trip trip = DaoManager.createDao(connectionSource, Trip.class).queryForEq("ID", 1).get(0);
             List<TripPoint> points = new TripPointDao(connectionSource).getTripPointsByTrip(trip);
 
+            Assert.assertEquals("Atrakcja", points.get(0).getTripPointType().getName());
+
             Assert.assertEquals(2, points.size());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
