@@ -20,12 +20,12 @@ import com.example.zpi.repositories.TripPointDao;
 
 import java.sql.SQLException;
 
-public class AccomodationDetailsFragment extends Fragment {
+public class AccommodationDetailsFragment extends Fragment {
 
     private TripPoint actPoint;
     FragmentAccomodationDetailsBinding binding;
 
-    public AccomodationDetailsFragment() {
+    public AccommodationDetailsFragment() {
         // Required empty public constructor
     }
 
@@ -42,14 +42,14 @@ public class AccomodationDetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentAccomodationDetailsBinding.inflate(inflater, container, false);
         fillTextView();
-        binding.btnDeleteAccomodation.setOnClickListener(c->delete());
-        binding.btnEditAccomodation.setOnClickListener(c->edit());
+        binding.btnDeleteAccomodation.setOnClickListener(c -> delete());
+        binding.btnEditAccomodation.setOnClickListener(c -> edit());
         return binding.getRoot();
     }
 
     private void fillTextView(){
         binding.accNameTV.setText(actPoint.getName());
-        //binding.tv_accAddress
+
         binding.tvAccDate.setText(actPoint.getArrivalDate().toString());
         binding.tvAccHH.setText(actPoint.getArrivalDate().getHours());
         binding.tvAccMM.setText(actPoint.getArrivalDate().getMinutes());
@@ -67,7 +67,8 @@ public class AccomodationDetailsFragment extends Fragment {
             try {
                 TripPointDao pointDao = new TripPointDao(BaseConnection.getConnectionSource());
                 pointDao.delete(actPoint);
-                Log.i("todo", "usunieto nocleg");
+                Log.i("point", "usunieto nocleg");
+                Log.i("point", String.valueOf(actPoint == null));
 
             } catch (SQLException throwables) {
                 throwables.printStackTrace();

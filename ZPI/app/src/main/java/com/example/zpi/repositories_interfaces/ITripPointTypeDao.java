@@ -8,4 +8,6 @@ import java.sql.SQLException;
 
 public interface ITripPointTypeDao extends Dao<TripPointType, Integer> {
     public TripPointType getTripPointTypeByName(String name) throws SQLException;
+    public TripPointType getAtrakcjaTripPointType() throws SQLException;
+    public TripPointType getNoclegTripPointType() throws SQLException;
 }

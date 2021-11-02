@@ -14,7 +14,9 @@ import com.j256.ormlite.support.ConnectionSource;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TripPointDao extends BaseDaoImpl<TripPoint, Integer> implements ITripPointDao {
     public TripPointDao(ConnectionSource connectionSource) throws SQLException {
@@ -60,6 +62,25 @@ public class TripPointDao extends BaseDaoImpl<TripPoint, Integer> implements ITr
 
     @Override
     public List<TripPoint> getTripPointsByTrip(Trip trip) throws SQLException {
-        return super.queryForEq("TripID", trip.getID());
+        List<TripPoint> points = super.queryForEq("TripID", trip.getID());
+
+        TripPointTypeDao dao = new TripPointTypeDao(connectionSource);
+
+        for(TripPoint point : points){
+            dao.refresh(point.getTripPointType());
+        }
+
+        return points;
+    }
+
+    @Override
+    public void removeUserFromTripPoint(User user, TripPoint tripPoint) throws SQLException {
+        TripPointParticipantDao dao = new TripPointParticipantDao(connectionSource);
+        Map<String, Object> data = new HashMap<String, Object>();
+        data.put("UserID", user.getID());
+        data.put("TripPointID", tripPoint.getID());
+        List<TripPointParticipant> participants = dao.queryForFieldValues(data);
+        if (participants.size() > 0)
+            dao.delete(participants.get(0));
     }
 }

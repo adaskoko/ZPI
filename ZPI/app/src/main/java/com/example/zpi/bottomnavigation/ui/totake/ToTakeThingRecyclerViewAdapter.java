@@ -53,7 +53,7 @@ public class ToTakeThingRecyclerViewAdapter extends RecyclerView.Adapter<ToTakeT
         return productToTakeList.size();
     }
 
-    public void deleteToTakeThingPosition(int position) {
+    public void  deleteToTakeThingPosition(int position) {
         ProductToTake product = productToTakeList.get(position);
 
         new Thread(() -> {

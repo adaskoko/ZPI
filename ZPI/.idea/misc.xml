@@ -43,10 +43,12 @@
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/finance_fragment.xml" value="0.1546875" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/found_user_in_list.xml" value="0.2477355072463768" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_accomodation_details.xml" value="0.15833333333333333" />
+        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_accomodation_edit.xml" value="0.1" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_add_accomodation.xml" value="0.23731884057971014" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_add_to_do.xml" value="0.23731884057971014" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_add_to_take_thing.xml" value="0.2359375" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_attraction_details.xml" value="0.2477355072463768" />
+        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_attraction_edit.xml" value="0.16" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_dashboard.xml" value="0.21920289855072464" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_edit_trip_participants.xml" value="0.23731884057971014" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_finance.xml" value="0.17760416666666667" />
@@ -60,6 +62,8 @@
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_to_take_thing_details.xml" value="0.16" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_to_take_things.xml" value="0.264" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/item_accommodation.xml" value="0.4" />
+        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/item_participant.xml" value="0.1160081053698075" />
+        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/item_participant_edit.xml" value="0.1160081053698075" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/item_plan.xml" value="0.4" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/item_to_take.xml" value="0.4" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/item_todo.xml" value="0.176" />
