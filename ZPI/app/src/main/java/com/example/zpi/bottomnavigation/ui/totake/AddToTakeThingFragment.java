@@ -63,7 +63,7 @@ public class AddToTakeThingFragment extends Fragment {
                     PersonSpinnerAdapter personAdapter = new PersonSpinnerAdapter(requireContext(), userList);
                     binding.assignedTo.setAdapter(personAdapter);
                 });
-                BaseConnection.closeConnection();
+                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -95,7 +95,7 @@ public class AddToTakeThingFragment extends Fragment {
                 ProductToTake product = new ProductToTake(name, chosenUser, currTrip);
                 productDao.create(product);
                 Log.i("toTake", "to take dodane");
-                BaseConnection.closeConnection();
+                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }

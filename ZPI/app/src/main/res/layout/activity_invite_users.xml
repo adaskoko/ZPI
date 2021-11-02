@@ -28,18 +28,6 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/btn_backToMainTripWindow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_weight="1"
-                android:backgroundTint="@android:color/transparent"
-                android:src="@drawable/ic_back_white"
-                tools:ignore="SpeakableTextPresentCheck">
-
-            </ImageButton>
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -84,7 +84,7 @@ public class MatchingUsersActivity extends AppCompatActivity {
                         returnList.add(currentRow);
                     }
                 }
-                BaseConnection.closeConnection();
+                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -116,7 +116,7 @@ public class MatchingUsersActivity extends AppCompatActivity {
                             tripDao.addRegularParticipant(currentTrip, user);
                             finish();
                         }
-                        BaseConnection.closeConnection();
+                        //BaseConnection.closeConnection();
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }

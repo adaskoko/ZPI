@@ -63,7 +63,7 @@ public class TodoRecyclerViewAdapter extends RecyclerView.Adapter<TodoRecyclerVi
                 PreparationPointDao pointDao = new PreparationPointDao(BaseConnection.getConnectionSource());
                 pointDao.delete(point);
                 Log.i("todo", "todo delete");
-                BaseConnection.closeConnection();
+                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }

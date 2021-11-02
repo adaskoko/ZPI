@@ -66,7 +66,7 @@ public class TodoDetailsFragment extends Fragment {
                 PreparationPointDao pointDao = new PreparationPointDao(BaseConnection.getConnectionSource());
                 pointDao.delete(actPoint);
                 Log.i("todo", "usunieto todo");
-                BaseConnection.closeConnection();
+                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
