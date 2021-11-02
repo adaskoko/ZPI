@@ -62,7 +62,7 @@ public class TodoEditFragment extends Fragment implements DatePickerDialog.OnDat
                     PersonSpinnerAdapter personAdapter = new PersonSpinnerAdapter(requireContext(), userList);
                     binding.assignedTo.setAdapter(personAdapter);
                 });
-                BaseConnection.closeConnection();
+                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -112,7 +112,7 @@ public class TodoEditFragment extends Fragment implements DatePickerDialog.OnDat
                     actPoint.setDone(isDone);
                     pointDao.update(actPoint);
                     Log.i("todo", "todo edited");
-                    BaseConnection.closeConnection();
+                    //BaseConnection.closeConnection();
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }

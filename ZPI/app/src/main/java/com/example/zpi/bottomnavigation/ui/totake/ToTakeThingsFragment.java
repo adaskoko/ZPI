@@ -70,7 +70,7 @@ public class ToTakeThingsFragment extends Fragment implements ToTakeThingRecycle
                     toTakeThingRecyclerViewAdapter = new ToTakeThingRecyclerViewAdapter(products, this);
                     toTakeThingsRV.setAdapter(toTakeThingRecyclerViewAdapter);
                 });
-                BaseConnection.closeConnection();
+                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }

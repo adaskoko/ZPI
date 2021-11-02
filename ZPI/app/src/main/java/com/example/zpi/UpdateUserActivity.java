@@ -53,7 +53,7 @@ public class UpdateUserActivity extends AppCompatActivity {
             try {
                 UserDao userDao = new UserDao(BaseConnection.getConnectionSource());
                 userDao.update(loggedUser);
-                BaseConnection.closeConnection();
+                //.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -91,7 +91,7 @@ public class UpdateUserActivity extends AppCompatActivity {
             try {
                 UserDao userDao = new UserDao(BaseConnection.getConnectionSource());
                 userDao.delete(loggedUser);
-                BaseConnection.closeConnection();
+                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }

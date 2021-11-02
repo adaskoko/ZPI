@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
                         Log.i("logowanko", "Hasło nie gitara");
                     }
                 }
-                BaseConnection.closeConnection();
+                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
