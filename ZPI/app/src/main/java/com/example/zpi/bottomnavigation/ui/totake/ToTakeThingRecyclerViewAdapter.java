@@ -61,6 +61,7 @@ public class ToTakeThingRecyclerViewAdapter extends RecyclerView.Adapter<ToTakeT
                 ProductToTakeDao productDao = new ProductToTakeDao(BaseConnection.getConnectionSource());
                 productDao.delete(product);
                 Log.i("toTake", "toTake delete");
+                BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }

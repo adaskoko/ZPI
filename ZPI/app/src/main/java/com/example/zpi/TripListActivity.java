@@ -59,6 +59,8 @@ public class TripListActivity extends AppCompatActivity {
                 setUpUpcomingRecyclerView();
                 setUpPastRecyclerView();
                 setUpCurrentTrip();
+
+                BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
