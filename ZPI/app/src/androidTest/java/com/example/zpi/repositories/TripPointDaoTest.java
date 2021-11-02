@@ -77,4 +77,19 @@ public class TripPointDaoTest {
             throwables.printStackTrace();
         }
     }
+
+    @Test
+    @Ignore
+    public void removeUserFromTripPoint() {
+        try {
+            User user = new UserDao(connectionSource).queryForEq("ID", 24).get(0);
+            TripPoint tripPoint = new TripPointDao(connectionSource).queryForEq("ID", 2).get(0);
+
+            new TripPointDao(connectionSource).removeUserFromTripPoint(user, tripPoint);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+
+    }
 }
