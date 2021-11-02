@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.zpi.bottomnavigation.BottomNavigationActivity;
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.data_handling.SharedPreferencesHandler;
 import com.example.zpi.models.Trip;
@@ -132,6 +133,8 @@ public class InviteUsersActivity extends AppCompatActivity implements Serializab
     }
 
     public void goToCurrentTripMainPanel(View v){
-
+        Intent intent = new Intent(this, BottomNavigationActivity.class);
+        intent.putExtra("TRIP", currentTrip);
+        startActivity(intent);
     }
 }

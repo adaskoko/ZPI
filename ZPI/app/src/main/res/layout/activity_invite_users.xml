@@ -159,12 +159,14 @@
                     android:textColor="@color/black"></TextView>
 
                 <ImageButton
+                    android:id="@+id/btn_pomin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:backgroundTint="@android:color/transparent"
                     android:onClick="goToCurrentTripMainPanel"
-                    android:src="@drawable/przycisk_pomin"></ImageButton>
+                    android:src="@drawable/przycisk_pomin"
+                    ></ImageButton>
 
             </TableRow>
 
