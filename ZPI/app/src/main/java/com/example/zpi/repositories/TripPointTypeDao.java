@@ -23,4 +23,14 @@ public class TripPointTypeDao extends BaseDaoImpl<TripPointType, Integer> implem
             return types.get(0);
         return null;
     }
+
+    @Override
+    public TripPointType getAtrakcjaTripPointType() throws SQLException {
+        return this.queryForEq("ID", 1).get(0);
+    }
+
+    @Override
+    public TripPointType getNoclegTripPointType() throws SQLException {
+        return this.queryForEq("ID", 2).get(0);
+    }
 }
