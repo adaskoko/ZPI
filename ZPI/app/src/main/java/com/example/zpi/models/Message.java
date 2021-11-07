@@ -1,10 +1,19 @@
 package com.example.zpi.models;
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.*;
 @Entity
 @Table(name="Message")
 public class Message implements Serializable {
 	public Message() {
+	}
+
+	public Message(String content, Date sendDate, User sender, User receiver){
+		this.content=content;
+		this.sendingDate=sendDate;
+		this.sender=sender;
+		this.receiver=receiver;
 	}
 	
 	@Column(name="ID", nullable=false, unique=true, length=10)	
