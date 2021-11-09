@@ -1,5 +1,7 @@
 package com.example.zpi.data_handling;
 
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
 
@@ -9,6 +11,8 @@ import java.sql.SQLException;
 public class BaseConnection {
 
     private static ConnectionSource connectionSource;
+    private static FirebaseStorage storageInstance;
+    private static StorageReference videoStorageReference;
 
     public static ConnectionSource getConnectionSource() {
         if (connectionSource == null){
@@ -29,6 +33,12 @@ public class BaseConnection {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static FirebaseStorage getStorageInstance(){
+        if (storageInstance == null)
+            storageInstance = FirebaseStorage.getInstance();
+        return storageInstance;
     }
 
 }

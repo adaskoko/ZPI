@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -51,6 +52,9 @@ public class TripListActivity extends AppCompatActivity {
     }
 
     private void loadTrips(){
+        ProgressDialog progressDialog = new ProgressDialog(this, ProgressDialog.THEME_DEVICE_DEFAULT_LIGHT);
+        progressDialog.setTitle("Wczytywanie wycieczek...");
+        progressDialog.show();
         new Thread(() -> {
             try {
                 User user = SharedPreferencesHandler.getLoggedInUser(getApplicationContext());
@@ -67,9 +71,11 @@ public class TripListActivity extends AppCompatActivity {
                 setUpCurrentTrip();
                 tripDao.getConnectionSource().close();
 
+                progressDialog.dismiss();
                 //BaseConnection.closeConnection();
             } catch (SQLException | IOException throwables) {
                 throwables.printStackTrace();
+                progressDialog.dismiss();
             }
 
         }).start();
