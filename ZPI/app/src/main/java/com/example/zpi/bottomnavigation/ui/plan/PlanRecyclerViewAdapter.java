@@ -31,7 +31,8 @@ public class PlanRecyclerViewAdapter extends RecyclerView.Adapter<PlanRecyclerVi
     @Override
     public PlanViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.plan_child_item, parent,false);
+        View view = layoutInflater.inflate(R.layout.item_plan_one_day, parent,false);
+        //View view = layoutInflater.inflate(R.layout.plan_child_item, parent,false);
         return new PlanViewHolder(view);
     }
 
@@ -40,6 +41,7 @@ public class PlanRecyclerViewAdapter extends RecyclerView.Adapter<PlanRecyclerVi
         Log.i("plan position", String.valueOf(position));
         Section section = sectionList.get(position);
         String sectionTitle = section.getTitle();
+        sectionTitle = sectionTitle.substring(0, 5);
         List<TripPoint> items = section.getPointList();
 
         holder.sectionTitle.setText(sectionTitle);
@@ -60,8 +62,8 @@ public class PlanRecyclerViewAdapter extends RecyclerView.Adapter<PlanRecyclerVi
 
         public PlanViewHolder(@NonNull View itemView) {
             super(itemView);
-            sectionTitle = itemView.findViewById(R.id.section_title);
-            childList = itemView.findViewById(R.id.child_list);
+            sectionTitle = itemView.findViewById(R.id.dayDateTV);
+            childList = itemView.findViewById(R.id.list);
         }
     }
 }
