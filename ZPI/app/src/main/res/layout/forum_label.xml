@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="400dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded">
+
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_forum_icon"
+        tools:layout_editor_absoluteX="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginRight="40dp">
+
+    </ImageView>
+
+    <TextView
+        android:id="@+id/tv_threadName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_light"
+        android:text="Zdjęcia z Muzeum "
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@id/iv_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="20dp">
+
+    </TextView>
+
+    <LinearLayout
+        android:id="@+id/ll_plan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/tv_threadName"
+        app:layout_constraintEnd_toEndOf="@id/iv_icon"
+        android:layout_marginLeft="70dp">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/transparent"
+                android:src="@drawable/ic_link">
+            </ImageView>
+
+            <TextView
+                android:id="@+id/tv_planName"
+                android:text="Plan wycieczki"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_light">
+
+            </TextView>
+        </TableRow>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_responses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="21 odpowiedzi"
+        android:fontFamily="@font/poppins_light"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_plan"
+        app:layout_constraintRight_toRightOf="parent">
+    </TextView>
+    <!--<LinearLayout
+        android:id="@+id/ll_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/ll_plan"
+        app:layout_constraintEnd_toStartOf="@id/ll_plan"
+        android:layout_marginLeft="60dp"
+
+        >
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/transparent"
+                android:src="@drawable/ic_pen">
+            </ImageView>
+
+            <TextView
+                android:id="@+id/tv_personName"
+                android:text="Plan wycieczki"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_light">
+
+            </TextView>
+        </TableRow>
+
+    </LinearLayout>-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
