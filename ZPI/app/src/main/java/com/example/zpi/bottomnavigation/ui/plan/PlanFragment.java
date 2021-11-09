@@ -27,6 +27,7 @@ import com.example.zpi.repositories.TripPointDao;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.sql.SQLException;
 import java.util.List;
@@ -114,6 +115,7 @@ public class PlanFragment extends Fragment implements PlanChildRecyclerViewAdapt
     }
 
     private void init() {
+        accommodationList = new ArrayList<TripPoint>();
        HashList<String, TripPoint> list = new HashList<>();
         for (TripPoint point : points) {
 //            Log.i("plan size", String.valueOf(points.size()));

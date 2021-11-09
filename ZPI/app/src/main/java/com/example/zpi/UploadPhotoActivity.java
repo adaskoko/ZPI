@@ -52,7 +52,7 @@ public class UploadPhotoActivity extends AppCompatActivity {
 
     public void selectImage(View view) {
         Intent intent = new Intent();
-        intent.setType("image/*");
+        intent.setType("image/* video/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, 100);
     }

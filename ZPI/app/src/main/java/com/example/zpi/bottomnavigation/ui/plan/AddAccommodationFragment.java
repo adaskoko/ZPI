@@ -83,7 +83,6 @@ public class AddAccommodationFragment extends Fragment {
                 TripPointDao tripPointDao = new TripPointDao(BaseConnection.getConnectionSource());
                 TripPointType tripPointType = new TripPointTypeDao(BaseConnection.getConnectionSource()).getNoclegTripPointType();
                 tripPointDao.createTripPoint(title, finalDDateFrom, finalDDateTo, null, currTrip, location, tripPointType);
-                BaseConnection.closeConnection(Objects.requireNonNull(BaseConnection.getConnectionSource()));
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
