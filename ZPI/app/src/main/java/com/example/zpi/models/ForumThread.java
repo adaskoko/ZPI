@@ -6,6 +6,19 @@ import javax.persistence.*;
 public class ForumThread implements Serializable {
 	public ForumThread() {
 	}
+
+	public ForumThread(String summary, String title, Trip trip){
+		this.summary=summary;
+		this.title=title;
+		this.trip=trip;
+	}
+
+	public ForumThread(String summary, String title, Trip trip, ThreadType tt){
+		this.summary=summary;
+		this.title=title;
+		this.trip=trip;
+		this.threadType=tt;
+	}
 	
 	@Column(name="ID", nullable=false, unique=true, length=10)	
 	@Id	
@@ -57,6 +70,8 @@ public class ForumThread implements Serializable {
 	public Trip getTrip() {
 		return trip;
 	}
+
+	public String getTitle(){return title;}
 	
 	public String toString() {
 		return String.valueOf(getID());

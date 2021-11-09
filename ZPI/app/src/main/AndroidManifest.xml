@@ -12,8 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ZPI">
-        <activity android:name=".ChatActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".ChooseSpecificPointForThreadActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChooseListForThreadActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddForumThreadActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChatActivity"
+            android:exported="false" />
         <activity
             android:name=".MatchingUsersForChatActivity"
             android:exported="false" />

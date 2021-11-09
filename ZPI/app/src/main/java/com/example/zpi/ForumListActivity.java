@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,11 +16,14 @@ import android.widget.Filterable;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.data_handling.SharedPreferencesHandler;
 import com.example.zpi.models.ForumThread;
 import com.example.zpi.models.Trip;
 import com.example.zpi.models.User;
+import com.example.zpi.repositories.ForumThreadDao;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -49,27 +53,49 @@ public class ForumListActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        getThreadsForTrip();
+
+    }
+
     public void finishForumList(View v){
         super.finish();
     }
 
     public void newThread(View v){
+        Intent intent =new Intent(this, AddForumThreadActivity.class);
+        intent.putExtra(THREAD_KEY, currentTrip);
+        startActivity(intent);
 
     }
 
     public void getThreadsForTrip(){
-
+        new Thread(()->{
+            try{
+                ForumThreadDao ftdao=new ForumThreadDao(BaseConnection.getConnectionSource());
+                List<ForumThread> threads=ftdao.getThreadsForTrip(currentTrip);
+                runOnUiThread(()->{
+                    ForumListAdapter adapter=new ForumListAdapter(threads);
+                    recyclerView.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+                });
+            }catch(SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }).start();
     }
 
     private class ForumListAdapter extends RecyclerView.Adapter<ForumListAdapter.ForumListAdapterVh> implements Filterable {
 
         private List<ForumThread> threadsForList;
-        private Map<Integer, String> content;
+
         private Context context;
 
-        public ForumListAdapter(List<ForumThread> list, Map<Integer, String> map){
+        public ForumListAdapter(List<ForumThread> list){
             this.threadsForList=list;
-            this.content=map;
+
         }
 
         @Override
@@ -88,9 +114,9 @@ public class ForumListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(@NonNull ForumListAdapter.ForumListAdapterVh holder, int position){
             ForumThread thread=threadsForList.get(position);
-            String planName=content.get(thread.getID());
-            holder.tvPlanType.setText(planName);
-            holder.tvSummary.setText(thread.getSummary());
+            //String planName=content.get(thread.getID());
+            holder.tvPlanType.setText(thread.getSummary());
+            holder.tvSummary.setText(thread.getTitle());
 
         }
 
@@ -100,13 +126,13 @@ public class ForumListActivity extends AppCompatActivity {
         }
 
         private class ForumListAdapterVh extends RecyclerView.ViewHolder{
-            TextView tvSummary;
-            TextView tvPlanType;
+            TextView tvSummary;//title
+            TextView tvPlanType;//summary
 
             public ForumListAdapterVh(@NonNull View itemView){
                 super(itemView);
-                tvSummary=itemView.findViewById(R.id.tv_threadName);
-                tvPlanType=itemView.findViewById(R.id.tv_planName);
+                tvSummary=itemView.findViewById(R.id.tv_threadName);//title
+                tvPlanType=itemView.findViewById(R.id.tv_planName);//summary
 
                 itemView.setOnClickListener(v->{
                     Toast.makeText(ForumListActivity.this,tvSummary.getText(), Toast.LENGTH_SHORT).show();
