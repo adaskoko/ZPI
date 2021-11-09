@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -52,7 +53,8 @@ public class UploadPhotoActivity extends AppCompatActivity {
 
     public void selectImage(View view) {
         Intent intent = new Intent();
-        intent.setType("image/* video/*");
+        intent.setType("image/*");
+        intent.putExtra(Intent.EXTRA_MIME_TYPES, new String[] {"image/*", "video/*"});
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, 100);
     }
@@ -62,8 +64,21 @@ public class UploadPhotoActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == 100 && data != null && data.getData() != null){
-            imageUri = data.getData();
-            binding.ivSelectedImage.setImageURI(imageUri);
+            Uri selectedMediaUri = data.getData();
+            if (selectedMediaUri.toString().contains("image")) {
+                binding.ivSelectedImage.setVisibility(View.VISIBLE);
+                binding.vvVideo.setVisibility(View.INVISIBLE);
+                binding.ivSelectedImage.setImageURI(selectedMediaUri);
+            } else  if (selectedMediaUri.toString().contains("video")) {
+                binding.ivSelectedImage.setVisibility(View.INVISIBLE);
+                binding.vvVideo.setVisibility(View.VISIBLE);
+                binding.vvVideo.setVideoURI(selectedMediaUri);
+                final MediaController mc = new MediaController(this);
+                binding.vvVideo.setMediaController(new MediaController(this){
+
+                });
+            }
+
         }
     }
 
