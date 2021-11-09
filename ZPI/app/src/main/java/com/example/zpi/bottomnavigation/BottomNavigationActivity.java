@@ -1,13 +1,7 @@
 package com.example.zpi.bottomnavigation;
 
-import android.Manifest;
-import android.app.Dialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -21,12 +15,15 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 
+import com.example.zpi.PhotoGalleryActivity;
 import com.example.zpi.R;
 
 
 import com.example.zpi.TripListActivity;
 import com.example.zpi.data_handling.SharedPreferencesHandler;
+import com.example.zpi.UploadPhotoActivity;
 import com.example.zpi.databinding.ActivityBottomNavigationBinding;
+import com.example.zpi.models.Photo;
 import com.example.zpi.models.Trip;
 import com.example.zpi.models.User;
 import com.google.android.gms.common.ConnectionResult;
@@ -48,6 +45,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
 
     private ActivityBottomNavigationBinding binding;
     public static final String TRIP_KEY = "TRIP";
+    private Trip trip;
     private static final String TAG = "BottomNavigationActivity";
     private static final int ERROR_DIALOG_REQUEST = 9001;
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
@@ -67,14 +65,13 @@ public class BottomNavigationActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Trip trip = (Trip) intent.getSerializableExtra(TRIP_KEY);
         User user = SharedPreferencesHandler.getLoggedInUser(this);
+        trip = (Trip) intent.getSerializableExtra(TRIP_KEY);
 //        Toast.makeText(this, trip.getName(), Toast.LENGTH_SHORT).show();
 
         binding = ActivityBottomNavigationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         initTripTitle(trip);
         binding.btnBackToMainTripWindow.setOnClickListener(v -> {
-            //Intent intent1 = new Intent(getApplicationContext(), TripListActivity.class);
-            //startActivity(intent1);
             onBackPressed();
         });
         getLocationPermission();
@@ -92,6 +89,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
             navController.navigateUp();
             navController.navigate(R.id.singleTripFragment);
         });
+        //navView.getMenu().getItem(0).setVisible(false);
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
@@ -179,6 +177,12 @@ public class BottomNavigationActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    public void goToPhotos(View v){
+        Intent intent = new Intent(this, PhotoGalleryActivity.class);
+        intent.putExtra(TRIP_KEY, trip);
+        startActivity(intent);
     }
 
 }

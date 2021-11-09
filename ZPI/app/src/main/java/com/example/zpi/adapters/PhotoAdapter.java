@@ -1,28 +1,35 @@
 package com.example.zpi.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.zpi.R;
+import com.example.zpi.models.Photo;
 import com.example.zpi.models.Trip;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
+public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> {
 
-    List<Trip> trips;
+    List<Bitmap> photos;
     private ClickListener clickListener;
 
-    public TripAdapter(List<Trip> trips) {
-        this.trips = trips;
+    public PhotoAdapter(List<Bitmap> photos) {
+        this.photos = photos;
     }
 
     @NonNull
@@ -31,20 +38,16 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        View contactView = inflater.inflate(R.layout.item_trip, parent, false);
+        View contactView = inflater.inflate(R.layout.item_photo, parent, false);
 
         return new ViewHolder(contactView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Trip trip = trips.get(position);
-
-        TextView tripNameTV = holder.tripNameTV;
-        tripNameTV.setText(trip.getName());
-        TextView tripDatesTV = holder.tripDatesTV;
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM");
-        tripDatesTV.setText(simpleDateFormat.format(trip.getStartDate()) + " - " + simpleDateFormat.format(trip.getEndDate()));
+        Bitmap photo = photos.get(position);
+        ImageView photoIV = holder.imageIV;
+        photoIV.setImageBitmap(photo);
     }
 
     public void setOnItemClickListener(ClickListener clickListener) {
@@ -53,18 +56,16 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return trips.size();
+        return photos.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public TextView tripNameTV;
-        public TextView tripDatesTV;
+        public ImageView imageIV;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            tripNameTV = (TextView) itemView.findViewById(R.id.tv_trip_name);
-            tripDatesTV = (TextView) itemView.findViewById(R.id.tv_trip_dates);
+            imageIV = (ImageView) itemView.findViewById(R.id.iv_image);
 
             itemView.setOnClickListener(this);
         }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -25,6 +26,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TripListActivity extends AppCompatActivity {
 
@@ -33,6 +35,8 @@ public class TripListActivity extends AppCompatActivity {
 
     ArrayList<Trip> upcomingTrips;
     ArrayList<Trip> pastTrips;
+    ArrayList<Trip> threeUpcomingTrips;
+    ArrayList<Trip> threePastTrips;
 
     Trip currentTrip;
 
@@ -48,13 +52,18 @@ public class TripListActivity extends AppCompatActivity {
     }
 
     private void loadTrips(){
+        ProgressDialog progressDialog = new ProgressDialog(this, ProgressDialog.THEME_DEVICE_DEFAULT_LIGHT);
+        progressDialog.setTitle("Wczytywanie wycieczek...");
+        progressDialog.show();
         new Thread(() -> {
             try {
                 User user = SharedPreferencesHandler.getLoggedInUser(getApplicationContext());
                 TripDao tripDao = new TripDao(BaseConnection.getConnectionSource());
-
-                upcomingTrips = (ArrayList<Trip>) tripDao.getFutureTripsForUser(user);
-                pastTrips = (ArrayList<Trip>) tripDao.getPastTripsForUser(user);
+                List<List<Trip>> allTrips = tripDao.getPastAndFutureTripsForUser(user);
+                upcomingTrips = (ArrayList<Trip>) allTrips.get(1);
+                threeUpcomingTrips = (ArrayList<Trip>) upcomingTrips.stream().limit(3).collect(Collectors.toList());
+                pastTrips = (ArrayList<Trip>) allTrips.get(0);
+                threePastTrips = (ArrayList<Trip>) pastTrips.stream().limit(3).collect(Collectors.toList());
                 currentTrip = tripDao.getCurrentTripForUser(user);
 
                 setUpUpcomingRecyclerView();
@@ -62,9 +71,11 @@ public class TripListActivity extends AppCompatActivity {
                 setUpCurrentTrip();
                 tripDao.getConnectionSource().close();
 
+                progressDialog.dismiss();
                 //BaseConnection.closeConnection();
             } catch (SQLException | IOException throwables) {
                 throwables.printStackTrace();
+                progressDialog.dismiss();
             }
 
         }).start();
@@ -82,7 +93,7 @@ public class TripListActivity extends AppCompatActivity {
 
     private void setUpUpcomingRecyclerView(){
         runOnUiThread(() -> {
-            TripAdapter upcomingAdapter = new TripAdapter(upcomingTrips);
+            TripAdapter upcomingAdapter = new TripAdapter(threeUpcomingTrips);
             upcomingAdapter.setOnItemClickListener(new TripAdapter.ClickListener() {
                 @Override
                 public void onItemClick(int position, View v) {
@@ -97,7 +108,7 @@ public class TripListActivity extends AppCompatActivity {
 
     private void setUpPastRecyclerView(){
         runOnUiThread(() -> {
-            TripAdapter pastAdapter = new TripAdapter(pastTrips);
+            TripAdapter pastAdapter = new TripAdapter(threePastTrips);
             pastAdapter.setOnItemClickListener(new TripAdapter.ClickListener() {
                 @Override
                 public void onItemClick(int position, View v) {

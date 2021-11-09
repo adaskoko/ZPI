@@ -115,6 +115,7 @@ public class PlanFragment extends Fragment implements PlanChildRecyclerViewAdapt
     }
 
     private void init() {
+        accommodationList = new ArrayList<TripPoint>();
        HashList<String, TripPoint> list = new HashList<>();
         accommodationList = new ArrayList<>();
         for (TripPoint point : points) {

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "331735172195",
+    "project_id": "zetpei",
+    "storage_bucket": "zetpei.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:331735172195:android:a230ecba48b777596b6456",
+        "android_client_info": {
+          "package_name": "com.example.zpi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "331735172195-v868e0js2on8r4q77gniftitqdbc7dst.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDy4jAMg_ZoVj6Fei_Xj_HfSU-IPzEkEvE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "331735172195-v868e0js2on8r4q77gniftitqdbc7dst.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

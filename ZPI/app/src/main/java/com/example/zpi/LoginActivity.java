@@ -2,11 +2,13 @@ package com.example.zpi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.zpi.bottomnavigation.BottomNavigationActivity;
@@ -30,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mail = findViewById(R.id.et_login);
         password = findViewById(R.id.et_pass);
+        getWindow().setBackgroundDrawableResource(R.drawable.ic_tlo_cale);
     }
 
     @Override
@@ -45,6 +48,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void login(View view) {
+        ProgressDialog progressDialog = new ProgressDialog(this, ProgressDialog.THEME_DEVICE_DEFAULT_LIGHT);
+        progressDialog.setTitle("Logowanie...");
+        progressDialog.show();
+
         new Thread(() -> {
             try {
                 User user = new UserDao(BaseConnection.getConnectionSource()).findByEmail(mail.getText().toString());
@@ -61,9 +68,11 @@ public class LoginActivity extends AppCompatActivity {
                         Log.i("logowanko", "Hasło nie gitara");
                     }
                 }
+                progressDialog.dismiss();
                 //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
+                progressDialog.dismiss();
             }
         }).start();
     }

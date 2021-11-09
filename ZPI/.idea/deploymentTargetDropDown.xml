@@ -8,6 +8,8 @@
           <Key>
             <type value="SERIAL_NUMBER" />
             <value value="2ba2b7db40017ece" />
+            <type value="VIRTUAL_DEVICE_PATH" />
+            <value value="C:\Android_SDK_HOME\.android\avd\Pixel_2_XL_API_29.avd" />
           </Key>
         </deviceKey>
       </Target>

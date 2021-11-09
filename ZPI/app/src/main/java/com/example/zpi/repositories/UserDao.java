@@ -26,8 +26,6 @@ public class UserDao extends BaseDaoImpl<User, Integer> implements IUserDao {
     public User findByEmail(String email) throws SQLException {
         List<User> userResult = super.queryForEq("Email", email);
 
-        //BaseConnection.closeConnection();
-
         if(userResult.size() > 0)
            return userResult.get(0);
         return null;
