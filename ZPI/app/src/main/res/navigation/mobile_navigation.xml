@@ -69,6 +69,12 @@
         tools:layout="@layout/fragment_map" />
 
     <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.example.zpi.bottomnavigation.ui.map.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
+
+    <fragment
         android:id="@+id/navigation_plan"
         android:name="com.example.zpi.bottomnavigation.ui.plan.PlanFragment"
         android:label="fragment_plan"
@@ -214,4 +220,5 @@
             android:id="@+id/action_todoEditFragment_to_navigation_todo"
             app:destination="@id/navigation_todo" />
     </fragment>
+
 </navigation>

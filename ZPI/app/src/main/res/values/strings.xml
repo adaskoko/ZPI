@@ -23,6 +23,8 @@
     <string name="more"><u>więcej</u></string>
     <string name="delete"><u>usuń</u></string>
     <string name="success"><b>Sukces</b></string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--GOOGLE KEY-->
+    <string name="google_maps_api_key">AIzaSyDeiulONqe9MHe-nyt-1zYvizIDCAMTTIc</string>
 </resources>

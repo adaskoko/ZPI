@@ -84,7 +84,6 @@ public class AddAttractionFragment extends Fragment implements DatePickerDialog.
                 TripPointDao tripPointDao = new TripPointDao(BaseConnection.getConnectionSource());
                 TripPointType tripPointType = new TripPointTypeDao(BaseConnection.getConnectionSource()).getAtrakcjaTripPointType();
                 tripPointDao.createTripPoint(title, finalArrivalDate, null, null, currTrip, tripPointLocation, tripPointType);
-                BaseConnection.closeConnection(BaseConnection.getConnectionSource());
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
