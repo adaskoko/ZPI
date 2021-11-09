@@ -67,8 +67,7 @@ public class AccommodationDetailsFragment extends Fragment {
             try {
                 TripPointDao pointDao = new TripPointDao(BaseConnection.getConnectionSource());
                 pointDao.delete(actPoint);
-                Log.i("point", "usunieto nocleg");
-                Log.i("point", String.valueOf(actPoint == null));
+                Log.i("todo", "usunieto nocleg");
 
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
