@@ -12,11 +12,14 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 
+import com.example.zpi.PhotoGalleryActivity;
 import com.example.zpi.R;
 
 
 import com.example.zpi.TripListActivity;
+import com.example.zpi.UploadPhotoActivity;
 import com.example.zpi.databinding.ActivityBottomNavigationBinding;
+import com.example.zpi.models.Photo;
 import com.example.zpi.models.Trip;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -27,13 +30,14 @@ public class BottomNavigationActivity extends AppCompatActivity {
 
     private ActivityBottomNavigationBinding binding;
     public static final String TRIP_KEY = "TRIP";
+    private Trip trip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Intent intent = getIntent();
-        Trip trip = (Trip) intent.getSerializableExtra(TRIP_KEY);
+        trip = (Trip) intent.getSerializableExtra(TRIP_KEY);
 //        Toast.makeText(this, trip.getName(), Toast.LENGTH_SHORT).show();
 
         binding = ActivityBottomNavigationBinding.inflate(getLayoutInflater());
@@ -62,6 +66,12 @@ public class BottomNavigationActivity extends AppCompatActivity {
             navController.navigate(R.id.singleTripFragment);
         });
         NavigationUI.setupWithNavController(binding.navView, navController);
+    }
+
+    public void goToPhotos(View v){
+        Intent intent = new Intent(this, PhotoGalleryActivity.class);
+        intent.putExtra(TRIP_KEY, trip);
+        startActivity(intent);
     }
 
 }

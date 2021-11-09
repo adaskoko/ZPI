@@ -13,6 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ZPI">
         <activity
+            android:name=".SinglePhotoActivity"
+            android:exported="true" />
+        <activity
+            android:name=".PhotoGalleryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".UploadPhotoActivity"
+            android:exported="true" />
+        <activity
             android:name=".MatchingUsersActivity"
             android:exported="false" />
         <activity
