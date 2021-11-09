@@ -12,11 +12,11 @@
     <string name="change_surname">Zmień nazwisko</string>
     <string name="new_surname">Nowe nazwisko</string>
     <string name="title_activity_bottom_navigation">BottomNavigationActivity</string>
-    <string name="title_todo">TODO</string>
+    <string name="title_todo">Do zrobienia</string>
     <string name="title_list_numbers">Plan</string>
-    <string name="title_to_take_things">ToTake</string>
-    <string name="title_map">Map</string>
-    <string name="title_finance">Bank</string>
+    <string name="title_to_take_things">Produkty</string>
+    <string name="title_map">Mapa</string>
+    <string name="title_finance">Rozliczenia</string>
     <string name="logo">FastTravel</string>
     <string name="password_change">Twoje hasło zostało pomyślnie zmienione.</string>
     <string name="register_success">Rejestracja przebiegła pomyślnie. Możesz teraz zalogować się na swoje konto.</string>

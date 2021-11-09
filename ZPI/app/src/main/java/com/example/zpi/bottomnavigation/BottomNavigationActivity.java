@@ -37,7 +37,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
 
         binding = ActivityBottomNavigationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         binding.tvTripname.setText(trip.getName());
         String startDate = dateFormat.format(trip.getStartDate());
         String endDate = dateFormat.format(trip.getEndDate());
@@ -45,8 +45,6 @@ public class BottomNavigationActivity extends AppCompatActivity {
         startDate += endDate;
         binding.tvTripdate.setText(startDate);
         binding.btnBackToMainTripWindow.setOnClickListener(v -> {
-            //Intent intent1 = new Intent(getApplicationContext(), TripListActivity.class);
-            //startActivity(intent1);
             onBackPressed();
         });
 
@@ -60,6 +58,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
             navController.navigateUp();
             navController.navigate(R.id.singleTripFragment);
         });
+        //navView.getMenu().getItem(0).setVisible(false);
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 

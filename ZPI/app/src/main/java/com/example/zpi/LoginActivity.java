@@ -30,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mail = findViewById(R.id.et_login);
         password = findViewById(R.id.et_pass);
+        getWindow().setBackgroundDrawableResource(R.drawable.ic_tlo_cale);
     }
 
     @Override

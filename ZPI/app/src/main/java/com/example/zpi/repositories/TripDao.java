@@ -12,6 +12,7 @@ import com.j256.ormlite.support.ConnectionSource;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -106,6 +107,7 @@ public class TripDao extends BaseDaoImpl<Trip, Integer> implements ITripDao {
                 trips.add(trip);
             }
         }
+        trips.sort(Comparator.comparing(Trip::getStartDate).reversed());
 
         return trips;
     }
@@ -125,8 +127,33 @@ public class TripDao extends BaseDaoImpl<Trip, Integer> implements ITripDao {
                 trips.add(trip);
             }
         }
+        trips.sort(Comparator.comparing(Trip::getStartDate));
 
         return trips;
+    }
+
+    public List<List<Trip>> getPastAndFutureTripsForUser(User user) throws SQLException {
+        List<TripParticipant> tripParticipants = new TripPartcicipantDao(BaseConnection.getConnectionSource()).getByUser(user);
+        List<Trip> pastTrips = new ArrayList<>();
+        List<Trip> futureTrips = new ArrayList<>();
+
+        for (TripParticipant tripPart : tripParticipants){
+            Trip trip = tripPart.getTrip();
+            this.refresh(trip);
+
+            Date now = new Date(System.currentTimeMillis());
+            if(trip.getStartDate().after(now)){
+                futureTrips.add(trip);
+            } else if (trip.getEndDate().before(now)){
+                pastTrips.add(trip);
+            }
+        }
+        pastTrips.sort(Comparator.comparing(Trip::getStartDate));
+        futureTrips.sort(Comparator.comparing(Trip::getStartDate));
+        List<List<Trip>> allTrips = new ArrayList<>();
+        allTrips.add(pastTrips);
+        allTrips.add(futureTrips);
+        return allTrips;
     }
 
     @Override

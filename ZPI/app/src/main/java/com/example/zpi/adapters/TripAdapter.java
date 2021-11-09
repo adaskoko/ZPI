@@ -43,7 +43,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
         TextView tripNameTV = holder.tripNameTV;
         tripNameTV.setText(trip.getName());
         TextView tripDatesTV = holder.tripDatesTV;
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM.dd");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM");
         tripDatesTV.setText(simpleDateFormat.format(trip.getStartDate()) + " - " + simpleDateFormat.format(trip.getEndDate()));
     }
 
