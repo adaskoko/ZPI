@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.zpi.bottomnavigation.BottomNavigationActivity;
@@ -46,9 +47,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void login(View view) {
-        ProgressDialog progressDialog = new ProgressDialog(this);
+        ProgressDialog progressDialog = new ProgressDialog(this, ProgressDialog.THEME_DEVICE_DEFAULT_LIGHT);
         progressDialog.setTitle("Logowanie...");
         progressDialog.show();
+
         new Thread(() -> {
             try {
                 User user = new UserDao(BaseConnection.getConnectionSource()).findByEmail(mail.getText().toString());

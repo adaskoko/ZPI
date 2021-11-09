@@ -68,7 +68,7 @@ public class UploadPhotoActivity extends AppCompatActivity {
     }
 
     public void uploadImage(View view) {
-        progressDialog = new ProgressDialog(this);
+        progressDialog = new ProgressDialog(this, ProgressDialog.THEME_DEVICE_DEFAULT_LIGHT);
         progressDialog.setTitle("Uploading File");
         progressDialog.show();
 

@@ -48,7 +48,7 @@ public class PhotoGalleryActivity extends AppCompatActivity {
         super.onResume();
         RecyclerView galleryRV = findViewById(R.id.rv_gallery);
 
-        ProgressDialog progressDialog = new ProgressDialog(this);
+        ProgressDialog progressDialog = new ProgressDialog(this, ProgressDialog.THEME_DEVICE_DEFAULT_LIGHT);
         progressDialog.setTitle("Ładowanie zdjęć...");
         progressDialog.show();
 

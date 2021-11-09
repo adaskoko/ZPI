@@ -49,7 +49,7 @@ public class TripListActivity extends AppCompatActivity {
     }
 
     private void loadTrips(){
-        ProgressDialog progressDialog = new ProgressDialog(this);
+        ProgressDialog progressDialog = new ProgressDialog(this, ProgressDialog.THEME_DEVICE_DEFAULT_LIGHT);
         progressDialog.setTitle("Wczytywanie wycieczek...");
         progressDialog.show();
         new Thread(() -> {

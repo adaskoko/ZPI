@@ -39,7 +39,7 @@ public class SinglePhotoActivity extends AppCompatActivity {
         Trip trip = (Trip) intent.getSerializableExtra(TRIP_KEY);
         int position = intent.getIntExtra("POSITION", 0);
 
-        ProgressDialog progressDialog = new ProgressDialog(this);
+        ProgressDialog progressDialog = new ProgressDialog(this, ProgressDialog.THEME_DEVICE_DEFAULT_LIGHT);
         progressDialog.setTitle("Ładowanie zdjęć...");
         progressDialog.show();
 
