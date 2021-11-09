@@ -14,6 +14,9 @@ public class ForumThread implements Serializable {
 	
 	@Column(name="Summary", nullable=false, length=255)	
 	private String summary;
+
+	@Column(name="Title", nullable=false, length=255)
+	private String title;
 	
 	@ManyToOne(targetEntity= ThreadType.class, fetch=FetchType.LAZY)
 	@JoinColumn(name="ThreadTypeID", referencedColumnName="ID", nullable=false)
