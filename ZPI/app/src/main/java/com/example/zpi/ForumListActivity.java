@@ -23,7 +23,9 @@ import com.example.zpi.models.User;
 import java.util.List;
 import java.util.Map;
 
-public class ForumList extends AppCompatActivity {
+import static com.example.zpi.SingleTripFragment.TRIP_KEY;
+
+public class ForumListActivity extends AppCompatActivity {
 
     public final static String THREAD_KEY="THREAD_KEY";
     User loggedUser;
@@ -40,7 +42,9 @@ public class ForumList extends AppCompatActivity {
         recyclerView=findViewById(R.id.rvThreads);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         loggedUser = SharedPreferencesHandler.getLoggedInUser(getApplicationContext());
-        currentTrip=getIntent().getSerializableExtra("TRIP_KEY");
+        currentTrip= (Trip) getIntent().getSerializableExtra(TRIP_KEY);
+        tripname = findViewById(R.id.tv_nameOfTheTrip);
+        tripname.setText(currentTrip.getName());
         getThreadsForTrip();
 
     }
@@ -105,7 +109,7 @@ public class ForumList extends AppCompatActivity {
                 tvPlanType=itemView.findViewById(R.id.tv_planName);
 
                 itemView.setOnClickListener(v->{
-                    Toast.makeText(ForumList.this,tvSummary.getText(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ForumListActivity.this,tvSummary.getText(), Toast.LENGTH_SHORT).show();
                 });
             }
         }

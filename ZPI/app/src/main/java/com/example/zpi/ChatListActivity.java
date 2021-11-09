@@ -112,7 +112,7 @@ public class ChatListActivity extends AppCompatActivity {
     }
 
     //just a test method, please do not delete
-    private List<User> getSomeUsers(){
+    /*private List<User> getSomeUsers(){
         List<User> ret=new ArrayList<>();
         new Thread(() -> {
             try {
@@ -136,7 +136,7 @@ public class ChatListActivity extends AppCompatActivity {
             }
         }).start();
         return ret;
-    }
+    }*/
 
 
     private class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatListAdapterVh> implements Filterable{

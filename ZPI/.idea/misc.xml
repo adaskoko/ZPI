@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/activity_bottom_navigation.xml" value="0.259375" />
+        <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/activity_forum_list.xml" value="0.11354166666666667" />
         <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/activity_login.xml" value="0.26403985507246375" />
         <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/activity_photo_gallery.xml" value="0.24139492753623187" />
@@ -23,6 +24,7 @@
         <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/item_trip.xml" value="0.259375" />
         <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/login.xml" value="0.26403985507246375" />
         <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/progress_bar.xml" value="0.1828125" />
+        <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/menu/bottom_nav_menu.xml" value="0.259375" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.24635416666666668" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/drawable/ic_back.xml" value="0.24635416666666668" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.2546875" />

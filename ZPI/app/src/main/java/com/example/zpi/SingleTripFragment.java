@@ -45,6 +45,8 @@ public class SingleTripFragment extends Fragment {
     }
 
     public void showForum(){
-
+        Intent intent = new Intent(getContext(), ForumListActivity.class);
+        intent.putExtra(TRIP_KEY, currTrip);
+        startActivity(intent);
     }
 }
