@@ -9,23 +9,27 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaMetadataRetriever;
+import android.media.ThumbnailUtils;
 import android.os.Bundle;
-import android.os.Parcelable;
+import android.provider.MediaStore;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.zpi.adapters.PhotoAdapter;
-import com.example.zpi.adapters.TripAdapter;
 import com.example.zpi.data_handling.BaseConnection;
-import com.example.zpi.models.Photo;
+import com.example.zpi.models.MultimediaFile;
 import com.example.zpi.models.Trip;
 import com.example.zpi.repositories.PhotoDao;
 
+import org.w3c.dom.Text;
+
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class PhotoGalleryActivity extends AppCompatActivity {
@@ -41,6 +45,8 @@ public class PhotoGalleryActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         trip = (Trip) intent.getSerializableExtra(TRIP_KEY);
+        TextView tripNameTV = findViewById(R.id.tv_trip_name);
+        tripNameTV.setText(trip.getName());
     }
 
     @Override
@@ -54,11 +60,18 @@ public class PhotoGalleryActivity extends AppCompatActivity {
 
         new Thread(() -> {
             try {
-                List<Photo> photos = new PhotoDao(BaseConnection.getConnectionSource()).getPhotosFromTrip(trip);
+                List<MultimediaFile> multimediaFiles = new PhotoDao(BaseConnection.getConnectionSource()).getPhotosFromTrip(trip);
                 bitmaps = new ArrayList<>();
-                for (Photo photo : photos){
-                    Bitmap bitmap = BitmapFactory.decodeStream((InputStream)new URL(photo.getUrl()).getContent());
-                    bitmaps.add(bitmap);
+                for (MultimediaFile multimediaFile : multimediaFiles){
+                    if(multimediaFile.getPhoto()){
+                        Bitmap bitmap = BitmapFactory.decodeStream((InputStream)new URL(multimediaFile.getUrl()).getContent());
+                        bitmaps.add(bitmap);
+                    }else{
+                        MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
+                        mediaMetadataRetriever.setDataSource(multimediaFile.getUrl(), new HashMap<String, String>());
+                        Bitmap thumb = mediaMetadataRetriever.getFrameAtTime();
+                        bitmaps.add(thumb);
+                    }
                 }
 
                 runOnUiThread(() -> {
@@ -94,5 +107,9 @@ public class PhotoGalleryActivity extends AppCompatActivity {
         Intent intent = new Intent(this, UploadPhotoActivity.class);
         intent.putExtra(TRIP_KEY, trip);
         startActivity(intent);
+    }
+
+    public void back(View view) {
+        finish();
     }
 }

@@ -2,18 +2,16 @@ package com.example.zpi;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.widget.ImageView;
 
 import com.example.zpi.adapters.ImageViewPagerAdapter;
 import com.example.zpi.data_handling.BaseConnection;
-import com.example.zpi.models.Photo;
+import com.example.zpi.models.MultimediaFile;
 import com.example.zpi.models.Trip;
 import com.example.zpi.repositories.PhotoDao;
 
@@ -45,16 +43,17 @@ public class SinglePhotoActivity extends AppCompatActivity {
 
         new Thread(() -> {
             try {
-                List<Photo> photos = new PhotoDao(BaseConnection.getConnectionSource()).getPhotosFromTrip(trip);
-                bitmaps = new ArrayList<>();
-                for (Photo photo : photos){
-                    Bitmap bitmap = BitmapFactory.decodeStream((InputStream)new URL(photo.getUrl()).getContent());
-                    bitmaps.add(bitmap);
+                List<MultimediaFile> multimediaFiles = new PhotoDao(BaseConnection.getConnectionSource()).getPhotosFromTrip(trip);
+                for (MultimediaFile multimediaFile : multimediaFiles){
+                    if(multimediaFile.getPhoto()){
+                        Bitmap bitmap = BitmapFactory.decodeStream((InputStream)new URL(multimediaFile.getUrl()).getContent());
+                        multimediaFile.setBitmap(bitmap);
+                    }
                 }
 
                 runOnUiThread(() -> {
                     ViewPager viewPager = (ViewPager)findViewById(R.id.vp_images);
-                    ImageViewPagerAdapter adapter = new ImageViewPagerAdapter(SinglePhotoActivity.this, bitmaps);
+                    ImageViewPagerAdapter adapter = new ImageViewPagerAdapter(SinglePhotoActivity.this, multimediaFiles);
                     viewPager.setAdapter(adapter);
                     viewPager.setCurrentItem(position);
                 });
