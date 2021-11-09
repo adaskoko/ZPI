@@ -26,13 +26,14 @@ import java.text.SimpleDateFormat;
 public class BottomNavigationActivity extends AppCompatActivity {
 
     private ActivityBottomNavigationBinding binding;
+    public static final String TRIP_KEY = "TRIP";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Intent intent = getIntent();
-        Trip trip = (Trip) intent.getSerializableExtra("TRIP");
+        Trip trip = (Trip) intent.getSerializableExtra(TRIP_KEY);
 //        Toast.makeText(this, trip.getName(), Toast.LENGTH_SHORT).show();
 
         binding = ActivityBottomNavigationBinding.inflate(getLayoutInflater());

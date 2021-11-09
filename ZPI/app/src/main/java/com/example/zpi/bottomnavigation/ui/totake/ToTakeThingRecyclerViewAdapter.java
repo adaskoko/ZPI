@@ -32,28 +32,30 @@ public class ToTakeThingRecyclerViewAdapter extends RecyclerView.Adapter<ToTakeT
         //productToTakeList = new ArrayList<>();
     }
 
+    @NonNull
     @Override
-    public ToTakeThingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ToTakeThingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_to_take, parent, false);
         //return new ToTakeThingViewHolder(ItemToTakeBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false), toTakeThingListener);
         return new ToTakeThingViewHolder(itemView, toTakeThingListener);
     }
 
     @Override
-    public void onBindViewHolder(final ToTakeThingViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ToTakeThingViewHolder holder, int position) {
         ProductToTake product = productToTakeList.get(position);
         holder.mItem = product;
-        holder.toTakeChB.setActivated(product.isDone()); //jak w bazie jest zapisane chb
-        holder.titleTV.setText(product.getName().toString());
-        holder.personTV.setText(product.getUser().getName().toString());
+        //holder.toTakeChB.setActivated(product.isDone()); //jak w bazie jest zapisane chb
+        holder.titleTV.setText(product.getName());
+        holder.personTV.setText(product.getUser().getName());
     }
 
     @Override
     public int getItemCount() {
+
         return productToTakeList.size();
     }
 
-    public void deleteToTakeThingPosition(int position) {
+    public void  deleteToTakeThingPosition(int position) {
         ProductToTake product = productToTakeList.get(position);
 
         new Thread(() -> {
@@ -72,6 +74,7 @@ public class ToTakeThingRecyclerViewAdapter extends RecyclerView.Adapter<ToTakeT
         notifyItemRemoved(position);
     }
     public ProductToTake getProduct(int position){
+
         return productToTakeList.get(position);
     }
 

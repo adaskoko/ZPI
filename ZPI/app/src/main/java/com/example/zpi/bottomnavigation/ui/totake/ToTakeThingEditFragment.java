@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -37,16 +38,16 @@ public class ToTakeThingEditFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            actPoint=(ProductToTake) getArguments().get(ToTakeThingsFragment.TOTAKE_KEY);
+            actPoint = (ProductToTake) getArguments().get(ToTakeThingsFragment.TOTAKE_KEY);
         }
-        Intent intent =getActivity().getIntent();
-        actTrip=(Trip)intent.getSerializableExtra("TRIP");
+        Intent intent = getActivity().getIntent();
+        actTrip = (Trip) intent.getSerializableExtra("TRIP");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding=FragmentToTakeThingEditBinding.inflate(inflater, container, false);
+        binding = FragmentToTakeThingEditBinding.inflate(inflater, container, false);
         new Thread(() -> {
             try {
                 List<User> userList = new UserDao(BaseConnection.getConnectionSource()).getUsersFromTrip(actTrip);
@@ -55,21 +56,20 @@ public class ToTakeThingEditFragment extends Fragment {
                     PersonSpinnerAdapter personAdapter = new PersonSpinnerAdapter(requireContext(), userList);
                     binding.spParticipants.setAdapter(personAdapter);
                 });
-                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
         }).start();
 
-        fillEtitTexts();
+        fillEditTexts();
 
         binding.spParticipants.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                chosenUser=(User) parent.getItemAtPosition(position);
-                String clickedUsr=chosenUser.getName();
+                chosenUser = (User) parent.getItemAtPosition(position);
+                String clickedUsr = chosenUser.getName();
                 //??nie brakuje tu tego actPoint.setUser(chosenUser);
-                Toast.makeText(getContext(),clickedUsr+" selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), clickedUsr + " selected", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -81,14 +81,14 @@ public class ToTakeThingEditFragment extends Fragment {
         return binding.getRoot();
     }
 
-    private void fillEtitTexts(){
+    private void fillEditTexts(){
         binding.etToTakeName.setText(actPoint.getName());
         binding.cbDone.setChecked(actPoint.isDone());
     }
 
     private void saveToTake(){
-        String title=binding.etToTakeName.getText().toString();
-        Boolean isDone=binding.cbDone.isChecked();
+        String title = binding.etToTakeName.getText().toString();
+        boolean isDone = binding.cbDone.isChecked();
 
         new Thread(() -> {
             try {
@@ -97,12 +97,10 @@ public class ToTakeThingEditFragment extends Fragment {
                 actPoint.setDone(isDone);
                 pointDao.update(actPoint);
                 Log.i("todo", "todo edited");
-                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
         }).start();
-
-
+        NavHostFragment.findNavController(this).navigate(R.id.action_toTakeThingsEditFragment_to_navigation_to_take_things);
     }
 }

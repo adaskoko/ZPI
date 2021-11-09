@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.zpi.R;
 import com.example.zpi.data_handling.BaseConnection;
@@ -26,6 +27,9 @@ import com.example.zpi.repositories.TripPointDao;
 import com.example.zpi.repositories.TripPointParticipantDao;
 
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +51,7 @@ public class AttractionDetailsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            actPoint = (TripPoint) getArguments().get("PLAN_KEY");
+            actPoint = (TripPoint) getArguments().get(PLAN_KEY);
         }
     }
 
@@ -55,7 +59,7 @@ public class AttractionDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentAttractionDetailsBinding.inflate(inflater, container, false);
-        //fillTextViews();
+        fillTextViews();
         binding.btnDeleteAttraction.setOnClickListener(c -> delete());
         binding.btnEditAttraction.setOnClickListener(c -> edit());
         return binding.getRoot();
@@ -64,12 +68,18 @@ public class AttractionDetailsFragment extends Fragment {
     private void fillTextViews(){
         binding.pointNameTV.setText(actPoint.getName());
         //binding.tv_pointAddress.setText(actPoint.getA)
-        binding.tvPointHH.setText(actPoint.getArrivalDate().getHours());
-        binding.tvPointMM.setText(actPoint.getArrivalDate().getMinutes());
+        DateFormat hourFormat = new SimpleDateFormat("HH");
+        String hour = hourFormat.format(actPoint.getArrivalDate());
+
+        DateFormat minuteFormat = new SimpleDateFormat("mm");
+        String minute = minuteFormat.format(actPoint.getArrivalDate());
+
+        binding.tvPointHh.setText(hour);
+        binding.tvPointMm.setText(minute);
 
         list = binding.lvParticipants;
         ArrayList<String> participants = (ArrayList<String>) getPointParticipants();
-        adapter = new ArrayAdapter<>(getContext(), R.layout.user_spinner_row, participants);
+        adapter = new ArrayAdapter<>(getContext(), R.layout.found_user_in_list, participants);
 
         list.setAdapter(adapter);
 
@@ -90,7 +100,6 @@ public class AttractionDetailsFragment extends Fragment {
                         participants.add(currentRow);
                     }
                 }
-                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -105,7 +114,7 @@ public class AttractionDetailsFragment extends Fragment {
                 pointDao.delete(actPoint);
                 Log.i("todo", "usunieto todo");
                 Log.i("todo", String.valueOf(actPoint == null));
-                //BaseConnection.closeConnection();
+
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -117,6 +126,6 @@ public class AttractionDetailsFragment extends Fragment {
         Bundle bundle = new Bundle();
         bundle.putSerializable(PLAN_KEY, actPoint);
         Log.i("attr", "edit");
-        Navigation.findNavController(getView()).navigate(R.id.action_attractionDetailsFragment_to_attractionEditFragment);
+        NavHostFragment.findNavController(this).navigate(R.id.action_attractionDetailsFragment_to_attractionEditFragment, bundle);
     }
 }
