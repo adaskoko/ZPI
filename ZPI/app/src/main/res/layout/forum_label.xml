@@ -69,7 +69,6 @@
         android:id="@+id/tv_responses"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="21 odpowiedzi"
         android:fontFamily="@font/poppins_light"
         android:textColor="@color/black"
         android:textSize="12sp"

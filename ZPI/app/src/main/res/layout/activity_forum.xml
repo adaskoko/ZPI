@@ -18,7 +18,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="20"
+            android:layout_weight="30"
             android:background="#263238"
             android:orientation="vertical">
 
@@ -33,17 +33,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/ic_back_white" />
+                    android:src="@drawable/ic_back_white"
+                    android:onClick="finishForum"/>
 
                 <TextView
-                    android:id="@+id/tv_nameOfTrip"
+                    android:id="@+id/tv_nameOfTrip1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="20dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins_light"
-                    android:text="Dodaj nowy wątek \nWycieczka do Berlina"
+                    android:text="Wycieczka do Berlina"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
             </TableRow>
@@ -52,40 +53,41 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="90"
+            android:layout_height="wrap_content"
+            android:layout_weight="60"
             android:orientation="vertical">
 
-            <ImageButton
+            <TextView
+                android:id="@+id/tv_name2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:text="Wycieczka do Berlina"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="@android:color/transparent"
-                android:onClick="chooseList"
-                android:src="@drawable/ic_button_assignelement"
-                ></ImageButton>
-
-
-            <EditText
-                android:id="@+id/et_threadTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginBottom="40dp"
                 android:fontFamily="@font/poppins_light"
-                android:text="Podaj tytuł wątku"
-                android:textColor="#999999"
-                android:textSize="24sp"></EditText>
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold">
+            </TextView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_comments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginBottom="10dp">
+            </androidx.recyclerview.widget.RecyclerView>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/response_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:background="@drawable/rounded">
 
                 <EditText
-                    android:id="@+id/et_comment"
+                    android:id="@+id/et_comment3"
                     android:layout_width="350dp"
                     android:layout_height="wrap_content"
 
@@ -93,20 +95,22 @@
                     android:hint="Tu wpisz swoją odpowiedź"
                     android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tr_icon">
+                    app:layout_constraintTop_toBottomOf="@id/tr_icon3"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp">
 
                     <requestFocus />
                 </EditText>
 
                 <TableRow
-                    android:id="@+id/tr_icon"
+                    android:id="@+id/tr_icon3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
-                        android:id="@+id/tv_initials"
+                        android:id="@+id/tv_initials3"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginLeft="20dp"
@@ -121,7 +125,7 @@
                         android:textSize="24sp" />
 
                     <TextView
-                        android:id="@+id/tv_personName"
+                        android:id="@+id/tv_personName3"
                         android:text="Aleksandra Rzepecka"
                         android:fontFamily="@font/poppins_light"
                         android:textColor="@color/black"
@@ -143,21 +147,65 @@
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/btn_cancel"
+                    android:id="@+id/btn_cancel1"
                     android:backgroundTint="@android:color/transparent"
                     android:src="@drawable/ic_button_cancel"
-                    android:onClick="cancel"
+                    android:onClick="cancelResp"
                     >
                 </ImageButton>
                 <ImageButton
-                    android:id="@+id/btn_add_thread"
+                    android:id="@+id/btn_add_response"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@android:color/transparent"
                     android:src="@drawable/przycisk_dodaj"
-                    android:onClick="createThread"></ImageButton>
+                    android:onClick="addResponse"
+                    ></ImageButton>
 
             </TableRow>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_weight="10"
+            android:background="#263238"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TableRow
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content">
+
+
+                <ImageButton
+                    android:id="@+id/btn_respond"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@drawable/ic_button_respond"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:onClick="respond"
+                    android:layout_marginRight="200dp">
+                </ImageButton>
+                <TextView
+                    android:id="@+id/tv_respCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/poppins_light"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:gravity="right">
+                </TextView>
+                </TableRow>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
 

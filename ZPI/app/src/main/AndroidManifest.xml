@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ZPI">
         <activity
+            android:name=".ForumActivity"
+            android:exported="false" />
+        <activity
             android:name=".ChooseSpecificPointForThreadActivity"
             android:exported="false" />
         <activity

@@ -1,5 +1,6 @@
 package com.example.zpi.repositories;
 
+import com.example.zpi.models.Comment;
 import com.example.zpi.models.ForumThread;
 import com.example.zpi.models.Role;
 import com.example.zpi.models.ThreadType;
@@ -29,4 +30,21 @@ public class ForumThreadDao extends BaseDaoImpl<ForumThread, Integer> implements
     public List<ForumThread> getThreadsForTrip(Trip trip) throws SQLException {
         return super.queryForEq("TripID", trip.getID());
     }
+
+    @Override
+    public ForumThread getByName(String name) throws SQLException {
+        return super.queryForEq("Title", name).get(0);
+    }
+
+    @Override
+    public int getResponsesCount(ForumThread thread) throws SQLException {
+        return DaoManager.createDao(connectionSource, Comment.class).queryForEq("ThreadID", thread.getID()).size();
+    }
+
+    @Override
+    public List<Comment> getCommentsForThread(ForumThread thread) throws SQLException {
+        return DaoManager.createDao(connectionSource, Comment.class).queryForEq("ThreadID", thread.getID());
+    }
+
+
 }

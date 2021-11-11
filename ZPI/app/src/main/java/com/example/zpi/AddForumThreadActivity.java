@@ -15,9 +15,11 @@ import android.widget.Toast;
 
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.data_handling.SharedPreferencesHandler;
+import com.example.zpi.models.Comment;
 import com.example.zpi.models.ForumThread;
 import com.example.zpi.models.Trip;
 import com.example.zpi.models.User;
+import com.example.zpi.repositories.CommentDao;
 import com.example.zpi.repositories.ForumThreadDao;
 
 import java.sql.SQLException;
@@ -69,6 +71,9 @@ public class AddForumThreadActivity extends AppCompatActivity {
                     ForumThreadDao ftdao=new ForumThreadDao(BaseConnection.getConnectionSource());
                     //ForumThread ft=new ForumThread(resultStringForThread, sTitle, currentTrip);
                     ftdao.createRegulatThread(resultStringForThread, sTitle, currentTrip);
+                    ForumThread created=ftdao.getByName(sTitle);
+                    CommentDao cdao=new CommentDao(BaseConnection.getConnectionSource());
+                    cdao.create(new Comment(userMsg, created, loggedUser));
                     super.finish();
                 }catch(SQLException throwables){
                     throwables.printStackTrace();
