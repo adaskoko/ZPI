@@ -72,14 +72,15 @@ public class ForumActivity extends AppCompatActivity {
         trip.setText(currentTrip.getName());
 
         response=findViewById(R.id.response_layout);
-        response.setVisibility(View.INVISIBLE);
+        //response.setVisibility(View.INVISIBLE);
 
         respond=findViewById(R.id.btn_respond);
         addResponse=findViewById(R.id.btn_add_response);
         cancel1=findViewById(R.id.btn_cancel1);
 
-        addResponse.setVisibility(View.INVISIBLE);
-        cancel1.setVisibility(View.INVISIBLE);
+        //addResponse.setVisibility(View.INVISIBLE);
+        //cancel1.setVisibility(View.INVISIBLE);
+        hideResponseLayout();
 
         respCount=findViewById(R.id.tv_respCount);
 
@@ -100,6 +101,12 @@ public class ForumActivity extends AppCompatActivity {
             }
         }, 0, 60000);
 
+    }
+
+    public void hideResponseLayout(){
+        response.setVisibility(View.INVISIBLE);
+        addResponse.setVisibility(View.INVISIBLE);
+        cancel1.setVisibility(View.INVISIBLE);
     }
 
     public void getCommentsForThread(){
@@ -153,12 +160,13 @@ public class ForumActivity extends AppCompatActivity {
             new Thread(()->{
                 try{
                     CommentDao cdao=new CommentDao(BaseConnection.getConnectionSource());
-                    Comment newComment=new Comment(content.getText().toString(), current, loggedUser);
-                    cdao.create(newComment);
+                    //Comment newComment=new Comment(content.getText().toString(), current, loggedUser);
+                    cdao.create(new Comment(content.getText().toString(), current, loggedUser));
                     runOnUiThread(()->{
                         content.getEditableText().clear();
                         getCommentsForThread();
                         getResponseCount();
+                        hideResponseLayout();
                     });
                 }catch (SQLException throwables){
                     throwables.printStackTrace();
@@ -197,12 +205,15 @@ public class ForumActivity extends AppCompatActivity {
         public void onBindViewHolder(@NonNull ForumVh holder, int position){
             Comment comment=comments.get(position);
             User u=comment.getUser();
-            try {
-                UserDao udao=new UserDao(BaseConnection.getConnectionSource());
-                udao.refresh(u);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+            new Thread(()->{
+                try {
+                    UserDao udao=new UserDao(BaseConnection.getConnectionSource());
+                    udao.refresh(u);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }).start();
+
 
             String personInitials=u.getName().substring(0,1).toUpperCase()+u.getSurname().substring(0,1).toUpperCase();
             String personName=u.getName()+ " "+u.getSurname();

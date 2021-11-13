@@ -8,10 +8,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
@@ -25,6 +28,7 @@ import com.example.zpi.models.User;
 import com.example.zpi.repositories.ForumThreadDao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,6 +46,7 @@ public class ForumListActivity extends AppCompatActivity {
     ForumListAdapter forumListAdapter;
     Trip currentTrip;
     TextView tripname;
+    EditText search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +59,24 @@ public class ForumListActivity extends AppCompatActivity {
         tripname = findViewById(R.id.tv_nameOfTheTrip);
         tripname.setText(currentTrip.getName());
         getThreadsForTrip();
+
+        search=findViewById(R.id.et_search);
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
 
         new Timer().scheduleAtFixedRate(new TimerTask(){
             @Override
@@ -70,6 +93,17 @@ public class ForumListActivity extends AppCompatActivity {
         super.onResume();
         getThreadsForTrip();
 
+    }
+
+    private void filter(String text){
+        ArrayList<ForumThread> filteredList=new ArrayList<>();
+        for(ForumThread ft:threads){
+            if(ft.getTitle().toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(ft);
+            }
+        }
+
+        forumListAdapter.filterList(filteredList);
     }
 
     public void finishForumList(View v){
@@ -93,7 +127,9 @@ public class ForumListActivity extends AppCompatActivity {
                     threadsResopnses.put(ft.getID(), ftdao.getResponsesCount(ft));
                 }
                 runOnUiThread(()->{
+                    this.threads=threads;
                     ForumListAdapter adapter=new ForumListAdapter(threads, threadsResopnses);
+                    this.forumListAdapter=adapter;
                     recyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 });
@@ -135,7 +171,6 @@ public class ForumListActivity extends AppCompatActivity {
             holder.tvPlanType.setText(thread.getSummary());
             holder.tvSummary.setText(thread.getTitle());
             String responses=String.valueOf(map.get(thread.getID()))+" odpowiedzi";
-            Log.i("ODP:", responses);
             holder.responses.setText(responses);
 
         }
@@ -143,6 +178,11 @@ public class ForumListActivity extends AppCompatActivity {
         @Override
         public int getItemCount(){
             return threadsForList.size();
+        }
+
+        public void filterList(List<ForumThread> filtered){
+            threadsForList=filtered;
+            notifyDataSetChanged();
         }
 
         private class ForumListAdapterVh extends RecyclerView.ViewHolder{
@@ -157,7 +197,7 @@ public class ForumListActivity extends AppCompatActivity {
                 responses=itemView.findViewById(R.id.tv_responses);
 
                 itemView.setOnClickListener(v->{
-                    Toast.makeText(ForumListActivity.this,tvSummary.getText(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(ForumListActivity.this,tvSummary.getText(), Toast.LENGTH_SHORT).show();
                     ForumThread ft=threadsForList.get(getAbsoluteAdapterPosition());
                     Intent intent=new Intent(ForumListActivity.this, ForumActivity.class);
                     intent.putExtra(THREAD_KEY, ft);
