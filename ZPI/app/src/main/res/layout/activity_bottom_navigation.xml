@@ -111,16 +111,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav_menu"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginBottom="30dp"
-        android:clickable="true"
-        android:onClick="goToPhotos"
-        app:layout_constraintBottom_toTopOf="@+id/nav_view"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_camera" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

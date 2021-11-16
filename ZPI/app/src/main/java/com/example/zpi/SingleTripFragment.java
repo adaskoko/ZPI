@@ -1,17 +1,36 @@
 package com.example.zpi;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.MediaMetadataRetriever;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.zpi.adapters.PhotoAdapter;
+import com.example.zpi.adapters.PhotoInTripAdapter;
+import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.databinding.FragmentSingleTripBinding;
+import com.example.zpi.models.MultimediaFile;
 import com.example.zpi.models.Trip;
+import com.example.zpi.repositories.PhotoDao;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class SingleTripFragment extends Fragment {
 
@@ -35,6 +54,57 @@ public class SingleTripFragment extends Fragment {
         Intent intent = getActivity().getIntent();
         currTrip = (Trip) intent.getSerializableExtra("TRIP");
 
+        ProgressDialog progressDialog = new ProgressDialog(getContext(), ProgressDialog.THEME_DEVICE_DEFAULT_LIGHT);
+        progressDialog.setTitle("Pobieranie danych...");
+        getActivity().runOnUiThread(() -> progressDialog.show());
+
+        new Thread(() -> {
+            try {
+                PhotoDao photoDao = new PhotoDao(BaseConnection.getConnectionSource());
+                List<MultimediaFile> photos = photoDao.getPhotosFromTrip(currTrip);
+                if(photos != null && photos.size() > 0) {
+                    List<Bitmap> bitmaps = new ArrayList<>();
+                    for (MultimediaFile multimediaFile : photos) {
+                        if (multimediaFile.getPhoto()) {
+                            Bitmap bitmap = null;
+                            try {
+                                bitmap = BitmapFactory.decodeStream((InputStream) new URL(multimediaFile.getUrl()).getContent());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            bitmaps.add(bitmap);
+                        } else {
+                            MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
+                            mediaMetadataRetriever.setDataSource(multimediaFile.getUrl(), new HashMap<String, String>());
+                            Bitmap thumb = mediaMetadataRetriever.getFrameAtTime();
+                            bitmaps.add(thumb);
+                        }
+                    }
+
+                    getActivity().runOnUiThread(() -> {
+                        binding.tvNoPhotos.setVisibility(View.GONE);
+                        binding.rvPhotos.setVisibility(View.VISIBLE);
+
+                        PhotoInTripAdapter photoAdapter = new PhotoInTripAdapter(bitmaps);
+                        photoAdapter.setOnItemClickListener(new PhotoInTripAdapter.ClickListener() {
+                            @Override
+                            public void onItemClick(int position, View v) {
+                                showImage(position);
+                            }
+                        });
+                        binding.rvPhotos.setAdapter(photoAdapter);
+                        LinearLayoutManager upcomingLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+                        binding.rvPhotos.setLayoutManager(upcomingLayoutManager);
+                    });
+                }
+
+                progressDialog.dismiss();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+                progressDialog.dismiss();
+            }
+        }).start();
+
         return root;
     }
 
@@ -47,6 +117,13 @@ public class SingleTripFragment extends Fragment {
     public void showForum(){
         Intent intent = new Intent(getContext(), ForumListActivity.class);
         intent.putExtra(TRIP_KEY, currTrip);
+        startActivity(intent);
+    }
+
+    public void showImage(int position){
+        Intent intent = new Intent(getContext(), SinglePhotoActivity.class);
+        intent.putExtra("TRIP", currTrip);
+        intent.putExtra("POSITION", position);
         startActivity(intent);
     }
 }

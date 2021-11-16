@@ -18,8 +18,7 @@ import com.example.zpi.models.Trip;
 import com.example.zpi.models.TripParticipant;
 import com.example.zpi.models.User;
 import com.example.zpi.repositories.TripDao;
-import com.example.zpi.repositories.TripPartcicipantDao;
-import com.example.zpi.repositories.UserDao;
+import com.example.zpi.repositories.TripParticipantDao;
 
 import java.io.Serializable;
 import java.sql.SQLException;
@@ -103,7 +102,7 @@ public class InviteUsersActivity extends AppCompatActivity implements Serializab
 
         new Thread(() -> {
             try {
-                TripPartcicipantDao tpDao=new TripPartcicipantDao(BaseConnection.getConnectionSource());
+                TripParticipantDao tpDao=new TripParticipantDao(BaseConnection.getConnectionSource());
                 List<TripParticipant> tripParticipants=tpDao.getByTrip(currentTrip);
                 Log.i("tripparticiopants z dao", String.valueOf(tripParticipants.size()));
                 if(tripParticipants!=null && tripParticipants.size()!=0) {

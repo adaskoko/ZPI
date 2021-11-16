@@ -1,22 +1,29 @@
 package com.example.zpi;
 
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.ParcelFileDescriptor;
+import android.provider.DocumentsContract;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
-import android.widget.ProgressBar;
+import android.widget.MediaController;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.data_handling.SharedPreferencesHandler;
 import com.example.zpi.databinding.ActivityUploadPhotoBinding;
-import com.example.zpi.models.Photo;
+import com.example.zpi.models.MultimediaFile;
 import com.example.zpi.models.Trip;
 import com.example.zpi.repositories.PhotoDao;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,8 +32,13 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.j256.ormlite.stmt.query.In;
 
+import java.io.File;
+import java.io.FileDescriptor;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -34,7 +46,7 @@ import java.util.Date;
 public class UploadPhotoActivity extends AppCompatActivity {
 
     ActivityUploadPhotoBinding binding;
-    Uri imageUri;
+    Uri selectedMediaUri;
     StorageReference storageReference;
     ProgressDialog progressDialog;
     final String TRIP_KEY = "TRIP";
@@ -48,11 +60,14 @@ public class UploadPhotoActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         trip = (Trip) intent.getSerializableExtra(TRIP_KEY);
+        TextView tripNameTV = findViewById(R.id.tv_trip_name);
+        tripNameTV.setText(trip.getName());
     }
 
     public void selectImage(View view) {
         Intent intent = new Intent();
-        intent.setType("image/* video/*");
+        intent.setType("image/*");
+        intent.putExtra(Intent.EXTRA_MIME_TYPES, new String[] {"image/*", "video/*"});
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, 100);
     }
@@ -62,8 +77,19 @@ public class UploadPhotoActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == 100 && data != null && data.getData() != null){
-            imageUri = data.getData();
-            binding.ivSelectedImage.setImageURI(imageUri);
+            selectedMediaUri = data.getData();
+            if (selectedMediaUri.toString().contains("image")) {
+                binding.ivSelectedImage.setVisibility(View.VISIBLE);
+                binding.vvVideo.setVisibility(View.INVISIBLE);
+                binding.ivSelectedImage.setImageURI(selectedMediaUri);
+            } else  if (selectedMediaUri.toString().contains("video")) {
+                binding.ivSelectedImage.setVisibility(View.INVISIBLE);
+                binding.vvVideo.setVisibility(View.VISIBLE);
+                binding.vvVideo.setVideoURI(selectedMediaUri);
+                binding.vvVideo.seekTo(1);
+                binding.vvVideo.setMediaController(new MediaController(this){
+                });
+            }
         }
     }
 
@@ -76,13 +102,14 @@ public class UploadPhotoActivity extends AppCompatActivity {
         Date now = new Date();
         String filename = formatter.format(now);
 
-        storageReference = BaseConnection.getStorageInstance().getReference("images/" + filename);
+        storageReference = BaseConnection.getStorageInstance().getReference(trip.getID() + "/" + filename);
 
-        storageReference.putFile(imageUri)
+        storageReference.putFile(selectedMediaUri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         binding.ivSelectedImage.setImageURI(null);
+                        binding.vvVideo.setVideoURI(null);
 
                         taskSnapshot.getStorage().getDownloadUrl().addOnCompleteListener(
                                 new OnCompleteListener<Uri>() {
@@ -90,10 +117,11 @@ public class UploadPhotoActivity extends AppCompatActivity {
                                     public void onComplete(@NonNull Task<Uri> task) {
                                         String url = task.getResult().toString();
 
-                                        Photo photo = new Photo(url, SharedPreferencesHandler.getLoggedInUser(getApplicationContext()), trip);
+                                        MultimediaFile multimediaFile = new MultimediaFile(url, SharedPreferencesHandler.getLoggedInUser(getApplicationContext()), trip, binding.ivSelectedImage.getVisibility() == View.VISIBLE, new Date());
+
                                         new Thread(() -> {
                                             try {
-                                                new PhotoDao(BaseConnection.getConnectionSource()).create(photo);
+                                                new PhotoDao(BaseConnection.getConnectionSource()).create(multimediaFile);
                                                 progressDialog.dismiss();
                                             } catch (SQLException throwables) {
                                                 throwables.printStackTrace();
@@ -112,5 +140,9 @@ public class UploadPhotoActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Failure", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    public void back(View view) {
+        finish();
     }
 }

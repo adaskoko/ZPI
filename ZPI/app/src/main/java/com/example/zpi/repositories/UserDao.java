@@ -47,7 +47,7 @@ public class UserDao extends BaseDaoImpl<User, Integer> implements IUserDao {
 
     @Override
     public List<User> getUsersFromTrip(Trip trip) throws SQLException {
-        List<TripParticipant> tripParticipants = new TripPartcicipantDao(BaseConnection.getConnectionSource()).getByTrip(trip);
+        List<TripParticipant> tripParticipants = new TripParticipantDao(BaseConnection.getConnectionSource()).getByTrip(trip);
 
         List<User> users = new ArrayList<>();
 

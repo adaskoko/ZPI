@@ -12,14 +12,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.zpi.bottomnavigation.ui.todo.ToDoFragment;
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.databinding.FragmentTripParticipantsBinding;
-import com.example.zpi.models.PreparationPoint;
 import com.example.zpi.models.Trip;
 import com.example.zpi.models.TripParticipant;
 import com.example.zpi.models.User;
-import com.example.zpi.repositories.TripPartcicipantDao;
+import com.example.zpi.repositories.TripParticipantDao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -62,7 +60,7 @@ public class TripParticipantsFragment extends Fragment {
 
         new Thread(() -> {
             try {
-                TripPartcicipantDao tpDao=new TripPartcicipantDao(BaseConnection.getConnectionSource());
+                TripParticipantDao tpDao=new TripParticipantDao(BaseConnection.getConnectionSource());
                 List<TripParticipant> tripParticipants=tpDao.getByTrip(currTrip);
                 Log.i("tripparticiopants z dao", String.valueOf(tripParticipants.size()));
                 if(tripParticipants!=null && tripParticipants.size()!=0) {

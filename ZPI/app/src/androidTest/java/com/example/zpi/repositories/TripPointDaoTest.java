@@ -1,5 +1,7 @@
 package com.example.zpi.repositories;
 
+import android.util.Log;
+
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.models.Trip;
 import com.example.zpi.models.TripPoint;
@@ -89,7 +91,20 @@ public class TripPointDaoTest {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
 
+    @Test
+    public void getTripPointsForToday() {
+        try{
+            Trip trip = new TripDao(connectionSource).queryForId(27);
+            List<TripPoint> points = new TripPointDao(connectionSource).getTripPointsForToday(trip, new Date());
+            for (TripPoint point : points) {
+                Log.i("Name", point.getName());
+            }
+            Assert.assertEquals(4, points.size());
 
+        }catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }
