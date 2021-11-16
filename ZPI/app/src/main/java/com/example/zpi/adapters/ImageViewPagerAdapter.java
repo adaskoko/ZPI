@@ -11,11 +11,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
+import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.example.zpi.R;
 import com.example.zpi.models.MultimediaFile;
+import com.example.zpi.models.User;
 
+import org.w3c.dom.Text;
+
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Objects;
 
@@ -58,7 +63,16 @@ public class ImageViewPagerAdapter extends PagerAdapter {
         ImageView imageView = (ImageView) itemView.findViewById(R.id.iv_image);
         VideoView videoView = (VideoView) itemView.findViewById(R.id.vv_video);
 
+        TextView usernameTV = (TextView) itemView.findViewById(R.id.tv_username);
+        TextView dateTV = (TextView) itemView.findViewById(R.id.tv_date);
+
         MultimediaFile multimediaFile = multimediaFiles.get(position);
+
+        User user = multimediaFile.getUser();
+        usernameTV.setText(user.getName() + " " + user.getSurname());
+        SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-mm-dd HH:mm");
+        dateTV.setText(dt1.format(multimediaFile.getCreationDate()));
+
         if(multimediaFile.getPhoto()){
             imageView.setVisibility(View.VISIBLE);
             videoView.setVisibility(View.INVISIBLE);

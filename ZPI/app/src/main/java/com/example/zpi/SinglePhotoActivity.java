@@ -14,6 +14,7 @@ import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.models.MultimediaFile;
 import com.example.zpi.models.Trip;
 import com.example.zpi.repositories.PhotoDao;
+import com.example.zpi.repositories.UserDao;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,7 +45,9 @@ public class SinglePhotoActivity extends AppCompatActivity {
         new Thread(() -> {
             try {
                 List<MultimediaFile> multimediaFiles = new PhotoDao(BaseConnection.getConnectionSource()).getPhotosFromTrip(trip);
+                UserDao userDao = new UserDao(BaseConnection.getConnectionSource());
                 for (MultimediaFile multimediaFile : multimediaFiles){
+                    userDao.refresh(multimediaFile.getUser());
                     if(multimediaFile.getPhoto()){
                         Bitmap bitmap = BitmapFactory.decodeStream((InputStream)new URL(multimediaFile.getUrl()).getContent());
                         multimediaFile.setBitmap(bitmap);
