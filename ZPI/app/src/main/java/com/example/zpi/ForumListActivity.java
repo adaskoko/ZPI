@@ -98,7 +98,7 @@ public class ForumListActivity extends AppCompatActivity {
     private void filter(String text){
         ArrayList<ForumThread> filteredList=new ArrayList<>();
         for(ForumThread ft:threads){
-            if(ft.getTitle().toLowerCase().contains(text.toLowerCase())){
+            if(ft.getTitle().toLowerCase().contains(text.toLowerCase()) || ft.getSummary().toLowerCase().contains(text.toLowerCase())){
                 filteredList.add(ft);
             }
         }
