@@ -16,10 +16,7 @@ import com.example.zpi.PhotoGalleryActivity;
 import com.example.zpi.R;
 
 
-import com.example.zpi.TripListActivity;
-import com.example.zpi.UploadPhotoActivity;
 import com.example.zpi.databinding.ActivityBottomNavigationBinding;
-import com.example.zpi.models.Photo;
 import com.example.zpi.models.Trip;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -72,5 +69,4 @@ public class BottomNavigationActivity extends AppCompatActivity {
         intent.putExtra(TRIP_KEY, trip);
         startActivity(intent);
     }
-
 }

@@ -14,12 +14,12 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> {
+public class PhotoInTripAdapter extends RecyclerView.Adapter<PhotoInTripAdapter.ViewHolder> {
 
     List<Bitmap> photos;
     private ClickListener clickListener;
 
-    public PhotoAdapter(List<Bitmap> photos) {
+    public PhotoInTripAdapter(List<Bitmap> photos) {
         this.photos = photos;
     }
 
@@ -29,7 +29,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> 
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        View contactView = inflater.inflate(R.layout.item_photo, parent, false);
+        View contactView = inflater.inflate(R.layout.item_photo_trip, parent, false);
 
         return new ViewHolder(contactView);
     }
