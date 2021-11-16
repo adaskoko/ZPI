@@ -62,11 +62,6 @@
         android:name="com.example.zpi.bottomnavigation.ui.finance.FinanceFragment"
         android:label="fragment_finance"
         tools:layout="@layout/fragment_finance" />
-    <fragment
-        android:id="@+id/navigation_map"
-        android:name="com.example.zpi.bottomnavigation.ui.map.MapFragment"
-        android:label="fragment_map"
-        tools:layout="@layout/fragment_map" />
 
     <fragment
         android:id="@+id/mapsFragment"

@@ -3,7 +3,6 @@ package com.example.zpi.bottomnavigation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -11,15 +10,9 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-
 import com.example.zpi.PhotoGalleryActivity;
 import com.example.zpi.R;
-
-
-import com.example.zpi.TripListActivity;
-import com.example.zpi.UploadPhotoActivity;
 import com.example.zpi.databinding.ActivityBottomNavigationBinding;
-import com.example.zpi.models.Photo;
 import com.example.zpi.models.Trip;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

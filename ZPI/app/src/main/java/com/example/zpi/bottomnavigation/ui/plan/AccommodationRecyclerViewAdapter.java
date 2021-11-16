@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.zpi.R;
 import com.example.zpi.models.TripPoint;
 
+import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -39,7 +40,9 @@ public class AccommodationRecyclerViewAdapter extends RecyclerView.Adapter<Accom
         holder.addressTV.setText(point.getTripPointLocation().getAddress());
 
         DateFormat dateFormat = new SimpleDateFormat("dd-MM");
-        holder.dateTV.setText(dateFormat.format(point.getArrivalDate() + " - " + dateFormat.format(point.getDepartureDate())));
+        Date arrivalDate = point.getArrivalDate();
+        Date departureDate = point.getDepartureDate();
+        holder.dateTV.setText(dateFormat.format(point.getArrivalDate()) + " - " + dateFormat.format(point.getDepartureDate()));
     }
 
     @Override

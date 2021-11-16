@@ -61,7 +61,7 @@ public class AddAccommodationFragment extends Fragment {
         String hour_to = binding.hhOfAccET2.getText().toString();
         String minute_to = binding.mmOfAcctET2.getText().toString();
 
-        DateFormat dateFormat = new SimpleDateFormat("HH:mm dd-MM-yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm yyyy-MM-dd");
         String dateFrom = hour_from+":"+minute_from+" "+date_from;
         String dateTo = hour_to+":"+minute_to+" "+date_to;
 

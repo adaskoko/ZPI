@@ -3,8 +3,6 @@ package com.example.zpi.bottomnavigation.ui.map;
 import static com.example.zpi.bottomnavigation.BottomNavigationActivity.TRIP_KEY;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
@@ -34,9 +32,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
@@ -45,7 +42,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.maps.DirectionsApiRequest;
 import com.google.maps.GeoApiContext;
 import com.google.maps.PendingResult;
-import com.google.maps.internal.PolylineEncoding;
+import com.google.maps.android.PolyUtil;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.DirectionsRoute;
 
@@ -53,7 +50,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 public class MapsFragment extends Fragment implements GoogleMap.OnInfoWindowClickListener, GoogleMap.OnPolylineClickListener {
 
@@ -61,63 +57,29 @@ public class MapsFragment extends Fragment implements GoogleMap.OnInfoWindowClic
     private static final String TAG = "MapsFragment";
 
     //vars
-    private Boolean mLocationPermissionsGranted = false;
     private GoogleMap mMap;
-    private FusedLocationProviderClient mFusedLocationProviderClient;
     private Trip trip;
     private GeoApiContext mGeoApiContext = null;
     private ArrayList<PolylineData> mPolylinesData = new ArrayList<>();
-
-    private static final LatLng WARSZAWA = new LatLng(52.13, 21.00);
-    private static final LatLng KOSZALIN = new LatLng(54.11, 16.10);
-    private static final LatLng WROCLAW = new LatLng(51.06, 17.01);
-    private static final LatLng BERLIN = new LatLng(52.31, 13.24);
-    private static final LatLng KRAKOW = new LatLng(50.03, 19.56);
+    private List<TripPoint> tripPointList = new ArrayList<>();
+    private List<TripPointLocation> tripPointLocationList = new ArrayList<>();
 
 
-    private OnMapReadyCallback callback = new OnMapReadyCallback() {
+    private final OnMapReadyCallback callback = new OnMapReadyCallback() {
 
         @SuppressLint("MissingPermission")
         @Override
-        public void onMapReady(GoogleMap googleMap) {
+        public void onMapReady(@NonNull GoogleMap googleMap) {
             mMap = googleMap;
-            //mMap.getUiSettings().setMyLocationButtonEnabled(true);
-            mMap.setMyLocationEnabled(true);
+            mMap.getUiSettings().setMyLocationButtonEnabled(true);
+            //mMap.setMyLocationEnabled(true);
             //getLocation();
             //addPoints();
-            tempAddMarkers();
             mMap.setOnInfoWindowClickListener(MapsFragment.this);
             mMap.setOnPolylineClickListener(MapsFragment.this);
+            addDirections();
         }
     };
-
-    private void tempAddMarkers() {
-        mMap.addMarker(new MarkerOptions()
-                .position(WARSZAWA)
-                .title("Warszawa")
-                .snippet("Atrakcja")
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
-        );
-        mMap.addMarker(new MarkerOptions()
-                .position(KOSZALIN)
-                .title("Koszalin")
-                .snippet("Atrakcja")
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
-        );
-        mMap.addMarker(new MarkerOptions()
-                .position(WROCLAW)
-                .title("Wroclaw")
-                .snippet("Nocleg")
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA))
-        );
-        mMap.addMarker(new MarkerOptions()
-                .position(BERLIN)
-                .title("Berlin")
-                .snippet("Nocleg")
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA))
-        );
-        moveCamera(WARSZAWA, 0);
-    }
 
     private void addPoints() {
         try {
@@ -144,10 +106,9 @@ public class MapsFragment extends Fragment implements GoogleMap.OnInfoWindowClic
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (savedInstanceState != null) {
-            Intent intent = requireActivity().getIntent();
-            trip = (Trip) intent.getSerializableExtra(TRIP_KEY);
-        }
+        Intent intent = getActivity().getIntent();
+        trip = (Trip) intent.getSerializableExtra(TRIP_KEY);
+        Log.i(getClass().getSimpleName(), "trip = null: "+String.valueOf(trip == null));
     }
 
     @Nullable
@@ -178,51 +139,104 @@ public class MapsFragment extends Fragment implements GoogleMap.OnInfoWindowClic
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
     }
 
-    private void getLocation() {
-        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext());
+//    private void getLocation() {
+//        FusedLocationProviderClient mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext());
+//
+//        @SuppressLint("MissingPermission")
+//        final Task location = mFusedLocationProviderClient.getLastLocation();
+//        location.addOnCompleteListener(task -> {
+//            if(task.isSuccessful()){
+//                Location currentLocation = (Location) task.getResult();
+//                LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
+//                Date currentDate = new Date();
+//                Marker m = mMap.addMarker(new MarkerOptions()
+//                        .position(latLng)
+//                        .title("Yours position"));
+//                m.setTag(new ArrayList<>());
+//                moveCamera(latLng, DEFAULT_ZOOM);
+//                Log.d(TAG, "onComplete: found location!, lat: " + currentLocation.getLatitude() + "long: " + currentLocation.getLongitude());
+//
+//            }else{
+//                Log.d(TAG, "onComplete: current location is null");
+//                Toast.makeText(getContext(), "unable to get current location", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
 
-        @SuppressLint("MissingPermission")
-        final Task location = mFusedLocationProviderClient.getLastLocation();
-        location.addOnCompleteListener(task -> {
-            if(task.isSuccessful()){
-                Location currentLocation = (Location) task.getResult();
-                LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-                Date currentDate = new Date();
-                Marker m = mMap.addMarker(new MarkerOptions()
-                        .position(latLng)
-                        .title("Yours position"));
-                m.setTag(new ArrayList<>());
-                moveCamera(latLng, DEFAULT_ZOOM);
-                Log.d(TAG, "onComplete: found location!, lat: " + currentLocation.getLatitude() + "long: " + currentLocation.getLongitude());
+//    private void calculateDirections(Marker marker){
+//        Log.d(TAG, "calculateDirections: calculating directions.");
+//
+//        com.google.maps.model.LatLng destination = new com.google.maps.model.LatLng(
+//                marker.getPosition().latitude,
+//                marker.getPosition().longitude
+//        );
+//        DirectionsApiRequest directions = new DirectionsApiRequest(mGeoApiContext);
+//
+//        directions.alternatives(true);
+//        directions.origin(
+//                new com.google.maps.model.LatLng(KRAKOW.latitude, KRAKOW.longitude)
+//        );
+////        directions.origin(
+////                new com.google.maps.model.LatLng(
+////                        mUserPosition.getGeo_point().getLatitude(),
+////                        mUserPosition.getGeo_point().getLongitude()
+////                )
+////        );
+//        Log.d(TAG, "calculateDirections: destination: " + destination.toString());
+//        directions.destination(destination).setCallback(new PendingResult.Callback<DirectionsResult>() {
+//            @Override
+//            public void onResult(DirectionsResult result) {
+//                Log.d(TAG, "onResult: routes: " + result.routes[0].toString());
+//                Log.d(TAG, "onResult: duration: " + result.routes[0].legs[0].duration);
+//                Log.d(TAG, "onResult: distance: " + result.routes[0].legs[0].distance);
+//                Log.d(TAG, "onResult: geocodedWayPoints: " + result.geocodedWaypoints[0].toString());
+//                addPolylineToMap(result);
+//            }
+//
+//            @Override
+//            public void onFailure(Throwable e) {
+//                Log.e(TAG, "onFailure: " + e.getMessage() );
+//
+//            }
+//        });
+//    }
 
-            }else{
-                Log.d(TAG, "onComplete: current location is null");
-                Toast.makeText(getContext(), "unable to get current location", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+    private void calculateDirections(List<TripPointLocation> tripPointLocationList){
+        Log.d(TAG, "calculateDirections: " + tripPointLocationList.size());
+        TripPointLocation end = tripPointLocationList.get(1);
+        TripPointLocation start = tripPointLocationList.get(0);
 
-    private void calculateDirections(Marker marker){
-        Log.d(TAG, "calculateDirections: calculating directions.");
-
-        com.google.maps.model.LatLng destination = new com.google.maps.model.LatLng(
-                marker.getPosition().latitude,
-                marker.getPosition().longitude
-        );
         DirectionsApiRequest directions = new DirectionsApiRequest(mGeoApiContext);
 
+        directions.destination(new com.google.maps.model.LatLng(
+                end.getLatitude(),
+                end.getLongitude()
+        ));
+        directions.origin(new com.google.maps.model.LatLng(
+                start.getLatitude(),
+                start.getLongitude()
+        ));
+
         directions.alternatives(true);
-        directions.origin(
-                new com.google.maps.model.LatLng(KRAKOW.latitude, KRAKOW.longitude)
+        directions.optimizeWaypoints(true);
+        for (int i = 2; i < tripPointLocationList.size(); i++) {
+            directions.waypoints(new com.google.maps.model.LatLng(
+                    tripPointLocationList.get(i).getLatitude(),
+                    tripPointLocationList.get(i).getLongitude()
+            ));
+        }
+
+        com.google.maps.model.LatLng destination = new com.google.maps.model.LatLng(
+                end.getLatitude(),
+                end.getLongitude()
         );
-//        directions.origin(
-//                new com.google.maps.model.LatLng(
-//                        mUserPosition.getGeo_point().getLatitude(),
-//                        mUserPosition.getGeo_point().getLongitude()
-//                )
-//        );
+        com.google.maps.model.LatLng origin = new com.google.maps.model.LatLng(
+                start.getLatitude(),
+                start.getLongitude()
+        );
         Log.d(TAG, "calculateDirections: destination: " + destination.toString());
-        directions.destination(destination).setCallback(new PendingResult.Callback<DirectionsResult>() {
+        Log.d(TAG, "calculateDirections: origin: " + origin.toString());
+        directions.setCallback(new PendingResult.Callback<DirectionsResult>() {
             @Override
             public void onResult(DirectionsResult result) {
                 Log.d(TAG, "onResult: routes: " + result.routes[0].toString());
@@ -235,72 +249,119 @@ public class MapsFragment extends Fragment implements GoogleMap.OnInfoWindowClic
             @Override
             public void onFailure(Throwable e) {
                 Log.e(TAG, "onFailure: " + e.getMessage() );
-
             }
         });
     }
 
-    private void addPolylineToMap(final DirectionsResult result){
-        new Handler(Looper.getMainLooper()).post(new Runnable() {
-            @Override
-            public void run() {
-                Log.d(TAG, "run: result routes: " + result.routes.length);
-                if (mPolylinesData.size() > 0) {
-                    for (PolylineData polylineData : mPolylinesData) {
-                        polylineData.getPolyline().remove();
-                    }
-                    mPolylinesData.clear();
-                    mPolylinesData = new ArrayList<>();
+    private void addDirections() {
+        new Thread(() -> {
+            try {
+                tripPointList = new TripPointDao(BaseConnection.getConnectionSource()).getTripPointsForToday(trip, null);
+                TripPointLocationDao tripPointLocationDao = new TripPointLocationDao(BaseConnection.getConnectionSource());
+                for (TripPoint point : tripPointList) {
+                    tripPointLocationList.add(tripPointLocationDao.getLocationForTripPoint(point));
                 }
+                getActivity().runOnUiThread(() -> {
+                    addMarkers();
+                    calculateDirections(tripPointLocationList);
+                });
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }).start();
+    }
 
-                for(DirectionsRoute route: result.routes){
-                    Log.d(TAG, "run: leg: " + route.legs[0].toString());
-                    List<com.google.maps.model.LatLng> decodedPath = PolylineEncoding.decode(route.overviewPolyline.getEncodedPath());
+    private void addMarkers() {
+        TripPointLocation pointLocation;
+        TripPoint tripPoint;
+        for (int i = 0; i < tripPointList.size(); i++) {
+        //for (TripPointLocation tripPoint : tripPointLocationList) {
+            pointLocation = tripPointLocationList.get(i);
+            tripPoint = tripPointList.get(i);
+            mMap.addMarker(new MarkerOptions()
+                    .title(tripPoint.getName())
+                    .snippet(pointLocation.getAddress())
+                    .position(new LatLng(pointLocation.getLatitude(), pointLocation.getLongitude()))
+            );
+        }
+    }
 
-                    List<LatLng> newDecodedPath = new ArrayList<>();
+    private void addPolylineToMap(final DirectionsResult result){
+        new Handler(Looper.getMainLooper()).post(() -> {
+            Log.d(TAG, "run: result routes: " + result.routes.length);
+            if (mPolylinesData.size() > 0) {
+                for (PolylineData polylineData : mPolylinesData) {
+                    polylineData.getPolyline().remove();
+                }
+                mPolylinesData.clear();
+                mPolylinesData = new ArrayList<>();
+            }
 
-                    // This loops through all the LatLng coordinates of ONE polyline.
-                    for(com.google.maps.model.LatLng latLng: decodedPath){
+            double duration = 999999999;
+            for(DirectionsRoute route: result.routes){
+                Log.d(TAG, "run: leg: " + route.legs[0].toString());
+                //List<com.google.maps.model.LatLng> decodedPath = PolylineEncoding.decode(route.overviewPolyline.getEncodedPath());
+                List<LatLng> decodedPath = PolyUtil.decode(result.routes[0].overviewPolyline.getEncodedPath());
 
-//                        Log.d(TAG, "run: latlng: " + latLng.toString());
 
-                        newDecodedPath.add(new LatLng(
-                                latLng.lat,
-                                latLng.lng
-                        ));
-                    }
-                    Polyline polyline = mMap.addPolyline(new PolylineOptions().addAll(newDecodedPath));
-                    polyline.setColor(ContextCompat.getColor(getActivity(), R.color.quantum_grey));
-                    polyline.setClickable(true);
-                    mPolylinesData.add(new PolylineData(polyline, route.legs[0]));
+                Polyline polyline = mMap.addPolyline(new PolylineOptions().addAll(decodedPath));
+                //Polyline polyline = mMap.addPolyline(new PolylineOptions().addAll(newDecodedPath));
+                polyline.setColor(ContextCompat.getColor(requireActivity(), R.color.quantum_grey));
+                polyline.setClickable(true);
+                mPolylinesData.add(new PolylineData(polyline, route.legs[0]));
+
+                double tempDuration = route.legs[0].duration.inSeconds;
+                if(tempDuration < duration){
+                    duration = tempDuration;
+                    onPolylineClick(polyline);
+                    zoomRoute(polyline.getPoints());
                 }
             }
         });
+    }
+
+    public void zoomRoute(List<LatLng> lstLatLngRoute) {
+
+        if (mMap == null || lstLatLngRoute == null || lstLatLngRoute.isEmpty()) return;
+
+        LatLngBounds.Builder boundsBuilder = new LatLngBounds.Builder();
+        for (LatLng latLngPoint : lstLatLngRoute)
+            boundsBuilder.include(latLngPoint);
+
+        int routePadding = 50;
+        LatLngBounds latLngBounds = boundsBuilder.build();
+
+        mMap.animateCamera(
+                CameraUpdateFactory.newLatLngBounds(latLngBounds, routePadding),
+                600,
+                null
+        );
     }
 
     @Override
     public void onInfoWindowClick(@NonNull final Marker marker) {
-        if(marker.getSnippet().equals("This is you")){
-            marker.hideInfoWindow();
-        }
-        else{
-            final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setMessage(marker.getSnippet())
-                    .setCancelable(true)
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
-                            calculateDirections(marker);
-                            dialog.dismiss();
-                        }
-                    })
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
-                            dialog.cancel();
-                        }
-                    });
-            final AlertDialog alert = builder.create();
-            alert.show();
-        }
+        Toast.makeText(requireContext(), "Info window click", Toast.LENGTH_SHORT).show();
+//        if(marker.getSnippet().equals("This is you")){
+//            marker.hideInfoWindow();
+//        }
+//        else{
+//            final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+//            builder.setMessage(marker.getSnippet())
+//                    .setCancelable(true)
+//                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//                        public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+//                            calculateDirections(marker);
+//                            dialog.dismiss();
+//                        }
+//                    })
+//                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+//                        public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+//                            dialog.cancel();
+//                        }
+//                    });
+//            final AlertDialog alert = builder.create();
+//            alert.show();
+//        }
     }
 
     @Override
@@ -308,11 +369,11 @@ public class MapsFragment extends Fragment implements GoogleMap.OnInfoWindowClic
         for(PolylineData polylineData: mPolylinesData){
             Log.d(TAG, "onPolylineClick: toString: " + polylineData.toString());
             if(polyline.getId().equals(polylineData.getPolyline().getId())){
-                polylineData.getPolyline().setColor(ContextCompat.getColor(getActivity(), R.color.quantum_googblue));
+                polylineData.getPolyline().setColor(ContextCompat.getColor(requireActivity(), R.color.quantum_googblue));
                 polylineData.getPolyline().setZIndex(1);
             }
             else{
-                polylineData.getPolyline().setColor(ContextCompat.getColor(getActivity(), R.color.quantum_grey));
+                polylineData.getPolyline().setColor(ContextCompat.getColor(requireActivity(), R.color.quantum_grey));
                 polylineData.getPolyline().setZIndex(0);
             }
         }
