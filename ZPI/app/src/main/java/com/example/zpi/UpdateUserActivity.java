@@ -82,7 +82,8 @@ public class UpdateUserActivity extends AppCompatActivity {
     }
 
     public void goToChat(View v) {
-        //chat not yet implemented
+        Intent i=new Intent(this, ChatListActivity.class);
+        startActivity(i);
     }
 
     public void deleteAccount(View v) {
@@ -101,6 +102,7 @@ public class UpdateUserActivity extends AppCompatActivity {
     }
 
     public void back(View v) {
-        //back activity (wycieczka?) not yet implemented
+        Intent intent = new Intent(this, TripListActivity.class);
+        startActivity(intent);
     }
 }

@@ -12,6 +12,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 
+import com.example.zpi.ChatListActivity;
 import com.example.zpi.PhotoGalleryActivity;
 import com.example.zpi.R;
 
@@ -69,4 +70,10 @@ public class BottomNavigationActivity extends AppCompatActivity {
         intent.putExtra(TRIP_KEY, trip);
         startActivity(intent);
     }
+
+    public void openChat(View v){
+        Intent intent=new Intent(this, ChatListActivity.class);
+        startActivity(intent);
+    }
+
 }

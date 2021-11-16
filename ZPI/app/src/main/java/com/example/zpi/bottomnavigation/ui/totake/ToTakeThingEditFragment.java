@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.zpi.R;
 import com.example.zpi.bottomnavigation.ui.todo.PersonSpinnerAdapter;
 import com.example.zpi.data_handling.BaseConnection;
+import com.example.zpi.data_handling.SharedPreferencesHandler;
 import com.example.zpi.databinding.FragmentToTakeThingEditBinding;
 import com.example.zpi.models.ProductToTake;
 import com.example.zpi.models.Trip;
@@ -32,6 +33,7 @@ public class ToTakeThingEditFragment extends Fragment {
     private FragmentToTakeThingEditBinding binding;
     private Trip actTrip;
     private User chosenUser;
+    User loggedUser;
 
 
     @Override
@@ -42,6 +44,7 @@ public class ToTakeThingEditFragment extends Fragment {
         }
         Intent intent = getActivity().getIntent();
         actTrip = (Trip) intent.getSerializableExtra("TRIP");
+        loggedUser = SharedPreferencesHandler.getLoggedInUser(getContext());
     }
 
     @Override
@@ -61,7 +64,8 @@ public class ToTakeThingEditFragment extends Fragment {
             }
         }).start();
 
-        fillEditTexts();
+        //fillEditTexts();
+        refreshResponsiblePeron();
 
         binding.spParticipants.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -95,6 +99,7 @@ public class ToTakeThingEditFragment extends Fragment {
                 ProductToTakeDao pointDao = new ProductToTakeDao(BaseConnection.getConnectionSource());
                 actPoint.setName(title);
                 actPoint.setDone(isDone);
+                actPoint.setUser(chosenUser);
                 pointDao.update(actPoint);
                 Log.i("todo", "todo edited");
             } catch (SQLException throwables) {
@@ -102,5 +107,26 @@ public class ToTakeThingEditFragment extends Fragment {
             }
         }).start();
         NavHostFragment.findNavController(this).navigate(R.id.action_toTakeThingsEditFragment_to_navigation_to_take_things);
+    }
+
+    private void refreshResponsiblePeron(){
+        User responsible=actPoint.getUser();
+        new Thread(()->{
+            try {
+                UserDao udao=new UserDao(BaseConnection.getConnectionSource());
+                udao.refresh(responsible);
+                Log.i("resp", String.valueOf(responsible.getID()));
+                Log.i("logged", String.valueOf(loggedUser.getID()));
+                if(responsible.getID()!=loggedUser.getID()){
+                    Log.i("disabling", "disable chbx");
+                    binding.cbDone.setEnabled(false);
+                }
+                getActivity().runOnUiThread(()->{
+                    fillEditTexts();
+                });
+            }catch (SQLException throwables){
+                throwables.printStackTrace();
+            }
+        }).start();
     }
 }
