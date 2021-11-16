@@ -100,7 +100,6 @@ public class ImageViewPagerAdapter extends PagerAdapter {
             videoView.requestFocus();
             videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 public void onPrepared(MediaPlayer mp) {
-                    videoView.start();
                     progressDialog.dismiss();
                 }
             });

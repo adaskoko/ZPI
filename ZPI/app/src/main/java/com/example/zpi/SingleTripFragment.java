@@ -74,12 +74,13 @@ public class SingleTripFragment extends Fragment {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                            bitmaps.add(bitmap);
+                            multimediaFile.setBitmap(bitmap);
                         } else {
                             MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
                             mediaMetadataRetriever.setDataSource(multimediaFile.getUrl(), new HashMap<String, String>());
                             Bitmap thumb = mediaMetadataRetriever.getFrameAtTime();
-                            bitmaps.add(thumb);
+                            multimediaFile.setBitmap(thumb);
+
                         }
                     }
 
@@ -87,7 +88,7 @@ public class SingleTripFragment extends Fragment {
                         binding.tvNoPhotos.setVisibility(View.GONE);
                         binding.rvPhotos.setVisibility(View.VISIBLE);
 
-                        PhotoInTripAdapter photoAdapter = new PhotoInTripAdapter(bitmaps);
+                        PhotoInTripAdapter photoAdapter = new PhotoInTripAdapter(photos);
                         photoAdapter.setOnItemClickListener(new PhotoInTripAdapter.ClickListener() {
                             @Override
                             public void onItemClick(int position, View v) {
