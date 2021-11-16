@@ -48,9 +48,12 @@ public class AccommodationEditFragment extends Fragment implements View.OnClickL
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            actPoint = (TripPoint) getArguments().get(PLAN_KEY);
+            actPoint = (TripPoint) getArguments().get(PlanFragment.PLAN_KEY);
+            Log.i("act point", "act point");
         }
-        Intent intent = new Intent();
+        //Intent intent = new Intent();
+        //actTrip = (Trip) intent.getSerializableExtra(BottomNavigationActivity.TRIP_KEY);
+        Intent intent = requireActivity().getIntent();
         actTrip = (Trip) intent.getSerializableExtra(BottomNavigationActivity.TRIP_KEY);
         datePickerDialogFragment = new DatePickerDialogFragment();
     }
@@ -61,6 +64,7 @@ public class AccommodationEditFragment extends Fragment implements View.OnClickL
         // Inflate the layout for this fragment
         binding = FragmentAccomodationEditBinding.inflate(inflater, container, false);
         fillEditText();
+        Log.i("ocvh", String.valueOf(actPoint.equals(null)));
         //binding.etDateOfAcc.setOnClickListener(v -> showDatePickerDialog());
         //binding.etDateOfAcc2.setOnClickListener(v -> showDatePickerDialog());
         binding.etDateOfAcc.setOnClickListener(this);

@@ -107,25 +107,25 @@ public class PlanFragment extends Fragment implements PlanChildRecyclerViewAdapt
     private void init() {
         HashList<String, TripPoint> list = new HashList<>();
         accommodationList = new ArrayList<>();
-        Log.i("all plan size", String.valueOf(points.size()));
+        //Log.i("all plan size", String.valueOf(points.size()));
         for (TripPoint point : points) {
 //            Log.i("plan", String.valueOf(points.size()));
 //            Date date = point.getArrivalDate();
 //            DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 //            list.put(dateFormat.format(date), point);
-            Log.i("trip point name", String.valueOf(point.getTripPointType().getName()));
+            //Log.i("trip point name", String.valueOf(point.getTripPointType().getName()));
             if (point.getTripPointType().getName().equals("Nocleg")) {
                 accommodationList.add(point);
             } else {
                 Date date = point.getArrivalDate();
                 DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-                Log.i("attraction date", dateFormat.format(date));
+                //Log.i("attraction date", dateFormat.format(date));
                 list.put(dateFormat.format(date), point);
             }
         }
         attractionPoints = list.getSections();
-        Log.i("accommodation list size", String.valueOf(accommodationList.size()));
-        Log.i("section list size", String.valueOf(attractionPoints.size()));
+        //Log.i("accommodation list size", String.valueOf(accommodationList.size()));
+        //Log.i("section list size", String.valueOf(attractionPoints.size()));
     }
 
     ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
@@ -153,7 +153,9 @@ public class PlanFragment extends Fragment implements PlanChildRecyclerViewAdapt
 
         Bundle bundle = new Bundle();
         bundle.putSerializable(PLAN_KEY, point);
-        if (point.getTripPointType().equals("Nocleg")) {
+        Log.i("nazwa", point.getName());
+        Log.i("typ",point.getTripPointType().getName());
+        if (point.getTripPointType().getName().equals("Nocleg")) {
             NavHostFragment.findNavController(this).navigate(R.id.action_navigation_plan_to_AccomodationDetailsFragment, bundle);
             Log.i("tripPoint click", "nocleg");
         } else {
