@@ -52,6 +52,7 @@ public class ToTakeThingDetailsFragment extends Fragment {
         binding.productNameTV.setText(actPoint.getName());
         binding.tvPrPersonResponsible.setText(actPoint.getUser().getName());
         binding.cbDone.setChecked(actPoint.isDone());
+        binding.cbDone.setEnabled(false);
     }
 
     private void delete(){

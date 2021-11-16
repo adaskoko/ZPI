@@ -26,6 +26,7 @@ import com.example.zpi.repositories.ProductToTakeDao;
 import com.example.zpi.repositories.TripDao;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 
@@ -59,7 +60,12 @@ public class ToTakeThingsFragment extends Fragment implements ToTakeThingRecycle
 
         Intent intent = getActivity().getIntent();
         currTrip = (Trip) intent.getSerializableExtra("TRIP");
+        Date tripEndDate=currTrip.getEndDate();
+        Date today=new Date();
 
+        if(tripEndDate.before(today)){
+            binding.btnAddToTake.setVisibility(View.INVISIBLE);
+        }
         new Thread(() -> {
             try {
 

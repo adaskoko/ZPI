@@ -18,7 +18,9 @@ import com.example.zpi.R;
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.databinding.FragmentTodoDetailsBinding;
 import com.example.zpi.models.PreparationPoint;
+import com.example.zpi.models.User;
 import com.example.zpi.repositories.PreparationPointDao;
+import com.example.zpi.repositories.UserDao;
 
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -54,8 +56,18 @@ public class TodoDetailsFragment extends Fragment {
         binding.tvPointDesc.setText(actPoint.getDescription());
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         binding.tvPontDate.setText(dateFormat.format(actPoint.getDeadline()));
-        binding.tvPersonResponsible.setText(actPoint.getUser().getName());
-        Log.i("todo", String.valueOf(actPoint.getUser().getSurname() == null));
+        User responsible=actPoint.getUser();
+        new Thread(()->{
+            try {
+                UserDao udao = new UserDao(BaseConnection.getConnectionSource());
+                udao.refresh(responsible);
+                binding.tvPersonResponsible.setText(responsible.getName()+ " "+ responsible.getSurname());
+                Log.i("todo", String.valueOf(responsible.getName() == null));
+            }catch (SQLException throwables){
+                throwables.printStackTrace();
+            }
+        }).start();
+
 
         binding.cbDone.setChecked(actPoint.isDone());
     }

@@ -94,12 +94,17 @@
         <entry key="..\:/Users/Aleksandra Rzepecka/Desktop/studia/semestr 7/ZPI/projekt/nowy/ZPI/ZPI/app/src/main/res/layout/activity_matching_users.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/Aleksandra Rzepecka/Desktop/studia/semestr 7/ZPI/projekt/nowy/ZPI/ZPI/app/src/main/res/layout/activity_matching_users_for_chat.xml" value="0.20878623188405798" />
         <entry key="..\:/Users/Aleksandra Rzepecka/Desktop/studia/semestr 7/ZPI/projekt/nowy/ZPI/ZPI/app/src/main/res/layout/activity_search_user_for_new_conversation.xml" value="0.20878623188405798" />
+        <entry key="..\:/Users/Aleksandra Rzepecka/Desktop/studia/semestr 7/ZPI/projekt/nowy/ZPI/ZPI/app/src/main/res/layout/activity_trip_grid.xml" value="0.15052083333333333" />
+        <entry key="..\:/Users/Aleksandra Rzepecka/Desktop/studia/semestr 7/ZPI/projekt/nowy/ZPI/ZPI/app/src/main/res/layout/activity_trip_list.xml" value="0.11639492753623189" />
+        <entry key="..\:/Users/Aleksandra Rzepecka/Desktop/studia/semestr 7/ZPI/projekt/nowy/ZPI/ZPI/app/src/main/res/layout/activity_update_user.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/Aleksandra Rzepecka/Desktop/studia/semestr 7/ZPI/projekt/nowy/ZPI/ZPI/app/src/main/res/layout/circle_text.xml" value="0.1" />
         <entry key="..\:/Users/Aleksandra Rzepecka/Desktop/studia/semestr 7/ZPI/projekt/nowy/ZPI/ZPI/app/src/main/res/layout/comment_in_forum.xml" value="0.20625" />
         <entry key="..\:/Users/Aleksandra Rzepecka/Desktop/studia/semestr 7/ZPI/projekt/nowy/ZPI/ZPI/app/src/main/res/layout/forum_label.xml" value="0.4" />
         <entry key="..\:/Users/Aleksandra Rzepecka/Desktop/studia/semestr 7/ZPI/projekt/nowy/ZPI/ZPI/app/src/main/res/layout/found_user_in_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Aleksandra Rzepecka/Desktop/studia/semestr 7/ZPI/projekt/nowy/ZPI/ZPI/app/src/main/res/layout/fragment_plan.xml" value="0.10960144927536232" />
+        <entry key="..\:/Users/Aleksandra Rzepecka/Desktop/studia/semestr 7/ZPI/projekt/nowy/ZPI/ZPI/app/src/main/res/layout/fragment_to_do.xml" value="0.11639492753623189" />
         <entry key="..\:/Users/Aleksandra Rzepecka/Desktop/studia/semestr 7/ZPI/projekt/nowy/ZPI/ZPI/app/src/main/res/layout/fragment_todo_edit.xml" value="0.12360688956433637" />
+        <entry key="..\:/Users/Aleksandra Rzepecka/Desktop/studia/semestr 7/ZPI/projekt/nowy/ZPI/ZPI/app/src/main/res/layout/item_todo.xml" value="0.4" />
         <entry key="..\:/Users/Aleksandra Rzepecka/Desktop/studia/semestr 7/ZPI/projekt/nowy/ZPI/ZPI/app/src/main/res/layout/label_forum.xml" value="0.264" />
         <entry key="..\:/Users/Aleksandra Rzepecka/Desktop/studia/semestr 7/ZPI/projekt/nowy/ZPI/ZPI/app/src/main/res/layout/message_received.xml" value="0.4" />
         <entry key="..\:/Users/Aleksandra Rzepecka/Desktop/studia/semestr 7/ZPI/projekt/nowy/ZPI/ZPI/app/src/main/res/layout/message_sent.xml" value="0.4" />
