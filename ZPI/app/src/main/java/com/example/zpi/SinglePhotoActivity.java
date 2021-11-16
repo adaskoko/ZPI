@@ -58,7 +58,7 @@ public class SinglePhotoActivity extends AppCompatActivity {
                     ViewPager viewPager = (ViewPager)findViewById(R.id.vp_images);
                     ImageViewPagerAdapter adapter = new ImageViewPagerAdapter(SinglePhotoActivity.this, multimediaFiles);
                     viewPager.setAdapter(adapter);
-                    viewPager.setCurrentItem(position);
+                    viewPager.setCurrentItem(position % multimediaFiles.size());
                 });
 
                 progressDialog.dismiss();
