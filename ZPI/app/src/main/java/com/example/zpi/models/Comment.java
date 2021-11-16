@@ -6,6 +6,12 @@ import javax.persistence.*;
 public class Comment implements Serializable {
 	public Comment() {
 	}
+
+	public Comment(String content, ForumThread forumThread, User user){
+		this.content=content;
+		this.thread=forumThread;
+		this.user=user;
+	}
 	
 	@Column(name="ID", nullable=false, unique=true, length=10)	
 	@Id	

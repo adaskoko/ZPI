@@ -12,22 +12,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.example.zpi.R;
-import com.example.zpi.bottomnavigation.ui.map.MapFragment;
-import com.example.zpi.bottomnavigation.ui.map.MapViewModel;
 import com.example.zpi.databinding.FragmentFinanceBinding;
-import com.example.zpi.databinding.FragmentMapBinding;
 
 public class FinanceFragment extends Fragment {
 
     private FinanceViewModel financeViewModel;
     private FragmentFinanceBinding binding;
 
-    public static MapFragment newInstance() {
-        return new MapFragment();
-    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

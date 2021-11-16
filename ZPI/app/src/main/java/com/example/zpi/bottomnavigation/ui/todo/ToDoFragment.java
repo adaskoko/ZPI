@@ -21,9 +21,12 @@ import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.databinding.FragmentToDoBinding;
 import com.example.zpi.models.PreparationPoint;
 import com.example.zpi.models.Trip;
+import com.example.zpi.models.User;
 import com.example.zpi.repositories.PreparationPointDao;
+import com.example.zpi.repositories.UserDao;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 
@@ -56,11 +59,22 @@ public class ToDoFragment extends Fragment implements TodoRecyclerViewAdapter.On
 
         Intent intent = getActivity().getIntent();
         currTrip = (Trip) intent.getSerializableExtra("TRIP");
+        Date tripEndDate=currTrip.getEndDate();
+        Date today=new Date();
+
+        if(tripEndDate.before(today)){
+            binding.addButton.setVisibility(View.INVISIBLE);
+        }
 
         new Thread(() -> {
             try {
 //                Trip trip = new TripDao(BaseConnection.getConnectionSource()).queryForEq("ID", 1).get(0);
                 List<PreparationPoint> todos = new PreparationPointDao(BaseConnection.getConnectionSource()).getPreparationPointsByTrip(currTrip);
+                UserDao udao=new UserDao(BaseConnection.getConnectionSource());
+                for(PreparationPoint todo:todos){
+                    User u=todo.getUser();
+                    udao.refresh(u);
+                }
 
                 Log.i("todo size fragemnt", String.valueOf(todos.size()));
                 getActivity().runOnUiThread(() -> {

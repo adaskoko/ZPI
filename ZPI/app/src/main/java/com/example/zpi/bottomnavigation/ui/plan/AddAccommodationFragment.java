@@ -9,6 +9,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import com.example.zpi.R;
 import com.example.zpi.data_handling.BaseConnection;
@@ -61,7 +62,7 @@ public class AddAccommodationFragment extends Fragment {
         String hour_to = binding.hhOfAccET2.getText().toString();
         String minute_to = binding.mmOfAcctET2.getText().toString();
 
-        DateFormat dateFormat = new SimpleDateFormat("HH:mm dd-MM-yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm yyyy-MM-dd");
         String dateFrom = hour_from+":"+minute_from+" "+date_from;
         String dateTo = hour_to+":"+minute_to+" "+date_to;
 
@@ -90,4 +91,8 @@ public class AddAccommodationFragment extends Fragment {
 
         NavHostFragment.findNavController(this).navigate(R.id.action_addAccomodation_to_navigation_plan);
     }
+
+    private void hideSoftKeyboard(){
+        getActivity().getWindow().setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);    }
 }

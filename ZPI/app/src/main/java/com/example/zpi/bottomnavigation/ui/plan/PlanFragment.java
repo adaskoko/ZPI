@@ -1,5 +1,7 @@
 package com.example.zpi.bottomnavigation.ui.plan;
 
+import static com.example.zpi.bottomnavigation.BottomNavigationActivity.TRIP_KEY;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,11 +34,10 @@ import java.util.Date;
 import java.sql.SQLException;
 import java.util.List;
 
-public class PlanFragment extends Fragment implements PlanChildRecyclerViewAdapter.OnChildTripPointListener {
+public class PlanFragment extends Fragment implements PlanChildRecyclerViewAdapter.OnChildTripPointListener, AccommodationRecyclerViewAdapter.OnAccommodationListener {
 
     public final static String PLAN_KEY = "PLAN";
     private Trip currTrip;
-    private PlanViewModel planViewModel;
     private FragmentPlanBinding binding;
     private PlanRecyclerViewAdapter planRecyclerViewAdapter;
     private List<Section> attractionPoints;
@@ -48,7 +49,7 @@ public class PlanFragment extends Fragment implements PlanChildRecyclerViewAdapt
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getActivity().getIntent();
-        currTrip = (Trip) intent.getSerializableExtra("TRIP");
+        currTrip = (Trip) intent.getSerializableExtra(TRIP_KEY);
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -62,14 +63,20 @@ public class PlanFragment extends Fragment implements PlanChildRecyclerViewAdapt
         planRV.setLayoutManager(new LinearLayoutManager(getContext()));
         planRV.setHasFixedSize(true);
 
+        RecyclerView accommodationRV = binding.accommodationList;
+        planRV.setLayoutManager(new LinearLayoutManager(getContext()));
+        planRV.setHasFixedSize(true);
+
         Thread databaseThread = new Thread(() -> {
             try {
                 points = new TripPointDao(BaseConnection.getConnectionSource()).getTripPointsByTrip(currTrip);
                 init();
-                Log.i("points size fragemnt", String.valueOf(points.size()));
                 getActivity().runOnUiThread(() -> {
                     PlanRecyclerViewAdapter planRecyclerViewAdapter = new PlanRecyclerViewAdapter(attractionPoints, this);
                     planRV.setAdapter(planRecyclerViewAdapter);
+
+                    AccommodationRecyclerViewAdapter accommodationRecyclerViewAdapter = new AccommodationRecyclerViewAdapter(accommodationList, this);
+                    accommodationRV.setAdapter(accommodationRecyclerViewAdapter);
                 });
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
@@ -79,23 +86,6 @@ public class PlanFragment extends Fragment implements PlanChildRecyclerViewAdapt
         binding.btnAddAccommodation.setOnClickListener(c -> addAccommodation());
         binding.btnAddAttraction.setOnClickListener(c -> addAttraction());
 
-//        while (databaseThread.isAlive()) {
-//            try {
-//                Thread.sleep(500);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        PlanRecyclerViewAdapter planRecyclerViewAdapter = new PlanRecyclerViewAdapter(attractionPoints, this);
-//        planRV.setAdapter(planRecyclerViewAdapter);
-
-//        planViewModel.getTripPointList().observe(getViewLifecycleOwner(), new Observer<List<TripPoint>>() {
-//            @Override
-//            public void onChanged(List<TripPoint> tripPoints) {
-//                // update list
-//                Toast.makeText(getContext(), "Updated list", Toast.LENGTH_SHORT).show();
-//            }
-//        });
         return root;
     }
 
@@ -115,23 +105,27 @@ public class PlanFragment extends Fragment implements PlanChildRecyclerViewAdapt
     }
 
     private void init() {
-        accommodationList = new ArrayList<TripPoint>();
-       HashList<String, TripPoint> list = new HashList<>();
+        HashList<String, TripPoint> list = new HashList<>();
+        accommodationList = new ArrayList<>();
+        Log.i("all plan size", String.valueOf(points.size()));
         for (TripPoint point : points) {
-//            Log.i("plan size", String.valueOf(points.size()));
+//            Log.i("plan", String.valueOf(points.size()));
 //            Date date = point.getArrivalDate();
 //            DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 //            list.put(dateFormat.format(date), point);
-            Log.i("plan", String.valueOf(points.size()));
+            Log.i("trip point name", String.valueOf(point.getTripPointType().getName()));
             if (point.getTripPointType().getName().equals("Nocleg")) {
                 accommodationList.add(point);
             } else {
                 Date date = point.getArrivalDate();
                 DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                Log.i("attraction date", dateFormat.format(date));
                 list.put(dateFormat.format(date), point);
             }
         }
         attractionPoints = list.getSections();
+        Log.i("accommodation list size", String.valueOf(accommodationList.size()));
+        Log.i("section list size", String.valueOf(attractionPoints.size()));
     }
 
     ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
@@ -166,5 +160,15 @@ public class PlanFragment extends Fragment implements PlanChildRecyclerViewAdapt
             NavHostFragment.findNavController(this).navigate(R.id.action_navigation_plan_to_AttractionDetailsFragment, bundle);
             Log.i("tripPoint click", "atraction");
         }
+    }
+
+    @Override
+    public void onAccommodationClick(int position) {
+        TripPoint accommodation = accommodationList.get(position);
+        Log.i("accommodation click id", String.valueOf(position));
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(PLAN_KEY, accommodation);
+        NavHostFragment.findNavController(this).navigate(R.id.action_navigation_plan_to_AccomodationDetailsFragment, bundle);
     }
 }

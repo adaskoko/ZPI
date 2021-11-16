@@ -60,19 +60,30 @@ public class CreateTripActivity extends AppCompatActivity {
 
 
         if(tripname!=null && tripdescription!=null && sTripBegin!=null && sTripEnd!=null){
-            new Thread(() -> {
-                try {
-                    TripDao tripDao=new TripDao(BaseConnection.getConnectionSource());
-                    Trip currentTrip=new Trip(tripname, tripdescription, dTripBegin, dTripEnd);
-                    tripDao.createTrip(currentTrip, loggedUser);
-                    Intent intent=new Intent(this, InviteUsersActivity.class);
-                    intent.putExtra("CreateTrip", currentTrip);
-                    startActivity(intent);
-                    //BaseConnection.closeConnection();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
+            if(dTripBegin.after(new Date())) {
+                if(dTripBegin.before(dTripEnd)) {
+                    new Thread(() -> {
+                        try {
+                            TripDao tripDao = new TripDao(BaseConnection.getConnectionSource());
+                            Trip currentTrip = new Trip(tripname, tripdescription, dTripBegin, dTripEnd);
+                            tripDao.createTrip(currentTrip, loggedUser);
+                            Intent intent = new Intent(this, InviteUsersActivity.class);
+                            intent.putExtra("CreateTrip", currentTrip);
+                            startActivity(intent);
+                            //BaseConnection.closeConnection();
+                        } catch (SQLException throwables) {
+                            throwables.printStackTrace();
+                        }
+                    }).start();
+                }else{
+                    Toast.makeText(this, "Niezgodność dat!", Toast.LENGTH_SHORT).show();
+                    end.getText().clear();
                 }
-            }).start();
+            }else{
+                Toast.makeText(this, "Zła data rozpoczęcia!", Toast.LENGTH_SHORT).show();
+                begin.getText().clear();
+                end.getText().clear();
+            }
         }else{
             Toast.makeText(this, "Proszę uzupełnić wszystkie pola!", Toast.LENGTH_SHORT).show();
         }

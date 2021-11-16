@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.zpi.R;
 import com.example.zpi.data_handling.BaseConnection;
+import com.example.zpi.data_handling.SharedPreferencesHandler;
 import com.example.zpi.databinding.FragmentTodoEditBinding;
 import com.example.zpi.models.PreparationPoint;
 import com.example.zpi.models.Trip;
@@ -39,6 +40,7 @@ public class TodoEditFragment extends Fragment implements DatePickerDialog.OnDat
     private FragmentTodoEditBinding binding;
     private Trip actTrip;
     private User chosenUser;
+    User loggedUser;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,7 @@ public class TodoEditFragment extends Fragment implements DatePickerDialog.OnDat
         }
         Intent intent = getActivity().getIntent();
         actTrip = (Trip) intent.getSerializableExtra("TRIP");
+        loggedUser = SharedPreferencesHandler.getLoggedInUser(getContext());
     }
 
     @Override
@@ -67,7 +70,9 @@ public class TodoEditFragment extends Fragment implements DatePickerDialog.OnDat
                 throwables.printStackTrace();
             }
         }).start();
-        fillEditText();
+        //fillEditText();
+        refreshResponsiblePeron();
+
         binding.assignedTo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -110,6 +115,7 @@ public class TodoEditFragment extends Fragment implements DatePickerDialog.OnDat
                     actPoint.setDescription(description);
                     actPoint.setDeadline(finalDate);
                     actPoint.setDone(isDone);
+                    actPoint.setUser(chosenUser);
                     pointDao.update(actPoint);
                     Log.i("todo", "todo edited");
                     //BaseConnection.closeConnection();
@@ -128,6 +134,27 @@ public class TodoEditFragment extends Fragment implements DatePickerDialog.OnDat
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         String date = dateFormat.format(actPoint.getDeadline());
         binding.tvPontDate.setText(date);
+    }
+
+    private void refreshResponsiblePeron(){
+        User responsible=actPoint.getUser();
+        new Thread(()->{
+            try {
+                UserDao udao=new UserDao(BaseConnection.getConnectionSource());
+                udao.refresh(responsible);
+                Log.i("resp", String.valueOf(responsible.getID()));
+                Log.i("logged", String.valueOf(loggedUser.getID()));
+                if(responsible.getID()!=loggedUser.getID()){
+                    Log.i("disabling", "disable chbx");
+                    binding.cbDone.setEnabled(false);
+                }
+                getActivity().runOnUiThread(()->{
+                    fillEditText();
+                });
+            }catch (SQLException throwables){
+                throwables.printStackTrace();
+            }
+        }).start();
     }
 
     private void showDatePickerDialog() {

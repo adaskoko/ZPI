@@ -24,7 +24,6 @@ public class PlanRecyclerViewAdapter extends RecyclerView.Adapter<PlanRecyclerVi
     public PlanRecyclerViewAdapter(List<Section> sections, PlanChildRecyclerViewAdapter.OnChildTripPointListener onChildTripPointListener) {
         this.sectionList = sections;
         this.onChildTripPointListener = onChildTripPointListener;
-
     }
 
     @NonNull
@@ -38,7 +37,7 @@ public class PlanRecyclerViewAdapter extends RecyclerView.Adapter<PlanRecyclerVi
 
     @Override
     public void onBindViewHolder(@NonNull PlanViewHolder holder, int position) {
-        Log.i("plan position", String.valueOf(position));
+        //Log.i("plan position", String.valueOf(position));
         Section section = sectionList.get(position);
         String sectionTitle = section.getTitle();
         sectionTitle = sectionTitle.substring(0, 5);
@@ -52,7 +51,7 @@ public class PlanRecyclerViewAdapter extends RecyclerView.Adapter<PlanRecyclerVi
 
     @Override
     public int getItemCount() {
-        Log.i("plan section", String.valueOf(sectionList.size()));
+        //Log.i("plan section", String.valueOf(sectionList.size()));
         return sectionList.size();
     }
 

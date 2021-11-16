@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -29,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        hideSoftKeyboard();
 
         mail = findViewById(R.id.et_login);
         password = findViewById(R.id.et_pass);
@@ -84,5 +86,9 @@ public class LoginActivity extends AppCompatActivity {
     public void register(View view) {
         Intent intent=new Intent(this, RegisterActivity.class);
         startActivity(intent);
+    }
+
+    private void hideSoftKeyboard(){
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 }
