@@ -83,4 +83,6 @@ public class TripPointDao extends BaseDaoImpl<TripPoint, Integer> implements ITr
 
         return points;
     }
+
+
 }

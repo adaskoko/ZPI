@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -28,23 +29,42 @@
                 android:layout_marginRight="60sp">
             </TextView>
 
-            <TextView
+            <Button
+                android:id="@+id/btn_more"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_light"
+                android:onClick="goToGallery"
                 android:text="@string/more"
                 android:textColor="@color/black"
-                android:fontFamily="@font/poppins_light"
-                android:textSize="14sp"
-                android:onClick="">
-            </TextView>
+                android:textSize="14sp" />
         </TableRow>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/nie_ma_zdjec"
-            android:layout_gravity="center"
-            android:layout_marginBottom="20dp">
-        </ImageView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_no_photos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/nie_ma_zdjec"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"></ImageView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_photos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TableRow
             android:layout_width="match_parent"
@@ -53,19 +73,19 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/transparent"
-                android:src="@drawable/uczestnicy"
                 android:layout_weight="1"
-                android:onClick="">
-            </ImageButton>
+                android:backgroundTint="@android:color/transparent"
+                android:onClick=""
+                android:src="@drawable/uczestnicy"></ImageButton>
+
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/transparent"
-                android:src="@drawable/forum"
                 android:layout_weight="1"
-                android:onClick="">
-            </ImageButton>
+                android:backgroundTint="@android:color/transparent"
+                android:onClick=""
+                android:src="@drawable/forum"></ImageButton>
+
         </TableRow>
 
     </LinearLayout>

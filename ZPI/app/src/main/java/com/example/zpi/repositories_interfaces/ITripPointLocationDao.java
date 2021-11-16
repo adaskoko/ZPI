@@ -14,4 +14,6 @@ import java.util.List;
 
 public interface ITripPointLocationDao extends Dao<TripPointLocation, Integer> {
     public boolean tripPointLocationExists(TripPointLocation location) throws SQLException; //TODO: nie zaimplementowane bo nie wiem czy potrzebne xd
+
+    public TripPointLocation getLocationForTripPoint(TripPoint tripPoint) throws SQLException;
 }

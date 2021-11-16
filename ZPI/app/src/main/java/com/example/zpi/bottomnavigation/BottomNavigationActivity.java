@@ -3,6 +3,7 @@ package com.example.zpi.bottomnavigation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -68,5 +69,4 @@ public class BottomNavigationActivity extends AppCompatActivity {
         intent.putExtra(TRIP_KEY, trip);
         startActivity(intent);
     }
-
 }
