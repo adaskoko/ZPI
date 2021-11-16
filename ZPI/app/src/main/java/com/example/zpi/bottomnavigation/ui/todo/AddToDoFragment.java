@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.zpi.R;
@@ -42,6 +43,7 @@ public class AddToDoFragment extends Fragment implements DatePickerDialog.OnDate
     private FragmentAddToDoBinding binding;
     private User chosenUser;
     private Trip  currTrip;
+    ImageButton addButton;
 
     public AddToDoFragment() {
         // Required empty public constructor
@@ -58,8 +60,10 @@ public class AddToDoFragment extends Fragment implements DatePickerDialog.OnDate
         binding = FragmentAddToDoBinding.inflate(inflater, container, false);
         // Inflate the layout for this fragment
 
+
         Intent intent = getActivity().getIntent();
         currTrip = (Trip) intent.getSerializableExtra("TRIP");
+
         new Thread(() -> {
             try {
 //                currTrip = new TripDao(BaseConnection.getConnectionSource()).queryForEq("ID", 1).get(0);
@@ -122,17 +126,28 @@ public class AddToDoFragment extends Fragment implements DatePickerDialog.OnDate
             Log.i("todo", "todo zle");
         } else {
             Date finalDate = date;
-            new Thread(() -> {
-                try {
-                    PreparationPointDao pointDao = new PreparationPointDao(BaseConnection.getConnectionSource());
-                    PreparationPoint point = new PreparationPoint(title, description, finalDate, chosenUser, currTrip);
-                    pointDao.create(point);
-                    Log.i("todo", "todo dodane");
-                    //BaseConnection.closeConnection();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
+            if(currTrip.getEndDate().after(new Date())){
+            if((date.equals(new Date()) || date.after(new Date())) && !date.after(currTrip.getEndDate())) {
+                new Thread(() -> {
+                    try {
+                        PreparationPointDao pointDao = new PreparationPointDao(BaseConnection.getConnectionSource());
+                        PreparationPoint point = new PreparationPoint(title, description, finalDate, chosenUser, currTrip);
+                        pointDao.create(point);
+                        Log.i("todo", "todo dodane");
+                        //BaseConnection.closeConnection();
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+                }).start();
+            }else{
+                Toast.makeText(getContext(), "Niezgodność dat!", Toast.LENGTH_SHORT).show();
+                binding.dateOfTrip.getText().clear();
+
                 }
-            }).start();
+            }else{
+                Toast.makeText(getContext(), "Brak możliwości edycji dla przeszłych wycieczek", Toast.LENGTH_SHORT).show();
+                binding.dateOfTrip.getText().clear();
+                }
         }
         NavHostFragment.findNavController(this).navigate(R.id.action_addToDoFragment_to_navigation_todo);
     }

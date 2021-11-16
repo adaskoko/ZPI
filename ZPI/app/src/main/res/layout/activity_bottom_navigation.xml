@@ -97,7 +97,8 @@
         app:maxImageSize="36dp"
         app:tint="@null"
         app:layout_constraintBottom_toBottomOf="@+id/nav_host_fragment_activity_bottom_navigation"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:onClick="openChat"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"

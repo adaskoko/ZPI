@@ -11,7 +11,9 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSmoothScroller;
 
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -95,6 +97,25 @@ public class SingleTripFragment extends Fragment {
                         binding.rvPhotos.setAdapter(photoAdapter);
                         LinearLayoutManager upcomingLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
                         binding.rvPhotos.setLayoutManager(upcomingLayoutManager);
+
+                        binding.rvPhotos.getLayoutManager().scrollToPosition(Integer.MAX_VALUE / 2);
+
+                        binding.rvPhotos.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                // Call smooth scroll
+                                LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(binding.rvPhotos.getContext()) {
+
+                                    @Override
+                                    protected float calculateSpeedPerPixel(DisplayMetrics displayMetrics) {
+                                        return 15;
+                                    }
+                                };
+
+                                linearSmoothScroller.setTargetPosition(Integer.MAX_VALUE - 1);
+                                upcomingLayoutManager.startSmoothScroll(linearSmoothScroller);
+                            }
+                        });
                     });
                 }
 

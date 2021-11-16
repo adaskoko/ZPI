@@ -28,6 +28,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ChatListActivity extends AppCompatActivity {
 
@@ -46,6 +48,14 @@ public class ChatListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         loggedUser = SharedPreferencesHandler.getLoggedInUser(getApplicationContext());
         getChatsForUser();
+
+        new Timer().scheduleAtFixedRate(new TimerTask(){
+            @Override
+            public void run(){
+
+                getChatsForUser();
+            }
+        }, 0, 60000);
 
         //chatWith.add(new User("Aleksandra", "Rzepecka", "123"));
         //chatWith.add(new User("Jan", "Kowalski", "345"));
@@ -168,7 +178,7 @@ public class ChatListActivity extends AppCompatActivity {
 
             holder.tvName.setText(name);
             holder.tvInitials.setText(initials);
-            String mes="";
+            String mes=current.getContent();
 
             holder.tvMsg.setText(mes);
 

@@ -47,6 +47,8 @@ public class ToTakeThingRecyclerViewAdapter extends RecyclerView.Adapter<ToTakeT
         //holder.toTakeChB.setActivated(product.isDone()); //jak w bazie jest zapisane chb
         holder.titleTV.setText(product.getName());
         holder.personTV.setText(product.getUser().getName());
+        holder.toTakeChB.setChecked(product.isDone());
+        holder.toTakeChB.setEnabled(false);
     }
 
     @Override

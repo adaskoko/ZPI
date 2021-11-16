@@ -13,7 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.zpi.R;
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.models.PreparationPoint;
+import com.example.zpi.models.User;
 import com.example.zpi.repositories.PreparationPointDao;
+import com.example.zpi.repositories.UserDao;
 
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -43,9 +45,22 @@ public class TodoRecyclerViewAdapter extends RecyclerView.Adapter<TodoRecyclerVi
     public void onBindViewHolder(@NonNull TodoViewHolder holder, int position) {
         PreparationPoint todo = todoList.get(position);
         holder.mItem = todo;
-        holder.todoChB.setActivated(todo.isDone());
-        holder.personTV.setText(todo.getUser().getName());
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        holder.todoChB.setChecked(todo.isDone());
+        holder.todoChB.setEnabled(false);
+        User responsible=todo.getUser();
+        /*new Thread(()->{
+            try{
+                UserDao udao=new UserDao(BaseConnection.getConnectionSource());
+                udao.refresh(responsible);
+               //getApplication() runOnUiThread(()->{holder.personTV.setText(responsible.getName()+" "+ responsible.getSurname());});
+
+            }catch(SQLException throwables){
+                throwables.printStackTrace();
+            }
+        }).start();*/
+        holder.personTV.setText(responsible.getName()+" "+ responsible.getSurname());
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        Log.i("data", dateFormat.format(todo.getDeadline()));
         String strDate = dateFormat.format(todo.getDeadline());
         holder.deadlineTV.setText(strDate);
         holder.titleTV.setText(todo.getName());

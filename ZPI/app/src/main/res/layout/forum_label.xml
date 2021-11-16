@@ -2,9 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="400dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/rounded">
+    android:background="@drawable/rounded"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp">
 
     <ImageView
         android:id="@+id/iv_icon"
@@ -67,7 +69,6 @@
         android:id="@+id/tv_responses"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="21 odpowiedzi"
         android:fontFamily="@font/poppins_light"
         android:textColor="@color/black"
         android:textSize="12sp"
