@@ -21,23 +21,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
-            android:layout_marginEnd="40dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/btn_backToMainTripWindow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_weight="1"
-                android:backgroundTint="@android:color/transparent"
-                android:src="@drawable/ic_back_white"
-                tools:ignore="SpeakableTextPresentCheck">
-
-            </ImageButton>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -51,11 +37,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/poppins_light"
+                    android:fontFamily="@font/poppins_bold"
                     android:text="Weekend w Berlinie"
-                    android:textColor="@color/white"
-                    android:textSize="28sp"
-                    android:textStyle="bold">
+                    android:textColor="@color/primary_dark"
+                    android:textSize="22sp">
 
                 </TextView>
 
@@ -66,7 +51,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/poppins_light"
                     android:text="13.10.2021 - 16.10.2021"
-                    android:textColor="@color/white"
+                    android:textColor="@color/primary_dark"
                     android:textSize="14sp">
 
                 </TextView>

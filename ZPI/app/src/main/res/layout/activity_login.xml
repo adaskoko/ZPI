@@ -264,7 +264,7 @@
             android:id="@+id/button_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#408A3E"
+            android:backgroundTint="#96D76F"
             android:fontFamily="@font/poppins_light"
             android:text="Zaloguj"
             app:layout_constraintBottom_toBottomOf="@+id/background"

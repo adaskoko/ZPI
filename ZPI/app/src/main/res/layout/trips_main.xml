@@ -43,7 +43,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:layout_weight="1"
-                    android:src="@drawable/details"
+                    android:src="@drawable/account_details"
                     android:onClick="gotoUserDetails">
 
                 </ImageView>
@@ -64,7 +64,7 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/przycisk_utworz_nowa_wycieczke"
+            android:background="@drawable/button_create_trip"
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:layout_marginBottom="20dp"
@@ -167,11 +167,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
-            android:visibility="visible"
             android:backgroundTint="#263238"
-            app:tint="@color/white"
-            android:src="@drawable/chat_teardrop_dots"
-            android:onClick="gotoChat">
+            android:onClick="gotoChat"
+            android:src="@drawable/ic_chat_dots"
+            android:visibility="visible"
+            app:tint="@color/white">
 
         </com.google.android.material.floatingactionbutton.FloatingActionButton>
 

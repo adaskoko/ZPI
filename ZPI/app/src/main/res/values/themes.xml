@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.ZPI" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#408A3E</item>
+        <item name="colorPrimary">#96D76F</item>
         <item name="colorPrimaryVariant">#263238</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->

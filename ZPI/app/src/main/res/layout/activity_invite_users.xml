@@ -178,7 +178,7 @@
                     android:layout_weight="1"
                     android:backgroundTint="@android:color/transparent"
                     android:onClick="goToCurrentTripMainPanel"
-                    android:src="@drawable/przycisk_pomin"></ImageButton>
+                    android:src="@drawable/button_skip"></ImageButton>
 
             </TableRow>
 

@@ -25,7 +25,7 @@
                     android:id="@+id/btn_bactToMainTripWindow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/strzalka_biala"
+                    android:src="@drawable/ic_back_white"
                     android:backgroundTint="@android:color/transparent"
                     android:layout_weight="1"
                     android:layout_gravity="left">
@@ -61,7 +61,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/tlo_details"
+                android:src="@drawable/ic_trip_bar_image_light"
                 android:layout_gravity="center">
 
             </ImageView>
@@ -176,7 +176,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/przycisk_dodaj"
+                    android:src="@drawable/button_add"
                     android:layout_gravity="center"
                     android:layout_marginBottom="5dp"
                     android:onClick="">
@@ -189,7 +189,7 @@
                     android:layout_gravity="right"
                     android:backgroundTint="@android:color/transparent"
                     android:onClick=""
-                    android:src="@drawable/dark_chat"></ImageButton>
+                    android:src="@drawable/ic_chat"></ImageButton>
             </LinearLayout>
 
         </ScrollView>

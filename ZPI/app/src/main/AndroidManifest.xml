@@ -57,9 +57,6 @@
             android:name=".InviteUsersActivity"
             android:exported="false" />
         <activity
-            android:name=".TripMainActivity"
-            android:exported="false" />
-        <activity
             android:name=".CreateTripActivity"
             android:exported="false" />
         <activity
