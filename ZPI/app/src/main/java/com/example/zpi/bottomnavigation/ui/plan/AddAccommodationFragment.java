@@ -9,6 +9,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import com.example.zpi.R;
 import com.example.zpi.data_handling.BaseConnection;
@@ -90,4 +91,8 @@ public class AddAccommodationFragment extends Fragment {
 
         NavHostFragment.findNavController(this).navigate(R.id.action_addAccomodation_to_navigation_plan);
     }
+
+    private void hideSoftKeyboard(){
+        getActivity().getWindow().setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);    }
 }

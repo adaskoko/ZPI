@@ -53,7 +53,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_todo, R.id.navigation_to_take_things, R.id.navigation_plan, R.id.navigation_map, R.id.navigation_finance)
+                R.id.navigation_todo, R.id.navigation_to_take_things, R.id.navigation_plan, R.id.mapsFragment, R.id.navigation_finance)
                 .build();
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_bottom_navigation);
         NavController navController = navHostFragment.getNavController();
