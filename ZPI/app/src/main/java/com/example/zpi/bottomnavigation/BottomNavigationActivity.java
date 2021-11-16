@@ -1,7 +1,12 @@
 package com.example.zpi.bottomnavigation;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -65,7 +70,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Trip trip = (Trip) intent.getSerializableExtra(TRIP_KEY);
         User user = SharedPreferencesHandler.getLoggedInUser(this);
-        trip = (Trip) intent.getSerializableExtra(TRIP_KEY);
+        this.trip = (Trip) intent.getSerializableExtra(TRIP_KEY);
 //        Toast.makeText(this, trip.getName(), Toast.LENGTH_SHORT).show();
 
         binding = ActivityBottomNavigationBinding.inflate(getLayoutInflater());
@@ -110,6 +115,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
 
         try{
             if(mLocationPermissionsGranted){
+
 
                 final Task location = mFusedLocationProviderClient.getLastLocation();
                 location.addOnCompleteListener(new OnCompleteListener() {

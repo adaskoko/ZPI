@@ -99,7 +99,7 @@ public class AddToDoFragment extends Fragment implements DatePickerDialog.OnDate
         DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
                 this,
                 Calendar.getInstance().get(Calendar.YEAR),
-                Calendar.getInstance().get(Calendar.MONDAY),
+                Calendar.getInstance().get(Calendar.MONTH),
                 Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
         );
         datePickerDialog.show();
@@ -110,6 +110,7 @@ public class AddToDoFragment extends Fragment implements DatePickerDialog.OnDate
         String description = binding.descOfTrip.getText().toString();
         String deadline = binding.dateOfTrip.getText().toString();
         Date date = null;
+        Log.i("to do date", deadline);
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {

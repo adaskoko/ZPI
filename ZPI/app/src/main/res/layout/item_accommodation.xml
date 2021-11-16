@@ -17,8 +17,9 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/bed"
-        />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/bed" />
 
     <TextView
         android:id="@+id/accTitleTV"
@@ -27,9 +28,9 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/poppins_light"
-        android:text="Koce"
+        android:text="Muzem Chopina"
         android:textColor="@color/black"
-        android:textSize="15sp"></TextView>
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/accDateTV"
@@ -38,7 +39,7 @@
         android:layout_below="@+id/accTitleTV"
         android:layout_centerInParent="true"
         android:fontFamily="@font/poppins_light"
-        android:text="Karolina Nowak"
+        android:text="12.12 - 13.12"
         android:textColor="@color/black"
         android:textSize="12sp">
 
@@ -50,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/accDateTV"
         android:layout_centerInParent="true"
-        android:text="21.10.2021"
+        android:text="Koszalin, ul. Zwyciestwa 12"
         android:textSize="12sp">
 
     </TextView>
