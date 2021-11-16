@@ -36,7 +36,7 @@ public class PhotoInTripAdapter extends RecyclerView.Adapter<PhotoInTripAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Bitmap photo = photos.get(position);
+        Bitmap photo = photos.get(position % photos.size());
         ImageView photoIV = holder.imageIV;
         photoIV.setImageBitmap(photo);
     }
@@ -47,7 +47,7 @@ public class PhotoInTripAdapter extends RecyclerView.Adapter<PhotoInTripAdapter.
 
     @Override
     public int getItemCount() {
-        return photos.size();
+        return Integer.MAX_VALUE;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
