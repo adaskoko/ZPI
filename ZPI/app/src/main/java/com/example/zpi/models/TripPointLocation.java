@@ -26,6 +26,9 @@ public class TripPointLocation implements Serializable {
 	
 	@Column(name="Address", nullable=false, length=255)	
 	private String address;
+
+	@Column(name="GoogleID", nullable=true, length=255)
+	private String googleID;
 	
 	/*@OneToOne(mappedBy="tripPointLocation", targetEntity=TripPoint.class, fetch=FetchType.LAZY)
 	private TripPoint tripPoint;*/
@@ -60,6 +63,14 @@ public class TripPointLocation implements Serializable {
 	
 	public String getAddress() {
 		return address;
+	}
+
+	public String getGoogleID() {
+		return googleID;
+	}
+
+	public void setGoogleID(String googleID) {
+		this.googleID = googleID;
 	}
 	
 	/*public void setTripPoint(TripPoint value) {
