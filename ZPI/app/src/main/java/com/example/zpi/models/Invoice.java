@@ -18,10 +18,10 @@ public class Invoice implements Serializable {
 	@ManyToOne(targetEntity= User.class, fetch=FetchType.LAZY)
 	@JoinColumn(name="UserID", referencedColumnName="ID", nullable=false)
 	private User user;
-	
-	@OneToOne(optional=false, targetEntity= TripPoint.class, fetch=FetchType.LAZY)
-	@JoinColumn(name="TripPointID", referencedColumnName="ID", nullable=false)
-	private TripPoint tripPoint;
+
+	@ManyToOne(targetEntity= Trip.class, fetch=FetchType.LAZY)
+	@JoinColumn(name="TripID", referencedColumnName="ID", nullable=false)
+	private Trip trip;
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -46,13 +46,13 @@ public class Invoice implements Serializable {
 	public User getUser() {
 		return user;
 	}
-	
-	public void setTripPoint(TripPoint value) {
-		this.tripPoint = value;
+
+	public Trip getTrip() {
+		return trip;
 	}
-	
-	public TripPoint getTripPoint() {
-		return tripPoint;
+
+	public void setTrip(Trip trip) {
+		this.trip = trip;
 	}
 	
 	public String toString() {
