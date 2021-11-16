@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.zpi.models.Trip;
 import com.example.zpi.models.TripParticipant;
+import com.example.zpi.models.TripPoint;
 import com.example.zpi.models.User;
 import com.example.zpi.repositories_interfaces.ITripParticipantDao;
 import com.j256.ormlite.dao.BaseDaoImpl;
@@ -20,13 +21,20 @@ public class TripParticipantDao extends BaseDaoImpl<TripParticipant, Integer> im
 
     @Override
     public List<TripParticipant> getByUser(User user) throws SQLException {
-        Log.i("userId", String.valueOf(user.getID()));
         return super.queryForEq("UserID", user.getID());
     }
 
     @Override
     public List<TripParticipant> getByTrip(Trip trip) throws SQLException {
-        return super.queryForEq("TripID", trip.getID());
+        List<TripParticipant> tripParticipants = super.queryForEq("TripID", trip.getID());
+
+        UserDao dao = new UserDao(connectionSource);
+
+        for(TripParticipant participant : tripParticipants){
+            dao.refresh(participant.getUser());
+        }
+
+        return tripParticipants;
     }
 
 

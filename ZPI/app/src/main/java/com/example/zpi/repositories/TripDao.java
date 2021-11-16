@@ -32,7 +32,7 @@ public class TripDao extends BaseDaoImpl<Trip, Integer> implements ITripDao {
         Role role = DaoManager.createDao(connectionSource, Role.class).queryForEq("ID", 1).get(0);
 
         TripParticipant tripParticipant = new TripParticipant(user, role, trip);
-        new TripPartcicipantDao(BaseConnection.getConnectionSource()).create(tripParticipant);
+        new TripParticipantDao(BaseConnection.getConnectionSource()).create(tripParticipant);
     }
 
     @Override
@@ -42,25 +42,25 @@ public class TripDao extends BaseDaoImpl<Trip, Integer> implements ITripDao {
         Role role = DaoManager.createDao(connectionSource, Role.class).queryForEq("ID", 1).get(0);
 
         TripParticipant tripParticipant = new TripParticipant(user, role, trip);
-        new TripPartcicipantDao(BaseConnection.getConnectionSource()).create(tripParticipant);
+        new TripParticipantDao(BaseConnection.getConnectionSource()).create(tripParticipant);
     }
 
     @Override
     public void addUserToTrip(Trip trip, User user, Role role) throws SQLException {
         TripParticipant tripParticipant = new TripParticipant(user, role, trip);
-        new TripPartcicipantDao(BaseConnection.getConnectionSource()).create(tripParticipant);
+        new TripParticipantDao(BaseConnection.getConnectionSource()).create(tripParticipant);
     }
 
     @Override
     public void addRegularParticipant(Trip trip, User user) throws SQLException {
         Role participant=DaoManager.createDao(connectionSource, Role.class).queryForEq("ID", 2).get(0);
         TripParticipant tripParticipant=new TripParticipant(user, participant, trip);
-        new TripPartcicipantDao(BaseConnection.getConnectionSource()).create(tripParticipant);
+        new TripParticipantDao(BaseConnection.getConnectionSource()).create(tripParticipant);
     }
 
     @Override
     public List<Trip> getTripsForUser(User user) throws SQLException {
-        List<TripParticipant> tripParticipants = new TripPartcicipantDao(BaseConnection.getConnectionSource()).getByUser(user);
+        List<TripParticipant> tripParticipants = new TripParticipantDao(BaseConnection.getConnectionSource()).getByUser(user);
 
         List<Trip> trips = new ArrayList<>();
 
@@ -75,7 +75,7 @@ public class TripDao extends BaseDaoImpl<Trip, Integer> implements ITripDao {
 
     @Override
     public Trip getCurrentTripForUser(User user) throws SQLException {
-        List<TripParticipant> tripParticipants = new TripPartcicipantDao(BaseConnection.getConnectionSource()).getByUser(user);
+        List<TripParticipant> tripParticipants = new TripParticipantDao(BaseConnection.getConnectionSource()).getByUser(user);
 
         List<Trip> trips = new ArrayList<>();
 
@@ -94,7 +94,7 @@ public class TripDao extends BaseDaoImpl<Trip, Integer> implements ITripDao {
 
     @Override
     public List<Trip> getPastTripsForUser(User user) throws SQLException {
-        List<TripParticipant> tripParticipants = new TripPartcicipantDao(BaseConnection.getConnectionSource()).getByUser(user);
+        List<TripParticipant> tripParticipants = new TripParticipantDao(BaseConnection.getConnectionSource()).getByUser(user);
 
         List<Trip> trips = new ArrayList<>();
 
@@ -114,7 +114,7 @@ public class TripDao extends BaseDaoImpl<Trip, Integer> implements ITripDao {
 
     @Override
     public List<Trip> getFutureTripsForUser(User user) throws SQLException {
-        List<TripParticipant> tripParticipants = new TripPartcicipantDao(BaseConnection.getConnectionSource()).getByUser(user);
+        List<TripParticipant> tripParticipants = new TripParticipantDao(BaseConnection.getConnectionSource()).getByUser(user);
 
         List<Trip> trips = new ArrayList<>();
 
@@ -133,7 +133,7 @@ public class TripDao extends BaseDaoImpl<Trip, Integer> implements ITripDao {
     }
 
     public List<List<Trip>> getPastAndFutureTripsForUser(User user) throws SQLException {
-        List<TripParticipant> tripParticipants = new TripPartcicipantDao(BaseConnection.getConnectionSource()).getByUser(user);
+        List<TripParticipant> tripParticipants = new TripParticipantDao(BaseConnection.getConnectionSource()).getByUser(user);
         List<Trip> pastTrips = new ArrayList<>();
         List<Trip> futureTrips = new ArrayList<>();
 

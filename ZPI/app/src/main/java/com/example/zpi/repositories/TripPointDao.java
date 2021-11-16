@@ -1,5 +1,7 @@
 package com.example.zpi.repositories;
 
+import android.text.format.DateUtils;
+
 import com.example.zpi.models.Invoice;
 import com.example.zpi.models.Trip;
 import com.example.zpi.models.TripPoint;
@@ -12,7 +14,11 @@ import com.j256.ormlite.dao.BaseDaoImpl;
 import com.j256.ormlite.support.ConnectionSource;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -84,5 +90,69 @@ public class TripPointDao extends BaseDaoImpl<TripPoint, Integer> implements ITr
         return points;
     }
 
+    @Override
+    public List<TripPoint> getTripPointsForToday(Trip trip, Date date) throws SQLException {
+        if (date == null)
+            date = new Date();
+
+        List<TripPoint> points = super.queryForEq("TripID", trip.getID());
+
+        TripPointTypeDao dao = new TripPointTypeDao(connectionSource);
+
+        List<TripPoint> accommodations = new ArrayList<>();
+        List<TripPoint> attractions = new ArrayList<>();
+
+        for(TripPoint point : points){
+            dao.refresh(point.getTripPointType());
+
+            if (point.getTripPointType().getID() == 1){ //Atrakcja
+                SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
+
+                if (fmt.format(date).equals(fmt.format(point.getArrivalDate()))){
+                    attractions.add(point);
+                }
+            } else { //Nocleg
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(date);
+                cal.set(Calendar.HOUR_OF_DAY, 0);
+                cal.set(Calendar.MINUTE, 0);
+                cal.set(Calendar.SECOND, 0);
+                cal.set(Calendar.MILLISECOND, 0);
+                Date date1 = cal.getTime();
+
+                cal.set(Calendar.HOUR_OF_DAY, 23);
+                cal.set(Calendar.MINUTE, 59);
+                cal.set(Calendar.SECOND, 59);
+                cal.set(Calendar.MILLISECOND, 999);
+                Date date2 = cal.getTime();
+
+                if (point.getArrivalDate().before(date2) && point.getDepartureDate().after(date1)){
+                    accommodations.add(point);
+                }
+            }
+        }
+
+        attractions.sort(new Comparator<TripPoint>() {
+            public int compare(TripPoint o1, TripPoint o2) {
+                return o1.getArrivalDate().compareTo(o2.getArrivalDate());
+            }
+        });
+
+        accommodations.sort(new Comparator<TripPoint>() {
+            public int compare(TripPoint o1, TripPoint o2) {
+                return o1.getArrivalDate().compareTo(o2.getArrivalDate());
+            }
+        });
+
+        if (accommodations.size() == 1) {
+            attractions.add(0, accommodations.get(0));
+            attractions.add(0, accommodations.get(0));
+        }else if (accommodations.size() > 1) {
+            attractions.add(0, accommodations.get(0));
+            attractions.add(1, accommodations.get(1));
+        }
+
+        return attractions;
+    }
 
 }

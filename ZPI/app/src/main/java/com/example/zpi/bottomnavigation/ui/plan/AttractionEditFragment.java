@@ -13,32 +13,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 
-import com.example.zpi.R;
 import com.example.zpi.bottomnavigation.BottomNavigationActivity;
-import com.example.zpi.bottomnavigation.ui.todo.TodoRecyclerViewAdapter;
 import com.example.zpi.data_handling.BaseConnection;
-import com.example.zpi.databinding.FragmentAttractionDetailsBinding;
 import com.example.zpi.databinding.FragmentAttractionEditBinding;
-import com.example.zpi.models.PreparationPoint;
 import com.example.zpi.models.Trip;
-import com.example.zpi.models.TripParticipant;
 import com.example.zpi.models.TripPoint;
 import com.example.zpi.models.TripPointLocation;
 import com.example.zpi.models.TripPointParticipant;
-import com.example.zpi.models.User;
-import com.example.zpi.repositories.PreparationPointDao;
-import com.example.zpi.repositories.TripParticipantDao;
 import com.example.zpi.repositories.TripPointDao;
 import com.example.zpi.repositories.TripPointParticipantDao;
 
 import java.sql.SQLException;
-import java.sql.Struct;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Objects;
 
 
 public class AttractionEditFragment extends Fragment implements DatePickerDialog.OnDateSetListener, ParticipantsRecyclerViewAdapter.OnParticipantListener {
