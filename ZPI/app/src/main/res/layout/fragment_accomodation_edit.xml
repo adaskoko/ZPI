@@ -62,7 +62,7 @@
                     android:textSize="18sp"/>
 
                 <EditText
-                    android:id="@+id/et_adressOfAcc"
+                    android:id="@+id/et_addressOfAcc"
                     android:layout_width="330dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="30dp"
@@ -109,28 +109,9 @@
 
                     <EditText
                         android:id="@+id/et_hhOfAcc"
-                        android:layout_width="50dp"
+                        android:layout_width="80dp"
                         android:layout_height="50dp"
                         android:layout_marginStart="30dp"
-                        android:layout_marginBottom="15dp"
-                        android:background="@drawable/rounded"
-                        android:drawableTint="@color/white"
-                        android:ems="10"
-                        android:inputType="date"
-                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_light"
-                        android:text=":"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"/>
-
-                    <EditText
-                        android:id="@+id/et_mmOfAcct"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
                         android:layout_marginBottom="15dp"
                         android:background="@drawable/rounded"
                         android:drawableTint="@color/white"
@@ -176,28 +157,9 @@
 
                     <EditText
                         android:id="@+id/et_hhOfAcc2"
-                        android:layout_width="50dp"
+                        android:layout_width="80dp"
                         android:layout_height="50dp"
                         android:layout_marginStart="30dp"
-                        android:layout_marginBottom="15dp"
-                        android:background="@drawable/rounded"
-                        android:drawableTint="@color/white"
-                        android:ems="10"
-                        android:inputType="date"
-                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_light"
-                        android:text=":"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"/>
-
-                    <EditText
-                        android:id="@+id/et_mmOfAcct2"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
                         android:layout_marginBottom="15dp"
                         android:background="@drawable/rounded"
                         android:drawableTint="@color/white"

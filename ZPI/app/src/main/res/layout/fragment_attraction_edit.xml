@@ -33,7 +33,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:fontFamily="@font/poppins_light"
                     android:text="Nazwa"
                     android:textColor="@color/black"
@@ -43,7 +43,7 @@
                     android:id="@+id/et_nameTripPoint"
                     android:layout_width="330dp"
                     android:layout_height="50dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
@@ -109,34 +109,14 @@
 
                     <EditText
                         android:id="@+id/et_hhOfTripPoint"
-                        android:layout_width="50dp"
+                        android:layout_width="80dp"
                         android:layout_height="50dp"
-                        android:layout_marginLeft="30dp"
+                        android:layout_marginStart="30dp"
                         android:layout_marginBottom="15dp"
                         android:background="@drawable/rounded"
                         android:drawableTint="@color/white"
                         android:ems="10"
-                        android:hint="HH"
-                        android:inputType="date"
-                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_light"
-                        android:text=":"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"/>
-
-                    <EditText
-                        android:id="@+id/et_mmOfTripPoint"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="15dp"
-                        android:background="@drawable/rounded"
-                        android:drawableTint="@color/white"
-                        android:ems="10"
-                        android:hint="MM"
+                        android:hint="HH:mm"
                         android:inputType="date"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 

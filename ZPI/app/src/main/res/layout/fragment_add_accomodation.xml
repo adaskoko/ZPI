@@ -19,7 +19,7 @@
             android:fontFamily="@font/poppins_light"
             android:text="Dodaj punkt wycieczki"
             android:textColor="@color/black"
-            android:textSize="24sp"></TextView>
+            android:textSize="24sp"/>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -37,7 +37,7 @@
                     android:fontFamily="@font/poppins_light"
                     android:text="Nazwa"
                     android:textColor="@color/black"
-                    android:textSize="18sp"></TextView>
+                    android:textSize="18sp"/>
 
                 <EditText
                     android:id="@+id/nameAccET"
@@ -51,27 +51,6 @@
                     android:inputType="textPersonName"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <CheckBox
-                        android:id="@+id/pointCB"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Atrakcja"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginRight="90dp"/>
-
-                    <CheckBox
-                        android:id="@+id/accCB"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Nocleg"
-                        android:layout_marginRight="30dp"/>
-                </TableRow>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -80,10 +59,10 @@
                     android:fontFamily="@font/poppins_light"
                     android:text="Adres"
                     android:textColor="@color/black"
-                    android:textSize="18sp"></TextView>
+                    android:textSize="18sp"/>
 
                 <EditText
-                    android:id="@+id/adressOfAccET"
+                    android:id="@+id/addressOfAccET"
                     android:layout_width="330dp"
                     android:layout_height="50dp"
                     android:layout_marginLeft="30dp"
@@ -101,7 +80,7 @@
                     android:fontFamily="@font/poppins_light"
                     android:text="Data zameldowania"
                     android:textColor="@color/black"
-                    android:textSize="18sp"></TextView>
+                    android:textSize="18sp"/>
 
                 <EditText
                     android:id="@+id/dateOfAccET"
@@ -123,7 +102,7 @@
                     android:fontFamily="@font/poppins_light"
                     android:text="Godzina zameldowania"
                     android:textColor="@color/black"
-                    android:textSize="18sp"></TextView>
+                    android:textSize="18sp"/>
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -131,34 +110,14 @@
 
                     <EditText
                         android:id="@+id/hhOfAccET"
-                        android:layout_width="50dp"
+                        android:layout_width="80dp"
                         android:layout_height="50dp"
-                        android:layout_marginLeft="30dp"
+                        android:layout_marginStart="30dp"
                         android:layout_marginBottom="15dp"
                         android:background="@drawable/rounded"
                         android:drawableTint="@color/white"
                         android:ems="10"
-                        android:hint="HH"
-                        android:inputType="date"
-                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_light"
-                        android:text=":"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"></TextView>
-
-                    <EditText
-                        android:id="@+id/mmOfAcctET"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="15dp"
-                        android:background="@drawable/rounded"
-                        android:drawableTint="@color/white"
-                        android:ems="10"
-                        android:hint="MM"
+                        android:hint="HH:mm"
                         android:inputType="date"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -167,17 +126,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:fontFamily="@font/poppins_light"
                     android:text="Data wymeldowania"
                     android:textColor="@color/black"
-                    android:textSize="18sp"></TextView>
+                    android:textSize="18sp"/>
 
                 <EditText
                     android:id="@+id/dateOfAccET2"
                     android:layout_width="330dp"
                     android:layout_height="50dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
@@ -189,11 +148,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:fontFamily="@font/poppins_light"
                     android:text="Godzina wymeldowania"
                     android:textColor="@color/black"
-                    android:textSize="18sp"></TextView>
+                    android:textSize="18sp"/>
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -201,34 +160,14 @@
 
                     <EditText
                         android:id="@+id/hhOfAccET2"
-                        android:layout_width="50dp"
+                        android:layout_width="80dp"
                         android:layout_height="50dp"
-                        android:layout_marginLeft="30dp"
+                        android:layout_marginStart="30dp"
                         android:layout_marginBottom="15dp"
                         android:background="@drawable/rounded"
                         android:drawableTint="@color/white"
                         android:ems="10"
-                        android:hint="HH"
-                        android:inputType="date"
-                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_light"
-                        android:text=":"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"></TextView>
-
-                    <EditText
-                        android:id="@+id/mmOfAcctET2"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="15dp"
-                        android:background="@drawable/rounded"
-                        android:drawableTint="@color/white"
-                        android:ems="10"
-                        android:hint="MM"
+                        android:hint="HH:mm"
                         android:inputType="date"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -237,11 +176,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:fontFamily="@font/poppins_light"
                     android:text="Uwagi"
                     android:textColor="@color/black"
-                    android:textSize="18sp"></TextView>
+                    android:textSize="18sp"/>
 
                 <EditText
                     android:id="@+id/descACCET"

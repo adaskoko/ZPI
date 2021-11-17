@@ -5,14 +5,17 @@ import static android.app.Activity.RESULT_OK;
 import static com.example.zpi.bottomnavigation.BottomNavigationActivity.TRIP_KEY;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.DatePicker;
+import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,8 +33,6 @@ import com.example.zpi.repositories.TripPointTypeDao;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.api.internal.OnConnectionFailedListener;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.widget.Autocomplete;
@@ -39,15 +40,12 @@ import com.google.android.libraries.places.widget.AutocompleteActivity;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 
 
 public class AddAttractionFragment extends Fragment implements DatePickerDialog.OnDateSetListener, OnConnectionFailedListener {
@@ -55,15 +53,14 @@ public class AddAttractionFragment extends Fragment implements DatePickerDialog.
     private static final String TAG = "AddAttractionFragment";
     private FragmentAddAttractionBinding binding;
     private Trip currTrip;
-    private TripPointLocation tripPointLocation;
-    //private GoogleApiClient mGoogleApiClient;
-    //protected GeoDataClient mGeoDataClient;
-    private static final LatLngBounds LAT_LNG_BOUNDS = new LatLngBounds(
-            new LatLng(-40, -168), new LatLng(71, 136)
-    );
-    private static int AUTOCOMPLETE_REQUEST_CODE = 1;
-
-
+    private TripPointLocation tripPointLocation = null;
+//    private GoogleApiClient mGoogleApiClient;
+//    protected GeoDataClient mGeoDataClient;
+//    private static final LatLngBounds LAT_LNG_BOUNDS = new LatLngBounds(
+//            new LatLng(-40, -168), new LatLng(71, 136)
+//    );
+    private int iHour, iMinute;
+    private static final int AUTOCOMPLETE_REQUEST_CODE = 1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -91,6 +88,17 @@ public class AddAttractionFragment extends Fragment implements DatePickerDialog.
             startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE);
         });
         binding.btnAddPrepPoint.setOnClickListener(c -> addAttraction());
+        binding.hhOfTripPointET.setOnClickListener(v -> {
+            TimePickerDialog timePickerDialog = new TimePickerDialog(requireActivity(), (view, hourOfDay, minute) -> {
+                iHour = hourOfDay;
+                iMinute = minute;
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(0, 0, 0, iHour, iMinute);
+                binding.hhOfTripPointET.setText(DateFormat.format("HH:mm", calendar));
+            }, 12, 0, true);
+            timePickerDialog.updateTime(iHour, iMinute);
+            timePickerDialog.show();
+        });
         binding.dateOfTripPointET.setOnClickListener(c -> showDatePickerDialog());
         hideSoftKeyboard();
         return binding.getRoot();
@@ -103,7 +111,7 @@ public class AddAttractionFragment extends Fragment implements DatePickerDialog.
                 Place place = Autocomplete.getPlaceFromIntent(data);
                 binding.nameTripPointET.setText(place.getName());
                 binding.adressOfTripPointET.setText(place.getAddress());
-                tripPointLocation = new TripPointLocation(place.getLatLng().latitude, place.getLatLng().longitude, place.getAddress());
+                tripPointLocation = new TripPointLocation(place.getId(), place.getLatLng().latitude, place.getLatLng().longitude, place.getAddress());
                 Log.i(TAG, "Place: " + place.getName() + ", " + place.getLatLng().latitude + "; " + place.getLatLng().longitude);
             } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
                 // TODO: Handle the error.
@@ -122,11 +130,10 @@ public class AddAttractionFragment extends Fragment implements DatePickerDialog.
         String title = binding.nameTripPointET.getText().toString();
         String address = binding.adressOfTripPointET.getText().toString();
         String sDate = binding.dateOfTripPointET.getText().toString();
-        String hour = binding.hhOfTripPointET.getText().toString();
-        String minute = binding.mmOfTripPointET.getText().toString();
-        DateFormat dateFormat = new SimpleDateFormat("HH:mm yyyy-MM-dd");
+        String time = binding.hhOfTripPointET.getText().toString();
+        java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("HH:mm yyyy-MM-dd");
         Date arrivalDate = null;
-        String date = hour+":"+minute+" "+sDate;
+        String date = time+" "+sDate;
         Log.i("add atraction date", date);
 
         try {
@@ -136,8 +143,7 @@ public class AddAttractionFragment extends Fragment implements DatePickerDialog.
         }
 
         if (tripPointLocation == null){
-            tripPointLocation = new TripPointLocation(0.0, 0.0, address);
-
+            tripPointLocation = new TripPointLocation(null, 0.0, 0.0, address);
         }
 
         Date finalArrivalDate = arrivalDate;
