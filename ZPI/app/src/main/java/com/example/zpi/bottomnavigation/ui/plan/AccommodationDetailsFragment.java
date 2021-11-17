@@ -19,6 +19,8 @@ import com.example.zpi.models.TripPoint;
 import com.example.zpi.repositories.TripPointDao;
 
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 public class AccommodationDetailsFragment extends Fragment {
 
@@ -48,15 +50,16 @@ public class AccommodationDetailsFragment extends Fragment {
     }
 
     private void fillTextView(){
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         binding.accNameTV.setText(actPoint.getName());
 
-        binding.tvAccDate.setText(actPoint.getArrivalDate().toString());
-        binding.tvAccHH.setText(actPoint.getArrivalDate().getHours());
-        binding.tvAccMM.setText(actPoint.getArrivalDate().getMinutes());
+        binding.tvAccDate.setText(formatter.format(actPoint.getArrivalDate()));
+        //binding.tvAccHH.setText(actPoint.getArrivalDate().getHours());
+        //binding.tvAccMM.setText(actPoint.getArrivalDate().getMinutes());
 
-        binding.tvAccDate2.setText(actPoint.getDepartureDate().toString());
-        binding.tvAccHH2.setText(actPoint.getDepartureDate().getHours());
-        binding.tvAccMM2.setText(actPoint.getDepartureDate().getMinutes());
+        binding.tvAccDate2.setText(formatter.format(actPoint.getDepartureDate()));
+        //binding.tvAccHH2.setText(actPoint.getDepartureDate().getHours());
+        //binding.tvAccMM2.setText(actPoint.getDepartureDate().getMinutes());
 
         binding.tvAccDetails.setText(actPoint.getRemarks());
 
@@ -78,7 +81,8 @@ public class AccommodationDetailsFragment extends Fragment {
 
     private void edit(){
         Bundle bundle = new Bundle();
+        Log.i("putting", actPoint.getName());
         bundle.putSerializable(PLAN_KEY, actPoint);
-        NavHostFragment.findNavController(this).navigate(R.id.action_accomodationDetailsFragment_to_accomodationEditFragment);
+        NavHostFragment.findNavController(this).navigate(R.id.action_accomodationDetailsFragment_to_accomodationEditFragment, bundle);
     }
 }

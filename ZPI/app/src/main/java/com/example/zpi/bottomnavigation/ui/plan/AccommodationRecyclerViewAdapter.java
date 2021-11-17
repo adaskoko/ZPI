@@ -1,5 +1,6 @@
 package com.example.zpi.bottomnavigation.ui.plan;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,7 @@ import java.util.List;
 public class AccommodationRecyclerViewAdapter extends RecyclerView.Adapter<AccommodationRecyclerViewAdapter.AccommodationViewHolder> {
 
     private List<TripPoint> tripPointList;
-    private final OnAccommodationListener onAccommodationListener;
+    private OnAccommodationListener onAccommodationListener;
 
     public AccommodationRecyclerViewAdapter(List<TripPoint> tripPointList, OnAccommodationListener onAccommodationListener) {
         this.tripPointList = tripPointList;
@@ -56,6 +57,7 @@ public class AccommodationRecyclerViewAdapter extends RecyclerView.Adapter<Accom
         TextView titleTV;
         TextView dateTV;
         TextView addressTV;
+        OnAccommodationListener onAccommodationListener;
 
 
         public AccommodationViewHolder(@NonNull View itemView, OnAccommodationListener onAccommodationListener) {
@@ -63,11 +65,14 @@ public class AccommodationRecyclerViewAdapter extends RecyclerView.Adapter<Accom
             titleTV = itemView.findViewById(R.id.accTitleTV);
             dateTV = itemView.findViewById(R.id.accDateTV);
             addressTV = itemView.findViewById(R.id.accAddressTV);
+            this.onAccommodationListener=onAccommodationListener;
+            itemView.setOnClickListener(this);
 
         }
 
         @Override
         public void onClick(View v) {
+            Log.i("recycler acc", "onClick");
             onAccommodationListener.onAccommodationClick(getAbsoluteAdapterPosition());
         }
     }

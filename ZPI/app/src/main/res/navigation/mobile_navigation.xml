@@ -86,7 +86,7 @@
         </action>
         <action
             android:id="@+id/action_navigation_plan_to_AccomodationDetailsFragment"
-            app:destination="@+id/accomodationDetailsFragment">
+            app:destination="@+id/accommodationDetailsFragment">
         </action>
     </fragment>
     <fragment
@@ -133,7 +133,7 @@
             app:destination="@+id/navigation_plan"/>
     </fragment>
     <fragment
-        android:id="@+id/accomodationDetailsFragment"
+        android:id="@+id/accommodationDetailsFragment"
         android:name="com.example.zpi.bottomnavigation.ui.plan.AccommodationDetailsFragment"
         android:label="fragment_accomodation_details"
         tools:layout="@layout/fragment_accomodation_details">
