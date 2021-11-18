@@ -14,6 +14,9 @@ public class Invoice implements Serializable {
 	
 	@Column(name="Price", nullable=false)	
 	private double price;
+
+	@Column(name="Description", nullable=false, length=255)
+	private String description;
 	
 	@ManyToOne(targetEntity= User.class, fetch=FetchType.LAZY)
 	@JoinColumn(name="UserID", referencedColumnName="ID", nullable=false)
@@ -37,6 +40,14 @@ public class Invoice implements Serializable {
 	
 	public double getPrice() {
 		return price;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	public void setUser(User value) {

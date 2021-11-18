@@ -18,6 +18,12 @@ public class DebtorDao extends BaseDaoImpl<Debtor, Integer> implements IDebtorDa
 
     @Override
     public List<Debtor> getDebtorsForInvoice(Invoice invoice) throws SQLException {
-        return super.queryForEq("InvoiceID", invoice.getID());
+        List<Debtor> debtors = super.queryForEq("InvoiceID", invoice.getID());
+        UserDao userDao = new UserDao(connectionSource);
+        for(Debtor debtor : debtors){
+            userDao.refresh(debtor.getUser());
+        }
+
+        return debtors;
     }
 }

@@ -34,6 +34,7 @@
         android:onClick="goToInvoices"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_finances"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="32dp"

@@ -1,31 +1,26 @@
 package com.example.zpi.adapters;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.zpi.R;
-import com.example.zpi.models.Invoice;
-import com.example.zpi.models.MultimediaFile;
-
-import org.w3c.dom.Text;
+import com.example.zpi.models.Debt;
 
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class InvoiceAdapter extends RecyclerView.Adapter<InvoiceAdapter.ViewHolder> {
+public class FinanceAdapter extends RecyclerView.Adapter<FinanceAdapter.ViewHolder> {
 
-    List<Invoice> invoices;
+    List<Debt> debts;
     private ClickListener clickListener;
 
-    public InvoiceAdapter(List<Invoice> invoices) {
-        this.invoices = invoices;
+    public FinanceAdapter(List<Debt> debts) {
+        this.debts = debts;
     }
 
     @NonNull
@@ -34,22 +29,24 @@ public class InvoiceAdapter extends RecyclerView.Adapter<InvoiceAdapter.ViewHold
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        View contactView = inflater.inflate(R.layout.item_invoice, parent, false);
+        View contactView = inflater.inflate(R.layout.item_finance, parent, false);
 
         return new ViewHolder(contactView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Invoice invoice = invoices.get(position);
+        Debt debt = debts.get(position);
 
-        TextView nameTV = holder.nameTV;
-        TextView userTV = holder.userTV;
-        TextView priceTV = holder.priceTV;
+        TextView fromTV = holder.fromTV;
+        TextView toTV = holder.toTV;
+        TextView amountTv = holder.amountTV;
+        TextView initialsTV = holder.initialsTV;
 
-        nameTV.setText(invoice.getDescription());
-        userTV.setText(invoice.getUser().getName() + " " + invoice.getUser().getSurname());
-        priceTV.setText(String.valueOf(invoice.getPrice()) + " zł");
+        fromTV.setText(debt.getFrom().getName() + " " + debt.getFrom().getSurname());
+        toTV.setText(debt.getTo().getName() + " " + debt.getTo().getSurname());
+        amountTv.setText(String.valueOf(debt.getAmount()) + " zł");
+        initialsTV.setText(String.valueOf(debt.getFrom().getName().charAt(0)).toUpperCase() + String.valueOf(debt.getFrom().getSurname().charAt(0)).toUpperCase());
     }
 
     public void setOnItemClickListener(ClickListener clickListener) {
@@ -58,20 +55,22 @@ public class InvoiceAdapter extends RecyclerView.Adapter<InvoiceAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return invoices.size();
+        return debts.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public TextView nameTV;
-        public TextView userTV;
-        public TextView priceTV;
+        public TextView fromTV;
+        public TextView toTV;
+        public TextView amountTV;
+        public TextView initialsTV;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            nameTV = (TextView) itemView.findViewById(R.id.tv_invoice_title);
-            userTV = (TextView) itemView.findViewById(R.id.tv_payer);
-            priceTV = (TextView) itemView.findViewById(R.id.tv_price);
+            fromTV = (TextView) itemView.findViewById(R.id.tv_from);
+            toTV = (TextView) itemView.findViewById(R.id.tv_to);
+            amountTV = (TextView) itemView.findViewById(R.id.tv_amount);
+            initialsTV = (TextView) itemView.findViewById(R.id.tv_initials);
 
             itemView.setOnClickListener(this);
         }
