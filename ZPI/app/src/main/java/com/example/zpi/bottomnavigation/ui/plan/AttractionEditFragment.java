@@ -107,7 +107,7 @@ public class AttractionEditFragment extends Fragment implements DatePickerDialog
 
     private void save() {
         String title = binding.etNameTripPoint.getText().toString();
-        String address = binding.etAdressOfTripPoint.getText().toString();
+        //String address = binding.etAdressOfTripPoint.getText().toString();
         DateFormat dateFormat = new SimpleDateFormat("HH:mm yyyy-MM-dd");
         String date = binding.etHhOfTripPoint.getText().toString()+" "+ binding.etDateOfTripPoint.getText().toString();
         currPoint.setName(title);
@@ -116,14 +116,16 @@ public class AttractionEditFragment extends Fragment implements DatePickerDialog
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        currPoint.setTripPointLocation(tripPointLocation);
+        //currPoint.setTripPointLocation(tripPointLocation);
         new Thread(() -> {
             try {
-                if (tripPointLocation == null) {
-                    TripPointLocationDao tripPointLocationDao = new TripPointLocationDao(BaseConnection.getConnectionSource());
-                    tripPointLocation = tripPointLocationDao.getLocationForTripPoint(currPoint);
-                }
-                tripPointLocation.setAddress(address);
+//                if (tripPointLocation == null) {
+//                    TripPointLocationDao tripPointLocationDao = new TripPointLocationDao(BaseConnection.getConnectionSource());
+//                    tripPointLocation = tripPointLocationDao.getLocationForTripPoint(currPoint);
+//                    Log.i(TAG, String.valueOf("currTrip is null "+currPoint==null));
+//                    Log.i(TAG, String.valueOf("trip location is null "+tripPointLocation==null));
+//                }
+//                tripPointLocation.setAddress(address);
                 TripPointDao tripPointDao = new TripPointDao(BaseConnection.getConnectionSource());
                 tripPointDao.update(currPoint);
             } catch (SQLException throwables) {
@@ -141,7 +143,20 @@ public class AttractionEditFragment extends Fragment implements DatePickerDialog
                 Place place = Autocomplete.getPlaceFromIntent(data);
                 binding.etNameTripPoint.setText(place.getName());
                 binding.etAdressOfTripPoint.setText(place.getAddress());
-                tripPointLocation = new TripPointLocation(place.getId(), place.getLatLng().latitude, place.getLatLng().longitude, place.getAddress());
+                //tripPointLocation = new TripPointLocation(place.getId(), place.getLatLng().latitude, place.getLatLng().longitude, place.getAddress());
+                new Thread(() -> {
+                    try {
+                        TripPointLocationDao tripPointLocationDao = new TripPointLocationDao(BaseConnection.getConnectionSource());
+                        tripPointLocation = tripPointLocationDao.getLocationForTripPoint(currPoint);
+                        tripPointLocation.setGoogleID(place.getId());
+                        tripPointLocation.setLatitude(place.getLatLng().latitude);
+                        tripPointLocation.setLongitude(place.getLatLng().longitude);
+                        tripPointLocation.setAddress(place.getAddress());
+                        tripPointLocationDao.update(tripPointLocation);
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+                }).start();
                 Log.i(TAG, "Place: " + place.getName() + ", " + place.getLatLng().latitude + "; " + place.getLatLng().longitude);
             } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
                 // TODO: Handle the error.

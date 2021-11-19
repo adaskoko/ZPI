@@ -46,14 +46,14 @@ import java.util.Locale;
 import java.util.Objects;
 
 
-public class AddAccommodationFragment extends Fragment {
+public class AddAccommodationFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
 
     private static final String TAG = "AddAccommodationFragment";
     private FragmentAddAccomodationBinding binding;
     private Trip currTrip;
     private static final int AUTOCOMPLETE_REQUEST_CODE = 1;
     private TripPointLocation accommodationLocation = null;
-    private int iYear, iMonth, iDay, iHour, iMinute;
+    private int iYear, iMonth, iDay, iHour, iMinute, iFlag;
 
 
     @Override
@@ -84,29 +84,37 @@ public class AddAccommodationFragment extends Fragment {
             startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE);
         });
         binding.dateOfAccET.setOnClickListener(v -> {
-            DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), (view, year, month, dayOfMonth) -> {
-                iYear = year;
-                iMonth = month;
-                iDay = dayOfMonth;
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(iYear, iMonth, iDay);
-                binding.dateOfAccET.setText(android.text.format.DateFormat.format("yyyy-MM-dd", calendar));
-            },Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
-            datePickerDialog.updateDate(iYear, iMonth, iDay);
-            datePickerDialog.show();
+            iFlag = 1;
+            showDatePickerDialog();
         });
         binding.dateOfAccET2.setOnClickListener(v -> {
-            DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), (view, year, month, dayOfMonth) -> {
-                iYear = year;
-                iMonth = month;
-                iDay = dayOfMonth;
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(iYear, iMonth, iDay);
-                binding.dateOfAccET2.setText(android.text.format.DateFormat.format("yyyy-MM-dd", calendar));
-            },Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
-            datePickerDialog.updateDate(iYear, iMonth, iDay);
-            datePickerDialog.show();
+            iFlag = 2;
+            showDatePickerDialog();
         });
+//        binding.dateOfAccET.setOnClickListener(v -> {
+//            DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), (view, year, month, dayOfMonth) -> {
+//                iYear = year;
+//                iMonth = month;
+//                iDay = dayOfMonth;
+//                Calendar calendar = Calendar.getInstance();
+//                calendar.set(iYear, iMonth, iDay);
+//                binding.dateOfAccET.setText(android.text.format.DateFormat.format("yyyy-MM-dd", calendar));
+//            },Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+//            datePickerDialog.updateDate(iYear, iMonth, iDay);
+//            datePickerDialog.show();
+//        });
+//        binding.dateOfAccET2.setOnClickListener(v -> {
+//            DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), (view, year, month, dayOfMonth) -> {
+//                iYear = year;
+//                iMonth = month;
+//                iDay = dayOfMonth;
+//                Calendar calendar = Calendar.getInstance();
+//                calendar.set(iYear, iMonth, iDay);
+//                binding.dateOfAccET2.setText(android.text.format.DateFormat.format("yyyy-MM-dd", calendar));
+//            },Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+//            datePickerDialog.updateDate(iYear, iMonth, iDay);
+//            datePickerDialog.show();
+//        });
 
         binding.hhOfAccET.setOnClickListener(v -> {
             TimePickerDialog timePickerDialog = new TimePickerDialog(requireActivity(), (view, hourOfDay, minute) -> {
@@ -130,6 +138,29 @@ public class AddAccommodationFragment extends Fragment {
             timePickerDialog.updateTime(iHour, iMinute);
             timePickerDialog.show();
         });
+    }
+
+    private void showDatePickerDialog() {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
+                this,
+                Calendar.getInstance().get(Calendar.YEAR),
+                Calendar.getInstance().get(Calendar.MONTH),
+                Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+        );
+        datePickerDialog.show();
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        month = month + 1;
+        String date = year + "-" + month +"-"+ dayOfMonth;
+        if (iFlag == 1) {
+            binding.dateOfAccET.setText(date);
+        }
+        else if (iFlag == 2) {
+            binding.dateOfAccET2.setText(date);
+
+        }
     }
 
     @Override

@@ -51,7 +51,7 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class AccommodationEditFragment extends Fragment {
+public class AccommodationEditFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
 
     private static final int AUTOCOMPLETE_REQUEST_CODE = 1;
     private static final String TAG = "AccommodationEditFragment";
@@ -59,7 +59,7 @@ public class AccommodationEditFragment extends Fragment {
     private Trip actTrip;
     private TripPoint actPoint;
     private TripPointLocation accommodationLocation = null;
-    private int iYear, iMonth, iDay, iHour, iMinute;
+    private int iYear, iMonth, iDay, iHour, iMinute, iFlag;
 
 
     @Override
@@ -85,8 +85,6 @@ public class AccommodationEditFragment extends Fragment {
         binding = FragmentAccomodationEditBinding.inflate(inflater, container, false);
         fillEditText();
         init();
-        Log.i("ocvh", String.valueOf(actPoint.equals(null)));
-
         binding.btnAddPrepPoint.setOnClickListener(v -> save());
         return binding.getRoot();
     }
@@ -99,29 +97,37 @@ public class AccommodationEditFragment extends Fragment {
             startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE);
         });
         binding.etDateOfAcc.setOnClickListener(v -> {
-            DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), (view, year, month, dayOfMonth) -> {
-                iYear = year;
-                iMonth = month;
-                iDay = dayOfMonth;
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(iYear, iMonth, iDay);
-                binding.etDateOfAcc.setText(android.text.format.DateFormat.format("yyyy-MM-dd", calendar));
-            },Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
-            datePickerDialog.updateDate(iYear, iMonth, iDay);
-            datePickerDialog.show();
+            iFlag = 1;
+            showDatePickerDialog();
         });
         binding.etDateOfAcc2.setOnClickListener(v -> {
-            DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), (view, year, month, dayOfMonth) -> {
-                iYear = year;
-                iMonth = month;
-                iDay = dayOfMonth;
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(iYear, iMonth, iDay);
-                binding.etDateOfAcc2.setText(android.text.format.DateFormat.format("yyyy-MM-dd", calendar));
-            },Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
-            datePickerDialog.updateDate(iYear, iMonth, iDay);
-            datePickerDialog.show();
+            iFlag = 2;
+            showDatePickerDialog();
         });
+//        binding.etDateOfAcc.setOnClickListener(v -> {
+//            DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), (view, year, month, dayOfMonth) -> {
+//                iYear = year;
+//                iMonth = month;
+//                iDay = dayOfMonth;
+//                Calendar calendar = Calendar.getInstance();
+//                calendar.set(iYear, iMonth, iDay);
+//                binding.etDateOfAcc.setText(android.text.format.DateFormat.format("yyyy-MM-dd", calendar));
+//            },Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+//            datePickerDialog.updateDate(iYear, iMonth, iDay);
+//            datePickerDialog.show();
+//        });
+//        binding.etDateOfAcc2.setOnClickListener(v -> {
+//            DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), (view, year, month, dayOfMonth) -> {
+//                iYear = year;
+//                iMonth = month;
+//                iDay = dayOfMonth;
+//                Calendar calendar = Calendar.getInstance();
+//                calendar.set(iYear, iMonth, iDay);
+//                binding.etDateOfAcc2.setText(android.text.format.DateFormat.format("yyyy-MM-dd", calendar));
+//            },Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+//            datePickerDialog.updateDate(iYear, iMonth, iDay);
+//            datePickerDialog.show();
+//        });
 
         binding.etHhOfAcc.setOnClickListener(v -> {
             TimePickerDialog timePickerDialog = new TimePickerDialog(requireActivity(), (view, hourOfDay, minute) -> {
@@ -154,7 +160,20 @@ public class AccommodationEditFragment extends Fragment {
                 Place place = Autocomplete.getPlaceFromIntent(data);
                 binding.etNameAcc.setText(place.getName());
                 binding.etAddressOfAcc.setText(place.getAddress());
-                accommodationLocation = new TripPointLocation(place.getId(), place.getLatLng().latitude, place.getLatLng().longitude, place.getAddress());
+                //accommodationLocation = new TripPointLocation(place.getId(), place.getLatLng().latitude, place.getLatLng().longitude, place.getAddress());
+                new Thread(() -> {
+                    try {
+                        TripPointLocationDao tripPointLocationDao = new TripPointLocationDao(BaseConnection.getConnectionSource());
+                        accommodationLocation = tripPointLocationDao.getLocationForTripPoint(actPoint);
+                        accommodationLocation.setGoogleID(place.getId());
+                        accommodationLocation.setLatitude(place.getLatLng().latitude);
+                        accommodationLocation.setLongitude(place.getLatLng().longitude);
+                        accommodationLocation.setAddress(place.getAddress());
+                        tripPointLocationDao.update(accommodationLocation);
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+                }).start();
                 Log.i(TAG, "Place: " + place.getName() + ", " + place.getLatLng().latitude + "; " + place.getLatLng().longitude);
             } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
                 // TODO: Handle the error.
@@ -171,7 +190,7 @@ public class AccommodationEditFragment extends Fragment {
 
     private void save() {
         String title = binding.etNameAcc.getText().toString();
-        String address = binding.etAddressOfAcc.getText().toString();
+        //String address = binding.etAddressOfAcc.getText().toString();
         String desc = binding.etDescAcc.getText().toString();
         DateFormat dateFormat = new SimpleDateFormat("HH:mm yyyy-MM-dd");
         String arrivalS = binding.etHhOfAcc.getText().toString()+" "+binding.etDateOfAcc.getText().toString();
@@ -189,17 +208,16 @@ public class AccommodationEditFragment extends Fragment {
         actPoint.setName(title);
         actPoint.setArrivalDate(finalArrivalDate);
         actPoint.setDepartureDate(finalDepartureDate);
-        accommodationLocation.setAddress(address);
-        actPoint.setTripPointLocation(accommodationLocation);
         actPoint.setRemarks(desc);
         new Thread(() -> {
             try {
+//                if (accommodationLocation == null) {
+//                    TripPointLocationDao tripPointLocationDao = new TripPointLocationDao(BaseConnection.getConnectionSource());
+//                    accommodationLocation = tripPointLocationDao.getLocationForTripPoint(actPoint);
+//                }
+//                accommodationLocation.setAddress(address);
+                //actPoint.setTripPointLocation(accommodationLocation);
                 TripPointDao tripPointDao = new TripPointDao(BaseConnection.getConnectionSource());
-                if (accommodationLocation == null) {
-                    TripPointLocationDao tripPointLocationDao = new TripPointLocationDao(BaseConnection.getConnectionSource());
-                    accommodationLocation = tripPointLocationDao.getLocationForTripPoint(actPoint);
-                }
-                accommodationLocation.setAddress(address);
                 tripPointDao.update(actPoint);
                 Log.i("edit point", "point edited");
             } catch (SQLException throwables) {
@@ -226,5 +244,27 @@ public class AccommodationEditFragment extends Fragment {
         binding.etHhOfAcc.setText(android.text.format.DateFormat.format("HH:mm", actPoint.getArrivalDate()));
         binding.etHhOfAcc2.setText(android.text.format.DateFormat.format("HH:mm", actPoint.getDepartureDate()));
         binding.etDescAcc.setText(actPoint.getRemarks());
+    }
+
+    private void showDatePickerDialog() {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
+                this,
+                Calendar.getInstance().get(Calendar.YEAR),
+                Calendar.getInstance().get(Calendar.MONTH),
+                Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+        );
+        datePickerDialog.show();
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        month = month + 1;
+        String date = year + "-" + month +"-"+ dayOfMonth;
+        if (iFlag == 1) {
+            binding.etDateOfAcc.setText(date);
+        }
+        else if (iFlag == 2) {
+            binding.etDateOfAcc2.setText(date);
+        }
     }
 }

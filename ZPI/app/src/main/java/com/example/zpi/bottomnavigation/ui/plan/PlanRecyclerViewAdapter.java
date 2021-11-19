@@ -51,7 +51,7 @@ public class PlanRecyclerViewAdapter extends RecyclerView.Adapter<PlanRecyclerVi
 
     @Override
     public int getItemCount() {
-        //Log.i("plan section", String.valueOf(sectionList.size()));
+        Log.i("plan section", String.valueOf(sectionList.size()));
         return sectionList.size();
     }
 
