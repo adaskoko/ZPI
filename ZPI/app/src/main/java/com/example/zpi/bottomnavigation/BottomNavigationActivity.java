@@ -20,6 +20,7 @@ import com.example.zpi.R;
 import com.example.zpi.databinding.ActivityBottomNavigationBinding;
 import com.example.zpi.models.Trip;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -63,6 +64,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
         });
         //navView.getMenu().getItem(0).setVisible(false);
         NavigationUI.setupWithNavController(binding.navView, navController);
+        FirebaseMessaging.getInstance().subscribeToTopic(trip.getName());
     }
 
     public void goToPhotos(View v){

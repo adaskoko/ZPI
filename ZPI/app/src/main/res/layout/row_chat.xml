@@ -43,10 +43,13 @@
             android:layout_below="@id/tvName"
             android:layout_alignLeft="@id/tvName"
             android:layout_alignRight="@id/tvName"
+            android:layout_marginLeft="-2dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginBottom="30dp"
             android:fontFamily="@font/poppins_light"
-            android:text="Co tam"
-            android:textSize="10sp"
-            android:layout_marginBottom="30dp"/>
+            android:text="Treść wiadomości"
+            android:textSize="10sp" />
 
         <TextView
             android:id="@+id/tvTime"

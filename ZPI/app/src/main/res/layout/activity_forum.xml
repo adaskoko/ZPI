@@ -61,15 +61,14 @@
                 android:id="@+id/tv_name2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
-                android:text="Wycieczka do Berlina"
-                android:layout_marginLeft="30dp"
                 android:fontFamily="@font/poppins_light"
+                android:text="Zdjęcia z Berlina"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:textStyle="bold">
-            </TextView>
+                android:textStyle="bold"></TextView>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_comments"
@@ -194,16 +193,17 @@
                     android:onClick="respond"
                     android:layout_marginRight="200dp">
                 </ImageButton>
-                <TextView
-                    android:id="@+id/tv_respCount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/poppins_light"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:gravity="right">
-                </TextView>
+
+                    <TextView
+                        android:id="@+id/tv_respCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_light"
+                        android:gravity="right"
+                        android:text="0 odpowiedzi"
+                        android:textColor="@color/white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"></TextView>
                 </TableRow>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>

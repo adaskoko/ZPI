@@ -17,6 +17,13 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.zpi.R;
 import com.example.zpi.RegisterSuccesfulActivity;
 import com.example.zpi.data_handling.BaseConnection;
@@ -29,13 +36,18 @@ import com.example.zpi.repositories.TripDao;
 import com.example.zpi.repositories.UserDao;
 import com.j256.ormlite.stmt.query.In;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class AddToDoFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
@@ -44,9 +56,42 @@ public class AddToDoFragment extends Fragment implements DatePickerDialog.OnDate
     private User chosenUser;
     private Trip  currTrip;
     ImageButton addButton;
+    RequestQueue mRequestQueue;
+    private String URL="https://fcm.googleapis.com/fcm/send";
+    private String serverKey="key="+"AAAATTz1BGM:APA91bFqP2Xnkl67JXawBGQ0tpMGiQFH9QPz1yBVYV6x5LT1_DOCUmCseexqFC0guffW7qXN_ke0DgOTujrRRmYw6CijP4H0cG4VpA8Rk6bf6ovPejnRfU8dRlCbzAQhyc6ZkPZCNljY";
+    private String contentType= "application/json";
 
     public AddToDoFragment() {
         // Required empty public constructor
+    }
+    private void sendNotification() throws JSONException {
+        mRequestQueue= Volley.newRequestQueue(getContext());
+        JSONObject main=new JSONObject();
+        main.put("to", "/topics/"+ currTrip.getName());
+        JSONObject sub=new JSONObject();
+        sub.put("title", "notification");
+        sub.put("message", "Dodato todoska do "+ currTrip.getName());
+        main.put("data", sub);
+        JsonObjectRequest request=new JsonObjectRequest(Request.Method.POST, URL, main, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> header=new HashMap<>();
+                header.put("content-type",contentType );
+                header.put("authorization", serverKey);
+                return header;
+            }
+        };
+        mRequestQueue.add(request);
     }
 
     @Override
@@ -134,6 +179,11 @@ public class AddToDoFragment extends Fragment implements DatePickerDialog.OnDate
                         PreparationPoint point = new PreparationPoint(title, description, finalDate, chosenUser, currTrip);
                         pointDao.create(point);
                         Log.i("todo", "todo dodane");
+                        try {
+                            sendNotification();
+                        } catch (JSONException exception) {
+                            exception.printStackTrace();
+                        }
                         //BaseConnection.closeConnection();
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
