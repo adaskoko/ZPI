@@ -49,6 +49,7 @@
                     android:drawableTint="@color/white"
                     android:ems="10"
                     android:inputType="textPersonName"
+                    android:padding="12dp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 <TableRow
@@ -92,6 +93,7 @@
                     android:drawableTint="@color/white"
                     android:ems="10"
                     android:inputType="text"
+                    android:padding="12dp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 <TextView
@@ -114,7 +116,8 @@
                     android:ems="10"
                     android:hint="rrrr-mm-dd"
                     android:inputType="date"
-                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
+                    android:padding="12dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -140,6 +143,10 @@
                         android:ems="10"
                         android:hint="HH"
                         android:inputType="date"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                     <TextView
@@ -160,6 +167,10 @@
                         android:ems="10"
                         android:hint="MM"
                         android:inputType="date"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 </TableRow>

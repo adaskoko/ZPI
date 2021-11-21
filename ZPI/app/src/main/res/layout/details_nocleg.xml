@@ -17,8 +17,7 @@
             android:fontFamily="@font/poppins_light"
             android:text="PUNKT WYCIECZKI-NOCLEG"
             android:textColor="@color/black"
-            android:textSize="10sp">
-        </TextView>
+            android:textSize="12sp"></TextView>
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -123,9 +122,11 @@
                         android:drawableTint="@color/white"
                         android:ems="10"
                         android:fontFamily="@font/poppins_light"
-                        android:textSize="28sp"
-                        android:textColor="@color/black"
+                        android:gravity="center"
                         android:text="10"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                     <TextView
@@ -145,9 +146,11 @@
                         android:drawableTint="@color/white"
                         android:ems="10"
                         android:fontFamily="@font/poppins_light"
-                        android:textSize="28sp"
-                        android:textColor="@color/black"
+                        android:gravity="center"
                         android:text="10"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 </TableRow>
@@ -174,9 +177,11 @@
                         android:drawableTint="@color/white"
                         android:ems="10"
                         android:fontFamily="@font/poppins_light"
-                        android:textSize="28sp"
-                        android:textColor="@color/black"
+                        android:gravity="center"
                         android:text="10"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                     <TextView
@@ -196,9 +201,11 @@
                         android:drawableTint="@color/white"
                         android:ems="10"
                         android:fontFamily="@font/poppins_light"
-                        android:textSize="28sp"
-                        android:textColor="@color/black"
+                        android:gravity="center"
                         android:text="10"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 </TableRow>

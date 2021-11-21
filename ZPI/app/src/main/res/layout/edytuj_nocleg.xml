@@ -49,6 +49,7 @@
                     android:drawableTint="@color/white"
                     android:ems="10"
                     android:inputType="textPersonName"
+                    android:padding="12dp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 <TextView
@@ -70,6 +71,7 @@
                     android:drawableTint="@color/white"
                     android:ems="10"
                     android:inputType="text"
+                    android:padding="12dp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 <TextView
@@ -91,6 +93,7 @@
                     android:drawableTint="@color/white"
                     android:ems="10"
                     android:inputType="date"
+                    android:padding="12dp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 <TextView
@@ -115,6 +118,10 @@
                         android:background="@drawable/rounded"
                         android:drawableTint="@color/white"
                         android:ems="10"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
                         android:inputType="date"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -134,6 +141,10 @@
                         android:background="@drawable/rounded"
                         android:drawableTint="@color/white"
                         android:ems="10"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
                         android:inputType="date"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -158,6 +169,7 @@
                     android:drawableTint="@color/white"
                     android:ems="10"
                     android:inputType="date"
+                    android:padding="12dp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 <TextView
@@ -182,6 +194,10 @@
                         android:background="@drawable/rounded"
                         android:drawableTint="@color/white"
                         android:ems="10"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
                         android:inputType="date"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -201,6 +217,10 @@
                         android:background="@drawable/rounded"
                         android:drawableTint="@color/white"
                         android:ems="10"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
                         android:inputType="date"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -225,6 +245,7 @@
                     android:drawableTint="@color/white"
                     android:ems="10"
                     android:inputType="textPersonName"
+                    android:padding="12dp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 

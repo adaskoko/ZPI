@@ -15,7 +15,8 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="20dp">
 
 
         <LinearLayout
@@ -155,32 +156,6 @@
                 android:layout_marginBottom="24dp"
                 android:onClick="goToCurrentTripMainPanel"
                 app:srcCompat="@drawable/button_ready" />
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:id="@+id/tv_lines"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:fontFamily="@font/poppins_light"
-                    android:maxLines="2"
-                    android:text="Nie chcesz teraz zapraszać uczestników?"
-                    android:textColor="@color/black"></TextView>
-
-                <ImageButton
-                    android:id="@+id/btn_pomin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:backgroundTint="@android:color/transparent"
-                    android:onClick="goToCurrentTripMainPanel"
-                    android:src="@drawable/button_skip"></ImageButton>
-
-            </TableRow>
 
         </LinearLayout>
 

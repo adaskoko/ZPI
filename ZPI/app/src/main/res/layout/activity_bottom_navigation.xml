@@ -14,7 +14,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/trip_bar_bg">
+        android:background="@drawable/trip_bar_bg"
+        android:elevation="20dp">
 
 
         <LinearLayout

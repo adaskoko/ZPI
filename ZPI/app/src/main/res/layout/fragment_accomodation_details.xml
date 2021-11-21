@@ -73,11 +73,11 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/rounded"
-                    android:drawableTint="@color/white"
                     android:ems="10"
                     android:fontFamily="@font/poppins_light"
-                    android:textSize="14sp"
                     android:inputType="text"
+                    android:padding="12dp"
+                    android:textSize="14sp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -95,11 +95,11 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/rounded"
-                    android:drawableTint="@color/white"
                     android:ems="10"
                     android:fontFamily="@font/poppins_light"
-                    android:textSize="14sp"
                     android:inputType="text"
+                    android:padding="12dp"
+                    android:textSize="14sp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 
@@ -127,8 +127,10 @@
                         android:drawableTint="@color/white"
                         android:ems="10"
                         android:fontFamily="@font/poppins_light"
-                        android:textSize="28sp"
+                        android:gravity="center"
+                        android:textAlignment="center"
                         android:textColor="@color/black"
+                        android:textSize="18sp"
                         android:text="10"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -149,8 +151,10 @@
                         android:drawableTint="@color/white"
                         android:ems="10"
                         android:fontFamily="@font/poppins_light"
-                        android:textSize="28sp"
+                        android:gravity="center"
+                        android:textAlignment="center"
                         android:textColor="@color/black"
+                        android:textSize="18sp"
                         android:text="10"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -172,9 +176,9 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/rounded"
-                    android:drawableTint="@color/white"
                     android:ems="10"
                     android:fontFamily="@font/poppins_light"
+                    android:padding="12dp"
                     android:textSize="14sp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -200,8 +204,10 @@
                         android:drawableTint="@color/white"
                         android:ems="10"
                         android:fontFamily="@font/poppins_light"
-                        android:textSize="28sp"
+                        android:gravity="center"
+                        android:textAlignment="center"
                         android:textColor="@color/black"
+                        android:textSize="18sp"
                         android:text="10"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -222,8 +228,10 @@
                         android:drawableTint="@color/white"
                         android:ems="10"
                         android:fontFamily="@font/poppins_light"
-                        android:textSize="28sp"
+                        android:gravity="center"
+                        android:textAlignment="center"
                         android:textColor="@color/black"
+                        android:textSize="18sp"
                         android:text="10"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -245,11 +253,11 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/rounded"
-                    android:drawableTint="@color/white"
                     android:ems="10"
                     android:fontFamily="@font/poppins_light"
-                    android:textSize="14sp"
                     android:inputType="text"
+                    android:padding="12dp"
+                    android:textSize="14sp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 

@@ -17,8 +17,7 @@
             android:fontFamily="@font/poppins_light"
             android:text="PUNKT PRZYGOTOWAŃ"
             android:textColor="@color/black"
-            android:textSize="10sp">
-        </TextView>
+            android:textSize="12sp"></TextView>
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -75,8 +74,9 @@
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
                     android:ems="10"
-                    android:textColor="@color/black"
                     android:fontFamily="@font/poppins_light"
+                    android:padding="12dp"
+                    android:textColor="@color/black"
                     android:textSize="14sp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -98,8 +98,9 @@
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
                     android:ems="10"
-                    android:textColor="@color/black"
                     android:fontFamily="@font/poppins_light"
+                    android:padding="12dp"
+                    android:textColor="@color/black"
                     android:textSize="14sp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -122,6 +123,7 @@
                     android:drawableTint="@color/white"
                     android:ems="10"
                     android:fontFamily="@font/poppins_light"
+                    android:padding="12dp"
                     android:textSize="14sp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                 <TableRow

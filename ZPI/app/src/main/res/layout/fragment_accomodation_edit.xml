@@ -116,6 +116,10 @@
                         android:background="@drawable/rounded"
                         android:drawableTint="@color/white"
                         android:ems="10"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
                         android:inputType="date"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -135,6 +139,10 @@
                         android:background="@drawable/rounded"
                         android:drawableTint="@color/white"
                         android:ems="10"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
                         android:inputType="date"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -183,6 +191,10 @@
                         android:background="@drawable/rounded"
                         android:drawableTint="@color/white"
                         android:ems="10"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
                         android:inputType="date"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -202,6 +214,10 @@
                         android:background="@drawable/rounded"
                         android:drawableTint="@color/white"
                         android:ems="10"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
                         android:inputType="date"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 

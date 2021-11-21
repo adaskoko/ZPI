@@ -44,12 +44,9 @@ public class BottomNavigationActivity extends AppCompatActivity {
         binding.tvTripname.setText(trip.getName());
         String startDate = dateFormat.format(trip.getStartDate());
         String endDate = dateFormat.format(trip.getEndDate());
-        startDate += " - ";
+        startDate += "  -  ";
         startDate += endDate;
         binding.tvTripdate.setText(startDate);
-        binding.btnBackToMainTripWindow.setOnClickListener(v -> {
-            onBackPressed();
-        });
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
