@@ -4,10 +4,12 @@ import static com.example.zpi.bottomnavigation.ui.plan.PlanFragment.PLAN_KEY;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,10 +26,10 @@ import com.example.zpi.models.TripPoint;
 import com.example.zpi.models.TripPointParticipant;
 import com.example.zpi.models.User;
 import com.example.zpi.repositories.TripPointDao;
+import com.example.zpi.repositories.TripPointLocationDao;
 import com.example.zpi.repositories.TripPointParticipantDao;
 
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -39,8 +41,8 @@ public class AttractionDetailsFragment extends Fragment {
 
     private TripPoint actPoint;
     FragmentAttractionDetailsBinding binding;
-    private ListView list ;
-    private ArrayAdapter<String> adapter ;
+//    private ListView list ;
+//    private ArrayAdapter<String> adapter ;
 
     public AttractionDetailsFragment() {
         // Required empty public constructor
@@ -56,7 +58,7 @@ public class AttractionDetailsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentAttractionDetailsBinding.inflate(inflater, container, false);
         fillTextViews();
@@ -67,45 +69,50 @@ public class AttractionDetailsFragment extends Fragment {
 
     private void fillTextViews(){
         binding.pointNameTV.setText(actPoint.getName());
-        //binding.tv_pointAddress.setText(actPoint.getA)
-        DateFormat hourFormat = new SimpleDateFormat("HH");
-        String hour = hourFormat.format(actPoint.getArrivalDate());
-
-        DateFormat minuteFormat = new SimpleDateFormat("mm");
-        String minute = minuteFormat.format(actPoint.getArrivalDate());
-
-        binding.tvPointHh.setText(hour);
-        binding.tvPointMm.setText(minute);
-
-        list = binding.lvParticipants;
-        ArrayList<String> participants = (ArrayList<String>) getPointParticipants();
-        adapter = new ArrayAdapter<>(getContext(), R.layout.found_user_in_list, participants);
-
-        list.setAdapter(adapter);
-
-
-    }
-
-    private List<String> getPointParticipants(){
-        List<String> participants = new ArrayList<>();
-
+//        binding.tvPointAddress.setText(actPoint.getTripPointLocation().getAddress());
+        binding.tvPointAddress.setText("Brak");
         new Thread(() -> {
             try {
-                TripPointParticipantDao tpDao = new TripPointParticipantDao(BaseConnection.getConnectionSource());
-                List<TripPointParticipant> tripPointParticipants = tpDao.getParticipantsByTripPoint(actPoint);
-                if (tripPointParticipants != null && tripPointParticipants.size() != 0) {
-                    for (TripPointParticipant tp : tripPointParticipants) {
-                        User u = tp.getUser();
-                        String currentRow = u.getName() + " " + u.getSurname() + "(" + u.getEmail() + ")";
-                        participants.add(currentRow);
-                    }
-                }
+                TripPointLocationDao tripPointLocationDao = new TripPointLocationDao(BaseConnection.getConnectionSource());
+                String address = tripPointLocationDao.getLocationForTripPoint(actPoint).getAddress();
+                getActivity().runOnUiThread(() -> binding.tvPointAddress.setText(address));
             } catch (SQLException throwables) {
-                throwables.printStackTrace();
+
             }
         }).start();
-        return participants;
+//        DateFormat hourFormat = new SimpleDateFormat("HH");
+//        String hour = hourFormat.format(actPoint.getArrivalDate());
+
+        binding.tvPointDate.setText(DateFormat.format("yyyy-MM-dd", actPoint.getArrivalDate()));
+        binding.tvPointHh.setText(DateFormat.format("HH:mm", actPoint.getArrivalDate()));
+
+//        list = binding.lvParticipants;
+//        ArrayList<String> participants = (ArrayList<String>) getPointParticipants();
+//        adapter = new ArrayAdapter<>(getContext(), R.layout.found_user_in_list, participants);
+//
+//        list.setAdapter(adapter);
     }
+
+//    private List<String> getPointParticipants(){
+//        List<String> participants = new ArrayList<>();
+//
+//        new Thread(() -> {
+//            try {
+//                TripPointParticipantDao tpDao = new TripPointParticipantDao(BaseConnection.getConnectionSource());
+//                List<TripPointParticipant> tripPointParticipants = tpDao.getParticipantsByTripPoint(actPoint);
+//                if (tripPointParticipants != null && tripPointParticipants.size() != 0) {
+//                    for (TripPointParticipant tp : tripPointParticipants) {
+//                        User u = tp.getUser();
+//                        String currentRow = u.getName() + " " + u.getSurname() + "(" + u.getEmail() + ")";
+//                        participants.add(currentRow);
+//                    }
+//                }
+//            } catch (SQLException throwables) {
+//                throwables.printStackTrace();
+//            }
+//        }).start();
+//        return participants;
+//    }
 
     private void delete(){
         new Thread(() -> {

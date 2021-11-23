@@ -3,20 +3,20 @@ package com.example.zpi.bottomnavigation.ui.plan;
 import static com.example.zpi.bottomnavigation.ui.plan.PlanFragment.PLAN_KEY;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.zpi.R;
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.databinding.FragmentAccomodationDetailsBinding;
 import com.example.zpi.models.TripPoint;
 import com.example.zpi.repositories.TripPointDao;
+import com.example.zpi.repositories.TripPointLocationDao;
 
 import java.sql.SQLException;
 
@@ -49,17 +49,21 @@ public class AccommodationDetailsFragment extends Fragment {
 
     private void fillTextView(){
         binding.accNameTV.setText(actPoint.getName());
+        new Thread(() -> {
+            try {
+                TripPointLocationDao tripPointLocationDao = new TripPointLocationDao(BaseConnection.getConnectionSource());
+                String address = tripPointLocationDao.getLocationForTripPoint(actPoint).getAddress();
+                getActivity().runOnUiThread(() -> binding.tvAccAddress.setText(address));
+            } catch (SQLException throwables) {
 
-        binding.tvAccDate.setText(actPoint.getArrivalDate().toString());
-        binding.tvAccHH.setText(actPoint.getArrivalDate().getHours());
-        binding.tvAccMM.setText(actPoint.getArrivalDate().getMinutes());
+            }
+        }).start();
+        binding.tvAccDate.setText(android.text.format.DateFormat.format("yyyy-MM-dd", actPoint.getArrivalDate()));
+        binding.tvAccHH.setText(android.text.format.DateFormat.format("HH:mm", actPoint.getArrivalDate()));
 
-        binding.tvAccDate2.setText(actPoint.getDepartureDate().toString());
-        binding.tvAccHH2.setText(actPoint.getDepartureDate().getHours());
-        binding.tvAccMM2.setText(actPoint.getDepartureDate().getMinutes());
-
+        binding.tvAccHH2.setText(android.text.format.DateFormat.format("HH:mm", actPoint.getDepartureDate()));
+        binding.tvAccDate2.setText(android.text.format.DateFormat.format("yyyy-MM-dd", actPoint.getDepartureDate()));
         binding.tvAccDetails.setText(actPoint.getRemarks());
-
     }
 
     private void delete(){
@@ -78,7 +82,8 @@ public class AccommodationDetailsFragment extends Fragment {
 
     private void edit(){
         Bundle bundle = new Bundle();
+        Log.i("putting", actPoint.getName());
         bundle.putSerializable(PLAN_KEY, actPoint);
-        NavHostFragment.findNavController(this).navigate(R.id.action_accomodationDetailsFragment_to_accomodationEditFragment);
+        NavHostFragment.findNavController(this).navigate(R.id.action_accomodationDetailsFragment_to_accomodationEditFragment, bundle);
     }
 }

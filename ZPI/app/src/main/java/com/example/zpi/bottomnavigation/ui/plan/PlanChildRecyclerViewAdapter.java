@@ -1,5 +1,6 @@
 package com.example.zpi.bottomnavigation.ui.plan;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +50,8 @@ public class PlanChildRecyclerViewAdapter extends RecyclerView.Adapter<PlanChild
 
     @Override
     public int getItemCount() {
+        Log.i("plan child size", String.valueOf(tripPoints.size()));
+
         return tripPoints.size();
     }
 

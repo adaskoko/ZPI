@@ -7,10 +7,11 @@ public class TripPointLocation implements Serializable {
 	public TripPointLocation() {
 	}
 
-	public TripPointLocation(double latitude, double longitude, String address) {
+	public TripPointLocation(String ID, double latitude, double longitude, String address) {
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.address = address;
+		this.googleID = ID;
 	}
 	
 	@Column(name="ID", nullable=false, unique=true, length=10)	

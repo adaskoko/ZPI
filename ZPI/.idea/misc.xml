@@ -52,16 +52,26 @@
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/activity_update_user_surname.xml" value="0.21920289855072464" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/change_password.xml" value="0.21920289855072464" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/component_content.xml" value="0.23731884057971014" />
+        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/custom_info_contents.xml" value="0.21693840579710144" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/custom_info_window.xml" value="0.23854166666666668" />
+        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/details_atrakcja.xml" value="0.25416666666666665" />
+        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/details_nocleg.xml" value="0.25416666666666665" />
+        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/details_punkt_przygotowan.xml" value="0.25416666666666665" />
+        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/dodaj_atrakcje.xml" value="0.25416666666666665" />
+        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/dodaj_nocleg.xml" value="0.25416666666666665" />
+        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/edytuj_nocleg.xml" value="0.1" />
+        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/edytuj_punkt_przygotowan.xml" value="0.128125" />
+        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/edytuj_rzecz_do_zabrania.xml" value="0.128125" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/finance_fragment.xml" value="0.1546875" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/found_user_in_list.xml" value="0.2477355072463768" />
-        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_accomodation_details.xml" value="0.15833333333333333" />
-        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_accomodation_edit.xml" value="0.1" />
+        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_accomodation_details.xml" value="0.4" />
+        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_accomodation_edit.xml" value="0.2" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_add_accomodation.xml" value="0.23731884057971014" />
+        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_add_attraction.xml" value="0.4" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_add_to_do.xml" value="0.23731884057971014" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_add_to_take_thing.xml" value="0.2359375" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_attraction_details.xml" value="0.2477355072463768" />
-        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_attraction_edit.xml" value="0.16" />
+        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_attraction_edit.xml" value="0.264" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_dashboard.xml" value="0.21920289855072464" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_edit_trip_participants.xml" value="0.23731884057971014" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_finance.xml" value="0.17760416666666667" />
@@ -69,6 +79,7 @@
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_item.xml" value="0.22735507246376813" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_item_list.xml" value="0.1743659420289855" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_map.xml" value="0.20471014492753623" />
+        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_maps.xml" value="0.16304347826086957" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_notifications.xml" value="0.21920289855072464" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_plan.xml" value="0.2" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_to_do.xml" value="0.176" />
