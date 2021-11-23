@@ -16,61 +16,67 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="10"
-            android:background="#263238"
-            android:orientation="vertical">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/poppins_light"
-                    android:text="Czat"
-                    android:textColor="@color/white"
-                    android:textSize="30sp"
-                    android:layout_weight="1"/>
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/ic_x"
-                    android:onClick="finish"/>
-            </TableRow>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="90"
-            android:orientation="vertical" >
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvChat"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="20dp"/>
-
-        </LinearLayout>
-        <ImageButton
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@android:color/transparent"
-            android:src="@drawable/button_new_message"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:onClick="newMessage"
-            />
+            android:background="@color/primary_dark"
+            android:paddingHorizontal="30dp"
+            android:paddingVertical="22dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="center_vertical"
+                android:text="Czat"
+                android:textAlignment="gravity"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="finish"
+                android:padding="7dp"
+                app:srcCompat="@drawable/ic_x" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="40dp">
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="12dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_search"
+                android:fontFamily="@font/poppins"
+                android:hint="Wyszukaj..."
+                android:paddingHorizontal="20dp"
+                android:textSize="14sp"></EditText>
+
+            <ImageButton
+                android:id="@+id/btn_newMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_write"
+                android:onClick="newMessage"></ImageButton>
+        </TableRow>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvChat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginVertical="24dp" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

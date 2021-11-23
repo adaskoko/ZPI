@@ -45,14 +45,23 @@
         </LinearLayout>
 
 
-        <ImageView
-            android:id="@+id/imageView6"
+        <TextView
+            android:id="@+id/tv_assignedElement"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
+            android:layout_marginHorizontal="30dp"
             android:layout_marginTop="12dp"
+            android:background="@drawable/rounded_link_element"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/poppins"
             android:onClick="chooseList"
-            app:srcCompat="@drawable/ic_button_assignelement" />
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="4dp"
+            android:text="przypisz element"
+            android:textColor="#ACACAC"
+            android:textSize="10sp"
+            app:drawableStartCompat="@drawable/ic_link"
+            tools:drawablePadding="8dp" />
 
         <EditText
             android:id="@+id/et_threadTitle"

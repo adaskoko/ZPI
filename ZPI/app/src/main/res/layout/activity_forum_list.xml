@@ -59,30 +59,34 @@
                     android:src="@drawable/ic_x" />
             </TableRow>
         </LinearLayout>
+
+
         <TableRow
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="40dp">
+
             <EditText
                 android:id="@+id/et_search"
-                android:layout_width="200dp"
-                android:layout_height="45dp"
-                android:layout_marginLeft="30dp"
-                android:hint="Wyszukaj"
-                android:fontFamily="@font/poppins_light"
-                android:textSize="16sp"
-                android:background="@drawable/rounded"
-                android:layout_marginRight="30dp">
-            </EditText>
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="12dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_search"
+                android:fontFamily="@font/poppins"
+                android:hint="Wyszukaj..."
+                android:paddingHorizontal="20dp"
+                android:textSize="14sp"></EditText>
+
             <ImageButton
                 android:id="@+id/btn_addThread"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_new"
-                android:onClick="newThread">
-            </ImageButton>
-        </TableRow>
+                android:onClick="newThread"></ImageButton>
 
+        </TableRow>
 
         <LinearLayout
             android:layout_width="match_parent"

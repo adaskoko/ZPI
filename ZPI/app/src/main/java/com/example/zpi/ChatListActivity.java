@@ -9,16 +9,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.data_handling.SharedPreferencesHandler;
+import com.example.zpi.models.ForumThread;
 import com.example.zpi.models.Message;
 import com.example.zpi.models.User;
 import com.example.zpi.repositories.MessageDao;
@@ -37,9 +41,10 @@ public class ChatListActivity extends AppCompatActivity {
 
     public final static String CHAT_KEY="CHAT_KEY";
     RecyclerView recyclerView;
-    List<User> chatWith=new ArrayList<User>();
+    List<User> list=new ArrayList<>();
     ChatListAdapter chatListAdapter;
     User loggedUser;
+    EditText search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +55,21 @@ public class ChatListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         loggedUser = SharedPreferencesHandler.getLoggedInUser(getApplicationContext());
         getChatsForUser();
+        search=findViewById(R.id.et_search);
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
 
         new Timer().scheduleAtFixedRate(new TimerTask(){
             @Override
@@ -92,18 +112,30 @@ public class ChatListActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    private void filter(String text){
+        ArrayList<User> filteredList=new ArrayList<>();
+        for(User user: list){
+            String fullName = user.getName()+" "+user.getSurname();
+            if(fullName.toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(user);
+            }
+        }
+
+        chatListAdapter.filterList(filteredList);
+    }
+
     private void getChatsForUser(){
-        List<User> list=new ArrayList<>();
         Map<Integer, Message> dictionary =new HashMap<Integer, Message>();
 
         new Thread(()->{
             try{
+                ArrayList<User> convos = new ArrayList<>();
                 MessageDao mdao=new MessageDao(BaseConnection.getConnectionSource());
                 //User u= (User) new UserDao(BaseConnection.getConnectionSource()).queryForEq("ID", 24).get(0);
                 List<User> res=mdao.getConvosForUser(loggedUser);
                 if(res.size()!=0){
                   for(User user :res){
-                      list.add(user);
+                      convos.add(user);
                       //Log.i("dao z convosow", String.valueOf(user.getEmail()));
                       List<Message> mes=mdao.getMessagesForConvo(loggedUser, user);
                       //Log.i("mes z dao", String.valueOf(mes.size()));
@@ -111,8 +143,10 @@ public class ChatListActivity extends AppCompatActivity {
                       dictionary.put(user.getID(), latest);
                   }
                 }
+                list = convos;
                 runOnUiThread(()->{
                     ChatListAdapter adapter=new ChatListAdapter(list, dictionary);
+                    this.chatListAdapter = adapter;
                     recyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 });
@@ -176,6 +210,11 @@ public class ChatListActivity extends AppCompatActivity {
             return new ChatListAdapterVh(itemView);
         }
 
+        public void filterList(List<User> filtered){
+            chatFriendsForUser=filtered;
+            notifyDataSetChanged();
+        }
+
         @Override
         public void onBindViewHolder(@NonNull ChatListAdapter.ChatListAdapterVh holder, int position) {
             User user=chatFriendsForUser.get(position);
@@ -202,6 +241,7 @@ public class ChatListActivity extends AppCompatActivity {
             holder.tvTime.setText(date);
 
         }
+
 
         @Override
         public int getItemCount() {

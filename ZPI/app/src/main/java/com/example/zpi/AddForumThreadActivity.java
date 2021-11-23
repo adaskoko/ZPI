@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.View;
@@ -32,6 +34,7 @@ public class AddForumThreadActivity extends AppCompatActivity {
     TextView initials;
     TextView name;
     TextView tripName;
+    TextView assignedElement;
     EditText threadName;
     EditText message;
     Trip currentTrip;
@@ -57,6 +60,8 @@ public class AddForumThreadActivity extends AppCompatActivity {
 
         tripName = findViewById(R.id.tv_nameOfTrip);
         tripName.setText(currentTrip.getName());
+
+        assignedElement = findViewById(R.id.tv_assignedElement);
     }
 
     public void chooseList(View v){
@@ -99,6 +104,8 @@ public class AddForumThreadActivity extends AppCompatActivity {
         if (requestCode == LAUNCH_CHOOSE_PLAN_ACTIVITY) {
             if(resultCode == Activity.RESULT_OK){
                 resultStringForThread=data.getStringExtra("result");
+                assignedElement.setText(resultStringForThread);
+                assignedElement.setTextColor(Color.parseColor("#96D76F"));
                 Toast.makeText(this, resultStringForThread, Toast.LENGTH_SHORT).show();
             }
             if (resultCode == Activity.RESULT_CANCELED) {

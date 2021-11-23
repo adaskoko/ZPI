@@ -21,9 +21,6 @@
             android:name=".ForumActivity"
             android:exported="false" />
         <activity
-            android:name=".ChooseSpecificPointForThreadActivity"
-            android:exported="false" />
-        <activity
             android:name=".ChooseListForThreadActivity"
             android:exported="false" />
         <activity
