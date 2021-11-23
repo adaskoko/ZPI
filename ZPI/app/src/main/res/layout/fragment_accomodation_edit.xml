@@ -62,7 +62,7 @@
                     android:textSize="18sp"/>
 
                 <EditText
-                    android:id="@+id/et_adressOfAcc"
+                    android:id="@+id/et_addressOfAcc"
                     android:layout_width="330dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="30dp"

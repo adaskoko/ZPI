@@ -84,7 +84,7 @@
                     android:textSize="18sp"></TextView>
 
                 <EditText
-                    android:id="@+id/adressOfAccET"
+                    android:id="@+id/addressOfAccET"
                     android:layout_width="330dp"
                     android:layout_height="50dp"
                     android:layout_marginLeft="30dp"

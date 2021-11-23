@@ -105,7 +105,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnInfoWindowClic
     private static final String KEY_LOCATION = "location";
 
     // Used for selecting the current place.
-    private static final int M_MAX_ENTRIES = 20;
+    private static final int M_MAX_ENTRIES = 50;
     private String[] likelyPlaceNames;
     private String[] likelyPlaceAddresses;
     private List[] likelyPlaceAttributions;
@@ -355,7 +355,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnInfoWindowClic
         if (locationPermissionGranted) {
             // Use fields to define the data types to return.
             List<Place.Field> placeFields = Arrays.asList(Place.Field.NAME, Place.Field.ADDRESS,
-                    Place.Field.LAT_LNG);
+                    Place.Field.LAT_LNG, Place.Field.TYPES);
 
             // Use the builder to create a FindCurrentPlaceRequest.
             FindCurrentPlaceRequest request =
@@ -371,6 +371,8 @@ public class MapsFragment extends Fragment implements GoogleMap.OnInfoWindowClic
                     FindCurrentPlaceResponse likelyPlaces = task.getResult();
 
                     // Set the count, handling cases where less than 5 entries are returned.
+                    Log.i(TAG, "Places size " + likelyPlaces.getPlaceLikelihoods().size());
+
                     int count;
                     if (likelyPlaces.getPlaceLikelihoods().size() < M_MAX_ENTRIES) {
                         count = likelyPlaces.getPlaceLikelihoods().size();
@@ -388,9 +390,11 @@ public class MapsFragment extends Fragment implements GoogleMap.OnInfoWindowClic
                         // Build a list of likely places to show the user.
                         likelyPlaceNames[i] = placeLikelihood.getPlace().getName();
                         likelyPlaceAddresses[i] = placeLikelihood.getPlace().getAddress();
-                        likelyPlaceAttributions[i] = placeLikelihood.getPlace()
-                                .getAttributions();
+                        likelyPlaceAttributions[i] = placeLikelihood.getPlace().getAttributions();
                         likelyPlaceLatLngs[i] = placeLikelihood.getPlace().getLatLng();
+                        Log.i(TAG, "Places attributions " + placeLikelihood.getPlace().getAttributions());
+                        Log.i(TAG, "Places types " + placeLikelihood.getPlace().getTypes());
+
 
                         i++;
                         if (i > (count - 1)) {
@@ -423,27 +427,24 @@ public class MapsFragment extends Fragment implements GoogleMap.OnInfoWindowClic
 
     private void openPlacesDialog() {
         // Ask the user to choose the place where they are now.
-        DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // The "which" argument contains the position of the selected item.
-                LatLng markerLatLng = likelyPlaceLatLngs[which];
-                String markerSnippet = likelyPlaceAddresses[which];
-                if (likelyPlaceAttributions[which] != null) {
-                    markerSnippet = markerSnippet + "\n" + likelyPlaceAttributions[which];
-                }
-
-                // Add a marker for the selected place, with an info window
-                // showing information about that place.
-                mMap.addMarker(new MarkerOptions()
-                        .title(likelyPlaceNames[which])
-                        .position(markerLatLng)
-                        .snippet(markerSnippet));
-
-                // Position the map's camera at the location of the marker.
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(markerLatLng,
-                        DEFAULT_ZOOM));
+        DialogInterface.OnClickListener listener = (dialog, which) -> {
+            // The "which" argument contains the position of the selected item.
+            LatLng markerLatLng = likelyPlaceLatLngs[which];
+            String markerSnippet = likelyPlaceAddresses[which];
+            if (likelyPlaceAttributions[which] != null) {
+                markerSnippet = markerSnippet + "\n" + likelyPlaceAttributions[which];
             }
+
+            // Add a marker for the selected place, with an info window
+            // showing information about that place.
+            mMap.addMarker(new MarkerOptions()
+                    .title(likelyPlaceNames[which])
+                    .position(markerLatLng)
+                    .snippet(markerSnippet));
+
+            // Position the map's camera at the location of the marker.
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(markerLatLng,
+                    DEFAULT_ZOOM));
         };
 
         // Display the dialog.
