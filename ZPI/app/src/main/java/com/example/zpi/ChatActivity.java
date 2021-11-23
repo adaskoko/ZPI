@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,7 +33,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -67,28 +70,7 @@ public class ChatActivity extends AppCompatActivity {
 
         rvMessages=findViewById(R.id.rv_chat);
         rvMessages.setLayoutManager(new LinearLayoutManager(this));
-        displayChat();
-
-        /*Thread thread = new Thread() {
-
-            @Override
-            public void run() {
-                try {
-                    while (!isInterrupted()) {
-                        Thread.sleep(1000);
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                displayChat();
-                            }
-                        });
-                    }
-                } catch (InterruptedException e) {
-                }
-            }
-        };
-
-        thread.start();*/
+        displayChatInitially();
         new Timer().scheduleAtFixedRate(new TimerTask(){
             @Override
             public void run(){
@@ -99,7 +81,48 @@ public class ChatActivity extends AppCompatActivity {
 
     }
 
+    public void displayChatInitially(){
+        Map<Integer, Message> dictionary =new HashMap<Integer, Message>();
+        ProgressDialog progressDialog = new ProgressDialog(this, ProgressDialog.THEME_DEVICE_DEFAULT_LIGHT);
+        progressDialog.setTitle("Pobieranie danych...");
+        progressDialog.show();
+        final List<Message> returnList=new ArrayList<>();
+        new Thread(()->{
+            try {
+                MessageDao mdao = new MessageDao(BaseConnection.getConnectionSource());
+                UserDao userDao = new UserDao(BaseConnection.getConnectionSource());
+                List<Message> results = mdao.getMessagesForConvo(loggedUser, otherUser);
+                if (results != null) {
+                    for (Message m : results) {
+                        returnList.add(m);
+                        User receiver=m.getReceiver();
+                        userDao.refresh(receiver);
+                        if(loggedUser.getID()==receiver.getID() && m.isRead()==false) {
+                            Log.i("msg", "set to read");
+                            m.setRead(true);
+                        }
+                        mdao.update(m);
+                    }
+                }
+
+                runOnUiThread(()->{
+                    MessageListAdapter adapter=new MessageListAdapter(this,returnList);
+                    rvMessages.setLayoutManager(new LinearLayoutManager(this));
+                    rvMessages.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+                    rvMessages.scrollToPosition(returnList.size()-1);
+                    progressDialog.dismiss();
+                });
+
+            }catch(SQLException throwables){
+                throwables.printStackTrace();
+                    progressDialog.dismiss();
+            }
+        }).start();
+    }
+
     public void displayChat(){
+        Map<Integer, Message> dictionary =new HashMap<Integer, Message>();
         final List<Message> returnList=new ArrayList<>();
         new Thread(()->{
             try {

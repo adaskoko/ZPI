@@ -106,6 +106,8 @@ public class AddToDoFragment extends Fragment implements DatePickerDialog.OnDate
                 Calendar.getInstance().get(Calendar.MONTH),
                 Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
         );
+        datePickerDialog.getDatePicker().setMaxDate(currTrip.getEndDate().getTime());
+        datePickerDialog.getDatePicker().setMinDate(new Date().getTime());
         datePickerDialog.show();
     }
 

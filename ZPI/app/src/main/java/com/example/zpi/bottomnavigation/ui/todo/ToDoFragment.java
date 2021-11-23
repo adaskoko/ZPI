@@ -1,5 +1,7 @@
 package com.example.zpi.bottomnavigation.ui.todo;
 
+import static com.example.zpi.bottomnavigation.BottomNavigationActivity.TRIP_KEY;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -100,6 +102,7 @@ public class ToDoFragment extends Fragment implements TodoRecyclerViewAdapter.On
         PreparationPoint point = todoRecyclerViewAdapter.getTodo(position);
         Bundle bundle = new Bundle();
         bundle.putSerializable(TODO_KEY, point);
+        bundle.putSerializable(TRIP_KEY, currTrip);
         Navigation.findNavController(getView()).navigate(R.id.todoDetailsFragment, bundle);
         Log.i("todo click", "clicked:" + position);
     }
