@@ -1,5 +1,6 @@
 package com.example.zpi.bottomnavigation.ui.plan;
 
+import static com.example.zpi.bottomnavigation.BottomNavigationActivity.TRIP_KEY;
 import static com.example.zpi.bottomnavigation.ui.plan.PlanFragment.PLAN_KEY;
 
 import android.os.Bundle;
@@ -14,16 +15,19 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.zpi.R;
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.databinding.FragmentAccomodationDetailsBinding;
+import com.example.zpi.models.Trip;
 import com.example.zpi.models.TripPoint;
 import com.example.zpi.repositories.TripPointDao;
 import com.example.zpi.repositories.TripPointLocationDao;
 
 import java.sql.SQLException;
+import java.util.Date;
 
 public class AccommodationDetailsFragment extends Fragment {
 
     private TripPoint actPoint;
     FragmentAccomodationDetailsBinding binding;
+    private Trip currTrip;
 
     public AccommodationDetailsFragment() {
         // Required empty public constructor
@@ -34,6 +38,7 @@ public class AccommodationDetailsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             actPoint = (TripPoint) getArguments().get(PLAN_KEY);
+            currTrip=(Trip) getArguments().get(TRIP_KEY);
         }
     }
 
@@ -42,6 +47,13 @@ public class AccommodationDetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentAccomodationDetailsBinding.inflate(inflater, container, false);
         fillTextView();
+        Date tripEndDate=currTrip.getEndDate();
+        Date today=new Date();
+
+        if(tripEndDate.before(today)){
+            binding.btnDeleteAccomodation.setVisibility(View.INVISIBLE);
+            binding.btnEditAccomodation.setVisibility(View.INVISIBLE);
+        }
         binding.btnDeleteAccomodation.setOnClickListener(c->delete());
         binding.btnEditAccomodation.setOnClickListener(c->edit());
         return binding.getRoot();

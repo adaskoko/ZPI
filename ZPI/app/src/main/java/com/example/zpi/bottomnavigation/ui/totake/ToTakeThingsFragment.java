@@ -1,5 +1,7 @@
 package com.example.zpi.bottomnavigation.ui.totake;
 
+import static com.example.zpi.bottomnavigation.BottomNavigationActivity.TRIP_KEY;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -108,6 +110,7 @@ public class ToTakeThingsFragment extends Fragment implements ToTakeThingRecycle
         ProductToTake product=toTakeThingRecyclerViewAdapter.getProduct(position);
         Bundle bundle=new Bundle();
         bundle.putSerializable(TOTAKE_KEY, product);
+        bundle.putSerializable(TRIP_KEY, currTrip);
         Navigation.findNavController(getView()).navigate(R.id.toTakeThingsDetailsFragment, bundle);
         Log.i("to take thing click", "clicked: "+ position);
     }

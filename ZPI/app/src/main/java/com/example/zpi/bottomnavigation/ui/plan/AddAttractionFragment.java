@@ -167,6 +167,8 @@ public class AddAttractionFragment extends Fragment implements DatePickerDialog.
                 Calendar.getInstance().get(Calendar.MONTH),
                 Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
         );
+        datePickerDialog.getDatePicker().setMaxDate(currTrip.getEndDate().getTime());
+        datePickerDialog.getDatePicker().setMinDate(currTrip.getStartDate().getTime());
         datePickerDialog.show();
     }
 

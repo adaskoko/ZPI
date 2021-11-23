@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -36,6 +37,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class ChatListActivity extends AppCompatActivity {
 
@@ -54,12 +56,13 @@ public class ChatListActivity extends AppCompatActivity {
         recyclerView=findViewById(R.id.rvChat);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         loggedUser = SharedPreferencesHandler.getLoggedInUser(getApplicationContext());
-        getChatsForUser();
+        getChatsInitially();
         search=findViewById(R.id.et_search);
         search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
+       
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -79,21 +82,6 @@ public class ChatListActivity extends AppCompatActivity {
             }
         }, 0, 60000);
 
-        //chatWith.add(new User("Aleksandra", "Rzepecka", "123"));
-        //chatWith.add(new User("Jan", "Kowalski", "345"));
-        //Log.i("tag", "Początkowa lista: "+ chatWith.size());
-        //for(User u:chatWith){
-           // Log.i("user z listy", String.valueOf(u.getSurname()));
-        //}
-        //chatWith=getSomeUsers();
-        //for(User u:chatWith){
-           // Log.i("user z listy", String.valueOf(u.getSurname()));
-       // }
-
-
-        //chatListAdapter=new ChatListAdapter(chatWith);
-        //recyclerView.setAdapter(chatListAdapter);
-        //getSomeUsers();
     }
 
     @Override
@@ -101,6 +89,13 @@ public class ChatListActivity extends AppCompatActivity {
 
         super.onResume();
         getChatsForUser();
+        new Timer().scheduleAtFixedRate(new TimerTask(){
+            @Override
+            public void run(){
+
+                getChatsForUser();
+            }
+        }, 0, 60000);
     }
 
     public void finish(View v){
@@ -124,9 +119,46 @@ public class ChatListActivity extends AppCompatActivity {
         chatListAdapter.filterList(filteredList);
     }
 
+    private void getChatsInitially(){
+        Map<Integer, Message> dictionary =new HashMap<Integer, Message>();
+        ProgressDialog progressDialog = new ProgressDialog(this, ProgressDialog.THEME_DEVICE_DEFAULT_LIGHT);
+        progressDialog.setTitle("Pobieranie danych...");
+        progressDialog.show();
+        new Thread(()->{
+            try{
+                ArrayList<User> convos = new ArrayList<>();
+                MessageDao mdao=new MessageDao(BaseConnection.getConnectionSource());
+                //User u= (User) new UserDao(BaseConnection.getConnectionSource()).queryForEq("ID", 24).get(0);
+                List<User> res=mdao.getConvosForUser(loggedUser);
+                if(res.size()!=0){
+                    for(User user :res){
+                        list.add(user);
+                        //Log.i("dao z convosow", String.valueOf(user.getEmail()));
+                        List<Message> mes=mdao.getMessagesForConvo(loggedUser, user);
+                        //Log.i("mes z dao", String.valueOf(mes.size()));
+                        Message latest=mdao.getLastMessageFromList(mes);
+                        dictionary.put(user.getID(), latest);
+                    }
+                }
+                list = convos;
+                runOnUiThread(()->{
+                    ChatListAdapter adapter=new ChatListAdapter(list, dictionary);
+                    recyclerView.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+                    progressDialog.dismiss();
+                });
+            }catch(SQLException throwables){
+                throwables.printStackTrace();
+                progressDialog.dismiss();
+            }
+        }).start();;
+    }
+
     private void getChatsForUser(){
         Map<Integer, Message> dictionary =new HashMap<Integer, Message>();
-
+        ProgressDialog progressDialog = new ProgressDialog(this, ProgressDialog.THEME_DEVICE_DEFAULT_LIGHT);
+        progressDialog.setTitle("Pobieranie danych...");
+        progressDialog.show();
         new Thread(()->{
             try{
                 ArrayList<User> convos = new ArrayList<>();
@@ -150,39 +182,11 @@ public class ChatListActivity extends AppCompatActivity {
                     recyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 });
-
             }catch(SQLException throwables){
                 throwables.printStackTrace();
             }
         }).start();;
     }
-
-    //just a test method, please do not delete
-    /*private List<User> getSomeUsers(){
-        List<User> ret=new ArrayList<>();
-        new Thread(() -> {
-            try {
-                TripParticipantDao tpDao=new TripParticipantDao(BaseConnection.getConnectionSource());
-                UserDao userDao=new UserDao(BaseConnection.getConnectionSource());
-                List<TripParticipant> tripParticipants=tpDao.getForFirstTrip();
-                User u;
-                if(tripParticipants!=null && tripParticipants.size()!=0) {
-                    for (TripParticipant tp:tripParticipants) {
-                        u=tp.getUser();
-                        userDao.refresh(u);
-                        ret.add(u);
-                    }
-                }
-                //runOnUiThread(()->{ChatListAdapter adapter=new ChatListAdapter(ret);
-                    //recyclerView.setAdapter(adapter);
-                   //adapter.notifyDataSetChanged();});
-
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-        }).start();
-        return ret;
-    }*/
 
 
     private class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatListAdapterVh> implements Filterable{

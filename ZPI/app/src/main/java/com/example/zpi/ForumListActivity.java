@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -58,7 +59,7 @@ public class ForumListActivity extends AppCompatActivity {
         currentTrip= (Trip) getIntent().getSerializableExtra(TRIP_KEY);
         tripname = findViewById(R.id.tv_nameOfTheTrip);
         tripname.setText(currentTrip.getName());
-        getThreadsForTrip();
+        getThreadsForTripInitially();
 
         search=findViewById(R.id.et_search);
         search.addTextChangedListener(new TextWatcher() {
@@ -92,7 +93,13 @@ public class ForumListActivity extends AppCompatActivity {
     public void onResume(){
         super.onResume();
         getThreadsForTrip();
+        new Timer().scheduleAtFixedRate(new TimerTask(){
+            @Override
+            public void run(){
 
+                getThreadsForTrip();
+            }
+        }, 0, 60000);
     }
 
     private void filter(String text){
@@ -115,6 +122,33 @@ public class ForumListActivity extends AppCompatActivity {
         intent.putExtra(THREAD_KEY, currentTrip);
         startActivity(intent);
 
+    }
+
+    public void getThreadsForTripInitially(){
+        ProgressDialog progressDialog = new ProgressDialog(this, ProgressDialog.THEME_DEVICE_DEFAULT_LIGHT);
+        progressDialog.setTitle("Pobieranie danych...");
+        progressDialog.show();
+        new Thread(()->{
+            try{
+                Map<Integer, Integer> threadsResopnses=new HashMap<>();
+                ForumThreadDao ftdao=new ForumThreadDao(BaseConnection.getConnectionSource());
+                List<ForumThread> threads=ftdao.getThreadsForTrip(currentTrip);
+                for(ForumThread ft : threads){
+                    threadsResopnses.put(ft.getID(), ftdao.getResponsesCount(ft));
+                }
+                runOnUiThread(()->{
+                    this.threads=threads;
+                    ForumListAdapter adapter=new ForumListAdapter(threads, threadsResopnses);
+                    this.forumListAdapter=adapter;
+                    recyclerView.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+                    progressDialog.dismiss();
+                });
+            }catch(SQLException throwables) {
+                throwables.printStackTrace();
+                progressDialog.dismiss();
+            }
+        }).start();
     }
 
     public void getThreadsForTrip(){

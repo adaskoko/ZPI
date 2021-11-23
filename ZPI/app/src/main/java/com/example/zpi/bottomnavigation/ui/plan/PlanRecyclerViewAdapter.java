@@ -43,10 +43,13 @@ public class PlanRecyclerViewAdapter extends RecyclerView.Adapter<PlanRecyclerVi
         sectionTitle = sectionTitle.substring(0, 5);
         List<TripPoint> items = section.getPointList();
 
+
         holder.sectionTitle.setText(sectionTitle);
 
         PlanChildRecyclerViewAdapter childRecyclerViewAdapter = new PlanChildRecyclerViewAdapter(items, onChildTripPointListener);
         holder.childList.setAdapter(childRecyclerViewAdapter);
+        int height=holder.childList.getMeasuredHeight();
+        holder.line.setMinimumHeight(height);
     }
 
     @Override
@@ -58,11 +61,13 @@ public class PlanRecyclerViewAdapter extends RecyclerView.Adapter<PlanRecyclerVi
     class PlanViewHolder extends RecyclerView.ViewHolder {
         private TextView sectionTitle;
         private RecyclerView childList;
+        private View line;
 
         public PlanViewHolder(@NonNull View itemView) {
             super(itemView);
             sectionTitle = itemView.findViewById(R.id.dayDateTV);
             childList = itemView.findViewById(R.id.list);
+            line=itemView.findViewById(R.id.line);
         }
     }
 }

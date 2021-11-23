@@ -1,5 +1,6 @@
 package com.example.zpi.bottomnavigation.ui.todo;
 
+import static com.example.zpi.bottomnavigation.BottomNavigationActivity.TRIP_KEY;
 import static com.example.zpi.bottomnavigation.ui.todo.ToDoFragment.TODO_KEY;
 
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import com.example.zpi.R;
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.databinding.FragmentTodoDetailsBinding;
 import com.example.zpi.models.PreparationPoint;
+import com.example.zpi.models.Trip;
 import com.example.zpi.models.User;
 import com.example.zpi.repositories.PreparationPointDao;
 import com.example.zpi.repositories.UserDao;
@@ -25,12 +27,14 @@ import com.example.zpi.repositories.UserDao;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class TodoDetailsFragment extends Fragment {
 
     private PreparationPoint actPoint;
     FragmentTodoDetailsBinding binding;
+    private Trip currTrip;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,7 @@ public class TodoDetailsFragment extends Fragment {
         if (getArguments() != null) {
             //actPoint = (PreparationPoint) getArguments().getSerializable(ToDoFragment.TODO_KEY);
             actPoint = (PreparationPoint) getArguments().get(TODO_KEY);
+            currTrip=(Trip) getArguments().get(TRIP_KEY);
         }
     }
 
@@ -48,6 +53,14 @@ public class TodoDetailsFragment extends Fragment {
         fillTextView();
         binding.btnDelete.setOnClickListener(c -> delete());
         binding.btnEdit.setOnClickListener(c -> edit());
+
+        Date tripEndDate=currTrip.getEndDate();
+        Date today=new Date();
+
+        if(tripEndDate.before(today)){
+            binding.btnDelete.setVisibility(View.INVISIBLE);
+            binding.btnEdit.setVisibility(View.INVISIBLE);
+        }
         return binding.getRoot();
     }
 
