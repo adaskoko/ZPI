@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -156,7 +157,10 @@ public class ChatActivity extends AppCompatActivity {
         }).start();
     }
 
-    public void finishChat(){super.finish();}
+    public void finishChat(View v){
+        Intent i = new Intent(this, ChatListActivity.class);
+        startActivity(i);
+    }
 
     public void sendMessage(){
         String content=text.getText().toString();
