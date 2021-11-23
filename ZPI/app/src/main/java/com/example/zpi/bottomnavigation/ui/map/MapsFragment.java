@@ -592,7 +592,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnInfoWindowClic
         TripPointLocation pointLocation;
         TripPoint tripPoint;
         for (int i = 0; i < tripPointList.size(); i++) {
-        //for (TripPointLocation tripPoint : tripPointLocationList) {
+            //for (TripPointLocation tripPoint : tripPointLocationList) {
             pointLocation = tripPointLocationList.get(i);
             tripPoint = tripPointList.get(i);
             mMap.addMarker(new MarkerOptions()

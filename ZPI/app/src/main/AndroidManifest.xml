@@ -84,6 +84,12 @@
             android:name=".TripGridActivity"
             android:exported="true" />
         <activity
+            android:name=".InvoiceDetailsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".InvoicesActivity"
+            android:exported="true" />
+        <activity
             android:name=".ForumListActivity"
             android:exported="true" />
         <activity android:name=".LoginActivity">

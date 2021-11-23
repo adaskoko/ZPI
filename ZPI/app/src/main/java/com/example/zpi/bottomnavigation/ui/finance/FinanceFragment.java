@@ -20,12 +20,10 @@ import android.widget.TextView;
 
 import com.example.zpi.R;
 import com.example.zpi.adapters.FinanceAdapter;
-import com.example.zpi.bottomnavigation.ui.map.MapFragment;
-import com.example.zpi.bottomnavigation.ui.map.MapViewModel;
+import com.example.zpi.adapters.TripAdapter;
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.data_handling.SharedPreferencesHandler;
 import com.example.zpi.databinding.FragmentFinanceBinding;
-import com.example.zpi.databinding.FragmentMapBinding;
 import com.example.zpi.models.Debt;
 import com.example.zpi.models.Debtor;
 import com.example.zpi.models.Invoice;
@@ -34,6 +32,7 @@ import com.example.zpi.models.User;
 import com.example.zpi.models.UserAmount;
 import com.example.zpi.repositories.DebtorDao;
 import com.example.zpi.repositories.InvoiceDao;
+import com.google.android.gms.maps.MapFragment;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -47,9 +46,6 @@ public class FinanceFragment extends Fragment {
     private FragmentFinanceBinding binding;
     private Trip trip;
 
-    public static MapFragment newInstance() {
-        return new MapFragment();
-    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -161,6 +157,13 @@ public class FinanceFragment extends Fragment {
 
             getActivity().runOnUiThread(() -> {
                 FinanceAdapter adapter = new FinanceAdapter(debts, loggedUser);
+
+                adapter.setOnItemClickListener(new FinanceAdapter.ClickListener() {
+                    @Override
+                    public void onItemClick(int position, View v) {
+                    }
+                });
+
                 LinearLayoutManager upcomingLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
                 binding.rvFinances.setLayoutManager(upcomingLayoutManager);
                 binding.rvFinances.setAdapter(adapter);
