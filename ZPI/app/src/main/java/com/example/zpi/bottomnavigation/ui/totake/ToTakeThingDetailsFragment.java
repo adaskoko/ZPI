@@ -1,5 +1,6 @@
 package com.example.zpi.bottomnavigation.ui.totake;
 
+import static com.example.zpi.bottomnavigation.BottomNavigationActivity.TRIP_KEY;
 import static com.example.zpi.bottomnavigation.ui.totake.ToTakeThingsFragment.TOTAKE_KEY;
 
 import android.os.Bundle;
@@ -16,15 +17,18 @@ import com.example.zpi.R;
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.databinding.FragmentToTakeThingDetailsBinding;
 import com.example.zpi.models.ProductToTake;
+import com.example.zpi.models.Trip;
 import com.example.zpi.repositories.ProductToTakeDao;
 
 import java.sql.SQLException;
+import java.util.Date;
 
 
 public class ToTakeThingDetailsFragment extends Fragment {
 
     private ProductToTake actPoint;
     FragmentToTakeThingDetailsBinding binding;
+    private Trip currTrip;
 
     public ToTakeThingDetailsFragment() {
         // Required empty public constructor
@@ -35,6 +39,7 @@ public class ToTakeThingDetailsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             actPoint = (ProductToTake) getArguments().get(TOTAKE_KEY);
+            currTrip=(Trip) getArguments().get(TRIP_KEY);
         }
     }
 
@@ -43,6 +48,13 @@ public class ToTakeThingDetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding=FragmentToTakeThingDetailsBinding.inflate(inflater, container, false);
         fillTextViews();
+        Date tripEndDate=currTrip.getEndDate();
+        Date today=new Date();
+
+        if(tripEndDate.before(today)){
+            binding.btnDeteleToTake.setVisibility(View.INVISIBLE);
+            binding.btnEditToTake.setVisibility(View.INVISIBLE);
+        }
         binding.btnDeteleToTake.setOnClickListener(c->delete());
         binding.btnEditToTake.setOnClickListener(c->edit());
         return binding.getRoot();

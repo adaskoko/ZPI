@@ -43,6 +43,7 @@ public class PlanFragment extends Fragment implements PlanChildRecyclerViewAdapt
     private List<Section> attractionPoints;
     private List<TripPoint> accommodationList;
     private List<TripPoint> points;
+    private View line;
 
 
     @Override
@@ -77,12 +78,20 @@ public class PlanFragment extends Fragment implements PlanChildRecyclerViewAdapt
 
                     AccommodationRecyclerViewAdapter accommodationRecyclerViewAdapter = new AccommodationRecyclerViewAdapter(accommodationList, this);
                     accommodationRV.setAdapter(accommodationRecyclerViewAdapter);
+
                 });
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
         });
         databaseThread.start();
+        Date tripEndDate=currTrip.getEndDate();
+        Date today=new Date();
+
+        if(tripEndDate.before(today)){
+            binding.btnAddAccommodation.setVisibility(View.INVISIBLE);
+            binding.btnAddAttraction.setVisibility(View.INVISIBLE);
+        }
         binding.btnAddAccommodation.setOnClickListener(c -> addAccommodation());
         binding.btnAddAttraction.setOnClickListener(c -> addAttraction());
 
@@ -153,6 +162,7 @@ public class PlanFragment extends Fragment implements PlanChildRecyclerViewAdapt
 
         Bundle bundle = new Bundle();
         bundle.putSerializable(PLAN_KEY, point);
+        bundle.putSerializable(TRIP_KEY, currTrip);
         Log.i("nazwa", point.getName());
         Log.i("typ",point.getTripPointType().getName());
         if (point.getTripPointType().getName().equals("Nocleg")) {

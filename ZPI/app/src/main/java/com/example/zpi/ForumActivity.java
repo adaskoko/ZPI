@@ -9,6 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -89,7 +90,7 @@ public class ForumActivity extends AppCompatActivity {
         initials.setText(loggedUser.getName().substring(0,1).toUpperCase()+loggedUser.getSurname().substring(0,1).toUpperCase());
         name.setText(loggedUser.getName()+" "+ loggedUser.getSurname());
 
-        getCommentsForThread();
+        getCommentsForThreadInitially();
         getResponseCount();
 
         new Timer().scheduleAtFixedRate(new TimerTask(){
@@ -107,6 +108,37 @@ public class ForumActivity extends AppCompatActivity {
         response.setVisibility(View.INVISIBLE);
         addResponse.setVisibility(View.INVISIBLE);
         cancel1.setVisibility(View.INVISIBLE);
+    }
+
+    public void getCommentsForThreadInitially(){
+        List<Comment> list=new ArrayList<>();
+        ProgressDialog progressDialog = new ProgressDialog(this, ProgressDialog.THEME_DEVICE_DEFAULT_LIGHT);
+        progressDialog.setTitle("Pobieranie danych...");
+        progressDialog.show();
+        new Thread(()->{
+            try{
+                ForumThreadDao ftdao=new ForumThreadDao(BaseConnection.getConnectionSource());
+                UserDao udao=new UserDao(BaseConnection.getConnectionSource());
+
+                List<Comment> coms=ftdao.getCommentsForThread(current);
+                if(coms.size()!=0){
+                    for(Comment c:coms){
+                        list.add(c);
+                        User u=c.getUser();
+                        udao.refresh(u);
+                    }
+                }
+                runOnUiThread(()->{
+                    ForumAdapter adapter=new ForumAdapter(list);
+                    recyclerView.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+                    progressDialog.dismiss();
+                });
+            }catch (SQLException throwables){
+                throwables.printStackTrace();
+                progressDialog.dismiss();
+            }
+        }).start();
     }
 
     public void getCommentsForThread(){

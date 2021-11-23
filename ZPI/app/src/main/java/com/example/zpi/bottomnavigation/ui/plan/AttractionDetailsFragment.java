@@ -1,5 +1,6 @@
 package com.example.zpi.bottomnavigation.ui.plan;
 
+import static com.example.zpi.bottomnavigation.BottomNavigationActivity.TRIP_KEY;
 import static com.example.zpi.bottomnavigation.ui.plan.PlanFragment.PLAN_KEY;
 
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import com.example.zpi.R;
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.databinding.FragmentAddAttractionBinding;
 import com.example.zpi.databinding.FragmentAttractionDetailsBinding;
+import com.example.zpi.models.Trip;
 import com.example.zpi.models.TripPoint;
 import com.example.zpi.models.TripPointParticipant;
 import com.example.zpi.models.User;
@@ -33,6 +35,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -41,6 +44,7 @@ public class AttractionDetailsFragment extends Fragment {
 
     private TripPoint actPoint;
     FragmentAttractionDetailsBinding binding;
+    private Trip currTrip;
 //    private ListView list ;
 //    private ArrayAdapter<String> adapter ;
 
@@ -54,6 +58,7 @@ public class AttractionDetailsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             actPoint = (TripPoint) getArguments().get(PLAN_KEY);
+            currTrip=(Trip) getArguments().get(TRIP_KEY);
         }
     }
 
@@ -62,6 +67,13 @@ public class AttractionDetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentAttractionDetailsBinding.inflate(inflater, container, false);
         fillTextViews();
+        Date tripEndDate=currTrip.getEndDate();
+        Date today=new Date();
+
+        if(tripEndDate.before(today)){
+            binding.btnDeleteAttraction.setVisibility(View.INVISIBLE);
+            binding.btnEditAttraction.setVisibility(View.INVISIBLE);
+        }
         binding.btnDeleteAttraction.setOnClickListener(c -> delete());
         binding.btnEditAttraction.setOnClickListener(c -> edit());
         return binding.getRoot();
