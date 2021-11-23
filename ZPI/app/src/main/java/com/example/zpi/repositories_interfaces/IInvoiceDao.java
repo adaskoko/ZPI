@@ -10,7 +10,10 @@ import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 
 public interface IInvoiceDao  extends Dao<Invoice, Integer> {
+
+    public List<Invoice> getInvoicesFromTrip(Trip trip) throws SQLException;
 
 }
