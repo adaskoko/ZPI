@@ -4,39 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:background="#F3F3F3">
 
     <LinearLayout
+        android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginBottom="386dp"
-        android:weightSum="100"
+        android:layout_height="wrap_content"
         android:background="#263238"
-        app:layout_constraintBottom_toTopOf="@+id/rv_chat"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:paddingTop="22dp"
+            android:paddingBottom="22dp">
+
+            <TextView
+                android:id="@+id/tv_initialsCircle"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/text_view_circle"
+                android:backgroundTint="#FFFFFF"
+                android:fontFamily="@font/poppins_light"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="AR"
+                android:textColor="@color/primary_dark"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_other_name"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="20dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="22dp"
+                android:layout_weight="4"
                 android:fontFamily="@font/poppins_light"
+                android:gravity="center_vertical"
+                android:text="sodhnsdkvn"
+                android:textAlignment="gravity"
                 android:textColor="@color/white"
-                android:textSize="30sp"
-                android:layout_weight="1"/>
+                android:textSize="20sp" />
 
-            <ImageButton
+            <ImageView
+                android:id="@+id/imageView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/transparent"
-                android:src="@drawable/ic_x"
-                android:onClick="finishChat"/>
+                android:padding="7dp"
+                app:srcCompat="@drawable/ic_x" />
+
         </TableRow>
 
     </LinearLayout>
@@ -46,10 +64,15 @@
         android:id="@+id/rv_chat"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="16dp"
+        android:layout_marginVertical="12dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toTopOf="@+id/tv_realtive"
-         />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
+        app:stackFromEnd="true" />
 
     <TextView
         android:id="@+id/tv_realtive"
@@ -71,9 +94,11 @@
         android:id="@+id/rl_chatbox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#263238"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="#263238">
+        app:layout_constraintStart_toStartOf="parent">
 
 
         <EditText
@@ -81,12 +106,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginStart="16dp"
-            android:layout_toStartOf="@+id/btn_send"
-            android:background="@drawable/rounded_component"
+            android:background="@drawable/rounded_message_write"
             android:hint="Wiadomość.."
             android:inputType="text"
             android:maxLines="6"
+            android:padding="12dp"
+            android:paddingVertical="12dp"
+            android:paddingStart="22dp"
+            android:paddingEnd="50dp"
             tools:ignore="Autofill" />
 
         <ImageButton

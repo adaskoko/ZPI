@@ -31,6 +31,7 @@ public class AddForumThreadActivity extends AppCompatActivity {
     User loggedUser;
     TextView initials;
     TextView name;
+    TextView tripName;
     EditText threadName;
     EditText message;
     Trip currentTrip;
@@ -53,6 +54,9 @@ public class AddForumThreadActivity extends AppCompatActivity {
         message=findViewById(R.id.et_comment);
 
         currentTrip= (Trip) getIntent().getSerializableExtra(THREAD_KEY);
+
+        tripName = findViewById(R.id.tv_nameOfTrip);
+        tripName.setText(currentTrip.getName());
     }
 
     public void chooseList(View v){

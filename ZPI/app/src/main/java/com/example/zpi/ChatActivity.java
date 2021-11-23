@@ -45,6 +45,7 @@ public class ChatActivity extends AppCompatActivity {
     ImageButton buttonSend;
     private static final int REFRESH_TIME=30000;//30s
     TextView otherUserName;
+    TextView initials;
 
 
     @Override
@@ -58,6 +59,10 @@ public class ChatActivity extends AppCompatActivity {
         buttonSend.setOnClickListener(c->sendMessage());
         otherUserName=findViewById(R.id.tv_other_name);
         otherUserName.setText(otherUser.getName()+" "+ otherUser.getSurname());
+
+        String sInitials=otherUser.getName().substring(0,1).toUpperCase()+otherUser.getSurname().substring(0,1).toUpperCase();
+        initials=findViewById(R.id.tv_initialsCircle);
+        initials.setText(sInitials);
 
         rvMessages=findViewById(R.id.rv_chat);
         rvMessages.setLayoutManager(new LinearLayoutManager(this));
@@ -187,13 +192,21 @@ public class ChatActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position){
             Message message=messageList.get(position);
+            Message prevMessage = null;
+            if (position!=0) prevMessage=messageList.get(position-1);
             switch (holder.getItemViewType()){
                 case VIEW_TYPE_MESSAGE_SENT:
-                    ((SentMessageHolder) holder).bind(message);
+                    ((SentMessageHolder) holder).bind(message, prevMessage);
                     break;
                 case  VIEW_TYPE_MESSAGE_RECEIVED:
-                    ((ReceivedMessageHolder) holder).bind(message);
+                    ((ReceivedMessageHolder) holder).bind(message, prevMessage);
             }
+        }
+
+        private boolean isSameDay(Date firstDate, Date secondDate){
+            if (firstDate.getYear() != secondDate.getYear()) return false;
+            if (firstDate.getMonth() != secondDate.getMonth()) return false;
+            return firstDate.getDate() == secondDate.getDate();
         }
 
         private class ReceivedMessageHolder extends RecyclerView.ViewHolder{
@@ -211,7 +224,10 @@ public class ChatActivity extends AppCompatActivity {
                 dateText=itemView.findViewById(R.id.tv_date_other);
             }
 
-            void bind(Message message){
+            void bind(Message message, Message prevMessage){
+                if (prevMessage!= null && isSameDay(prevMessage.getSendingDate(),message.getSendingDate())) {
+                    dateText.setVisibility(View.GONE);
+                }
                 messageText.setText(message.getContent());
                 DateFormat dateFormat = new SimpleDateFormat("HH:mm");
                 DateFormat dateFormat1=new SimpleDateFormat("dd.MM");
@@ -236,7 +252,10 @@ public class ChatActivity extends AppCompatActivity {
                 dateText=itemView.findViewById(R.id.tv_date_loggeduser);
             }
 
-            void bind(Message message){
+            void bind(Message message, Message prevMessage){
+                if (prevMessage != null && isSameDay(prevMessage.getSendingDate(),message.getSendingDate())) {
+                    dateText.setVisibility(View.GONE);
+                }
                 messageText.setText(message.getContent());
                 DateFormat dateFormat = new SimpleDateFormat("HH:mm");
                 DateFormat dateFormat1=new SimpleDateFormat("dd.MM");

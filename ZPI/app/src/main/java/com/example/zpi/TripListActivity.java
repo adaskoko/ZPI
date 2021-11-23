@@ -158,4 +158,9 @@ public class TripListActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CreateTripActivity.class);
         startActivity(intent);
     }
+
+    public void openChat(View v){
+        Intent intent=new Intent(this, ChatListActivity.class);
+        startActivity(intent);
+    }
 }
