@@ -27,6 +27,9 @@ public class Message implements Serializable {
 	@Column(name="SendingDate", nullable=false)	
 	@Temporal(TemporalType.DATE)	
 	private java.util.Date sendingDate;
+
+	@Column(name="Read", nullable=true)
+	private boolean read;
 	
 	@ManyToOne(targetEntity= User.class, fetch=FetchType.LAZY)
 	@JoinColumn(name="SenderID", referencedColumnName="ID", nullable=false)
@@ -58,6 +61,14 @@ public class Message implements Serializable {
 	
 	public java.util.Date getSendingDate() {
 		return sendingDate;
+	}
+
+	public boolean isRead() {
+		return read;
+	}
+
+	public void setRead(boolean read) {
+		this.read = read;
 	}
 	
 	public void setSender(User value) {
