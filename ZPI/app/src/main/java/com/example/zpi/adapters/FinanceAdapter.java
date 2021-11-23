@@ -1,26 +1,32 @@
 package com.example.zpi.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.zpi.R;
+import com.example.zpi.data_handling.SharedPreferencesHandler;
 import com.example.zpi.models.Debt;
+import com.example.zpi.models.User;
 
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class FinanceAdapter extends RecyclerView.Adapter<FinanceAdapter.ViewHolder> {
 
     List<Debt> debts;
     private ClickListener clickListener;
+    User loggedUser;
 
-    public FinanceAdapter(List<Debt> debts) {
+    public FinanceAdapter(List<Debt> debts, User loggedUser) {
         this.debts = debts;
+        this.loggedUser = loggedUser;
     }
 
     @NonNull
@@ -43,9 +49,18 @@ public class FinanceAdapter extends RecyclerView.Adapter<FinanceAdapter.ViewHold
         TextView amountTv = holder.amountTV;
         TextView initialsTV = holder.initialsTV;
 
+        /*if(debt.getTo().getID() == loggedUser.getID()){
+            CardView card = holder.card;
+            card.getBackground().setTint(Color.parseColor("#96D76F"));
+        }
+        if(debt.getFrom().getID() == loggedUser.getID()){
+            CardView card = holder.card;
+            card.getBackground().setTint(Color.parseColor("#A30000"));
+        }*/
+
         fromTV.setText(debt.getFrom().getName() + " " + debt.getFrom().getSurname());
         toTV.setText(debt.getTo().getName() + " " + debt.getTo().getSurname());
-        amountTv.setText(String.valueOf(debt.getAmount()) + " zł");
+        amountTv.setText(String.valueOf(debt.getAmount().intValue()) + " zł");
         initialsTV.setText(String.valueOf(debt.getFrom().getName().charAt(0)).toUpperCase() + String.valueOf(debt.getFrom().getSurname().charAt(0)).toUpperCase());
     }
 
@@ -64,6 +79,7 @@ public class FinanceAdapter extends RecyclerView.Adapter<FinanceAdapter.ViewHold
         public TextView toTV;
         public TextView amountTV;
         public TextView initialsTV;
+        public CardView card;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -71,6 +87,7 @@ public class FinanceAdapter extends RecyclerView.Adapter<FinanceAdapter.ViewHold
             toTV = (TextView) itemView.findViewById(R.id.tv_to);
             amountTV = (TextView) itemView.findViewById(R.id.tv_amount);
             initialsTV = (TextView) itemView.findViewById(R.id.tv_initials);
+            card = (CardView) itemView.findViewById(R.id.cv_initials);
 
             itemView.setOnClickListener(this);
         }

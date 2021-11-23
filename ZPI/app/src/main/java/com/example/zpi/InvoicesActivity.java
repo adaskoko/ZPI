@@ -74,6 +74,13 @@ public class InvoicesActivity extends AppCompatActivity {
     private void showInvoice(int position) {
         Intent intent = new Intent(this, InvoiceDetailsActivity.class);
         intent.putExtra("INVOICE", invoices.get(position));
+        intent.putExtra("TRIP", trip);
+        startActivity(intent);
+    }
+
+    public void addInvoice(View view) {
+        Intent intent = new Intent(this, InvoiceDetailsActivity.class);
+        intent.putExtra("TRIP", trip);
         startActivity(intent);
     }
 }

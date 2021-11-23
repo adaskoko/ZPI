@@ -4,6 +4,13 @@ import javax.persistence.*;
 @Entity
 @Table(name="Invoice")
 public class Invoice implements Serializable {
+	public Invoice(double price, String description, User user, Trip trip) {
+		this.price = price;
+		this.description = description;
+		this.user = user;
+		this.trip = trip;
+	}
+
 	public Invoice() {
 	}
 	

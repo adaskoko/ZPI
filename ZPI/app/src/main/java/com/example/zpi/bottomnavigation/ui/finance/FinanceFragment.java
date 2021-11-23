@@ -23,12 +23,14 @@ import com.example.zpi.adapters.FinanceAdapter;
 import com.example.zpi.bottomnavigation.ui.map.MapFragment;
 import com.example.zpi.bottomnavigation.ui.map.MapViewModel;
 import com.example.zpi.data_handling.BaseConnection;
+import com.example.zpi.data_handling.SharedPreferencesHandler;
 import com.example.zpi.databinding.FragmentFinanceBinding;
 import com.example.zpi.databinding.FragmentMapBinding;
 import com.example.zpi.models.Debt;
 import com.example.zpi.models.Debtor;
 import com.example.zpi.models.Invoice;
 import com.example.zpi.models.Trip;
+import com.example.zpi.models.User;
 import com.example.zpi.models.UserAmount;
 import com.example.zpi.repositories.DebtorDao;
 import com.example.zpi.repositories.InvoiceDao;
@@ -54,16 +56,23 @@ public class FinanceFragment extends Fragment {
         financeViewModel = new ViewModelProvider(this).get(FinanceViewModel.class);
 
         binding = FragmentFinanceBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
 
         Intent intent = getActivity().getIntent();
         trip = (Trip) intent.getSerializableExtra("TRIP");
+
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
 
         ProgressDialog progressDialog = new ProgressDialog(getContext(), ProgressDialog.THEME_DEVICE_DEFAULT_LIGHT);
         progressDialog.setTitle("Pobieranie danych...");
         getActivity().runOnUiThread(() -> progressDialog.show());
 
         new Thread(() -> {
+            User loggedUser = SharedPreferencesHandler.getLoggedInUser(getActivity().getApplicationContext());
 
             List<UserAmount> paid = new ArrayList<>();
             List<UserAmount> owes = new ArrayList<>();
@@ -122,7 +131,7 @@ public class FinanceFragment extends Fragment {
                 Collections.sort(paid);
                 Collections.sort(owes);
 
-                while(owes.size() > 0){
+                while(owes.size() > 0 && paid.size() > 0){
                     Log.i("owes size", String.valueOf(owes.size()));
                     UserAmount debtor = owes.get(0);
                     UserAmount payer = paid.get(0);
@@ -151,7 +160,7 @@ public class FinanceFragment extends Fragment {
             }
 
             getActivity().runOnUiThread(() -> {
-                FinanceAdapter adapter = new FinanceAdapter(debts);
+                FinanceAdapter adapter = new FinanceAdapter(debts, loggedUser);
                 LinearLayoutManager upcomingLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
                 binding.rvFinances.setLayoutManager(upcomingLayoutManager);
                 binding.rvFinances.setAdapter(adapter);
@@ -160,7 +169,6 @@ public class FinanceFragment extends Fragment {
             progressDialog.dismiss();
         }).start();
 
-        return root;
     }
 
     @Override
