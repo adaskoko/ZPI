@@ -45,8 +45,7 @@
             android:layout_alignRight="@id/tvName"
             android:fontFamily="@font/poppins_light"
             android:text="Co tam"
-            android:textSize="10sp"
-            android:layout_marginBottom="30dp"/>
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tvTime"
@@ -59,6 +58,15 @@
             android:layout_alignTop="@id/tvName"
             android:layout_toEndOf="@id/tvName"
             android:layout_marginLeft="30dp"/>
+
+        <TextView
+            android:id="@+id/tvNew"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvMsg"
+            android:layout_alignLeft="@id/tvName"
+            android:text="NOWA"
+            android:textColor="@android:color/holo_red_dark" />
 
 
     </RelativeLayout>
