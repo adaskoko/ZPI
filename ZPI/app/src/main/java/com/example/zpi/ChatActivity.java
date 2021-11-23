@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -103,11 +104,19 @@ public class ChatActivity extends AppCompatActivity {
                 if (results != null) {
                     for (Message m : results) {
                         returnList.add(m);
+                        User receiver=m.getReceiver();
+                        userDao.refresh(receiver);
+                        if(loggedUser.getID()==receiver.getID() && m.isRead()==false) {
+                            Log.i("msg", "set to read");
+                            m.setRead(true);
+                        }
+                        mdao.update(m);
                     }
                 }
 
                 runOnUiThread(()->{
                     MessageListAdapter adapter=new MessageListAdapter(this,returnList);
+                    rvMessages.setLayoutManager(new LinearLayoutManager(this));
                     rvMessages.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                     rvMessages.scrollToPosition(returnList.size()-1);

@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,6 +74,13 @@ public class ChatListActivity extends AppCompatActivity {
         //chatListAdapter=new ChatListAdapter(chatWith);
         //recyclerView.setAdapter(chatListAdapter);
         //getSomeUsers();
+    }
+
+    @Override
+    protected void onResume() {
+
+        super.onResume();
+        getChatsForUser();
     }
 
     public void finish(View v){
@@ -172,6 +181,7 @@ public class ChatListActivity extends AppCompatActivity {
             User user=chatFriendsForUser.get(position);
             Message current=content.get(user.getID());
             holder.user=user;
+            User receiver=current.getReceiver();
 
             String initials=user.getName().substring(0,1).toUpperCase()+user.getSurname().substring(0,1).toUpperCase();
             String name=user.getName()+" "+ user.getSurname();
@@ -181,6 +191,11 @@ public class ChatListActivity extends AppCompatActivity {
             String mes=current.getContent();
 
             holder.tvMsg.setText(mes);
+            if(current.isRead()==false && loggedUser.getID()==receiver.getID()){
+                holder.tvMsg.setTypeface(holder.tvMsg.getTypeface(), Typeface.BOLD);
+                holder.tvNew.setVisibility(View.VISIBLE);
+                Log.i("msg", "is not read");
+            }
 
             DateFormat dateFormat = new SimpleDateFormat("HH:mm");
             String date = dateFormat.format(current.getSendingDate());
@@ -199,6 +214,7 @@ public class ChatListActivity extends AppCompatActivity {
             TextView tvName;
             TextView tvMsg;
             TextView tvTime;
+            TextView tvNew;
 
             public ChatListAdapterVh(@NonNull View itemView){
                 super(itemView);
@@ -206,6 +222,8 @@ public class ChatListActivity extends AppCompatActivity {
                 tvName=itemView.findViewById(R.id.tvName);
                 tvMsg=itemView.findViewById(R.id.tvMsg);
                 tvTime=itemView.findViewById(R.id.tvTime);
+                tvNew=itemView.findViewById(R.id.tvNew);
+                tvNew.setVisibility(View.INVISIBLE);
 
 
                 itemView.setOnClickListener(v -> {
