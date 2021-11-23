@@ -65,17 +65,17 @@ public class PhotoGalleryActivity extends AppCompatActivity {
                 for (MultimediaFile multimediaFile : multimediaFiles){
                     if(multimediaFile.getPhoto()){
                         Bitmap bitmap = BitmapFactory.decodeStream((InputStream)new URL(multimediaFile.getUrl()).getContent());
-                        bitmaps.add(bitmap);
+                        multimediaFile.setBitmap(bitmap);
                     }else{
                         MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
                         mediaMetadataRetriever.setDataSource(multimediaFile.getUrl(), new HashMap<String, String>());
                         Bitmap thumb = mediaMetadataRetriever.getFrameAtTime();
-                        bitmaps.add(thumb);
+                        multimediaFile.setBitmap(thumb);
                     }
                 }
 
                 runOnUiThread(() -> {
-                    PhotoAdapter photoAdapter = new PhotoAdapter(bitmaps);
+                    PhotoAdapter photoAdapter = new PhotoAdapter(multimediaFiles);
                     photoAdapter.setOnItemClickListener(new PhotoAdapter.ClickListener() {
                         @Override
                         public void onItemClick(int position, View v) {

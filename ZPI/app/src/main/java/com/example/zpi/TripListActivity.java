@@ -58,6 +58,10 @@ public class TripListActivity extends AppCompatActivity {
         new Thread(() -> {
             try {
                 User user = SharedPreferencesHandler.getLoggedInUser(getApplicationContext());
+                TextView currentUser = findViewById(R.id.userTV);
+                assert user != null;
+                String userName = user.getName()+" "+user.getSurname();
+                currentUser.setText(userName);
                 TripDao tripDao = new TripDao(BaseConnection.getConnectionSource());
                 List<List<Trip>> allTrips = tripDao.getPastAndFutureTripsForUser(user);
                 upcomingTrips = (ArrayList<Trip>) allTrips.get(1);

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
@@ -18,8 +17,7 @@
             android:fontFamily="@font/poppins_light"
             android:text="PUNKT WYCIECZKI-ATRAKCJA"
             android:textColor="@color/black"
-            android:textSize="10sp">
-        </TextView>
+            android:textSize="12sp"></TextView>
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -42,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@android:color/transparent"
-                android:src="@drawable/pencil_simple"
+                android:src="@drawable/ic_edit"
                 android:layout_gravity="right"
                 android:layout_weight="10"
                >
@@ -65,7 +63,7 @@
                     android:fontFamily="@font/poppins_light"
                     android:text="Adres"
                     android:textColor="@color/black"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"></TextView>
 
                 <TextView
                     android:id="@+id/tv_pointAddress"
@@ -77,8 +75,9 @@
                     android:drawableTint="@color/white"
                     android:ems="10"
                     android:fontFamily="@font/poppins_light"
-                    android:textSize="14sp"
                     android:inputType="text"
+                    android:padding="12dp"
+                    android:textSize="14sp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -87,21 +86,21 @@
                     android:fontFamily="@font/poppins_light"
                     android:text="Data"
                     android:textColor="@color/black"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"></TextView>
 
                 <TextView
                     android:id="@+id/tv_pointDate"
                     android:layout_width="330dp"
                     android:layout_height="50dp"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginLeft="30dp"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
                     android:ems="10"
                     android:fontFamily="@font/poppins_light"
-                    android:textSize="14sp"
                     android:inputType="text"
-                    android:text="1212"
+                    android:padding="12dp"
+                    android:textSize="14sp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 <TextView
@@ -111,24 +110,51 @@
                     android:fontFamily="@font/poppins_light"
                     android:text="Godzina"
                     android:textColor="@color/black"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"></TextView>
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <TextView
                         android:id="@+id/tv_point_hh"
-                        android:layout_width="80dp"
+                        android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_marginStart="30dp"
+                        android:layout_marginLeft="30dp"
                         android:layout_marginBottom="15dp"
                         android:background="@drawable/rounded"
+                        android:drawableTint="@color/white"
                         android:ems="10"
                         android:fontFamily="@font/poppins_light"
-                        android:text="10:15"
-                        android:textSize="14sp"
-                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                        app:drawableTint="@color/white" />
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:text="10"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_light"
+                        android:text=":"
+                        android:textColor="@color/black"
+                        android:textSize="28sp"></TextView>
+
+                    <TextView
+                        android:id="@+id/tv_point_mm"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/rounded"
+                        android:drawableTint="@color/white"
+                        android:ems="10"
+                        android:fontFamily="@font/poppins_light"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:text="10"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 </TableRow>
 
@@ -152,7 +178,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/przycisk_usun_czerwony"
+                    android:src="@drawable/button_delete"
                     android:layout_gravity="center"
 
                     >

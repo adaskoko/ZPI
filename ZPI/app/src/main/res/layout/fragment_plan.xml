@@ -83,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:scaleType="fitEnd"
                     android:src="@drawable/button_new_point"
-                    app:srcCompat="@drawable/button_new_accomodation" />
+                    app:srcCompat="@drawable/button_new_accommodation" />
 
             </LinearLayout>
 

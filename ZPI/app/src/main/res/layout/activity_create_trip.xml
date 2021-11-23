@@ -13,7 +13,8 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="20dp"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -31,28 +32,16 @@
             android:layout_marginEnd="40dp"
             android:orientation="vertical">
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp">
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ic_back"></ImageButton>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="12dp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:gravity="start|center_vertical"
-                    android:text="Utwórz nową wycieczkę"
-                    android:textAlignment="gravity"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"></TextView>
-
-            </TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="start|center_vertical"
+                android:text="Utwórz nową wycieczkę"
+                android:textAlignment="gravity"
+                android:textColor="@color/black"
+                android:textSize="20sp"></TextView>
 
 
             <TextView

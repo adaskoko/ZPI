@@ -24,24 +24,10 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
 
-                <ImageButton
-                    android:id="@+id/btn_back"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="36dp"
-                    android:background="@android:color/transparent"
-                    android:onClick="back"
-                    android:scaleType="fitStart"
-                    android:src="@drawable/ic_back"
-                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck">
-
-                </ImageButton>
-
                 <TextView
                     android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
                     android:layout_marginTop="36dp"
                     android:fontFamily="@font/rubik_bold"
                     android:gravity="center"

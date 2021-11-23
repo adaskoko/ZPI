@@ -46,12 +46,13 @@
                     android:layout_height="50dp"
                     android:layout_marginStart="30dp"
                     android:layout_marginBottom="15dp"
+                    android:autofillHints="no"
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                    android:autofillHints="no" />
+                    android:padding="12dp"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -71,9 +72,10 @@
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
                     android:ems="10"
+                    android:importantForAutofill="no"
                     android:inputType="text"
-                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                    android:importantForAutofill="no" />
+                    android:padding="12dp"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -94,9 +96,10 @@
                     android:drawableTint="@color/white"
                     android:ems="10"
                     android:hint="rrrr-mm-dd"
+                    android:importantForAutofill="no"
                     android:inputType="date"
-                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                    android:importantForAutofill="no" />
+                    android:padding="12dp"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -126,7 +129,7 @@
                     android:layout_marginBottom="5dp"
                     android:backgroundTint="@android:color/transparent"
                     android:onClick="TODO"
-                    android:src="@drawable/przycisk_dodaj">
+                    android:src="@drawable/button_add">
                 </ImageButton>
             </LinearLayout>
         </ScrollView>

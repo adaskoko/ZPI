@@ -8,7 +8,7 @@
 
     <item
         android:id="@+id/navigation_to_take_things"
-        android:icon="@drawable/ic_resource_package"
+        android:icon="@drawable/ic_to_take"
         android:title="@string/title_to_take_things" />
 
     <item

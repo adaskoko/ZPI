@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@android:color/transparent"
-                android:src="@drawable/pencil_simple"
+                android:src="@drawable/ic_edit"
                 android:layout_gravity="right"
                 android:layout_weight="10"
                 >
@@ -73,11 +73,11 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/rounded"
-                    android:drawableTint="@color/white"
                     android:ems="10"
                     android:fontFamily="@font/poppins_light"
-                    android:textSize="14sp"
                     android:inputType="text"
+                    android:padding="12dp"
+                    android:textSize="14sp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -95,12 +95,11 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/rounded"
-                    android:drawableTint="@color/white"
                     android:ems="10"
                     android:fontFamily="@font/poppins_light"
-                    android:textSize="14sp"
-                    android:textColor="@color/black"
                     android:inputType="text"
+                    android:padding="12dp"
+                    android:textSize="14sp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 
@@ -120,7 +119,7 @@
 
                     <TextView
                         android:id="@+id/tv_accHH"
-                        android:layout_width="80dp"
+                        android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginStart="30dp"
                         android:layout_marginBottom="15dp"
@@ -128,9 +127,35 @@
                         android:drawableTint="@color/white"
                         android:ems="10"
                         android:fontFamily="@font/poppins_light"
-                        android:textSize="28sp"
+                        android:gravity="center"
+                        android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:text="10:55"
+                        android:textSize="18sp"
+                        android:text="10"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_light"
+                        android:text=":"
+                        android:textColor="@color/black"
+                        android:textSize="28sp"/>
+
+                    <TextView
+                        android:id="@+id/tv_accMM"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/rounded"
+                        android:drawableTint="@color/white"
+                        android:ems="10"
+                        android:fontFamily="@font/poppins_light"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:text="10"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 </TableRow>
@@ -151,10 +176,9 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/rounded"
-                    android:drawableTint="@color/white"
-                    android:textColor="@color/black"
                     android:ems="10"
                     android:fontFamily="@font/poppins_light"
+                    android:padding="12dp"
                     android:textSize="14sp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -172,7 +196,7 @@
 
                     <TextView
                         android:id="@+id/tv_accHH2"
-                        android:layout_width="80dp"
+                        android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginStart="30dp"
                         android:layout_marginBottom="15dp"
@@ -180,9 +204,35 @@
                         android:drawableTint="@color/white"
                         android:ems="10"
                         android:fontFamily="@font/poppins_light"
-                        android:textSize="28sp"
+                        android:gravity="center"
+                        android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:text="13:13"
+                        android:textSize="18sp"
+                        android:text="10"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_light"
+                        android:text=":"
+                        android:textColor="@color/black"
+                        android:textSize="28sp"/>
+
+                    <TextView
+                        android:id="@+id/tv_accMM2"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/rounded"
+                        android:drawableTint="@color/white"
+                        android:ems="10"
+                        android:fontFamily="@font/poppins_light"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:text="10"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 </TableRow>
@@ -203,11 +253,11 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/rounded"
-                    android:drawableTint="@color/white"
                     android:ems="10"
                     android:fontFamily="@font/poppins_light"
-                    android:textSize="14sp"
                     android:inputType="text"
+                    android:padding="12dp"
+                    android:textSize="14sp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 
@@ -217,7 +267,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/przycisk_usun_czerwony"
+                    android:src="@drawable/button_delete"
                     android:layout_gravity="center">
                 </ImageButton>
 

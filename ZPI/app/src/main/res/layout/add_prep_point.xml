@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
@@ -12,72 +13,71 @@
         >
 
         <LinearLayout
+            android:id="@+id/top_bar_layout"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="#263238"
-            android:orientation="vertical">
+            android:background="@drawable/trip_bar_bg"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:elevation="20dp">
 
-            <TableRow
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="40dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-                <ImageButton
-                    android:id="@+id/btn_bactToMainTripWindow"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/strzalka_biala"
-                    android:backgroundTint="@android:color/transparent"
-                    android:layout_weight="1"
-                    android:layout_gravity="left">
-                </ImageButton>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_tripname"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/poppins_light"
-
-                    android:textSize="28sp"
-                    android:textStyle="bold"
+                    android:layout_gravity="start"
                     android:layout_weight="30"
-                    android:layout_marginTop="15dp">
+                    android:orientation="vertical">
 
-                </TextView>
+                    <TextView
+                        android:id="@+id/tv_tripname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppins_light"
+                        android:text="Weekend w Berlinie"
+                        android:textColor="@color/primary_dark"
+                        android:textSize="28sp"
+                        android:textStyle="bold">
 
-            </TableRow>
+                    </TextView>
 
-            <TextView
-                android:id="@+id/tv_tripdate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="@color/white"
-                android:layout_gravity="center">
-            </TextView>
+                    <TextView
+                        android:id="@+id/tv_tripdate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppins_light"
+                        android:text="13.10.2021 - 16.10.2021"
+                        android:textColor="@color/primary_dark"
+                        android:textSize="14sp">
 
-
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/tlo_details"
-                android:layout_gravity="center">
-
-            </ImageView>
+                    </TextView>
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dodaj punkt przygotowań"
-            android:layout_marginLeft="30dp"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="24dp"
             android:fontFamily="@font/poppins_light"
-            android:textSize="24sp"
+            android:text="Dodaj punkt przygotowań"
             android:textColor="@color/black"
-            android:layout_marginBottom="30dp">
-        </TextView>
+            android:textSize="24sp"></TextView>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -176,24 +176,30 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/przycisk_dodaj"
+                    android:src="@drawable/button_add"
                     android:layout_gravity="center"
                     android:layout_marginBottom="5dp"
                     android:onClick="">
                 </ImageButton>
 
-                <ImageButton
-                    android:id="@+id/btn_goToChat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:backgroundTint="@android:color/transparent"
-                    android:onClick=""
-                    android:src="@drawable/dark_chat"></ImageButton>
             </LinearLayout>
 
         </ScrollView>
 
     </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:clickable="true"
+        android:onClick="openChat"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:maxImageSize="36dp"
+        app:srcCompat="@drawable/ic_chat_dots"
+        app:tint="@null" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

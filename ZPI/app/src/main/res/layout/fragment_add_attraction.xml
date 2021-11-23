@@ -51,6 +51,7 @@
                     android:drawableTint="@color/white"
                     android:ems="10"
                     android:inputType="textPersonName"
+                    android:padding="12dp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 <!--
@@ -101,18 +102,19 @@
                     android:fontFamily="@font/poppins_light"
                     android:text="Adres"
                     android:textColor="@color/black"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"></TextView>
 
                 <EditText
                     android:id="@+id/adressOfTripPointET"
                     android:layout_width="330dp"
                     android:layout_height="50dp"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginLeft="30dp"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
                     android:ems="10"
                     android:inputType="text"
+                    android:padding="12dp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 <TextView
@@ -135,6 +137,7 @@
                     android:ems="10"
                     android:hint="rrrr-mm-dd"
                     android:inputType="date"
+                    android:padding="12dp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 <TextView
@@ -152,14 +155,42 @@
 
                     <EditText
                         android:id="@+id/hhOfTripPointET"
-                        android:layout_width="80dp"
+                        android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginLeft="30dp"
                         android:layout_marginBottom="15dp"
                         android:background="@drawable/rounded"
                         android:drawableTint="@color/white"
                         android:ems="10"
-                        android:hint="HH:mm"
+                        android:hint="HH"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:inputType="date"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_light"
+                        android:text=":"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"></TextView>
+
+                    <EditText
+                        android:id="@+id/mmOfTripPointET"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/rounded"
+                        android:drawableTint="@color/white"
+                        android:ems="10"
+                        android:hint="MM"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
                         android:inputType="date"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -172,7 +203,7 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="5dp"
                     android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/przycisk_dodaj"/>
+                    android:src="@drawable/button_add"></ImageButton>
 
             </LinearLayout>
         </ScrollView>

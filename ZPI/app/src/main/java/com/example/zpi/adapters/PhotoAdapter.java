@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.zpi.R;
+import com.example.zpi.models.MultimediaFile;
 
 import java.util.List;
 
@@ -16,10 +17,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> {
 
-    List<Bitmap> photos;
+    List<MultimediaFile> photos;
     private ClickListener clickListener;
 
-    public PhotoAdapter(List<Bitmap> photos) {
+    public PhotoAdapter(List<MultimediaFile> photos) {
         this.photos = photos;
     }
 
@@ -36,9 +37,16 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Bitmap photo = photos.get(position);
+        Bitmap photo = photos.get(position).getBitmap();
         ImageView photoIV = holder.imageIV;
         photoIV.setImageBitmap(photo);
+
+        ImageView playIV = holder.playIV;
+        if (photos.get(position).getPhoto()) {
+            playIV.setVisibility(View.INVISIBLE);
+        } else{
+            playIV.setVisibility(View.VISIBLE);
+        }
     }
 
     public void setOnItemClickListener(ClickListener clickListener) {
@@ -53,10 +61,12 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public ImageView imageIV;
+        public ImageView playIV;
 
         public ViewHolder(View itemView) {
             super(itemView);
             imageIV = (ImageView) itemView.findViewById(R.id.iv_image);
+            playIV = (ImageView) itemView.findViewById(R.id.iv_play);
 
             itemView.setOnClickListener(this);
         }

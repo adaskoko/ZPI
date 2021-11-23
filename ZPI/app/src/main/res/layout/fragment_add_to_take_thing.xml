@@ -40,6 +40,7 @@
         android:drawableTint="@color/white"
         android:ems="10"
         android:inputType="textPersonName"
+        android:padding="12dp"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
@@ -68,6 +69,6 @@
         android:layout_marginBottom="5dp"
         android:backgroundTint="@android:color/transparent"
         android:onClick="TODO"
-        android:src="@drawable/przycisk_dodaj"/>
+        android:src="@drawable/button_add"/>
 
 </LinearLayout>
