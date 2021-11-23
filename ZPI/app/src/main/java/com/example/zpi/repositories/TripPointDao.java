@@ -38,15 +38,6 @@ public class TripPointDao extends BaseDaoImpl<TripPoint, Integer> implements ITr
     }
 
     @Override
-    public void addInvoiceToTripPoint(Invoice invoice, TripPoint tripPoint) throws SQLException {
-        //tripPoint.setInvoice(invoice);
-        invoice.setTripPoint(tripPoint);
-
-        //this.update(tripPoint);
-        new InvoiceDao(connectionSource).update(invoice);
-    }
-
-    @Override
     public void addUserToTripPoint(User user, TripPoint tripPoint, double charge) throws SQLException {
         TripPointParticipant participant = new TripPointParticipant(charge, user, tripPoint);
         new TripPointParticipantDao(connectionSource).create(participant);

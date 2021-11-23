@@ -13,6 +13,7 @@ import androidx.navigation.ui.NavigationUI;
 
 
 import com.example.zpi.ChatListActivity;
+import com.example.zpi.InvoicesActivity;
 import com.example.zpi.PhotoGalleryActivity;
 import com.example.zpi.R;
 
@@ -44,7 +45,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
         binding.tvTripname.setText(trip.getName());
         String startDate = dateFormat.format(trip.getStartDate());
         String endDate = dateFormat.format(trip.getEndDate());
-        startDate += "  -  ";
+        startDate += " - ";
         startDate += endDate;
         binding.tvTripdate.setText(startDate);
 
@@ -64,6 +65,12 @@ public class BottomNavigationActivity extends AppCompatActivity {
 
     public void goToPhotos(View v){
         Intent intent = new Intent(this, PhotoGalleryActivity.class);
+        intent.putExtra(TRIP_KEY, trip);
+        startActivity(intent);
+    }
+
+    public void goToInvoices(View view) {
+        Intent intent = new Intent(this, InvoicesActivity.class);
         intent.putExtra(TRIP_KEY, trip);
         startActivity(intent);
     }
