@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@android:color/transparent"
-            android:onClick="updateName"
+            android:onClick="updateSurname"
             android:src="@drawable/button_confirm"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck">
 
