@@ -73,12 +73,21 @@ public class TripListActivity extends AppCompatActivity {
                             Log.d(getClass().getSimpleName(), "location = null " + String.valueOf(lastKnownLocation == null));
                             UserLocationDao userLocationDao = new UserLocationDao(BaseConnection.getConnectionSource());
                             Log.d(getClass().getSimpleName(), "location " + lastKnownLocation.getLatitude()+", "+lastKnownLocation.getLongitude());
-                            UserLocation userLocation = new UserLocation(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude(), new Date(), user);
+                            //UserLocation userLocation = new UserLocation(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude(), new Date(), user);
                             //userLocationDao.create(new UserLocation(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude(), new Date(), user));
                             Log.d(getClass().getSimpleName(), "user location dao " + String.valueOf(userLocationDao == null));
+                            UserLocation userLocation = userLocationDao.getUserLocationByUser(user);
                             Log.d(getClass().getSimpleName(), "user location " + String.valueOf(userLocation == null));
 
-                            userLocationDao.create(userLocation);
+                            if (userLocation == null) {
+                                userLocation = new UserLocation(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude(), new Date(), user);
+                                userLocationDao.create(userLocation);
+                            } else {
+                                userLocation.setLatitude(lastKnownLocation.getLatitude());
+                                userLocation.setLongitude(lastKnownLocation.getLongitude());
+                                userLocation.setTime(new Date());
+                                userLocationDao.update(userLocation);
+                            }
                             //userLocationDao.create(new UserLocation());
                         } catch (SQLException throwables) {
                             throwables.printStackTrace();
