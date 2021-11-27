@@ -85,9 +85,10 @@
                 android:drawableTint="@color/white"
                 android:ems="10"
                 android:fontFamily="@font/poppins_light"
+                android:gravity="start"
                 android:inputType="text"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
+                android:padding="12dp"
+                android:textAlignment="gravity"
                 tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"></EditText>
 
             <TextView

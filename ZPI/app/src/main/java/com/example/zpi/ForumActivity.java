@@ -15,7 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.zpi.data_handling.BaseConnection;
@@ -27,12 +27,10 @@ import com.example.zpi.models.User;
 import com.example.zpi.repositories.CommentDao;
 import com.example.zpi.repositories.ForumThreadDao;
 import com.example.zpi.repositories.UserDao;
-import com.j256.ormlite.dao.DaoManager;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -48,9 +46,8 @@ public class ForumActivity extends AppCompatActivity {
     TextView thread;
     Trip currentTrip;
     ConstraintLayout response;
-    ImageButton respond;
-    ImageButton addResponse;
-    ImageButton cancel1;
+    ImageView addResponse;
+    ImageView cancel1;
     TextView respCount;
     TextView initials;
     TextView name;
@@ -73,14 +70,10 @@ public class ForumActivity extends AppCompatActivity {
         trip.setText(currentTrip.getName());
 
         response=findViewById(R.id.response_layout);
-        //response.setVisibility(View.INVISIBLE);
 
-        respond=findViewById(R.id.btn_respond);
-        addResponse=findViewById(R.id.btn_add_response);
+        addResponse=findViewById(R.id.btn_respond);
         cancel1=findViewById(R.id.btn_cancel1);
 
-        //addResponse.setVisibility(View.INVISIBLE);
-        //cancel1.setVisibility(View.INVISIBLE);
         hideResponseLayout();
 
         respCount=findViewById(R.id.tv_respCount);
@@ -213,6 +206,22 @@ public class ForumActivity extends AppCompatActivity {
         cancel1.setVisibility(View.INVISIBLE);
     }
 
+    public void deleteComment(Comment comment){
+        new Thread(() -> {
+            try {
+                CommentDao cDao = new CommentDao(BaseConnection.getConnectionSource());
+                cDao.delete(comment);
+                runOnUiThread(()->{
+                    getCommentsForThread();
+                    getResponseCount();
+                });
+                //BaseConnection.closeConnection();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }).start();
+    }
+
     public void finishForum(View v){
         super.finish();
     }
@@ -252,6 +261,10 @@ public class ForumActivity extends AppCompatActivity {
             holder.initials.setText(personInitials);
             holder.person.setText(personName);
             holder.comment.setText(comment.getContent());
+            if(u.getID()==loggedUser.getID()){
+                holder.btnDelete.setVisibility(View.VISIBLE);
+                holder.btnDelete.setOnClickListener(c->deleteComment(comment));
+            }
         }
 
         @Override
@@ -263,12 +276,16 @@ public class ForumActivity extends AppCompatActivity {
             TextView comment;
             TextView initials;
             TextView person;
+            ImageButton btnDelete;
+
 
             public ForumVh(@NonNull View itemView){
                 super(itemView);
                 comment=itemView.findViewById(R.id.tv_comment);
                 initials=itemView.findViewById(R.id.tv_initials1);
                 person=itemView.findViewById(R.id.tv_personName1);
+                btnDelete=itemView.findViewById(R.id.btn_deleteComment);
+                btnDelete.setVisibility(View.INVISIBLE);
             }
         }
     }

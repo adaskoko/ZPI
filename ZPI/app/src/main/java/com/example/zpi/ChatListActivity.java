@@ -91,7 +91,6 @@ public class ChatListActivity extends AppCompatActivity {
         new Timer().scheduleAtFixedRate(new TimerTask(){
             @Override
             public void run(){
-
                 getChatsForUser();
             }
         }, 0, 60000);
@@ -127,14 +126,11 @@ public class ChatListActivity extends AppCompatActivity {
             try{
                 ArrayList<User> convos = new ArrayList<>();
                 MessageDao mdao=new MessageDao(BaseConnection.getConnectionSource());
-                //User u= (User) new UserDao(BaseConnection.getConnectionSource()).queryForEq("ID", 24).get(0);
                 List<User> res=mdao.getConvosForUser(loggedUser);
                 if(res.size()!=0){
                     for(User user :res){
                         convos.add(user);
-                        //Log.i("dao z convosow", String.valueOf(user.getEmail()));
                         List<Message> mes=mdao.getMessagesForConvo(loggedUser, user);
-                        //Log.i("mes z dao", String.valueOf(mes.size()));
                         Message latest=mdao.getLastMessageFromList(mes);
                         dictionary.put(user.getID(), latest);
                     }
