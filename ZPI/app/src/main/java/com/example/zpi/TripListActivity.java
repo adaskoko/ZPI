@@ -1,18 +1,18 @@
 package com.example.zpi;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.zpi.adapters.TripAdapter;
 import com.example.zpi.bottomnavigation.BottomNavigationActivity;
@@ -20,9 +20,15 @@ import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.data_handling.SharedPreferencesHandler;
 import com.example.zpi.models.Trip;
 import com.example.zpi.models.User;
+import com.example.zpi.models.UserLocation;
 import com.example.zpi.repositories.TripDao;
+import com.example.zpi.repositories.UserLocationDao;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.Task;
 
 import java.io.IOException;
+import java.util.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +54,42 @@ public class TripListActivity extends AppCompatActivity {
         upcomingTripsRV = (RecyclerView) findViewById(R.id.rv_upcoming_trips);
         pastTripsRV = (RecyclerView) findViewById(R.id.rv_past_trips);
 
+        saveUserLocation();
         loadTrips();
+    }
+
+    private void saveUserLocation() {
+        new Thread(() -> {
+            User user = SharedPreferencesHandler.getLoggedInUser(getApplicationContext());
+            Log.d(getClass().getSimpleName(), "user == null " + String.valueOf(user == null));
+            FusedLocationProviderClient fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getApplicationContext());
+            @SuppressLint("MissingPermission")
+            final Task<Location> locationResult = fusedLocationProviderClient.getLastLocation();
+            locationResult.addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Location lastKnownLocation = task.getResult();
+                    new Thread(() -> {
+                        try {
+                            Log.d(getClass().getSimpleName(), "location = null " + String.valueOf(lastKnownLocation == null));
+                            UserLocationDao userLocationDao = new UserLocationDao(BaseConnection.getConnectionSource());
+                            Log.d(getClass().getSimpleName(), "location " + lastKnownLocation.getLatitude()+", "+lastKnownLocation.getLongitude());
+                            UserLocation userLocation = new UserLocation(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude(), new Date(), user);
+                            //userLocationDao.create(new UserLocation(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude(), new Date(), user));
+                            Log.d(getClass().getSimpleName(), "user location dao " + String.valueOf(userLocationDao == null));
+                            Log.d(getClass().getSimpleName(), "user location " + String.valueOf(userLocation == null));
+
+                            userLocationDao.create(userLocation);
+                            //userLocationDao.create(new UserLocation());
+                        } catch (SQLException throwables) {
+                            throwables.printStackTrace();
+                        }
+                    }).start();
+
+                } else {
+                    Log.d(getClass().getSimpleName(), "Current location is null. Using defaults.");
+                }
+            });
+        }).start();
     }
 
     private void loadTrips(){

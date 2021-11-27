@@ -18,6 +18,8 @@ public class User implements Serializable {
 		this.joiningDate = Calendar.getInstance().getTime();
 	}
 
+
+
 	public User(String name, String surname, String email) {
 		this.name = name;
 		this.surname = surname;

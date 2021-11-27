@@ -6,6 +6,7 @@ import com.example.zpi.models.TripParticipant;
 import com.example.zpi.models.TripPoint;
 import com.example.zpi.models.TripPointParticipant;
 import com.example.zpi.models.User;
+import com.example.zpi.models.UserLocation;
 import com.example.zpi.repositories_interfaces.IUserDao;
 import com.j256.ormlite.dao.BaseDaoImpl;
 import com.j256.ormlite.support.ConnectionSource;

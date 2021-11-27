@@ -29,10 +29,16 @@ import androidx.fragment.app.Fragment;
 import com.example.zpi.R;
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.models.Trip;
+import com.example.zpi.models.TripParticipant;
 import com.example.zpi.models.TripPoint;
 import com.example.zpi.models.TripPointLocation;
+import com.example.zpi.models.User;
+import com.example.zpi.models.UserLocation;
+import com.example.zpi.repositories.TripParticipantDao;
 import com.example.zpi.repositories.TripPointDao;
 import com.example.zpi.repositories.TripPointLocationDao;
+import com.example.zpi.repositories.UserDao;
+import com.example.zpi.repositories.UserLocationDao;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -61,6 +67,9 @@ import com.google.maps.android.PolyUtil;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.DirectionsRoute;
 
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -70,6 +79,10 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class MapsFragment extends Fragment implements GoogleMap.OnInfoWindowClickListener, GoogleMap.OnPolylineClickListener, DatePickerDialog.OnDateSetListener {
 
@@ -86,7 +99,12 @@ public class MapsFragment extends Fragment implements GoogleMap.OnInfoWindowClic
     private DirectionsRoute currentRoute = null;
     private ArrayList<Marker> POIList = new ArrayList<>();
     private ArrayList<Marker> tripMarkerList = new ArrayList<>();
+    private ArrayList<Marker> userMarkerList = new ArrayList<>();
     private Date chosenDate = null;
+    private ArrayList<User> tripUsers = new ArrayList<>();
+    private ArrayList<UserLocation> tripUsersLocation = new ArrayList<>();
+    private boolean [] selectedUsers;
+    private String [] sUsers;
 
     //tutorial
     private CameraPosition cameraPosition;
@@ -154,41 +172,58 @@ public class MapsFragment extends Fragment implements GoogleMap.OnInfoWindowClic
                     return infoWindow;
                 }
             });
+            getLocationPermission();
             addDirections();
 
-            getLocationPermission();
             //POI
             updateLocationUI();
 
             // Get the current location of the device and set the position of the map.
             getDeviceLocation();
+            getUsersLocation();
         }
     };
 
-    public MapsFragment() {
+    private void getUsersLocation() {
+        new Thread(() -> {
+            if (tripUsers.size() > 0) {
+                tripUsers.clear();
+                tripUsers = new ArrayList<>();
+            }
+            if (tripUsersLocation.size() > 0) {
+                tripUsersLocation.clear();
+                tripUsersLocation = new ArrayList<>();
+            }
+            try {
+                TripParticipantDao tripParticipantDao = new TripParticipantDao(BaseConnection.getConnectionSource());
+                UserLocationDao userLocationDao = new UserLocationDao(BaseConnection.getConnectionSource());
+                List<TripParticipant> tripParticipants = tripParticipantDao.getByTrip(trip);
+                User user;
+                UserLocation userLocation;
+                for (TripParticipant participant : tripParticipants) {
+                    user = participant.getUser();
+                    userLocation = userLocationDao.getUserLocationByUser(user);
+                    if (userLocation != null) {
+                        tripUsers.add(user);
+                        tripUsersLocation.add(userLocation);
+                    }
+                }
+                Log.d(TAG, "trip participants " + tripParticipants.size());
+                Log.d(TAG, "trip participants with location " + tripUsersLocation.size());
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            selectedUsers = new boolean[tripUsers.size()];
+            sUsers = new String[tripUsers.size()];
+            for (int i=0; i<tripUsers.size(); i++) {
+                selectedUsers[i] = false;
+                sUsers[i] = tripUsers.get(i).getName();
+            }
+        }).start();
     }
 
-//    private void addPoints() {
-//        try {
-//            TripPointDao tripPointDao = new TripPointDao(BaseConnection.getConnectionSource());
-//            List<TripPoint> tripPointList = tripPointDao.getTripPointsByTrip(trip);
-//            TripPointLocationDao tripPointLocationDao = new TripPointLocationDao(BaseConnection.getConnectionSource());
-//            TripPointLocation tripPointLocation = null;
-//            LatLng latLng = null;
-//            for ( TripPoint point : tripPointList) {
-//                //tripPointLocation = tripPointLocationDao.getLocation(point);
-//                if (point != null) {
-//                    latLng = new LatLng(tripPointLocation.getLatitude(), tripPointLocation.getLongitude());
-//                    mMap.addMarker(new MarkerOptions()
-//                            .position(latLng)
-//                            .title("nocleg lub atrakcja"));
-//                }
-//            }
-//        } catch (SQLException throwables) {
-//            throwables.printStackTrace();
-//        }
-//
-//    }
+    public MapsFragment() {
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -233,6 +268,43 @@ public class MapsFragment extends Fragment implements GoogleMap.OnInfoWindowClic
         view.findViewById(R.id.info_button).setOnClickListener(v -> showCurrentPlace());
         view.findViewById(R.id.date_picker_button).setOnClickListener(v -> showDatePickerDialog());
         view.findViewById(R.id.clear_button).setOnClickListener(v -> removePOIMarkers());
+        view.findViewById(R.id.person_picker).setOnClickListener(v -> showUserPickerDialog());
+    }
+
+    private void showUserPickerDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+
+        builder.setTitle("Wybierz uczestników");
+        builder.setCancelable(false);
+
+        builder.setMultiChoiceItems(sUsers, selectedUsers, (dialog, which, isChecked) -> {
+            selectedUsers[which] = isChecked;
+        }).setPositiveButton("OK", ((dialog, which) -> {
+            showUsersLocation();
+        })
+        ).setNegativeButton("Zamknij", ((dialog, which) -> {
+            dialog.dismiss();
+        })
+        ).setNeutralButton("Wyczyść", ((dialog, which) -> {
+            Arrays.fill(selectedUsers, false);
+        }));
+        builder.show();
+    }
+
+    private void showUsersLocation() {
+        removeUserMarkers();
+        Marker marker;
+        for (int i = 0; i < selectedUsers.length; i++) {
+            if (selectedUsers[i]) {
+                marker =  mMap.addMarker(new MarkerOptions()
+                        .title(sUsers[i])
+                        .snippet(tripUsers.get(i).getEmail())
+                        .position(new LatLng(tripUsersLocation.get(i).getLatitude(), tripUsersLocation.get(i).getLongitude()))
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW))
+                );
+                userMarkerList.add(marker);
+            }
+        }
     }
 
     /**
@@ -329,27 +401,6 @@ public class MapsFragment extends Fragment implements GoogleMap.OnInfoWindowClic
                         mMap.getUiSettings().setMyLocationButtonEnabled(false);
                     }
                 });
-
-//                locationResult.addOnCompleteListener(locationResult, new OnCompleteListener<Location>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<Location> task) {
-//                        if (task.isSuccessful()) {
-//                            // Set the map's camera position to the current location of the device.
-//                            lastKnownLocation = task.getResult();
-//                            if (lastKnownLocation != null) {
-//                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
-//                                        new LatLng(lastKnownLocation.getLatitude(),
-//                                                lastKnownLocation.getLongitude()), DEFAULT_ZOOM));
-//                            }
-//                        } else {
-//                            Log.d(TAG, "Current location is null. Using defaults.");
-//                            Log.e(TAG, "Exception: %s", task.getException());
-//                            mMap.moveCamera(CameraUpdateFactory
-//                                    .newLatLngZoom(defaultLocation, DEFAULT_ZOOM));
-//                            mMap.getUiSettings().setMyLocationButtonEnabled(false);
-//                        }
-//                    }
-//                });
             }
         } catch (SecurityException e)  {
             Log.e("Exception: %s", e.getMessage(), e);
@@ -360,6 +411,23 @@ public class MapsFragment extends Fragment implements GoogleMap.OnInfoWindowClic
         if (mMap == null) {
             return;
         }
+
+//        OkHttpClient client = new OkHttpClient().newBuilder()
+//                .build();
+//        Request requestHttp = new Request.Builder()
+//                .url("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Museum%20of%20Contemporary%20Art%20Australia&inputtype=textquery&fields=formatted_address%2Cname%2Crating%2Copening_hours%2Cgeometry&key="+getString(R.string.google_maps_key))
+//                .method("GET", null)
+//                .build();
+//        new Thread(() -> {
+//            try {
+//                Response response = client.newCall(requestHttp).execute();
+//                //JSONObject myObject = new JSONObject(response);
+//                Log.d(TAG, "http " + response.toString());
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }).start();
+
 
         if (locationPermissionGranted) {
             // Use fields to define the data types to return.
@@ -401,7 +469,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnInfoWindowClic
                         likelyPlaceAddresses[i] = placeLikelihood.getPlace().getAddress();
                         likelyPlaceAttributions[i] = placeLikelihood.getPlace().getAttributions();
                         likelyPlaceLatLngs[i] = placeLikelihood.getPlace().getLatLng();
-                        Log.i(TAG, "Places attributions " + placeLikelihood.getPlace().getAttributions());
+                        //Log.i(TAG, "Places attributions " + placeLikelihood.getPlace().getAttributions());
                         Log.i(TAG, "Places types " + placeLikelihood.getPlace().getTypes());
 
 
@@ -467,6 +535,15 @@ public class MapsFragment extends Fragment implements GoogleMap.OnInfoWindowClic
                 .show();
     }
 
+    private void removeUserMarkers() {
+        if (userMarkerList.size() > 0) {
+            for (Marker marker : userMarkerList)
+                marker.remove();
+        }
+        userMarkerList.clear();
+        userMarkerList = new ArrayList<>();
+    }
+
     private void removePOIMarkers() {
         if (POIList.size() > 0) {
             for (Marker marker : POIList) {
@@ -530,71 +607,12 @@ public class MapsFragment extends Fragment implements GoogleMap.OnInfoWindowClic
        addDirections();
     }
 
-//    private void getLocation() {
-//        FusedLocationProviderClient mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext());
-//
-//        @SuppressLint("MissingPermission")
-//        final Task<Location> location = mFusedLocationProviderClient.getLastLocation();
-//        location.addOnCompleteListener(task -> {
-//            if(task.isSuccessful()){
-//                Location currentLocation = (Location) task.getResult();
-//                LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-//                Date currentDate = new Date();
-//                Marker m = mMap.addMarker(new MarkerOptions()
-//                        .position(latLng)
-//                        .title("Yours position"));
-//                m.setTag(new ArrayList<>());
-//                moveCamera(latLng, DEFAULT_ZOOM);
-//                Log.d(TAG, "onComplete: found location!, lat: " + currentLocation.getLatitude() + "long: " + currentLocation.getLongitude());
-//
-//            }else{
-//                Log.d(TAG, "onComplete: current location is null");
-//                Toast.makeText(getContext(), "unable to get current location", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
-
-//    private void calculateDirections(Marker marker){
-//        Log.d(TAG, "calculateDirections: calculating directions.");
-//
-//        com.google.maps.model.LatLng destination = new com.google.maps.model.LatLng(
-//                marker.getPosition().latitude,
-//                marker.getPosition().longitude
-//        );
-//        DirectionsApiRequest directions = new DirectionsApiRequest(mGeoApiContext);
-//
-//        directions.alternatives(true);
-//        directions.origin(
-//                new com.google.maps.model.LatLng(KRAKOW.latitude, KRAKOW.longitude)
-//        );
-////        directions.origin(
-////                new com.google.maps.model.LatLng(
-////                        mUserPosition.getGeo_point().getLatitude(),
-////                        mUserPosition.getGeo_point().getLongitude()
-////                )
-////        );
-//        Log.d(TAG, "calculateDirections: destination: " + destination.toString());
-//        directions.destination(destination).setCallback(new PendingResult.Callback<DirectionsResult>() {
-//            @Override
-//            public void onResult(DirectionsResult result) {
-//                Log.d(TAG, "onResult: routes: " + result.routes[0].toString());
-//                Log.d(TAG, "onResult: duration: " + result.routes[0].legs[0].duration);
-//                Log.d(TAG, "onResult: distance: " + result.routes[0].legs[0].distance);
-//                Log.d(TAG, "onResult: geocodedWayPoints: " + result.geocodedWaypoints[0].toString());
-//                addPolylineToMap(result);
-//            }
-//
-//            @Override
-//            public void onFailure(Throwable e) {
-//                Log.e(TAG, "onFailure: " + e.getMessage() );
-//
-//            }
-//        });
-//    }
-
     private void calculateDirections(List<TripPointLocation> tripPointLocationList){
         Log.d(TAG, "tripPointLocation List: " + tripPointLocationList.size());
         Log.d(TAG, "tripPointList: " + tripPointList.size());
+        if (tripPointLocationList.size() < 2) {
+            return;
+        }
         TripPointLocation end = tripPointLocationList.get(1);
         TripPointLocation start = tripPointLocationList.get(0);
 
@@ -662,6 +680,10 @@ public class MapsFragment extends Fragment implements GoogleMap.OnInfoWindowClic
                 tripPointLocationList = new ArrayList<>();
             }
             try {
+                Date date = new Date();
+                if (date.after(trip.getEndDate()) || date.before(trip.getStartDate())) {
+                    chosenDate = trip.getStartDate();
+                }
                 tripPointList = new TripPointDao(BaseConnection.getConnectionSource()).getTripPointsForToday(trip, chosenDate);
                 TripPointLocationDao tripPointLocationDao = new TripPointLocationDao(BaseConnection.getConnectionSource());
                 for (TripPoint point : tripPointList) {
@@ -722,28 +744,6 @@ public class MapsFragment extends Fragment implements GoogleMap.OnInfoWindowClic
             for (int i = 0; i < result.routes[0].legs.length; i++) {
                 mPolylinesData.add(new PolylineData(polyline, result.routes[0].legs[i]));
             }
-
-
-//            for(DirectionsRoute route: result.routes){
-//                Log.d(TAG, "run: leg: " + route.legs[0].toString());
-//                currentRoute = route;
-//                //List<com.google.maps.model.LatLng> decodedPath = PolylineEncoding.decode(route.overviewPolyline.getEncodedPath());
-//                List<LatLng> decodedPath = PolyUtil.decode(result.routes[0].overviewPolyline.getEncodedPath());
-//
-//
-//                Polyline polyline = mMap.addPolyline(new PolylineOptions().addAll(decodedPath));
-//                //Polyline polyline = mMap.addPolyline(new PolylineOptions().addAll(newDecodedPath));
-//                polyline.setColor(ContextCompat.getColor(requireActivity(), R.color.quantum_grey));
-//                polyline.setClickable(true);
-//                mPolylinesData.add(new PolylineData(polyline, route.legs[0]));
-//
-//                double tempDuration = route.legs[0].duration.inSeconds;
-//                if(tempDuration < duration){
-//                    duration = tempDuration;
-//                    onPolylineClick(polyline);
-//                    zoomRoute(polyline.getPoints());
-//                }
-//            }
         });
     }
 

@@ -1,13 +1,22 @@
 package com.example.zpi.models;
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.*;
 @Entity
 @Table(name="UserLocation")
 public class UserLocation implements Serializable {
 	public UserLocation() {
 	}
-	
-	@Column(name="ID", nullable=false, unique=true, length=10)	
+
+	public UserLocation(double latitude, double longitude, Date time, User user) {
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.time = time;
+		this.user = user;
+	}
+
+	@Column(name="ID", nullable=false, unique=true, length=10)
 	@Id	
 	@GeneratedValue(generator="USERLOCATION_ID_GENERATOR")	
 	private int ID;

@@ -79,5 +79,4 @@ public class BottomNavigationActivity extends AppCompatActivity {
         Intent intent=new Intent(this, ChatListActivity.class);
         startActivity(intent);
     }
-
 }
