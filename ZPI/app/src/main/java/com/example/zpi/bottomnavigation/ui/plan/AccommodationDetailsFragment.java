@@ -3,6 +3,7 @@ package com.example.zpi.bottomnavigation.ui.plan;
 import static com.example.zpi.bottomnavigation.BottomNavigationActivity.TRIP_KEY;
 import static com.example.zpi.bottomnavigation.ui.plan.PlanFragment.PLAN_KEY;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ import com.example.zpi.repositories.TripPointLocationDao;
 
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.Objects;
 
 public class AccommodationDetailsFragment extends Fragment {
 
@@ -38,8 +40,10 @@ public class AccommodationDetailsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             actPoint = (TripPoint) getArguments().get(PLAN_KEY);
-            currTrip=(Trip) getArguments().get(TRIP_KEY);
+            //currTrip = (Trip) getArguments().get(TRIP_KEY);
         }
+        Intent intent = requireActivity().getIntent();
+        currTrip = (Trip) intent.getSerializableExtra(TRIP_KEY);
     }
 
     @Override
@@ -47,8 +51,11 @@ public class AccommodationDetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentAccomodationDetailsBinding.inflate(inflater, container, false);
         fillTextView();
-        Date tripEndDate=currTrip.getEndDate();
-        Date today=new Date();
+        Log.i(getClass().getSimpleName(), "trip = null" + String.valueOf(currTrip == null));
+        Log.i(getClass().getSimpleName(), "trip start date" + String.valueOf(currTrip.getStartDate() == null));
+        Log.i(getClass().getSimpleName(), "trip end date" + String.valueOf(currTrip.getEndDate() == null));
+        Date tripEndDate = currTrip.getEndDate();
+        Date today = new Date();
 
         if(tripEndDate.before(today)){
             binding.btnDeleteAccomodation.setVisibility(View.INVISIBLE);

@@ -49,7 +49,7 @@ public class PlanRecyclerViewAdapter extends RecyclerView.Adapter<PlanRecyclerVi
         PlanChildRecyclerViewAdapter childRecyclerViewAdapter = new PlanChildRecyclerViewAdapter(items, onChildTripPointListener);
         holder.childList.setAdapter(childRecyclerViewAdapter);
         int height=holder.childList.getMeasuredHeight();
-        holder.line.setMinimumHeight(height);
+        holder.line.getLayoutParams().height=height;
     }
 
     @Override

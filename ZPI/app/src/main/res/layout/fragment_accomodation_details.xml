@@ -119,7 +119,7 @@
 
                     <TextView
                         android:id="@+id/tv_accHH"
-                        android:layout_width="50dp"
+                        android:layout_width="80dp"
                         android:layout_height="50dp"
                         android:layout_marginStart="30dp"
                         android:layout_marginBottom="15dp"
@@ -131,31 +131,7 @@
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="18sp"
-                        android:text="10"
-                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_light"
-                        android:text=":"
-                        android:textColor="@color/black"
-                        android:textSize="28sp"/>
-
-                    <TextView
-                        android:id="@+id/tv_accMM"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="15dp"
-                        android:background="@drawable/rounded"
-                        android:drawableTint="@color/white"
-                        android:ems="10"
-                        android:fontFamily="@font/poppins_light"
-                        android:gravity="center"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:text="10"
+                        android:text="10:55"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 </TableRow>
@@ -196,7 +172,7 @@
 
                     <TextView
                         android:id="@+id/tv_accHH2"
-                        android:layout_width="50dp"
+                        android:layout_width="80dp"
                         android:layout_height="50dp"
                         android:layout_marginStart="30dp"
                         android:layout_marginBottom="15dp"
@@ -208,31 +184,7 @@
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="18sp"
-                        android:text="10"
-                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_light"
-                        android:text=":"
-                        android:textColor="@color/black"
-                        android:textSize="28sp"/>
-
-                    <TextView
-                        android:id="@+id/tv_accMM2"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="15dp"
-                        android:background="@drawable/rounded"
-                        android:drawableTint="@color/white"
-                        android:ems="10"
-                        android:fontFamily="@font/poppins_light"
-                        android:gravity="center"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:text="10"
+                        android:text="10:55"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 </TableRow>

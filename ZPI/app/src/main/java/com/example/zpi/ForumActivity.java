@@ -206,6 +206,22 @@ public class ForumActivity extends AppCompatActivity {
         cancel1.setVisibility(View.INVISIBLE);
     }
 
+    public void deleteComment(Comment comment){
+        new Thread(() -> {
+            try {
+                CommentDao cDao = new CommentDao(BaseConnection.getConnectionSource());
+                cDao.delete(comment);
+                runOnUiThread(()->{
+                    getCommentsForThread();
+                    getResponseCount();
+                });
+                //BaseConnection.closeConnection();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }).start();
+    }
+
     public void finishForum(View v){
         super.finish();
     }
@@ -245,6 +261,10 @@ public class ForumActivity extends AppCompatActivity {
             holder.initials.setText(personInitials);
             holder.person.setText(personName);
             holder.comment.setText(comment.getContent());
+            if(u.getID()==loggedUser.getID()){
+                holder.btnDelete.setVisibility(View.VISIBLE);
+                holder.btnDelete.setOnClickListener(c->deleteComment(comment));
+            }
         }
 
         @Override
@@ -256,12 +276,16 @@ public class ForumActivity extends AppCompatActivity {
             TextView comment;
             TextView initials;
             TextView person;
+            ImageButton btnDelete;
+
 
             public ForumVh(@NonNull View itemView){
                 super(itemView);
                 comment=itemView.findViewById(R.id.tv_comment);
                 initials=itemView.findViewById(R.id.tv_initials1);
                 person=itemView.findViewById(R.id.tv_personName1);
+                btnDelete=itemView.findViewById(R.id.btn_deleteComment);
+                btnDelete.setVisibility(View.INVISIBLE);
             }
         }
     }
