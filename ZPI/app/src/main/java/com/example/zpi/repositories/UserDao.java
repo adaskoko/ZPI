@@ -73,4 +73,11 @@ public class UserDao extends BaseDaoImpl<User, Integer> implements IUserDao {
 
         return users;
     }
+
+    @Override
+    public List<User> getAllUsers() throws SQLException {
+        List<User> users = super.queryForAll();
+
+        return users;
+    }
 }

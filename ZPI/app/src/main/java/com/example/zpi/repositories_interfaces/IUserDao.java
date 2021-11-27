@@ -13,4 +13,5 @@ public interface IUserDao extends Dao<User, Integer> {
     public List<User> findByNameAndSurname(String name, String surname) throws SQLException;
     public List<User> getUsersFromTrip(Trip trip) throws SQLException;
     public List<User> getUsersByTripPoint(TripPoint tripPoint) throws SQLException;
+    public List<User> getAllUsers() throws SQLException;
 }

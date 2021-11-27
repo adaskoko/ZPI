@@ -4,18 +4,29 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/activity_bottom_navigation.xml" value="0.259375" />
+        <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/activity_forum_list.xml" value="0.11354166666666667" />
         <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/activity_login.xml" value="0.26403985507246375" />
         <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/activity_photo_gallery.xml" value="0.24139492753623187" />
+        <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/activity_single_photo.xml" value="0.24139492753623187" />
         <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/activity_trip_list.xml" value="0.264" />
         <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/activity_trip_main.xml" value="0.259375" />
         <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/activity_update_user.xml" value="0.17708333333333334" />
         <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/activity_update_user_1.xml" value="0.17708333333333334" />
+        <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/activity_upload_photo.xml" value="0.20516304347826086" />
         <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/change_password.xml" value="0.371875" />
+        <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/fragment_single_trip.xml" value="0.18795289855072464" />
+        <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/item_big_photo.xml" value="0.24909420289855072" />
+        <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/item_photo.xml" value="0.24139492753623187" />
+        <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/item_photo_trip.xml" value="0.245018115942029" />
+        <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/item_phototrip.xml" value="0.371875" />
         <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/item_plan.xml" value="0.259375" />
         <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/item_to_take.xml" value="0.259375" />
         <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/item_todo.xml" value="0.259375" />
         <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/item_trip.xml" value="0.259375" />
         <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/login.xml" value="0.26403985507246375" />
+        <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/layout/progress_bar.xml" value="0.1828125" />
+        <entry key="..\:/Dokumenty/Studia/ZPI/APPKA/ZPI/app/src/main/res/menu/bottom_nav_menu.xml" value="0.259375" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.24635416666666668" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/drawable/ic_back.xml" value="0.24635416666666668" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.2546875" />
@@ -23,6 +34,7 @@
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/drawable/przycisk_confirm.xml" value="0.17447916666666666" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/drawable/rounded_component.xml" value="0.2703125" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/drawable/trip_bar_bg.xml" value="0.24635416666666668" />
+        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/drawable/white_border.xml" value="0.25076923076923074" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/activity_bottom_navigation.xml" value="0.264" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/activity_change_password.xml" value="0.21467391304347827" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/activity_change_password_successful.xml" value="0.13020833333333334" />
@@ -40,13 +52,16 @@
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/activity_update_user_surname.xml" value="0.21920289855072464" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/change_password.xml" value="0.21920289855072464" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/component_content.xml" value="0.23731884057971014" />
+        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/custom_info_window.xml" value="0.23854166666666668" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/finance_fragment.xml" value="0.1546875" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/found_user_in_list.xml" value="0.2477355072463768" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_accomodation_details.xml" value="0.15833333333333333" />
+        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_accomodation_edit.xml" value="0.1" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_add_accomodation.xml" value="0.23731884057971014" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_add_to_do.xml" value="0.23731884057971014" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_add_to_take_thing.xml" value="0.2359375" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_attraction_details.xml" value="0.2477355072463768" />
+        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_attraction_edit.xml" value="0.16" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_dashboard.xml" value="0.21920289855072464" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_edit_trip_participants.xml" value="0.23731884057971014" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_finance.xml" value="0.17760416666666667" />
@@ -60,6 +75,8 @@
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_to_take_thing_details.xml" value="0.16" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/fragment_to_take_things.xml" value="0.264" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/item_accommodation.xml" value="0.4" />
+        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/item_participant.xml" value="0.1160081053698075" />
+        <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/item_participant_edit.xml" value="0.1160081053698075" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/item_plan.xml" value="0.4" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/item_to_take.xml" value="0.4" />
         <entry key="..\:/SEM_7/ZPI/project/ZPI/ZPI/app/src/main/res/layout/item_todo.xml" value="0.176" />
@@ -111,28 +128,31 @@
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/drawable/ic_x.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/drawable/rounded.xml" value="0.2703125" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/drawable/rounded_black_edge.xml" value="0.3828125" />
+        <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/drawable/rounded_button.xml" value="0.3828125" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/drawable/rounded_chat_message.xml" value="0.3828125" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/drawable/rounded_component.xml" value="0.3828125" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/drawable/rounded_item_trip.xml" value="0.3828125" />
+        <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/drawable/rounded_link_element.xml" value="0.3828125" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/drawable/rounded_message_received.xml" value="0.3828125" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/drawable/rounded_message_sent.xml" value="0.3828125" />
+        <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/drawable/rounded_search.xml" value="0.3828125" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/drawable/text_view_circle.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/drawable/trip_bar_bg.xml" value="0.2546875" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/drawable/trip_bar_bg_short.xml" value="0.2546875" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/drawable/trip_list_bar.xml" value="0.3828125" />
-        <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/activity_add_forum_thread.xml" value="0.4" />
+        <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/activity_add_forum_thread.xml" value="0.536" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/activity_bottom_navigation.xml" value="0.264" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/activity_change_password.xml" value="0.264" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/activity_change_password_sucessful.xml" value="0.4" />
-        <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/activity_change_user_name.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/activity_change_user_name.xml" value="0.4" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/activity_change_user_surname.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/activity_chat.xml" value="0.4" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/activity_chat_list.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/activity_choose_list_for_thread.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/activity_choose_specific_point_for_thread.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/activity_create_trip.xml" value="0.264" />
-        <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/activity_forum.xml" value="0.13020833333333334" />
-        <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/activity_forum_list.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/activity_forum.xml" value="0.4" />
+        <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/activity_forum_list.xml" value="0.264" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/activity_invite_users.xml" value="0.4" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/activity_login.xml" value="0.4" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/activity_matching_users.xml" value="0.23505434782608695" />
@@ -162,7 +182,7 @@
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/edytuj_nocleg.xml" value="0.20018115942028986" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/edytuj_punkt_przygotowan.xml" value="0.20018115942028986" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/edytuj_rzecz_do_zabrania.xml" value="0.20018115942028986" />
-        <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/forum_label.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/forum_label.xml" value="0.536" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/found_user_in_list.xml" value="0.23505434782608695" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/fragment_accomodation_details.xml" value="0.1" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/fragment_accomodation_edit.xml" value="0.20018115942028986" />
@@ -195,11 +215,13 @@
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/message_sent1.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/message_sent2.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/plan_child_item.xml" value="0.17831813576494426" />
-        <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/row_for_plans.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/row_for_plans.xml" value="0.4" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/trip_mainpanel_fragment.xml" value="0.12" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/trips_main.xml" value="0.4482225656877898" />
+        <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/user_item.xml" value="0.34739583333333335" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/layout/user_spinner_row.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/poczt/OneDrive/Dokumenty/github/ZPI/ZPI/app/src/main/res/xml/searchable.xml" value="0.34739583333333335" />
       </map>
     </option>
   </component>
