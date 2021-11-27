@@ -53,6 +53,7 @@
             android:drawableTint="@color/white"
             android:ems="10"
             android:inputType="textPersonName"
+            android:padding="12dp"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck">
 
         </EditText>

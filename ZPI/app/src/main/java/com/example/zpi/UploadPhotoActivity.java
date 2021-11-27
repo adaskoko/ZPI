@@ -123,6 +123,7 @@ public class UploadPhotoActivity extends AppCompatActivity {
                                             try {
                                                 new PhotoDao(BaseConnection.getConnectionSource()).create(multimediaFile);
                                                 progressDialog.dismiss();
+                                                finish();
                                             } catch (SQLException throwables) {
                                                 throwables.printStackTrace();
                                                 progressDialog.dismiss();

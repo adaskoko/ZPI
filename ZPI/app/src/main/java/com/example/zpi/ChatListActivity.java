@@ -144,7 +144,7 @@ public class ChatListActivity extends AppCompatActivity {
                 throwables.printStackTrace();
                 progressDialog.dismiss();
             }
-        }).start();;
+        }).start();
     }
 
     private void getChatsForUser(){
