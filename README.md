@@ -1,8 +1,8 @@
 # ZPI
 
 ## NOWA Baza danych
-Hostowana na https://www.db4free.net/ 
-Server: db4free.net
+Hostowana na https://www.db4free.net/  
+Server: db4free.net  
 DB Name: zpi_test_db  
 Username: zpi_test_user  
 Password: zpi_test_password  
