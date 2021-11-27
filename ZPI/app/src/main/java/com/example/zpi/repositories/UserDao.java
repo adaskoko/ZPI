@@ -33,7 +33,7 @@ public class UserDao extends BaseDaoImpl<User, Integer> implements IUserDao {
 
     @Override
     public List<User> findByNameAndSurname(String name, String surname) throws SQLException {
-        Map<String, Object> data=new HashMap<String, Object>();
+        Map<String, Object> data=new HashMap<>();
         data.put("Name", name);
         data.put("Surname", surname);
         List<User> matchingUsers=super.queryForFieldValues(data);
@@ -76,8 +76,7 @@ public class UserDao extends BaseDaoImpl<User, Integer> implements IUserDao {
 
     @Override
     public List<User> getAllUsers() throws SQLException {
-        List<User> users = super.queryForAll();
 
-        return users;
+        return super.queryForAll();
     }
 }

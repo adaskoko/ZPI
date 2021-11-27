@@ -23,7 +23,6 @@ import android.widget.TextView;
 
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.data_handling.SharedPreferencesHandler;
-import com.example.zpi.models.ForumThread;
 import com.example.zpi.models.Message;
 import com.example.zpi.models.User;
 import com.example.zpi.repositories.MessageDao;
@@ -37,7 +36,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class ChatListActivity extends AppCompatActivity {
 

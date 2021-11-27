@@ -1,5 +1,7 @@
 package com.example.zpi;
 
+import static com.example.zpi.ChatListActivity.CHAT_KEY;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -9,12 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.data_handling.SharedPreferencesHandler;
@@ -26,9 +26,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class SearchUserForNewConversationActivity extends AppCompatActivity  implements SearchView.OnQueryTextListener {
+public class SearchUserForNewConversationActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
-    public static final String NEW_CHAT_KEY="NEW_CHAT_KEY";
     User loggedUser;
     User chosenUser;
     ImageButton searchButton;
@@ -47,12 +46,12 @@ public class SearchUserForNewConversationActivity extends AppCompatActivity  imp
         list = findViewById(R.id.listview);
         chosenUserTV = findViewById(R.id.chosen_user);
 
-        new Thread(()->{
-            try{
+        new Thread(() -> {
+            try {
                 UserDao userDao = new UserDao(BaseConnection.getConnectionSource());
                 ArrayList<User> al = (ArrayList<User>) userDao.getAllUsers();
-                runOnUiThread(()->{
-                    this.arraylist= al;
+                runOnUiThread(() -> {
+                    this.arraylist = al;
                     adapter = new ListViewAdapter(this, arraylist);
                     list.setAdapter(adapter);
                     editSearch = findViewById(R.id.search);
@@ -60,14 +59,14 @@ public class SearchUserForNewConversationActivity extends AppCompatActivity  imp
                     editSearch.setOnClickListener(v -> editSearch.setIconified(false));
                     adapter.notifyDataSetChanged();
                 });
-            }catch(SQLException throwables) {
+            } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
         }).start();
 
         list.setOnItemClickListener((arg0, arg1, position, arg3) -> {
-            User data=(User) arg0.getAdapter().getItem(position);
-            chosenUserTV.setText(data.getName()+" "+data.getSurname());
+            User data = (User) arg0.getAdapter().getItem(position);
+            chosenUserTV.setText(data.getName() + " " + data.getSurname());
             chosenUser = data;
             list.setVisibility(View.GONE);
         });
@@ -90,11 +89,15 @@ public class SearchUserForNewConversationActivity extends AppCompatActivity  imp
     protected void onStart() {
         super.onStart();
         loggedUser = SharedPreferencesHandler.getLoggedInUser(getApplicationContext());
-        searchButton=findViewById(R.id.btnSearch);
-        //searchButton.setOnClickListener(c->search());
+        searchButton = findViewById(R.id.btnSearch);
+        searchButton.setOnClickListener(arg -> {
+            Intent i = new Intent(SearchUserForNewConversationActivity.this, ChatActivity.class);
+            i.putExtra(CHAT_KEY, chosenUser);
+            startActivity(i);
+        });
     }
 
-    public void finishSUFNC(View v){
+    public void finishSUFNC(View v) {
         super.finish();
     }
 
@@ -137,12 +140,12 @@ public class SearchUserForNewConversationActivity extends AppCompatActivity  imp
             if (view == null) {
                 holder = new ViewHolder();
                 view = inflater.inflate(R.layout.user_item, null);
-                holder.name = (TextView) view.findViewById(R.id.name);
+                holder.name = view.findViewById(R.id.name);
                 view.setTag(holder);
             } else {
                 holder = (ViewHolder) view.getTag();
             }
-            holder.name.setText(users.get(position).getName()+" "+users.get(position).getSurname());
+            holder.name.setText(users.get(position).getName() + " " + users.get(position).getSurname());
             return view;
         }
 
@@ -160,7 +163,6 @@ public class SearchUserForNewConversationActivity extends AppCompatActivity  imp
             }
             notifyDataSetChanged();
         }
-
 
 
     }
