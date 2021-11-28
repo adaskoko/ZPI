@@ -49,6 +49,13 @@ public class TripParticipantsFragment extends Fragment {
         return binding.getRoot();
     }
 
+    @Override
+    public void onResume() {
+
+        super.onResume();
+        getTripParticipants();
+    }
+
     public void getTripParticipants(){
         List<String> parts=new ArrayList<>();
 

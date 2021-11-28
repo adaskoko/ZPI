@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.zpi.bottomnavigation.BottomNavigationActivity;
 import com.example.zpi.data_handling.BaseConnection;
@@ -82,10 +83,12 @@ public class InviteUsersActivity extends AppCompatActivity implements SearchView
 
             new Thread(() -> {
                 try {
-                    if(chosenUser!=null){
+                    if(chosenUser!=null && !arraylist.contains(chosenUser)){
                         TripDao tripDao=new TripDao(BaseConnection.getConnectionSource());
                         tripDao.addRegularParticipant(currentTrip, chosenUser);
                         getTripParticipants();
+                    }else{
+                        runOnUiThread(()->Toast.makeText(this, "Użytkownik już dodany!", Toast.LENGTH_SHORT).show());
                     }
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
