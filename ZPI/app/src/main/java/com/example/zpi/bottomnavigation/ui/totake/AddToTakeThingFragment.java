@@ -17,13 +17,10 @@ import com.example.zpi.R;
 import com.example.zpi.bottomnavigation.ui.todo.PersonSpinnerAdapter;
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.databinding.FragmentAddToTakeThingBinding;
-import com.example.zpi.models.PreparationPoint;
 import com.example.zpi.models.ProductToTake;
 import com.example.zpi.models.Trip;
 import com.example.zpi.models.User;
-import com.example.zpi.repositories.PreparationPointDao;
 import com.example.zpi.repositories.ProductToTakeDao;
-import com.example.zpi.repositories.TripDao;
 import com.example.zpi.repositories.UserDao;
 
 import java.sql.SQLException;
@@ -56,14 +53,12 @@ public class AddToTakeThingFragment extends Fragment {
 
         new Thread(() -> {
             try {
-//                currTrip = new TripDao(BaseConnection.getConnectionSource()).queryForEq("ID", 1).get(0);
                 List<User> userList = new UserDao(BaseConnection.getConnectionSource()).getUsersFromTrip(currTrip);
                 Log.i("todo size fragemnt", String.valueOf(userList.size()));
                 getActivity().runOnUiThread(() -> {
                     PersonSpinnerAdapter personAdapter = new PersonSpinnerAdapter(requireContext(), userList);
                     binding.assignedTo.setAdapter(personAdapter);
                 });
-                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -95,7 +90,6 @@ public class AddToTakeThingFragment extends Fragment {
                 ProductToTake product = new ProductToTake(name, chosenUser, currTrip);
                 productDao.create(product);
                 Log.i("toTake", "to take dodane");
-                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }

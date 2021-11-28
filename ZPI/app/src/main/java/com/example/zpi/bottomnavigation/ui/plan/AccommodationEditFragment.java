@@ -2,13 +2,10 @@ package com.example.zpi.bottomnavigation.ui.plan;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
-import static com.example.zpi.bottomnavigation.ui.plan.PlanFragment.PLAN_KEY;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.media.audiofx.BassBoost;
 import android.os.Bundle;
 
 import android.util.Log;
@@ -18,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.DatePicker;
 
 import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -29,7 +25,6 @@ import com.example.zpi.databinding.FragmentAccomodationEditBinding;
 import com.example.zpi.models.Trip;
 import com.example.zpi.models.TripPoint;
 import com.example.zpi.models.TripPointLocation;
-import com.example.zpi.repositories.PreparationPointDao;
 import com.example.zpi.repositories.TripPointDao;
 import com.example.zpi.repositories.TripPointLocationDao;
 import com.google.android.gms.common.api.Status;
@@ -69,8 +64,6 @@ public class AccommodationEditFragment extends Fragment implements DatePickerDia
             actPoint = (TripPoint) getArguments().get(PlanFragment.PLAN_KEY);
             Log.i("act point", "act point");
         }
-        //Intent intent = new Intent();
-        //actTrip = (Trip) intent.getSerializableExtra(BottomNavigationActivity.TRIP_KEY);
         Intent intent = requireActivity().getIntent();
         actTrip = (Trip) intent.getSerializableExtra(BottomNavigationActivity.TRIP_KEY);
         if (!Places.isInitialized()) {
@@ -81,7 +74,6 @@ public class AccommodationEditFragment extends Fragment implements DatePickerDia
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         binding = FragmentAccomodationEditBinding.inflate(inflater, container, false);
         fillEditText();
         init();
@@ -104,30 +96,6 @@ public class AccommodationEditFragment extends Fragment implements DatePickerDia
             iFlag = 2;
             showDatePickerDialog();
         });
-//        binding.etDateOfAcc.setOnClickListener(v -> {
-//            DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), (view, year, month, dayOfMonth) -> {
-//                iYear = year;
-//                iMonth = month;
-//                iDay = dayOfMonth;
-//                Calendar calendar = Calendar.getInstance();
-//                calendar.set(iYear, iMonth, iDay);
-//                binding.etDateOfAcc.setText(android.text.format.DateFormat.format("yyyy-MM-dd", calendar));
-//            },Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
-//            datePickerDialog.updateDate(iYear, iMonth, iDay);
-//            datePickerDialog.show();
-//        });
-//        binding.etDateOfAcc2.setOnClickListener(v -> {
-//            DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), (view, year, month, dayOfMonth) -> {
-//                iYear = year;
-//                iMonth = month;
-//                iDay = dayOfMonth;
-//                Calendar calendar = Calendar.getInstance();
-//                calendar.set(iYear, iMonth, iDay);
-//                binding.etDateOfAcc2.setText(android.text.format.DateFormat.format("yyyy-MM-dd", calendar));
-//            },Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
-//            datePickerDialog.updateDate(iYear, iMonth, iDay);
-//            datePickerDialog.show();
-//        });
 
         binding.etHhOfAcc.setOnClickListener(v -> {
             TimePickerDialog timePickerDialog = new TimePickerDialog(requireActivity(), (view, hourOfDay, minute) -> {
@@ -160,7 +128,6 @@ public class AccommodationEditFragment extends Fragment implements DatePickerDia
                 Place place = Autocomplete.getPlaceFromIntent(data);
                 binding.etNameAcc.setText(place.getName());
                 binding.etAddressOfAcc.setText(place.getAddress());
-                //accommodationLocation = new TripPointLocation(place.getId(), place.getLatLng().latitude, place.getLatLng().longitude, place.getAddress());
                 new Thread(() -> {
                     try {
                         TripPointLocationDao tripPointLocationDao = new TripPointLocationDao(BaseConnection.getConnectionSource());
@@ -180,7 +147,6 @@ public class AccommodationEditFragment extends Fragment implements DatePickerDia
                 Status status = Autocomplete.getStatusFromIntent(data);
                 Log.i(TAG, status.getStatusMessage());
             } else if (resultCode == RESULT_CANCELED) {
-                // The user canceled the operation.
                 Log.i(TAG, "The user canceled the operation");
             }
             return;
@@ -190,7 +156,6 @@ public class AccommodationEditFragment extends Fragment implements DatePickerDia
 
     private void save() {
         String title = binding.etNameAcc.getText().toString();
-        //String address = binding.etAddressOfAcc.getText().toString();
         String desc = binding.etDescAcc.getText().toString();
         DateFormat dateFormat = new SimpleDateFormat("HH:mm yyyy-MM-dd");
         String arrivalS = binding.etHhOfAcc.getText().toString()+" "+binding.etDateOfAcc.getText().toString();
@@ -211,12 +176,6 @@ public class AccommodationEditFragment extends Fragment implements DatePickerDia
         actPoint.setRemarks(desc);
         new Thread(() -> {
             try {
-//                if (accommodationLocation == null) {
-//                    TripPointLocationDao tripPointLocationDao = new TripPointLocationDao(BaseConnection.getConnectionSource());
-//                    accommodationLocation = tripPointLocationDao.getLocationForTripPoint(actPoint);
-//                }
-//                accommodationLocation.setAddress(address);
-                //actPoint.setTripPointLocation(accommodationLocation);
                 TripPointDao tripPointDao = new TripPointDao(BaseConnection.getConnectionSource());
                 tripPointDao.update(actPoint);
                 Log.i("edit point", "point edited");
@@ -236,7 +195,7 @@ public class AccommodationEditFragment extends Fragment implements DatePickerDia
                 String address = tripPointLocationDao.getLocationForTripPoint(actPoint).getAddress();
                 getActivity().runOnUiThread(() -> binding.etAddressOfAcc.setText(address));
             } catch (SQLException throwables) {
-
+                throwables.printStackTrace();
             }
         }).start();
         binding.etDateOfAcc.setText(android.text.format.DateFormat.format("yyyy-MM-dd", actPoint.getArrivalDate()));

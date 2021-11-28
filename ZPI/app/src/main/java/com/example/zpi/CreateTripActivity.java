@@ -2,7 +2,6 @@ package com.example.zpi;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -14,15 +13,12 @@ import com.example.zpi.data_handling.SharedPreferencesHandler;
 import com.example.zpi.models.Trip;
 import com.example.zpi.models.User;
 import com.example.zpi.repositories.TripDao;
-import com.example.zpi.repositories.UserDao;
 
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.Locale;
 
 public class CreateTripActivity extends AppCompatActivity {
     EditText name;
@@ -70,7 +66,6 @@ public class CreateTripActivity extends AppCompatActivity {
                             Intent intent = new Intent(this, InviteUsersActivity.class);
                             intent.putExtra("CreateTrip", currentTrip);
                             startActivity(intent);
-                            //BaseConnection.closeConnection();
                         } catch (SQLException throwables) {
                             throwables.printStackTrace();
                         }

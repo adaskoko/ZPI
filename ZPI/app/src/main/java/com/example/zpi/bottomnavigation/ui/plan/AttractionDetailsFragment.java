@@ -45,11 +45,8 @@ public class AttractionDetailsFragment extends Fragment {
     private TripPoint actPoint;
     FragmentAttractionDetailsBinding binding;
     private Trip currTrip;
-//    private ListView list ;
-//    private ArrayAdapter<String> adapter ;
 
     public AttractionDetailsFragment() {
-        // Required empty public constructor
     }
 
 
@@ -92,39 +89,11 @@ public class AttractionDetailsFragment extends Fragment {
 
             }
         }).start();
-//        DateFormat hourFormat = new SimpleDateFormat("HH");
-//        String hour = hourFormat.format(actPoint.getArrivalDate());
 
         binding.tvPointDate.setText(DateFormat.format("yyyy-MM-dd", actPoint.getArrivalDate()));
         binding.tvPointHh.setText(DateFormat.format("HH:mm", actPoint.getArrivalDate()));
 
-//        list = binding.lvParticipants;
-//        ArrayList<String> participants = (ArrayList<String>) getPointParticipants();
-//        adapter = new ArrayAdapter<>(getContext(), R.layout.found_user_in_list, participants);
-//
-//        list.setAdapter(adapter);
     }
-
-//    private List<String> getPointParticipants(){
-//        List<String> participants = new ArrayList<>();
-//
-//        new Thread(() -> {
-//            try {
-//                TripPointParticipantDao tpDao = new TripPointParticipantDao(BaseConnection.getConnectionSource());
-//                List<TripPointParticipant> tripPointParticipants = tpDao.getParticipantsByTripPoint(actPoint);
-//                if (tripPointParticipants != null && tripPointParticipants.size() != 0) {
-//                    for (TripPointParticipant tp : tripPointParticipants) {
-//                        User u = tp.getUser();
-//                        String currentRow = u.getName() + " " + u.getSurname() + "(" + u.getEmail() + ")";
-//                        participants.add(currentRow);
-//                    }
-//                }
-//            } catch (SQLException throwables) {
-//                throwables.printStackTrace();
-//            }
-//        }).start();
-//        return participants;
-//    }
 
     private void delete(){
         new Thread(() -> {

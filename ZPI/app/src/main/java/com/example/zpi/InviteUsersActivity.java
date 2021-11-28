@@ -17,7 +17,6 @@ import com.example.zpi.data_handling.SharedPreferencesHandler;
 import com.example.zpi.models.Trip;
 import com.example.zpi.models.TripParticipant;
 import com.example.zpi.models.User;
-import com.example.zpi.repositories.TripDao;
 import com.example.zpi.repositories.TripParticipantDao;
 
 import java.io.Serializable;
@@ -32,7 +31,6 @@ public class InviteUsersActivity extends AppCompatActivity implements Serializab
     User loggedUser;
     Trip currentTrip;
     ListView participants;
-    ArrayAdapter<String> adapter;
 
 
     @Override
@@ -49,7 +47,6 @@ public class InviteUsersActivity extends AppCompatActivity implements Serializab
         currentTripName=findViewById(R.id.tv_tripname);
         currentTripDate=findViewById(R.id.tv_tripdate);
         currentTrip = (Trip)getIntent().getSerializableExtra("CreateTrip");
-        //currentTrip=getTripFromDatabase(createdTrip);
         currentTripName.setText(currentTrip.getName());
         String dateRange=currentTrip.getStartDate().toString()+" - "+currentTrip.getEndDate().toString();
         currentTripDate.setText(dateRange);
@@ -58,11 +55,8 @@ public class InviteUsersActivity extends AppCompatActivity implements Serializab
     @Override
     protected void onResume() {
         super.onResume();
-        //list view of participants
         participants=findViewById(R.id.lv_participants);
-        /*List<String> tripPatricipants=*/
         getTripParticipants();
-        //Log.i("participants", String.valueOf(tripPatricipants.size()));
 
     }
 
@@ -76,36 +70,14 @@ public class InviteUsersActivity extends AppCompatActivity implements Serializab
         nameAndSurname.getText().clear();
     }
 
-    private Trip getTripFromDatabase(Trip t){
-        List<Trip> trips=new ArrayList<Trip>();
-        new Thread(() -> {
-            try {
-                TripDao tripDao =new TripDao(BaseConnection.getConnectionSource());
-                Trip foundTrip= (Trip) tripDao.getTripByNameAndDate(t.getName(), t.getStartDate(), t.getEndDate());
-                if(foundTrip!=null){
-                    trips.add(foundTrip);
-                }
-                //BaseConnection.closeConnection();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-        }).start();
-        if(trips.size()!=0){
-            return trips.get(0);
-        }else{
-            return null;
-        }
-    }
-
     public void getTripParticipants(){
-        List<String> parts=new ArrayList<String>();
+        List<String> parts=new ArrayList<>();
 
         new Thread(() -> {
             try {
                 TripParticipantDao tpDao=new TripParticipantDao(BaseConnection.getConnectionSource());
                 List<TripParticipant> tripParticipants=tpDao.getByTrip(currentTrip);
-                Log.i("tripparticiopants z dao", String.valueOf(tripParticipants.size()));
-                if(tripParticipants!=null && tripParticipants.size()!=0) {
+                if(tripParticipants.size()!=0) {
                     for (TripParticipant tp:tripParticipants) {
                         User u=tp.getUser();
                         Log.i("user z dao", String.valueOf(u.getEmail()));
@@ -116,19 +88,14 @@ public class InviteUsersActivity extends AppCompatActivity implements Serializab
                 }
 
                 runOnUiThread(() -> {
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.found_user_in_list, parts);
-                    Log.i("parts z dao", String.valueOf(parts.size()));
-
-                    //set adapter to listview
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.found_user_in_list, parts);
                     participants.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 });
-                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
         }).start();
-        //return participants;
     }
 
     public void goToCurrentTripMainPanel(View v){

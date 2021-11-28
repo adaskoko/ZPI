@@ -46,7 +46,6 @@ public class RegisterActivity extends AppCompatActivity {
                         Intent intent = new Intent(this, RegisterSuccesfulActivity.class);
                         startActivity(intent);
                     }
-                    //BaseConnection.closeConnection();
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }

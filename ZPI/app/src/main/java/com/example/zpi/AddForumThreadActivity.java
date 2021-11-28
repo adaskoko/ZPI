@@ -6,10 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -78,7 +76,6 @@ public class AddForumThreadActivity extends AppCompatActivity {
             new Thread(()->{
                 try{
                     ForumThreadDao ftdao=new ForumThreadDao(BaseConnection.getConnectionSource());
-                    //ForumThread ft=new ForumThread(resultStringForThread, sTitle, currentTrip);
                     ftdao.createRegulatThread(resultStringForThread, sTitle, currentTrip);
                     ForumThread created=ftdao.getByName(sTitle);
                     CommentDao cdao=new CommentDao(BaseConnection.getConnectionSource());

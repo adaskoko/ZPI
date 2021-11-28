@@ -36,7 +36,6 @@ public class ToDoFragment extends Fragment implements TodoRecyclerViewAdapter.On
 
     public final static String TODO_KEY = "TODO";
 
-    private ToDoViewModel toDoViewModel;
     private FragmentToDoBinding binding;
     private TodoRecyclerViewAdapter todoRecyclerViewAdapter;
     private Trip currTrip;
@@ -49,7 +48,6 @@ public class ToDoFragment extends Fragment implements TodoRecyclerViewAdapter.On
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        //toDoViewModel = new ViewModelProvider(this).get(ToDoViewModel.class);
         binding = FragmentToDoBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         binding.addButton.setOnClickListener(v -> NavHostFragment.findNavController(this).navigate(R.id.action_navigation_todo_to_addToDoFragment));
@@ -70,7 +68,6 @@ public class ToDoFragment extends Fragment implements TodoRecyclerViewAdapter.On
 
         new Thread(() -> {
             try {
-//                Trip trip = new TripDao(BaseConnection.getConnectionSource()).queryForEq("ID", 1).get(0);
                 List<PreparationPoint> todos = new PreparationPointDao(BaseConnection.getConnectionSource()).getPreparationPointsByTrip(currTrip);
                 UserDao udao=new UserDao(BaseConnection.getConnectionSource());
                 for(PreparationPoint todo:todos){
@@ -83,7 +80,6 @@ public class ToDoFragment extends Fragment implements TodoRecyclerViewAdapter.On
                     todoRecyclerViewAdapter = new TodoRecyclerViewAdapter(todos, this);
                     todoRV.setAdapter(todoRecyclerViewAdapter);
                 });
-                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }

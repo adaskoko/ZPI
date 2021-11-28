@@ -72,9 +72,11 @@
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
                     android:ems="10"
+                    android:gravity="start"
                     android:importantForAutofill="no"
                     android:inputType="text"
                     android:padding="12dp"
+                    android:textAlignment="gravity"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 <TextView

@@ -149,7 +149,7 @@ public class ChatActivity extends AppCompatActivity {
                 MessageDao mdao = new MessageDao(BaseConnection.getConnectionSource());
                 Message currentMessage = new Message(content, sendDate, sender, receiver);
                 mdao.create(currentMessage);
-                displayChat();//refresh ui
+                displayChat();
                 text.getText().clear();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();

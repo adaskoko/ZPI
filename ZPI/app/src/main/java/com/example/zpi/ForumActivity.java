@@ -11,14 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.zpi.data_handling.BaseConnection;
@@ -36,7 +33,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class ForumActivity extends AppCompatActivity {
 
@@ -188,7 +184,7 @@ public class ForumActivity extends AppCompatActivity {
         }).start();
     }
 
-    public void respond(View v) throws InterruptedException {
+    public void respond(View v) {
         response.setVisibility(View.VISIBLE);
         addResponse.setVisibility(View.VISIBLE);
         cancel1.setVisibility(View.VISIBLE);
@@ -201,7 +197,6 @@ public class ForumActivity extends AppCompatActivity {
             new Thread(()->{
                 try{
                     CommentDao cdao=new CommentDao(BaseConnection.getConnectionSource());
-                    //Comment newComment=new Comment(content.getText().toString(), current, loggedUser);
                     cdao.create(new Comment(content.getText().toString(), current, loggedUser));
                     runOnUiThread(()->{
                         content.getEditableText().clear();
@@ -232,15 +227,10 @@ public class ForumActivity extends AppCompatActivity {
                     getCommentsForThread();
                     getResponseCount();
                 });
-                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
         }).start();
-    }
-
-    public void finishForum(View v){
-        super.finish();
     }
 
     private class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumVh> {

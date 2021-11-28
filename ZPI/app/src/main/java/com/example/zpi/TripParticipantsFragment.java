@@ -26,15 +26,11 @@ import java.util.List;
 
 public class TripParticipantsFragment extends Fragment {
 
-    private FragmentTripParticipantsBinding binding;
     private Trip currTrip;
     private ListView listView ;
-    private ArrayAdapter<String> adapter ;
 
 
-    public TripParticipantsFragment() {
-        // Required empty public constructor
-    }
+    public TripParticipantsFragment() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,17 +42,15 @@ public class TripParticipantsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding=FragmentTripParticipantsBinding.inflate(inflater, container, false);
-        //listView=(ListView) binding.findViewById(R.id.participantsLV);
-        listView=binding.participantsLV;
+        com.example.zpi.databinding.FragmentTripParticipantsBinding binding = FragmentTripParticipantsBinding.inflate(inflater, container, false);
+        listView= binding.participantsLV;
         getTripParticipants();
         binding.btnEdit.setOnClickListener(c-> addUsers());
-        View root = binding.getRoot();
-        return root;
+        return binding.getRoot();
     }
 
     public void getTripParticipants(){
-        List<String> parts=new ArrayList<String>();
+        List<String> parts=new ArrayList<>();
 
         new Thread(() -> {
             try {
@@ -75,18 +69,13 @@ public class TripParticipantsFragment extends Fragment {
 
                 getActivity().runOnUiThread(() -> {
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.found_user_in_list, parts);
-                    Log.i("parts z dao", String.valueOf(parts.size()));
-
-                    //set adapter to listview
                     listView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 });
-                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
         }).start();
-        //return participants;
     }
 
     public void addUsers(){

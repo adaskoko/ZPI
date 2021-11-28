@@ -12,20 +12,17 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.zpi.R;
-import com.example.zpi.bottomnavigation.ui.totake.ToTakeThingRecyclerViewAdapter;
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.databinding.FragmentPlanBinding;
 import com.example.zpi.models.Trip;
 import com.example.zpi.models.TripPoint;
 import com.example.zpi.repositories.TripPointDao;
-
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -56,7 +53,6 @@ public class PlanFragment extends Fragment implements PlanChildRecyclerViewAdapt
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        //planViewModel = new ViewModelProvider(this).get(PlanViewModel.class);
         binding = FragmentPlanBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
@@ -116,25 +112,16 @@ public class PlanFragment extends Fragment implements PlanChildRecyclerViewAdapt
     private void init() {
         HashList<String, TripPoint> list = new HashList<>();
         accommodationList = new ArrayList<>();
-        //Log.i("all plan size", String.valueOf(points.size()));
         for (TripPoint point : points) {
-//            Log.i("plan", String.valueOf(points.size()));
-//            Date date = point.getArrivalDate();
-//            DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-//            list.put(dateFormat.format(date), point);
-            //Log.i("trip point name", String.valueOf(point.getTripPointType().getName()));
             if (point.getTripPointType().getName().equals("Nocleg")) {
                 accommodationList.add(point);
             } else {
                 Date date = point.getArrivalDate();
                 DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-                //Log.i("attraction date", dateFormat.format(date));
                 list.put(dateFormat.format(date), point);
             }
         }
         attractionPoints = list.getSections();
-        //Log.i("accommodation list size", String.valueOf(accommodationList.size()));
-        //Log.i("section list size", String.valueOf(attractionPoints.size()));
     }
 
     ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {

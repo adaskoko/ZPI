@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.zpi.R;
 import com.example.zpi.models.TripPoint;
 
-import java.security.PrivateKey;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -32,7 +31,6 @@ public class PlanChildRecyclerViewAdapter extends RecyclerView.Adapter<PlanChild
     @Override
     public ChildViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        //View view = layoutInflater.inflate(R.layout.item_plan, parent, false);
         View view = layoutInflater.inflate(R.layout.item_plan, parent, false);
         return new ChildViewHolder(view, onChildTripPointListener);
     }

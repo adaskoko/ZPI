@@ -1,20 +1,12 @@
 package com.example.zpi;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.ParcelFileDescriptor;
-import android.provider.DocumentsContract;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.MediaController;
 import android.widget.TextView;
@@ -26,19 +18,7 @@ import com.example.zpi.databinding.ActivityUploadPhotoBinding;
 import com.example.zpi.models.MultimediaFile;
 import com.example.zpi.models.Trip;
 import com.example.zpi.repositories.PhotoDao;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
-
-import java.io.File;
-import java.io.FileDescriptor;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -105,45 +85,33 @@ public class UploadPhotoActivity extends AppCompatActivity {
         storageReference = BaseConnection.getStorageInstance().getReference(trip.getID() + "/" + filename);
 
         storageReference.putFile(selectedMediaUri)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        binding.ivSelectedImage.setImageURI(null);
-                        binding.vvVideo.setVideoURI(null);
+                .addOnSuccessListener(taskSnapshot -> {
+                    binding.ivSelectedImage.setImageURI(null);
+                    binding.vvVideo.setVideoURI(null);
 
-                        taskSnapshot.getStorage().getDownloadUrl().addOnCompleteListener(
-                                new OnCompleteListener<Uri>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Uri> task) {
-                                        String url = task.getResult().toString();
+                    taskSnapshot.getStorage().getDownloadUrl().addOnCompleteListener(
+                            task -> {
+                                String url = task.getResult().toString();
 
-                                        MultimediaFile multimediaFile = new MultimediaFile(url, SharedPreferencesHandler.getLoggedInUser(getApplicationContext()), trip, binding.ivSelectedImage.getVisibility() == View.VISIBLE, new Date());
+                                MultimediaFile multimediaFile = new MultimediaFile(url, SharedPreferencesHandler.getLoggedInUser(getApplicationContext()), trip, binding.ivSelectedImage.getVisibility() == View.VISIBLE, new Date());
 
-                                        new Thread(() -> {
-                                            try {
-                                                new PhotoDao(BaseConnection.getConnectionSource()).create(multimediaFile);
-                                                progressDialog.dismiss();
-                                                finish();
-                                            } catch (SQLException throwables) {
-                                                throwables.printStackTrace();
-                                                progressDialog.dismiss();
-                                            }
-                                        }).start();
+                                new Thread(() -> {
+                                    try {
+                                        new PhotoDao(BaseConnection.getConnectionSource()).create(multimediaFile);
+                                        progressDialog.dismiss();
+                                        finish();
+                                    } catch (SQLException throwables) {
+                                        throwables.printStackTrace();
+                                        progressDialog.dismiss();
                                     }
-                                });
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        if(progressDialog.isShowing())
-                            progressDialog.dismiss();
+                                }).start();
+                            });
+                }).addOnFailureListener(e -> {
+                    if(progressDialog.isShowing())
+                        progressDialog.dismiss();
 
-                        Toast.makeText(getApplicationContext(), "Failure", Toast.LENGTH_SHORT).show();
-                    }
+                    Toast.makeText(getApplicationContext(), "Failure", Toast.LENGTH_SHORT).show();
                 });
     }
 
-    public void back(View view) {
-        finish();
-    }
 }

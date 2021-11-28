@@ -7,7 +7,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
@@ -40,7 +39,6 @@ public class TodoDetailsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            //actPoint = (PreparationPoint) getArguments().getSerializable(ToDoFragment.TODO_KEY);
             actPoint = (PreparationPoint) getArguments().get(TODO_KEY);
             currTrip=(Trip) getArguments().get(TRIP_KEY);
         }
@@ -91,7 +89,6 @@ public class TodoDetailsFragment extends Fragment {
                 PreparationPointDao pointDao = new PreparationPointDao(BaseConnection.getConnectionSource());
                 pointDao.delete(actPoint);
                 Log.i("todo", "usunieto todo");
-                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -103,6 +100,5 @@ public class TodoDetailsFragment extends Fragment {
         Bundle bundle = new Bundle();
         bundle.putSerializable(TODO_KEY, actPoint);
         NavHostFragment.findNavController(this).navigate(R.id.action_todoDetailsFragment_to_todoEditFragment, bundle);
-        //Navigation.findNavController(getView()).navigate(R.id.todoEditFragment, bundle);
     }
 }

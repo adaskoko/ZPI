@@ -11,7 +11,6 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,7 +28,6 @@ import com.example.zpi.models.TripPointLocation;
 import com.example.zpi.models.TripPointParticipant;
 import com.example.zpi.repositories.TripPointDao;
 import com.example.zpi.repositories.TripPointLocationDao;
-import com.example.zpi.repositories.TripPointParticipantDao;
 import com.google.android.gms.common.api.Status;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
@@ -76,15 +74,10 @@ public class AttractionEditFragment extends Fragment implements DatePickerDialog
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         binding = FragmentAttractionEditBinding.inflate(inflater, container, false);
         fillEditTexts();
         binding.etNameTripPoint.setOnClickListener(v -> {
-            // Set the fields to specify which types of place data to
-            // return after the user has made a selection.
             List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG, Place.Field.ADDRESS);
-
-            // Start the autocomplete intent.
             Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields)
                     .build(requireContext());
             startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE);
@@ -107,7 +100,6 @@ public class AttractionEditFragment extends Fragment implements DatePickerDialog
 
     private void save() {
         String title = binding.etNameTripPoint.getText().toString();
-        //String address = binding.etAdressOfTripPoint.getText().toString();
         DateFormat dateFormat = new SimpleDateFormat("HH:mm yyyy-MM-dd");
         String date = binding.etHhOfTripPoint.getText().toString()+" "+ binding.etDateOfTripPoint.getText().toString();
         currPoint.setName(title);
@@ -116,16 +108,8 @@ public class AttractionEditFragment extends Fragment implements DatePickerDialog
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        //currPoint.setTripPointLocation(tripPointLocation);
         new Thread(() -> {
             try {
-//                if (tripPointLocation == null) {
-//                    TripPointLocationDao tripPointLocationDao = new TripPointLocationDao(BaseConnection.getConnectionSource());
-//                    tripPointLocation = tripPointLocationDao.getLocationForTripPoint(currPoint);
-//                    Log.i(TAG, String.valueOf("currTrip is null "+currPoint==null));
-//                    Log.i(TAG, String.valueOf("trip location is null "+tripPointLocation==null));
-//                }
-//                tripPointLocation.setAddress(address);
                 TripPointDao tripPointDao = new TripPointDao(BaseConnection.getConnectionSource());
                 tripPointDao.update(currPoint);
             } catch (SQLException throwables) {
@@ -163,7 +147,6 @@ public class AttractionEditFragment extends Fragment implements DatePickerDialog
                 Status status = Autocomplete.getStatusFromIntent(data);
                 Log.i(TAG, status.getStatusMessage());
             } else if (resultCode == RESULT_CANCELED) {
-                // The user canceled the operation.
                 Log.i(TAG, "The user canceled the operation");
             }
             return;
@@ -180,31 +163,12 @@ public class AttractionEditFragment extends Fragment implements DatePickerDialog
                 String address = tripPointLocationDao.getLocationForTripPoint(currPoint).getAddress();
                 getActivity().runOnUiThread(() -> binding.etAdressOfTripPoint.setText(address));
             } catch (SQLException throwables) {
-
+                throwables.printStackTrace();
             }
         }).start();
-//        binding.etAdressOfTripPoint.setText(currPoint.getTripPointLocation().getAddress());
         binding.etDateOfTripPoint.setText(android.text.format.DateFormat.format("yyyy-MM-dd", currPoint.getArrivalDate()));
         binding.etHhOfTripPoint.setText(android.text.format.DateFormat.format("HH:mm", currPoint.getArrivalDate()));
 
-//        binding.rvParticipants.setLayoutManager(new LinearLayoutManager(getContext()));
-//        binding.rvParticipants.setHasFixedSize(true);
-//
-//        new Thread(() -> {
-//            try {
-//                //List<TripPointParticipant> participants = new TripPointParticipantDao(BaseConnection.getConnectionSource()).getParticipantsByTripPoint(currPoint);
-//                participants = new TripPointParticipantDao(BaseConnection.getConnectionSource()).getParticipantsByTripPoint(currPoint);
-//
-//
-//                Log.i("participants size", String.valueOf(participants.size()));
-//                getActivity().runOnUiThread(() -> {
-//                    participantsRecyclerViewAdapter = new ParticipantsRecyclerViewAdapter(participants, this);
-//                    binding.rvParticipants.setAdapter(participantsRecyclerViewAdapter);
-//                });
-//            } catch (SQLException throwables) {
-//                throwables.printStackTrace();
-//            }
-//        }).start();
     }
 
     private void showDatePickerDialog() {
@@ -226,7 +190,6 @@ public class AttractionEditFragment extends Fragment implements DatePickerDialog
 
     @Override
     public void onParticipantClick(int position) {
-        //participants.remove(position);
         participantsRecyclerViewAdapter.deleteParticipant(position);
         TripPointParticipant participant = participants.get(position);
 

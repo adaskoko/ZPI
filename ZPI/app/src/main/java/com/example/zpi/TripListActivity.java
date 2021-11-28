@@ -7,12 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.zpi.adapters.TripAdapter;
 import com.example.zpi.bottomnavigation.BottomNavigationActivity;
@@ -45,8 +42,8 @@ public class TripListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip_list);
 
-        upcomingTripsRV = (RecyclerView) findViewById(R.id.rv_upcoming_trips);
-        pastTripsRV = (RecyclerView) findViewById(R.id.rv_past_trips);
+        upcomingTripsRV = findViewById(R.id.rv_upcoming_trips);
+        pastTripsRV = findViewById(R.id.rv_past_trips);
 
         loadTrips();
     }
@@ -76,7 +73,6 @@ public class TripListActivity extends AppCompatActivity {
                 tripDao.getConnectionSource().close();
 
                 progressDialog.dismiss();
-                //BaseConnection.closeConnection();
             } catch (SQLException | IOException throwables) {
                 throwables.printStackTrace();
                 progressDialog.dismiss();
@@ -98,12 +94,7 @@ public class TripListActivity extends AppCompatActivity {
     private void setUpUpcomingRecyclerView(){
         runOnUiThread(() -> {
             TripAdapter upcomingAdapter = new TripAdapter(threeUpcomingTrips);
-            upcomingAdapter.setOnItemClickListener(new TripAdapter.ClickListener() {
-                @Override
-                public void onItemClick(int position, View v) {
-                    goToTrip(upcomingTrips.get(position));
-                }
-            });
+            upcomingAdapter.setOnItemClickListener((position, v) -> goToTrip(upcomingTrips.get(position)));
             upcomingTripsRV.setAdapter(upcomingAdapter);
             LinearLayoutManager upcomingLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
             upcomingTripsRV.setLayoutManager(upcomingLayoutManager);
@@ -113,12 +104,7 @@ public class TripListActivity extends AppCompatActivity {
     private void setUpPastRecyclerView(){
         runOnUiThread(() -> {
             TripAdapter pastAdapter = new TripAdapter(threePastTrips);
-            pastAdapter.setOnItemClickListener(new TripAdapter.ClickListener() {
-                @Override
-                public void onItemClick(int position, View v) {
-                    goToTrip(pastTrips.get(position));
-                }
-            });
+            pastAdapter.setOnItemClickListener((position, v) -> goToTrip(pastTrips.get(position)));
             pastTripsRV.setAdapter(pastAdapter);
             LinearLayoutManager pastLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
             pastTripsRV.setLayoutManager(pastLayoutManager);

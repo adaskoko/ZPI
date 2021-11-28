@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 import com.example.zpi.adapters.TripAdapter;
@@ -32,23 +31,17 @@ public class TripGridActivity extends AppCompatActivity {
 
         trips = (List<Trip>) intent.getSerializableExtra("TRIPS");
 
-        RecyclerView recycler = (RecyclerView) findViewById(R.id.rv_trip_grid);
+        RecyclerView recycler = findViewById(R.id.rv_trip_grid);
 
         TripAdapter upcomingAdapter = new TripAdapter(trips);
-        upcomingAdapter.setOnItemClickListener(new TripAdapter.ClickListener() {
-            @Override
-            public void onItemClick(int position, View v) {
-                Intent intent = new Intent(getApplicationContext(), BottomNavigationActivity.class);
-                intent.putExtra("TRIP", trips.get(position));
-                startActivity(intent);
-            }
+        upcomingAdapter.setOnItemClickListener((position, v) -> {
+            Intent intent1 = new Intent(getApplicationContext(), BottomNavigationActivity.class);
+            intent1.putExtra("TRIP", trips.get(position));
+            startActivity(intent1);
         });
         recycler.setAdapter(upcomingAdapter);
         LinearLayoutManager upcomingLayoutManager = new GridLayoutManager(this, 2);
         recycler.setLayoutManager(upcomingLayoutManager);
     }
 
-    public void back(View view) {
-        finish();
-    }
 }

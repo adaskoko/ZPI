@@ -2,14 +2,11 @@ package com.example.zpi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.zpi.R;
-import com.example.zpi.UpdateUserActivity;
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.data_handling.SharedPreferencesHandler;
 import com.example.zpi.models.User;
@@ -44,9 +41,6 @@ public class ChangeUserNameActivity extends AppCompatActivity {
                     UserDao userDao = new UserDao(BaseConnection.getConnectionSource());
                     userDao.update(loggedUser);
                     SharedPreferencesHandler.saveLoggedInUser(getApplicationContext(), loggedUser);
-
-                    //BaseConnection.closeConnection();
-
                     finish();
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
@@ -58,8 +52,4 @@ public class ChangeUserNameActivity extends AppCompatActivity {
         }
     }
 
-    public void backToDetails(View v){
-        Intent intent=new Intent(this, UpdateUserActivity.class);
-        startActivity(intent);
-    }
 }
