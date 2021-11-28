@@ -16,6 +16,7 @@ import android.widget.DatePicker;
 import android.widget.Toast;
 
 import com.example.zpi.R;
+import com.example.zpi.bottomnavigation.ui.totake.ToTakeThingEditFragment;
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.data_handling.SharedPreferencesHandler;
 import com.example.zpi.databinding.FragmentTodoEditBinding;
@@ -64,21 +65,19 @@ public class TodoEditFragment extends Fragment implements DatePickerDialog.OnDat
                 getActivity().runOnUiThread(() -> {
                     PersonSpinnerAdapter personAdapter = new PersonSpinnerAdapter(requireContext(), userList);
                     binding.assignedTo.setAdapter(personAdapter);
+                    int index = ToTakeThingEditFragment.getUserIndex(userList, actPoint.getUser());
+                    binding.assignedTo.setSelection(index);
                 });
-                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
         }).start();
-        //fillEditText();
         refreshResponsiblePeron();
 
         binding.assignedTo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 chosenUser = (User) parent.getItemAtPosition(position);
-                String clickedUSer = chosenUser.getName();
-                Toast.makeText(getContext(), clickedUSer + " selected", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -95,7 +94,7 @@ public class TodoEditFragment extends Fragment implements DatePickerDialog.OnDat
         String title = binding.etTodoName.getText().toString();
         String description = binding.etTodoDesc.getText().toString();
         String deadline = binding.tvPontDate.getText().toString();
-        Boolean isDone = binding.cbDone.isChecked();
+        boolean isDone = binding.cbDone.isChecked();
         Date date = null;
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -118,7 +117,6 @@ public class TodoEditFragment extends Fragment implements DatePickerDialog.OnDat
                     actPoint.setUser(chosenUser);
                     pointDao.update(actPoint);
                     Log.i("todo", "todo edited");
-                    //BaseConnection.closeConnection();
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }

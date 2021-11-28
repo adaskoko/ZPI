@@ -9,7 +9,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 
@@ -18,7 +17,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.zpi.adapters.PhotoAdapter;
 import com.example.zpi.adapters.PhotoInTripAdapter;
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.databinding.FragmentSingleTripBinding;
@@ -89,33 +87,24 @@ public class SingleTripFragment extends Fragment {
                         binding.rvPhotos.setVisibility(View.VISIBLE);
 
                         PhotoInTripAdapter photoAdapter = new PhotoInTripAdapter(photos);
-                        photoAdapter.setOnItemClickListener(new PhotoInTripAdapter.ClickListener() {
-                            @Override
-                            public void onItemClick(int position, View v) {
-                                showImage(position);
-                            }
-                        });
+                        photoAdapter.setOnItemClickListener((position, v) -> showImage(position));
                         binding.rvPhotos.setAdapter(photoAdapter);
                         LinearLayoutManager upcomingLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
                         binding.rvPhotos.setLayoutManager(upcomingLayoutManager);
 
                         binding.rvPhotos.getLayoutManager().scrollToPosition(Integer.MAX_VALUE / 2);
 
-                        binding.rvPhotos.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                // Call smooth scroll
-                                LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(binding.rvPhotos.getContext()) {
+                        binding.rvPhotos.post(() -> {
+                            LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(binding.rvPhotos.getContext()) {
 
-                                    @Override
-                                    protected float calculateSpeedPerPixel(DisplayMetrics displayMetrics) {
-                                        return 15;
-                                    }
-                                };
+                                @Override
+                                protected float calculateSpeedPerPixel(DisplayMetrics displayMetrics) {
+                                    return 15;
+                                }
+                            };
 
-                                linearSmoothScroller.setTargetPosition(Integer.MAX_VALUE - 1);
-                                upcomingLayoutManager.startSmoothScroll(linearSmoothScroller);
-                            }
+                            linearSmoothScroller.setTargetPosition(Integer.MAX_VALUE - 1);
+                            upcomingLayoutManager.startSmoothScroll(linearSmoothScroller);
                         });
                     });
                 }

@@ -37,6 +37,7 @@ public class SearchUserForNewConversationActivity extends AppCompatActivity impl
     SearchView editSearch;
     ArrayList<User> arraylist = new ArrayList<>();
     TextView chosenUserTV;
+    View clickOutView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class SearchUserForNewConversationActivity extends AppCompatActivity impl
 
         list = findViewById(R.id.listview);
         chosenUserTV = findViewById(R.id.chosen_user);
+        clickOutView = findViewById(R.id.clickOutView);
 
         new Thread(() -> {
             try {
@@ -55,8 +57,12 @@ public class SearchUserForNewConversationActivity extends AppCompatActivity impl
                     adapter = new ListViewAdapter(this, arraylist);
                     list.setAdapter(adapter);
                     editSearch = findViewById(R.id.search);
+                    editSearch.setIconified(false);
                     editSearch.setOnQueryTextListener(this);
-                    editSearch.setOnClickListener(v -> editSearch.setIconified(false));
+                    editSearch.setOnClickListener(v -> {
+                        list.setVisibility(View.VISIBLE);
+                        adapter.filter(editSearch.getQuery().toString());
+                    });
                     adapter.notifyDataSetChanged();
                 });
             } catch (SQLException throwables) {
@@ -69,7 +75,14 @@ public class SearchUserForNewConversationActivity extends AppCompatActivity impl
             chosenUserTV.setText(data.getName() + " " + data.getSurname());
             chosenUser = data;
             list.setVisibility(View.GONE);
+            searchButton.setEnabled(true);
+            searchButton.setImageResource(R.drawable.button_begin_chat);
         });
+
+        clickOutView.setOnClickListener(c -> {
+            list.setVisibility(View.GONE);
+        });
+
 
     }
 
@@ -80,7 +93,8 @@ public class SearchUserForNewConversationActivity extends AppCompatActivity impl
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        list.setVisibility(View.VISIBLE);
+        if (!newText.equals("")) list.setVisibility(View.VISIBLE);
+        else list.setVisibility(View.GONE);
         adapter.filter(newText);
         return false;
     }
@@ -95,6 +109,7 @@ public class SearchUserForNewConversationActivity extends AppCompatActivity impl
             i.putExtra(CHAT_KEY, chosenUser);
             startActivity(i);
         });
+        searchButton.setEnabled(false);
     }
 
     public void finishSUFNC(View v) {

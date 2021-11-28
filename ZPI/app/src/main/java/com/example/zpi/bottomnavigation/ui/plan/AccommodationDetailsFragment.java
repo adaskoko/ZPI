@@ -23,7 +23,6 @@ import com.example.zpi.repositories.TripPointLocationDao;
 
 import java.sql.SQLException;
 import java.util.Date;
-import java.util.Objects;
 
 public class AccommodationDetailsFragment extends Fragment {
 
@@ -32,7 +31,6 @@ public class AccommodationDetailsFragment extends Fragment {
     private Trip currTrip;
 
     public AccommodationDetailsFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -40,7 +38,6 @@ public class AccommodationDetailsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             actPoint = (TripPoint) getArguments().get(PLAN_KEY);
-            //currTrip = (Trip) getArguments().get(TRIP_KEY);
         }
         Intent intent = requireActivity().getIntent();
         currTrip = (Trip) intent.getSerializableExtra(TRIP_KEY);
@@ -51,9 +48,9 @@ public class AccommodationDetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentAccomodationDetailsBinding.inflate(inflater, container, false);
         fillTextView();
-        Log.i(getClass().getSimpleName(), "trip = null" + String.valueOf(currTrip == null));
-        Log.i(getClass().getSimpleName(), "trip start date" + String.valueOf(currTrip.getStartDate() == null));
-        Log.i(getClass().getSimpleName(), "trip end date" + String.valueOf(currTrip.getEndDate() == null));
+        Log.i(getClass().getSimpleName(), "trip = null" + (currTrip == null));
+        Log.i(getClass().getSimpleName(), "trip start date" + (currTrip.getStartDate() == null));
+        Log.i(getClass().getSimpleName(), "trip end date" + (currTrip.getEndDate() == null));
         Date tripEndDate = currTrip.getEndDate();
         Date today = new Date();
 
@@ -74,7 +71,7 @@ public class AccommodationDetailsFragment extends Fragment {
                 String address = tripPointLocationDao.getLocationForTripPoint(actPoint).getAddress();
                 getActivity().runOnUiThread(() -> binding.tvAccAddress.setText(address));
             } catch (SQLException throwables) {
-
+                throwables.printStackTrace();
             }
         }).start();
         binding.tvAccDate.setText(android.text.format.DateFormat.format("yyyy-MM-dd", actPoint.getArrivalDate()));

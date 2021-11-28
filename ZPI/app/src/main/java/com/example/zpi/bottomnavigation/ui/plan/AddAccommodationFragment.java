@@ -43,7 +43,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 
 
 public class AddAccommodationFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
@@ -91,30 +90,6 @@ public class AddAccommodationFragment extends Fragment implements DatePickerDial
             iFlag = 2;
             showDatePickerDialog();
         });
-//        binding.dateOfAccET.setOnClickListener(v -> {
-//            DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), (view, year, month, dayOfMonth) -> {
-//                iYear = year;
-//                iMonth = month;
-//                iDay = dayOfMonth;
-//                Calendar calendar = Calendar.getInstance();
-//                calendar.set(iYear, iMonth, iDay);
-//                binding.dateOfAccET.setText(android.text.format.DateFormat.format("yyyy-MM-dd", calendar));
-//            },Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
-//            datePickerDialog.updateDate(iYear, iMonth, iDay);
-//            datePickerDialog.show();
-//        });
-//        binding.dateOfAccET2.setOnClickListener(v -> {
-//            DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), (view, year, month, dayOfMonth) -> {
-//                iYear = year;
-//                iMonth = month;
-//                iDay = dayOfMonth;
-//                Calendar calendar = Calendar.getInstance();
-//                calendar.set(iYear, iMonth, iDay);
-//                binding.dateOfAccET2.setText(android.text.format.DateFormat.format("yyyy-MM-dd", calendar));
-//            },Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
-//            datePickerDialog.updateDate(iYear, iMonth, iDay);
-//            datePickerDialog.show();
-//        });
 
         binding.hhOfAccET.setOnClickListener(v -> {
             TimePickerDialog timePickerDialog = new TimePickerDialog(requireActivity(), (view, hourOfDay, minute) -> {
@@ -179,7 +154,6 @@ public class AddAccommodationFragment extends Fragment implements DatePickerDial
                 Status status = Autocomplete.getStatusFromIntent(data);
                 Log.i(TAG, status.getStatusMessage());
             } else if (resultCode == RESULT_CANCELED) {
-                // The user canceled the operation.
                 Log.i(TAG, "The user canceled the operation");
             }
             return;

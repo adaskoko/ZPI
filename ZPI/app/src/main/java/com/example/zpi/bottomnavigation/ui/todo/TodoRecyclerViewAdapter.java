@@ -15,12 +15,10 @@ import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.models.PreparationPoint;
 import com.example.zpi.models.User;
 import com.example.zpi.repositories.PreparationPointDao;
-import com.example.zpi.repositories.UserDao;
 
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 public class TodoRecyclerViewAdapter extends RecyclerView.Adapter<TodoRecyclerViewAdapter.TodoViewHolder> {
@@ -48,20 +46,10 @@ public class TodoRecyclerViewAdapter extends RecyclerView.Adapter<TodoRecyclerVi
         holder.todoChB.setChecked(todo.isDone());
         holder.todoChB.setEnabled(false);
         User responsible=todo.getUser();
-        /*new Thread(()->{
-            try{
-                UserDao udao=new UserDao(BaseConnection.getConnectionSource());
-                udao.refresh(responsible);
-               //getApplication() runOnUiThread(()->{holder.personTV.setText(responsible.getName()+" "+ responsible.getSurname());});
-
-            }catch(SQLException throwables){
-                throwables.printStackTrace();
-            }
-        }).start();*/
         holder.personTV.setText(responsible.getName()+" "+ responsible.getSurname());
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         Log.i("data", dateFormat.format(todo.getDeadline()));
-        String strDate = dateFormat.format(todo.getDeadline());
+        String strDate = "termin: "+dateFormat.format(todo.getDeadline());
         holder.deadlineTV.setText(strDate);
         holder.titleTV.setText(todo.getName());
     }
@@ -78,14 +66,12 @@ public class TodoRecyclerViewAdapter extends RecyclerView.Adapter<TodoRecyclerVi
                 PreparationPointDao pointDao = new PreparationPointDao(BaseConnection.getConnectionSource());
                 pointDao.delete(point);
                 Log.i("todo", "todo delete");
-                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
         }).start();
 
         todoList.remove(position);
-        //notifyDataSetChanged();
         notifyItemRemoved(position);
     }
 

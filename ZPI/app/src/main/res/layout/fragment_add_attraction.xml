@@ -14,13 +14,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="30dp"
-            android:fontFamily="@font/poppins_light"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:fontFamily="@font/poppins_semibold"
             android:text="Dodaj punkt wycieczki"
             android:textColor="@color/black"
-            android:textSize="24sp"/>
+            android:textSize="20sp" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -28,33 +28,34 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:fontFamily="@font/poppins_light"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="Nazwa"
                     android:textColor="@color/black"
-                    android:textSize="18sp"/>
+                    android:textSize="16sp" />
 
 
                 <EditText
                     android:id="@+id/nameTripPointET"
-                    android:layout_width="330dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="12dp"
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
                     android:ems="10"
+                    android:fontFamily="@font/poppins"
                     android:inputType="textPersonName"
                     android:padding="12dp"
+                    android:textSize="14sp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
-<!--
+                <!--
                 <AutoCompleteTextView
                     android:layout_width="330dp"
                     android:layout_height="50dp"
@@ -71,7 +72,7 @@
                     android:imeOptions="actionSearch"/>
                     -->
 
-            <!--
+                <!--
                 <TableRow
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
@@ -98,56 +99,55 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:fontFamily="@font/poppins_light"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="Adres"
                     android:textColor="@color/black"
-                    android:textSize="18sp"/>
+                    android:textSize="16sp" />
 
                 <EditText
                     android:id="@+id/adressOfTripPointET"
-                    android:layout_width="330dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="12dp"
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
                     android:ems="10"
+                    android:fontFamily="@font/poppins"
                     android:inputType="text"
                     android:padding="12dp"
+                    android:textSize="14sp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:fontFamily="@font/poppins_light"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="Data"
                     android:textColor="@color/black"
-                    android:textSize="18sp"/>
+                    android:textSize="16sp" />
 
                 <EditText
                     android:id="@+id/dateOfTripPointET"
-                    android:layout_width="330dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="12dp"
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
                     android:ems="10"
+                    android:fontFamily="@font/poppins"
                     android:hint="rrrr-mm-dd"
                     android:inputType="date"
                     android:padding="12dp"
+                    android:textSize="14sp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:fontFamily="@font/poppins_light"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="Godzina"
                     android:textColor="@color/black"
-                    android:textSize="18sp"/>
+                    android:textSize="16sp" />
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -156,18 +156,19 @@
                     <EditText
                         android:id="@+id/hhOfTripPointET"
                         android:layout_width="80dp"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginBottom="15dp"
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="24dp"
                         android:background="@drawable/rounded"
                         android:drawableTint="@color/white"
                         android:ems="10"
-                        android:hint="HH:MM"
+                        android:fontFamily="@font/poppins"
                         android:gravity="center"
+                        android:hint="HH:MM"
+                        android:inputType="date"
+                        android:padding="12dp"
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:inputType="date"
+                        android:textSize="16sp"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 

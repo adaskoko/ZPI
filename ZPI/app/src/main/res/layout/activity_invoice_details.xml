@@ -7,14 +7,30 @@
     tools:context=".InvoiceDetailsActivity">
 
     <TextView
+        android:id="@+id/title2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/poppins_bold"
+        android:gravity="center"
+        android:text="Szczegóły rachunku"
+        android:textAlignment="viewStart"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/poppins_light"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/poppins_medium"
         android:text="Kwota"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/et_price"
         app:layout_constraintTop_toBottomOf="@+id/et_name">
 
@@ -25,10 +41,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:fontFamily="@font/poppins_light"
+        android:fontFamily="@font/poppins_medium"
         android:text="Kto ma oddać"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/et_price"
         app:layout_constraintTop_toBottomOf="@+id/et_price">
 
@@ -36,13 +52,17 @@
 
     <EditText
         android:id="@+id/et_price"
-        android:layout_width="330dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
         android:background="@drawable/rounded"
         android:drawableTint="@color/white"
         android:ems="10"
+        android:fontFamily="@font/poppins"
         android:inputType="number|text|textEmailAddress|phone"
         android:paddingHorizontal="8dp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,13 +71,17 @@
 
     <EditText
         android:id="@+id/et_name"
-        android:layout_width="330dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
         android:background="@drawable/rounded"
         android:drawableTint="@color/white"
         android:ems="10"
+        android:fontFamily="@font/poppins"
         android:inputType="textPersonName"
         android:paddingHorizontal="8dp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12"
@@ -68,12 +92,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:fontFamily="@font/poppins_light"
+        android:fontFamily="@font/poppins_medium"
         android:text="Nazwa"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/et_name"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/title2">
 
     </TextView>
 
@@ -81,7 +105,7 @@
         android:id="@+id/rv_users"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toTopOf="@+id/save_button"
         app:layout_constraintEnd_toEndOf="@+id/et_price"
         app:layout_constraintStart_toStartOf="@+id/textView15"
@@ -89,17 +113,15 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
-    <Button
+    <ImageView
         android:id="@+id/save_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:backgroundTint="#263238"
-        android:text="Zapisz"
-        android:textAllCaps="false"
+        android:layout_marginBottom="32dp"
+        android:onClick="save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:onClick="save"/>
+        app:srcCompat="@drawable/button_save" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

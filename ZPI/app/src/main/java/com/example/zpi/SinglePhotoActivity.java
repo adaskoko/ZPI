@@ -20,14 +20,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class SinglePhotoActivity extends AppCompatActivity {
 
 
     final String TRIP_KEY = "TRIP";
-    ArrayList<Bitmap> bitmaps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +53,7 @@ public class SinglePhotoActivity extends AppCompatActivity {
                 }
 
                 runOnUiThread(() -> {
-                    ViewPager viewPager = (ViewPager)findViewById(R.id.vp_images);
+                    ViewPager viewPager = findViewById(R.id.vp_images);
                     ImageViewPagerAdapter adapter = new ImageViewPagerAdapter(SinglePhotoActivity.this, multimediaFiles);
                     viewPager.setAdapter(adapter);
                     viewPager.setCurrentItem(position % multimediaFiles.size());

@@ -6,12 +6,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +17,6 @@ import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.data_handling.SharedPreferencesHandler;
@@ -40,7 +37,7 @@ import static com.example.zpi.SingleTripFragment.TRIP_KEY;
 
 public class ForumListActivity extends AppCompatActivity {
 
-    public final static String THREAD_KEY="THREAD_KEY";
+    public final static String THREAD_KEY = "THREAD_KEY";
     User loggedUser;
     RecyclerView recyclerView;
     List<ForumThread> threads;
@@ -53,24 +50,22 @@ public class ForumListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forum_list);
-        recyclerView=findViewById(R.id.rvThreads);
+        recyclerView = findViewById(R.id.rvThreads);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         loggedUser = SharedPreferencesHandler.getLoggedInUser(getApplicationContext());
-        currentTrip= (Trip) getIntent().getSerializableExtra(TRIP_KEY);
+        currentTrip = (Trip) getIntent().getSerializableExtra(TRIP_KEY);
         tripname = findViewById(R.id.tv_nameOfTheTrip);
         tripname.setText(currentTrip.getName());
         getThreadsForTripInitially();
 
-        search=findViewById(R.id.et_search);
+        search = findViewById(R.id.et_search);
         search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
             }
 
             @Override
@@ -79,10 +74,9 @@ public class ForumListActivity extends AppCompatActivity {
             }
         });
 
-        new Timer().scheduleAtFixedRate(new TimerTask(){
+        new Timer().scheduleAtFixedRate(new TimerTask() {
             @Override
-            public void run(){
-
+            public void run() {
                 getThreadsForTrip();
             }
         }, 0, 60000);
@@ -90,22 +84,21 @@ public class ForumListActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         getThreadsForTrip();
-        new Timer().scheduleAtFixedRate(new TimerTask(){
+        new Timer().scheduleAtFixedRate(new TimerTask() {
             @Override
-            public void run(){
-
+            public void run() {
                 getThreadsForTrip();
             }
         }, 0, 60000);
     }
 
-    private void filter(String text){
-        ArrayList<ForumThread> filteredList=new ArrayList<>();
-        for(ForumThread ft:threads){
-            if(ft.getTitle().toLowerCase().contains(text.toLowerCase()) || ft.getSummary().toLowerCase().contains(text.toLowerCase())){
+    private void filter(String text) {
+        ArrayList<ForumThread> filteredList = new ArrayList<>();
+        for (ForumThread ft : threads) {
+            if (ft.getTitle().toLowerCase().contains(text.toLowerCase()) || ft.getSummary().toLowerCase().contains(text.toLowerCase())) {
                 filteredList.add(ft);
             }
         }
@@ -113,61 +106,58 @@ public class ForumListActivity extends AppCompatActivity {
         forumListAdapter.filterList(filteredList);
     }
 
-    public void finishForumList(View v){
-        super.finish();
-    }
 
-    public void newThread(View v){
-        Intent intent =new Intent(this, AddForumThreadActivity.class);
+    public void newThread(View v) {
+        Intent intent = new Intent(this, AddForumThreadActivity.class);
         intent.putExtra(THREAD_KEY, currentTrip);
         startActivity(intent);
 
     }
 
-    public void getThreadsForTripInitially(){
+    public void getThreadsForTripInitially() {
         ProgressDialog progressDialog = new ProgressDialog(this, ProgressDialog.THEME_DEVICE_DEFAULT_LIGHT);
         progressDialog.setTitle("Pobieranie danych...");
         progressDialog.show();
-        new Thread(()->{
-            try{
-                Map<Integer, Integer> threadsResopnses=new HashMap<>();
-                ForumThreadDao ftdao=new ForumThreadDao(BaseConnection.getConnectionSource());
-                List<ForumThread> threads=ftdao.getThreadsForTrip(currentTrip);
-                for(ForumThread ft : threads){
+        new Thread(() -> {
+            try {
+                Map<Integer, Integer> threadsResopnses = new HashMap<>();
+                ForumThreadDao ftdao = new ForumThreadDao(BaseConnection.getConnectionSource());
+                List<ForumThread> threads = ftdao.getThreadsForTrip(currentTrip);
+                for (ForumThread ft : threads) {
                     threadsResopnses.put(ft.getID(), ftdao.getResponsesCount(ft));
                 }
-                runOnUiThread(()->{
-                    this.threads=threads;
-                    ForumListAdapter adapter=new ForumListAdapter(threads, threadsResopnses);
-                    this.forumListAdapter=adapter;
+                runOnUiThread(() -> {
+                    this.threads = threads;
+                    ForumListAdapter adapter = new ForumListAdapter(threads, threadsResopnses);
+                    this.forumListAdapter = adapter;
                     recyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                     progressDialog.dismiss();
                 });
-            }catch(SQLException throwables) {
+            } catch (SQLException throwables) {
                 throwables.printStackTrace();
                 progressDialog.dismiss();
             }
         }).start();
     }
 
-    public void getThreadsForTrip(){
-        new Thread(()->{
-            try{
-                Map<Integer, Integer> threadsResopnses=new HashMap<>();
-                ForumThreadDao ftdao=new ForumThreadDao(BaseConnection.getConnectionSource());
-                List<ForumThread> threads=ftdao.getThreadsForTrip(currentTrip);
-                for(ForumThread ft : threads){
+    public void getThreadsForTrip() {
+        new Thread(() -> {
+            try {
+                Map<Integer, Integer> threadsResopnses = new HashMap<>();
+                ForumThreadDao ftdao = new ForumThreadDao(BaseConnection.getConnectionSource());
+                List<ForumThread> threads = ftdao.getThreadsForTrip(currentTrip);
+                for (ForumThread ft : threads) {
                     threadsResopnses.put(ft.getID(), ftdao.getResponsesCount(ft));
                 }
-                runOnUiThread(()->{
-                    this.threads=threads;
-                    ForumListAdapter adapter=new ForumListAdapter(threads, threadsResopnses);
-                    this.forumListAdapter=adapter;
+                runOnUiThread(() -> {
+                    this.threads = threads;
+                    ForumListAdapter adapter = new ForumListAdapter(threads, threadsResopnses);
+                    this.forumListAdapter = adapter;
                     recyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 });
-            }catch(SQLException throwables) {
+            } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
         }).start();
@@ -178,62 +168,57 @@ public class ForumListActivity extends AppCompatActivity {
         private List<ForumThread> threadsForList;
         private Map<Integer, Integer> map;
 
-        private Context context;
-
-        public ForumListAdapter(List<ForumThread> list, Map<Integer, Integer> map){
-            this.threadsForList=list;
-            this.map=map;
+        public ForumListAdapter(List<ForumThread> list, Map<Integer, Integer> map) {
+            this.threadsForList = list;
+            this.map = map;
         }
 
         @Override
-        public Filter getFilter(){
+        public Filter getFilter() {
             return null;
         }
 
         @NonNull
         @Override
-        public ForumListAdapter.ForumListAdapterVh onCreateViewHolder(@NonNull ViewGroup parent, int position){
-            context=parent.getContext();
-            View itemView= LayoutInflater.from(parent.getContext()).inflate(R.layout.forum_label, parent, false);
+        public ForumListAdapter.ForumListAdapterVh onCreateViewHolder(@NonNull ViewGroup parent, int position) {
+            View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.forum_label, parent, false);
             return new ForumListAdapterVh(itemView);
         }
 
         @Override
-        public void onBindViewHolder(@NonNull ForumListAdapter.ForumListAdapterVh holder, int position){
-            ForumThread thread=threadsForList.get(position);
-            //String planName=content.get(thread.getID());
+        public void onBindViewHolder(@NonNull ForumListAdapter.ForumListAdapterVh holder, int position) {
+            ForumThread thread = threadsForList.get(position);
             holder.tvPlanType.setText(thread.getSummary());
             holder.tvSummary.setText(thread.getTitle());
-            String responses=String.valueOf(map.get(thread.getID()))+" odpowiedzi";
+            String responses = map.get(thread.getID()) + " odpowiedzi";
             holder.responses.setText(responses);
 
         }
 
         @Override
-        public int getItemCount(){
+        public int getItemCount() {
             return threadsForList.size();
         }
 
-        public void filterList(List<ForumThread> filtered){
-            threadsForList=filtered;
+        public void filterList(List<ForumThread> filtered) {
+            threadsForList = filtered;
             notifyDataSetChanged();
         }
 
-        private class ForumListAdapterVh extends RecyclerView.ViewHolder{
-            TextView tvSummary;//title
-            TextView tvPlanType;//summary
+        private class ForumListAdapterVh extends RecyclerView.ViewHolder {
+            TextView tvSummary;
+            TextView tvPlanType;
             TextView responses;
 
-            public ForumListAdapterVh(@NonNull View itemView){
+            public ForumListAdapterVh(@NonNull View itemView) {
                 super(itemView);
-                tvSummary=itemView.findViewById(R.id.tv_threadName);//title
-                tvPlanType=itemView.findViewById(R.id.tv_planName);//summary
-                responses=itemView.findViewById(R.id.tv_responses);
+                tvSummary = itemView.findViewById(R.id.tv_threadName);
+                tvPlanType = itemView.findViewById(R.id.tv_planName);
+                responses = itemView.findViewById(R.id.tv_responses);
 
-                itemView.setOnClickListener(v->{
-                    //Toast.makeText(ForumListActivity.this,tvSummary.getText(), Toast.LENGTH_SHORT).show();
-                    ForumThread ft=threadsForList.get(getAbsoluteAdapterPosition());
-                    Intent intent=new Intent(ForumListActivity.this, ForumActivity.class);
+                itemView.setOnClickListener(v -> {
+                    ForumThread ft = threadsForList.get(getAbsoluteAdapterPosition());
+                    Intent intent = new Intent(ForumListActivity.this, ForumActivity.class);
                     intent.putExtra(THREAD_KEY, ft);
                     intent.putExtra(TRIP_KEY, currentTrip);
                     startActivity(intent);

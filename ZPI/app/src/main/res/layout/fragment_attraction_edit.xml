@@ -13,13 +13,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="30dp"
-            android:fontFamily="@font/poppins_light"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:fontFamily="@font/poppins_semibold"
             android:text="Edytuj atrakcję"
             android:textColor="@color/black"
-            android:textSize="24sp"/>
+            android:textSize="20sp" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -27,84 +27,84 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:fontFamily="@font/poppins_light"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="Nazwa"
                     android:textColor="@color/black"
-                    android:textSize="18sp"/>
+                    android:textSize="16sp" />
 
                 <EditText
                     android:id="@+id/et_nameTripPoint"
-                    android:layout_width="330dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="12dp"
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
                     android:ems="10"
+                    android:fontFamily="@font/poppins"
                     android:inputType="text"
                     android:padding="12dp"
+                    android:textSize="14sp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:fontFamily="@font/poppins_light"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="Adres"
                     android:textColor="@color/black"
-                    android:textSize="18sp"/>
+                    android:textSize="16sp" />
 
                 <EditText
                     android:id="@+id/et_adressOfTripPoint"
-                    android:layout_width="330dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="12dp"
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
                     android:ems="10"
+                    android:fontFamily="@font/poppins"
                     android:inputType="text"
                     android:padding="12dp"
+                    android:textSize="14sp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:fontFamily="@font/poppins_light"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="Data"
                     android:textColor="@color/black"
-                    android:textSize="18sp"/>
+                    android:textSize="16sp" />
 
                 <EditText
                     android:id="@+id/et_dateOfTripPoint"
-                    android:layout_width="330dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="12dp"
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
                     android:ems="10"
+                    android:fontFamily="@font/poppins"
                     android:inputType="date"
                     android:padding="12dp"
+                    android:textSize="14sp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:fontFamily="@font/poppins_light"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="Godzina"
                     android:textColor="@color/black"
-                    android:textSize="18sp"/>
+                    android:textSize="16sp" />
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -113,40 +113,22 @@
                     <EditText
                         android:id="@+id/et_hhOfTripPoint"
                         android:layout_width="80dp"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginBottom="15dp"
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="24dp"
                         android:background="@drawable/rounded"
                         android:drawableTint="@color/white"
                         android:ems="10"
-                        android:hint="HH:MM"
+                        android:fontFamily="@font/poppins"
                         android:gravity="center"
+                        android:hint="HH:MM"
+                        android:inputType="date"
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:inputType="date"
+                        android:textSize="16sp"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 </TableRow>
-<!--
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:fontFamily="@font/poppins_light"
-                    android:text="Osoby biorące udział"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"/>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_participants"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="30dp"
-                    tools:listitem="@layout/item_participant_edit"
-                    tools:itemCount="3"/>
--->
                 <ImageButton
                     android:id="@+id/btn_addPrepPoint"
                     android:layout_width="wrap_content"
@@ -154,8 +136,8 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="5dp"
                     android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/przycisk_confirm"
-                    android:contentDescription="TODO" />
+                    android:contentDescription="TODO"
+                    android:src="@drawable/button_save" />
 
             </LinearLayout>
         </ScrollView>

@@ -8,7 +8,6 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,7 +61,7 @@ public class ToTakeThingDetailsFragment extends Fragment {
 
     private void fillTextViews(){
         binding.productNameTV.setText(actPoint.getName());
-        binding.tvPrPersonResponsible.setText(actPoint.getUser().getName());
+        binding.tvPrPersonResponsible.setText(actPoint.getUser().getName()+" "+actPoint.getUser().getSurname());
         binding.cbDone.setChecked(actPoint.isDone());
         binding.cbDone.setEnabled(false);
     }
@@ -72,9 +71,6 @@ public class ToTakeThingDetailsFragment extends Fragment {
             try {
                 ProductToTakeDao pointDao = new ProductToTakeDao(BaseConnection.getConnectionSource());
                 pointDao.delete(actPoint);
-                Log.i("todo", "usunieto todo");
-
-                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }

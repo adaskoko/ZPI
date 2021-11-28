@@ -7,182 +7,225 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="60"
         android:orientation="vertical"
-        android:weightSum="100"
+        app:layout_constraintBottom_toTopOf="@id/bottombar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topBar">
+
+        <TextView
+            android:id="@+id/tv_assignedElement2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/rounded_component"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/poppins"
+            android:onClick="chooseList"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="4dp"
+            android:text="punkt wycieczki"
+            android:textColor="#ACACAC"
+            android:textSize="10sp"
+            app:drawableStartCompat="@drawable/ic_link"
+            tools:drawablePadding="8dp" />
+
+        <TextView
+            android:id="@+id/tv_nameOfThread2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Zdjęcia z Bramy Brandenburskiej"
+            android:textColor="@color/black"
+            android:textSize="20sp"></TextView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_comments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="10dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#263238"
+        android:orientation="vertical"
+        android:paddingHorizontal="30dp"
+        android:paddingTop="33dp"
+        android:paddingBottom="23dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/tv_nameOfThread"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Zdjęcia z Bramy Brandenburskiej"
+            android:textColor="@color/white"
+            android:textSize="18sp"></TextView>
+
+        <TextView
+            android:id="@+id/tv_nameOfTrip1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="Wycieczka do Berlina"
+            android:textColor="#D3D3D3"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottombar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#263238"
+        android:gravity="center_vertical|end"
+        android:orientation="vertical"
+        android:paddingVertical="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/tv_respCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:text="1 odpowiedź"
+            android:textAlignment="viewEnd"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/respond"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="20dp"
+        android:onClick="respond"
+        app:layout_constraintBottom_toBottomOf="@id/bottombar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_button_respond" />
+
+    <View
+        android:id="@+id/darkenedView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#B7000000"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/response_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:background="@drawable/rounded"
+        android:padding="12dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="30"
-            android:background="#263238"
-            android:orientation="vertical">
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="20dp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_comment3">
 
+            <ImageView
+                android:id="@+id/btn_cancel1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:onClick="cancelResp"
+                app:srcCompat="@drawable/button_cancel" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/btn_send_response"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="addResponse"
+                app:srcCompat="@drawable/button_send" />
 
+        </TableRow>
 
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/ic_back_white"
-                    android:onClick="finishForum"/>
-
-                <TextView
-                    android:id="@+id/tv_nameOfTrip1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/poppins_light"
-                    android:text="Wycieczka do Berlina"
-                    android:textColor="@color/white"
-                    android:textSize="20sp" />
-            </TableRow>
-        </LinearLayout>
-
-
-        <LinearLayout
+        <EditText
+            android:id="@+id/et_comment3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="60"
-            android:orientation="vertical">
+            android:layout_marginVertical="12dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/poppins"
+            android:gravity="start"
+            android:hint="Tu wpisz swoją odpowiedź"
+            android:textAlignment="gravity"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tr_icon3">
+
+            <requestFocus />
+        </EditText>
+
+        <TableRow
+            android:id="@+id/tr_icon3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/tv_name2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
+                android:id="@+id/tv_initials3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/text_view_circle"
+                android:backgroundTint="#263238"
                 android:fontFamily="@font/poppins_light"
-                android:text="Wycieczka do Berlina"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"></TextView>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_comments"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginBottom="10dp">
-
-            </androidx.recyclerview.widget.RecyclerView>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/response_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="28dp"
-                android:background="@drawable/rounded"
-                android:padding="12dp">
-
-                <EditText
-                    android:id="@+id/et_comment3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="12dp"
-                    android:background="@android:color/transparent"
-                    android:fontFamily="@font/poppins"
-                    android:hint="Tu wpisz swoją odpowiedź"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tr_icon3">
-
-                    <requestFocus />
-                </EditText>
-
-                <TableRow
-                    android:id="@+id/tr_icon3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <TextView
-                        android:id="@+id/tv_initials3"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/text_view_circle"
-                        android:backgroundTint="#263238"
-                        android:fontFamily="@font/poppins_light"
-                        android:gravity="center"
-                        android:padding="8dp"
-                        android:text="AR"
-                        android:textColor="@color/white"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/tv_personName3"
-                        android:layout_height="match_parent"
-                        android:layout_marginHorizontal="22dp"
-                        android:fontFamily="@font/poppins_medium"
-                        android:gravity="center_vertical"
-                        android:text="Ty (Aleksandra Rzepecka)"
-                        android:textAlignment="gravity"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"></TextView>
-
-                </TableRow>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="20dp">
-
-                <ImageView
-                    android:id="@+id/btn_cancel1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:onClick="cancelResp"
-                    app:srcCompat="@drawable/button_cancel" />
-
-                <ImageView
-                    android:id="@+id/btn_respond"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="addResponse"
-                    app:srcCompat="@drawable/button_send" />
-
-            </TableRow>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_weight="10"
-            android:background="#263238"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="AR"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/tv_respCount"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="30dp"
-                android:text="1 odpowiedź"
-                android:textAlignment="viewEnd"
-                android:textColor="@color/white" />
-        </LinearLayout>
+                android:id="@+id/tv_personName3"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="22dp"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center_vertical"
+                android:text="Ty (Aleksandra Rzepecka)"
+                android:textAlignment="gravity"
+                android:textColor="@color/black"
+                android:textSize="16sp"></TextView>
 
+        </TableRow>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
