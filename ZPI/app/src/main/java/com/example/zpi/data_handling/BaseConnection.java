@@ -16,11 +16,11 @@ public class BaseConnection {
 
     public static ConnectionSource getConnectionSource() {
         if (connectionSource == null){
-            String databaseUrl = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11439521";
-            //String databaseUrl = "jdbc:mysql://db4free.net:3306/zpi_test_db";
+            //String databaseUrl = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11439521";
+            String databaseUrl = "jdbc:mysql://db4free.net:3306/zpi_test_db";
             try {
-                connectionSource = new JdbcConnectionSource(databaseUrl, "sql11439521", "wdsA5B6LFC");
-                //connectionSource = new JdbcConnectionSource(databaseUrl, "zpi_test_user", "zpi_test_password");
+                //connectionSource = new JdbcConnectionSource(databaseUrl, "sql11439521", "wdsA5B6LFC");
+                connectionSource = new JdbcConnectionSource(databaseUrl, "zpi_test_user", "zpi_test_password");
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
