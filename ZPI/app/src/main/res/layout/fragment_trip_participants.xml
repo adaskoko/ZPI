@@ -10,10 +10,9 @@
         android:id="@+id/participantsTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/poppins_light"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/poppins_semibold"
         android:gravity="start|center_vertical"
         android:text="Uczestnicy"
         android:textColor="@color/black"
@@ -34,12 +33,15 @@
         tools:listitem="@layout/item_participant" />-->
     <ListView
         android:id="@+id/participantsLV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="12dp"
+        android:divider="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/participantsTV"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        app:layout_constraintTop_toBottomOf="@id/participantsTV">
 
     </ListView>
 
@@ -48,7 +50,7 @@
         android:id="@+id/btn_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/participantsLV"

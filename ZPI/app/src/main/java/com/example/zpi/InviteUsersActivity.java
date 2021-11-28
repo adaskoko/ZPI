@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.example.zpi.bottomnavigation.BottomNavigationActivity;
@@ -17,14 +17,18 @@ import com.example.zpi.data_handling.SharedPreferencesHandler;
 import com.example.zpi.models.Trip;
 import com.example.zpi.models.TripParticipant;
 import com.example.zpi.models.User;
+import com.example.zpi.repositories.TripDao;
 import com.example.zpi.repositories.TripParticipantDao;
+import com.example.zpi.repositories.UserDao;
 
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InviteUsersActivity extends AppCompatActivity implements Serializable {
+public class InviteUsersActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, Serializable {
 
     TextView currentTripName;
     TextView currentTripDate;
@@ -32,24 +36,93 @@ public class InviteUsersActivity extends AppCompatActivity implements Serializab
     Trip currentTrip;
     ListView participants;
 
+    ListView list;
+    SearchUserForNewConversationActivity.ListViewAdapter adapter;
+    SearchView editSearch;
+    ArrayList<User> arraylist = new ArrayList<>();
+    TextView chosenUserTV;
+    User chosenUser;
+    View clickOutView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invite_users);
+
+        list = findViewById(R.id.listview);
+        chosenUserTV = findViewById(R.id.chosen_user);
+        clickOutView = findViewById(R.id.clickOutView2);
+
+        new Thread(() -> {
+            try {
+                UserDao userDao = new UserDao(BaseConnection.getConnectionSource());
+                ArrayList<User> al = (ArrayList<User>) userDao.getAllUsers();
+                runOnUiThread(() -> {
+                    this.arraylist = al;
+                    adapter = new SearchUserForNewConversationActivity.ListViewAdapter(this, arraylist);
+                    list.setAdapter(adapter);
+                    editSearch = findViewById(R.id.search);
+                    editSearch.setIconified(false);
+                    editSearch.setOnQueryTextListener(this);
+                    editSearch.setOnClickListener(v -> {
+                        list.setVisibility(View.VISIBLE);
+                        adapter.filter(editSearch.getQuery().toString());
+                    });
+                    adapter.notifyDataSetChanged();
+                });
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }).start();
+
+        list.setOnItemClickListener((arg0, arg1, position, arg3) -> {
+            chosenUser = (User) arg0.getAdapter().getItem(position);
+            list.setVisibility(View.GONE);
+
+            new Thread(() -> {
+                try {
+                    if(chosenUser!=null){
+                        TripDao tripDao=new TripDao(BaseConnection.getConnectionSource());
+                        tripDao.addRegularParticipant(currentTrip, chosenUser);
+                        getTripParticipants();
+                    }
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }).start();
+        });
+
+        clickOutView.setOnClickListener(c -> {
+            list.setVisibility(View.GONE);
+        });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 
         loggedUser = SharedPreferencesHandler.getLoggedInUser(getApplicationContext());
         currentTripName=findViewById(R.id.tv_tripname);
         currentTripDate=findViewById(R.id.tv_tripdate);
         currentTrip = (Trip)getIntent().getSerializableExtra("CreateTrip");
         currentTripName.setText(currentTrip.getName());
-        String dateRange=currentTrip.getStartDate().toString()+" - "+currentTrip.getEndDate().toString();
+        String dateRange=dateFormat.format(currentTrip.getStartDate())+" - "+dateFormat.format(currentTrip.getEndDate());
         currentTripDate.setText(dateRange);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        if (!newText.equals("")) list.setVisibility(View.VISIBLE);
+        else list.setVisibility(View.GONE);
+        adapter.filter(newText);
+        return false;
     }
 
     @Override
@@ -57,18 +130,8 @@ public class InviteUsersActivity extends AppCompatActivity implements Serializab
         super.onResume();
         participants=findViewById(R.id.lv_participants);
         getTripParticipants();
-
     }
 
-    public void searchUsers(View v){
-        EditText nameAndSurname=findViewById(R.id.et_personName);
-        String[] input=nameAndSurname.getText().toString().split("\\s+");
-        Intent intent=new Intent(this, MatchingUsersActivity.class);
-        intent.putExtra("MATCH", input);
-        intent.putExtra("TRIP", currentTrip);
-        startActivity(intent);
-        nameAndSurname.getText().clear();
-    }
 
     public void getTripParticipants(){
         List<String> parts=new ArrayList<>();
@@ -80,8 +143,6 @@ public class InviteUsersActivity extends AppCompatActivity implements Serializab
                 if(tripParticipants.size()!=0) {
                     for (TripParticipant tp:tripParticipants) {
                         User u=tp.getUser();
-                        Log.i("user z dao", String.valueOf(u.getEmail()));
-
                         String currentRow=u.getName()+" "+ u.getSurname()+"("+u.getEmail()+")";
                         parts.add(currentRow);
                     }
@@ -103,4 +164,9 @@ public class InviteUsersActivity extends AppCompatActivity implements Serializab
         intent.putExtra("TRIP", currentTrip);
         startActivity(intent);
     }
+
+    public void back(View v){
+        finish();
+    }
+
 }

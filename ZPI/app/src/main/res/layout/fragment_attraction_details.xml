@@ -12,39 +12,39 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
+            android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/poppins_light"
-            android:text="PUNKT WYCIECZKI-ATRAKCJA"
+            android:text="PUNKT WYCIECZKI"
             android:textColor="@color/black"
-            android:textSize="12sp"/>
+            android:textSize="12sp" />
+
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginBottom="20dp">
 
 
             <TextView
                 android:id="@+id/pointNameTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:fontFamily="@font/poppins_light"
+                android:layout_weight="40"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="Brama Brandenburska"
                 android:textColor="@color/black"
-                android:textSize="24sp"
-                android:layout_weight="40">
-            </TextView>
+                android:textSize="20sp"></TextView>
 
             <ImageButton
                 android:id="@+id/btn_editAttraction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/transparent"
-                android:src="@drawable/ic_edit"
                 android:layout_gravity="right"
                 android:layout_weight="10"
-               >
-            </ImageButton>
+                android:backgroundTint="@android:color/transparent"
+                android:scaleType="fitEnd"
+                android:src="@drawable/ic_edit"></ImageButton>
         </TableRow>
 
         <ScrollView
@@ -53,51 +53,47 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:fontFamily="@font/poppins_light"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="Adres"
                     android:textColor="@color/black"
-                    android:textSize="18sp"></TextView>
+                    android:textSize="16sp"></TextView>
 
                 <TextView
                     android:id="@+id/tv_pointAddress"
-                    android:layout_width="330dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="12dp"
                     android:background="@drawable/rounded"
-                    android:drawableTint="@color/white"
                     android:ems="10"
-                    android:fontFamily="@font/poppins_light"
+                    android:fontFamily="@font/poppins"
                     android:inputType="text"
                     android:padding="12dp"
                     android:textSize="14sp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:fontFamily="@font/poppins_light"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="Data"
                     android:textColor="@color/black"
-                    android:textSize="18sp"></TextView>
+                    android:textSize="16sp"></TextView>
 
                 <TextView
                     android:id="@+id/tv_pointDate"
-                    android:layout_width="330dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="12dp"
                     android:background="@drawable/rounded"
-                    android:drawableTint="@color/white"
                     android:ems="10"
-                    android:fontFamily="@font/poppins_light"
+                    android:fontFamily="@font/poppins"
                     android:inputType="text"
                     android:padding="12dp"
                     android:textSize="14sp"
@@ -106,11 +102,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:fontFamily="@font/poppins_light"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="Godzina"
                     android:textColor="@color/black"
-                    android:textSize="18sp"/>
+                    android:textSize="16sp" />
+
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -119,21 +115,19 @@
                         android:id="@+id/tv_point_hh"
                         android:layout_width="80dp"
                         android:layout_height="50dp"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginBottom="15dp"
+                        android:layout_marginBottom="24dp"
                         android:background="@drawable/rounded"
-                        android:drawableTint="@color/white"
                         android:ems="10"
-                        android:fontFamily="@font/poppins_light"
+                        android:fontFamily="@font/poppins"
                         android:gravity="center"
                         android:text="10:55"
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 </TableRow>
-<!--
+                <!--
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -153,10 +147,9 @@
                     android:id="@+id/btn_deleteAttraction"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/button_delete"
-                    android:layout_gravity="center">
-                </ImageButton>
+                    android:src="@drawable/button_delete"></ImageButton>
 
 
             </LinearLayout>

@@ -7,6 +7,15 @@
     tools:context=".InviteUsersActivity">
 
 
+    <View
+        android:id="@+id/clickOutView2"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="fill_parent"
@@ -41,10 +50,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/poppins_light"
-                    android:textColor="@color/white"
-                    android:textSize="28sp"
-                    android:textStyle="bold">
+                    android:fontFamily="@font/poppins_bold"
+                    android:onClick="goToCurrentTripMainPanel"
+                    android:text="trip"
+                    android:textColor="@color/primary_dark"
+                    android:textSize="24sp">
 
                 </TextView>
 
@@ -53,8 +63,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/poppins_light"
-                    android:textColor="@color/white"
+                    android:fontFamily="@font/poppins"
+                    android:text="data"
+                    android:textColor="@color/primary_dark"
                     android:textSize="14sp">
 
                 </TextView>
@@ -76,12 +87,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="@font/poppins_medium"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:fontFamily="@font/poppins_semibold"
             android:text="Zaproś na wycieczkę"
             android:textColor="@color/black"
-            android:textSize="22sp"></TextView>
+            android:textSize="20sp"></TextView>
 
         <TextView
             android:layout_width="wrap_content"
@@ -92,30 +103,23 @@
             android:textColor="@color/black"
             android:textSize="16sp"></TextView>
 
-        <EditText
-            android:id="@+id/et_personName"
+        <SearchView
+            android:id="@+id/search"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/rounded"
-            android:drawableTint="@color/white"
-            android:ems="10"
-            android:fontFamily="@font/poppins"
-            android:hint="imię i nazwisko"
-            android:inputType="text"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:textSize="14sp"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"></EditText>
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="24dp"
-            android:onClick="searchUsers"
-            app:srcCompat="@drawable/button_search" />
+            android:background="@drawable/rounded_search"
+            android:iconifiedByDefault="false"
+            android:queryHint="imię i nazwisko"
+            tools:queryHint="imię i nazwisko">
+
+        </SearchView>
+
+        <ListView
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:layout_editor_absoluteX="16dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -125,6 +129,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="Zaproszeni użytkownicy:"
@@ -135,7 +140,8 @@
                 android:id="@+id/lv_participants"
                 android:layout_width="match_parent"
                 android:layout_height="129dp"
-                android:layout_marginBottom="24dp" />
+                android:layout_marginBottom="24dp"
+                android:divider="@null" />
 
             <ImageView
                 android:id="@+id/imageView5"
@@ -143,7 +149,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="24dp"
-                android:onClick="goToCurrentTripMainPanel"
+                android:onClick="back"
                 app:srcCompat="@drawable/button_ready" />
 
         </LinearLayout>

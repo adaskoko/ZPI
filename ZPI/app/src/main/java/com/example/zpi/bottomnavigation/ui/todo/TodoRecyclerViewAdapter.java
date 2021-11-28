@@ -47,9 +47,9 @@ public class TodoRecyclerViewAdapter extends RecyclerView.Adapter<TodoRecyclerVi
         holder.todoChB.setEnabled(false);
         User responsible=todo.getUser();
         holder.personTV.setText(responsible.getName()+" "+ responsible.getSurname());
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         Log.i("data", dateFormat.format(todo.getDeadline()));
-        String strDate = dateFormat.format(todo.getDeadline());
+        String strDate = "termin: "+dateFormat.format(todo.getDeadline());
         holder.deadlineTV.setText(strDate);
         holder.titleTV.setText(todo.getName());
     }

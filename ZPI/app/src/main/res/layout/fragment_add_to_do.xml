@@ -13,14 +13,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="30dp"
-            android:fontFamily="@font/poppins_light"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:fontFamily="@font/poppins_semibold"
             android:text="Dodaj punkt przygotowań"
             android:textColor="@color/black"
-            android:textSize="24sp">
-        </TextView>
+            android:textSize="20sp"></TextView>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -28,100 +27,128 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:fontFamily="@font/poppins_light"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="Nazwa"
                     android:textColor="@color/black"
-                    android:textSize="18sp"/>
+                    android:textSize="16sp" />
 
                 <EditText
                     android:id="@+id/nameOfTrip"
-                    android:layout_width="330dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="12dp"
                     android:autofillHints="no"
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
                     android:ems="10"
+                    android:fontFamily="@font/poppins"
                     android:inputType="textPersonName"
                     android:padding="12dp"
+                    android:textSize="14sp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:fontFamily="@font/poppins_light"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="Opis"
                     android:textColor="@color/black"
-                    android:textSize="18sp"/>
+                    android:textSize="16sp" />
 
                 <EditText
                     android:id="@+id/descOfTrip"
-                    android:layout_width="330dp"
+                    android:layout_width="match_parent"
                     android:layout_height="180dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginBottom="12dp"
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
                     android:ems="10"
+                    android:fontFamily="@font/poppins"
                     android:gravity="start"
                     android:importantForAutofill="no"
                     android:inputType="text"
                     android:padding="12dp"
                     android:textAlignment="gravity"
+                    android:textSize="14sp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:fontFamily="@font/poppins_light"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="Termin"
                     android:textColor="@color/black"
-                    android:textSize="18sp"/>
+                    android:textSize="16sp" />
 
                 <EditText
                     android:id="@+id/dateOfTrip"
-                    android:layout_width="330dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="12dp"
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
                     android:ems="10"
+                    android:fontFamily="@font/poppins"
                     android:hint="rrrr-mm-dd"
                     android:importantForAutofill="no"
                     android:inputType="date"
                     android:padding="12dp"
+                    android:textSize="14sp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:fontFamily="@font/poppins_light"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="Osoba odpowiedzialna"
                     android:textColor="@color/black"
-                    android:textSize="18sp">
+                    android:textSize="16sp">
 
                 </TextView>
 
-                <Spinner
-                    android:id="@+id/assignedTo"
-                    android:layout_width="330dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginBottom="30dp"
-                    android:background="@android:drawable/btn_dropdown"
-                    android:spinnerMode="dropdown" />
+<!--                <Spinner-->
+<!--                    android:id="@+id/assignedTo"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="48dp"-->
+<!--                    android:layout_marginBottom="24dp"-->
+<!--                    android:background="@drawable/rounded"-->
+<!--                    android:spinnerMode="dropdown" />-->
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="24dp"
+                    android:background="@drawable/rounded"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+
+                    <Spinner
+                        android:id="@+id/assignedTo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="start"
+                        android:background="@android:color/transparent"
+                        android:gravity="start"
+                        android:spinnerMode="dropdown"
+                        android:textAlignment="gravity" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="12dp"
+                        android:src="@drawable/ic_arrow_down" />
+
+                </RelativeLayout>
 
                 <ImageButton
                     android:id="@+id/btn_addPrepPoint"
@@ -131,8 +158,7 @@
                     android:layout_marginBottom="5dp"
                     android:backgroundTint="@android:color/transparent"
                     android:onClick="TODO"
-                    android:src="@drawable/button_add">
-                </ImageButton>
+                    android:src="@drawable/button_add"></ImageButton>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

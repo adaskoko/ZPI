@@ -81,8 +81,6 @@ public class AddToDoFragment extends Fragment implements DatePickerDialog.OnDate
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 chosenUser = (User) parent.getItemAtPosition(position);
-                String clickedUSer = chosenUser.getName();
-                Toast.makeText(getContext(), clickedUSer + " selected", Toast.LENGTH_SHORT).show();
             }
 
             @Override

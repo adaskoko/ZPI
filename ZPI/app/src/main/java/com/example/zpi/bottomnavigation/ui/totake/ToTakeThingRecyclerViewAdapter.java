@@ -42,9 +42,8 @@ public class ToTakeThingRecyclerViewAdapter extends RecyclerView.Adapter<ToTakeT
     public void onBindViewHolder(@NonNull ToTakeThingViewHolder holder, int position) {
         ProductToTake product = productToTakeList.get(position);
         holder.mItem = product;
-        //holder.toTakeChB.setActivated(product.isDone()); //jak w bazie jest zapisane chb
         holder.titleTV.setText(product.getName());
-        holder.personTV.setText(product.getUser().getName());
+        holder.personTV.setText(product.getUser().getName()+" "+product.getUser().getSurname());
         holder.toTakeChB.setChecked(product.isDone());
         holder.toTakeChB.setEnabled(false);
     }

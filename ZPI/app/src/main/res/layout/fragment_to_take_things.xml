@@ -8,14 +8,31 @@
     tools:context=".bottomnavigation.ui.totake.ToTakeThingsFragment">
 
 
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Lista rzeczy do zabrania"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_to_take_things"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="40dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_add_to_take"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView13"
         tools:listitem="@layout/item_to_take" />
 
     <ImageButton

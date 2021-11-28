@@ -12,13 +12,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center|start"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginBottom="30dp"
-            android:fontFamily="@font/poppins_light"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:fontFamily="@font/poppins_semibold"
             android:text="Edytuj punkt przygotowań"
             android:textColor="@color/black"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -27,28 +27,27 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:fontFamily="@font/poppins_light"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="Nazwa"
                     android:textColor="@color/black"
-                    android:textSize="18sp"/>
+                    android:textSize="16sp" />
 
                 <EditText
                     android:id="@+id/et_todoName"
-                    android:layout_width="330dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="12dp"
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
                     android:ems="10"
-                    android:fontFamily="@font/poppins_light"
+                    android:fontFamily="@font/poppins"
                     android:inputType="text"
                     android:padding="12dp"
                     android:textColor="@color/black"
@@ -58,22 +57,45 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:fontFamily="@font/poppins_light"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="Opis"
                     android:textColor="@color/black"
-                    android:textSize="18sp"/>
+                    android:textSize="16sp" />
 
                 <EditText
                     android:id="@+id/et_todoDesc"
-                    android:layout_width="330dp"
+                    android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginBottom="12dp"
                     android:background="@drawable/rounded"
                     android:drawableTint="@color/white"
                     android:ems="10"
-                    android:fontFamily="@font/poppins_light"
+                    android:fontFamily="@font/poppins"
+                    android:gravity="start"
+                    android:inputType="text"
+                    android:padding="12dp"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Termin"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/tv_pontDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/rounded"
+                    android:drawableTint="@color/white"
+                    android:ems="10"
+                    android:fontFamily="@font/poppins"
                     android:inputType="text"
                     android:padding="12dp"
                     android:textColor="@color/black"
@@ -83,43 +105,40 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:fontFamily="@font/poppins_light"
-                    android:text="Termin"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"/>
-
-                <EditText
-                    android:id="@+id/tv_pontDate"
-                    android:layout_width="330dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginBottom="15dp"
-                    android:background="@drawable/rounded"
-                    android:drawableTint="@color/white"
-                    android:ems="10"
-                    android:fontFamily="@font/poppins_light"
-                    android:inputType="date"
-                    android:padding="12dp"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:fontFamily="@font/poppins_light"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="Osoba odpowiedzialna"
                     android:textColor="@color/black"
-                    android:textSize="18sp"/>
+                    android:textSize="16sp" />
 
-                <Spinner
-                    android:id="@+id/assignedTo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp">
-                </Spinner>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/rounded"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+
+                    <Spinner
+                        android:id="@+id/assignedTo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="start"
+                        android:background="@android:color/transparent"
+                        android:gravity="start"
+                        android:spinnerMode="dropdown"
+                        android:textAlignment="gravity" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="12dp"
+                        android:src="@drawable/ic_arrow_down" />
+
+                </RelativeLayout>
+
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -128,17 +147,20 @@
                         android:id="@+id/cb_done"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="30dp"
-                        android:text="Wykonane" />
+                        android:layout_marginBottom="24dp"
+                        android:buttonTint="@color/black"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Wykonane"
+                        android:textSize="16sp" />
                 </TableRow>
 
                 <ImageButton
                     android:id="@+id/btn_confirm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/przycisk_confirm"
-                    android:layout_gravity="center" />
+                    android:src="@drawable/button_save" />
 
             </LinearLayout>
         </ScrollView>

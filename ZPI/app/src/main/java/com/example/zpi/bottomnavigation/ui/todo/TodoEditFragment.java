@@ -16,6 +16,7 @@ import android.widget.DatePicker;
 import android.widget.Toast;
 
 import com.example.zpi.R;
+import com.example.zpi.bottomnavigation.ui.totake.ToTakeThingEditFragment;
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.data_handling.SharedPreferencesHandler;
 import com.example.zpi.databinding.FragmentTodoEditBinding;
@@ -64,6 +65,8 @@ public class TodoEditFragment extends Fragment implements DatePickerDialog.OnDat
                 getActivity().runOnUiThread(() -> {
                     PersonSpinnerAdapter personAdapter = new PersonSpinnerAdapter(requireContext(), userList);
                     binding.assignedTo.setAdapter(personAdapter);
+                    int index = ToTakeThingEditFragment.getUserIndex(userList, actPoint.getUser());
+                    binding.assignedTo.setSelection(index);
                 });
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
@@ -75,8 +78,6 @@ public class TodoEditFragment extends Fragment implements DatePickerDialog.OnDat
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 chosenUser = (User) parent.getItemAtPosition(position);
-                String clickedUSer = chosenUser.getName();
-                Toast.makeText(getContext(), clickedUSer + " selected", Toast.LENGTH_SHORT).show();
             }
 
             @Override

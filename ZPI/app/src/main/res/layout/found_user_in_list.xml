@@ -1,7 +1,10 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/Row"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
     android:fontFamily="@font/poppins"
+    android:paddingBottom="8dp"
+    android:text="Jan Kowalski"
     android:textColor="@color/black"
     android:textSize="12sp"></TextView>

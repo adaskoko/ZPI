@@ -61,7 +61,7 @@ public class ToTakeThingDetailsFragment extends Fragment {
 
     private void fillTextViews(){
         binding.productNameTV.setText(actPoint.getName());
-        binding.tvPrPersonResponsible.setText(actPoint.getUser().getName());
+        binding.tvPrPersonResponsible.setText(actPoint.getUser().getName()+" "+actPoint.getUser().getSurname());
         binding.cbDone.setChecked(actPoint.isDone());
         binding.cbDone.setEnabled(false);
     }
