@@ -610,6 +610,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnInfoWindowClic
     private void calculateDirections(List<TripPointLocation> tripPointLocationList){
         Log.d(TAG, "tripPointLocation List: " + tripPointLocationList.size());
         Log.d(TAG, "tripPointList: " + tripPointList.size());
+        removePolylines();
         if (tripPointLocationList.size() < 2) {
             return;
         }
@@ -680,10 +681,15 @@ public class MapsFragment extends Fragment implements GoogleMap.OnInfoWindowClic
                 tripPointLocationList = new ArrayList<>();
             }
             try {
-                Date date = new Date();
-                if (date.after(trip.getEndDate()) || date.before(trip.getStartDate())) {
-                    chosenDate = trip.getStartDate();
+                if (chosenDate == null) {
+                    Date date = new Date();
+                    chosenDate = new Date();
+                    if (date.after(trip.getEndDate()) || date.before(trip.getStartDate())) {
+                        chosenDate = trip.getStartDate();
+                    }
                 }
+
+                Log.d(TAG, "chosen date" + chosenDate.toString());
                 tripPointList = new TripPointDao(BaseConnection.getConnectionSource()).getTripPointsForToday(trip, chosenDate);
                 TripPointLocationDao tripPointLocationDao = new TripPointLocationDao(BaseConnection.getConnectionSource());
                 for (TripPoint point : tripPointList) {
@@ -730,7 +736,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnInfoWindowClic
     private void addPolylineToMap(final DirectionsResult result){
         new Handler(Looper.getMainLooper()).post(() -> {
             Log.d(TAG, "alternatives: " + result.routes.length);
-            removePolylines();
+            //removePolylines();
 
             //double duration = 999999999;
 
