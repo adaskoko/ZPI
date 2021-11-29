@@ -7,7 +7,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
@@ -40,9 +39,8 @@ public class TodoDetailsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            //actPoint = (PreparationPoint) getArguments().getSerializable(ToDoFragment.TODO_KEY);
             actPoint = (PreparationPoint) getArguments().get(TODO_KEY);
-            currTrip=(Trip) getArguments().get(TRIP_KEY);
+            currTrip = (Trip) getArguments().get(TRIP_KEY);
         }
     }
 
@@ -54,10 +52,10 @@ public class TodoDetailsFragment extends Fragment {
         binding.btnDelete.setOnClickListener(c -> delete());
         binding.btnEdit.setOnClickListener(c -> edit());
 
-        Date tripEndDate=currTrip.getEndDate();
-        Date today=new Date();
+        Date tripEndDate = currTrip.getEndDate();
+        Date today = new Date();
 
-        if(tripEndDate.before(today)){
+        if (tripEndDate.before(today)) {
             binding.btnDelete.setVisibility(View.INVISIBLE);
             binding.btnEdit.setVisibility(View.INVISIBLE);
         }
@@ -69,19 +67,8 @@ public class TodoDetailsFragment extends Fragment {
         binding.tvPointDesc.setText(actPoint.getDescription());
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         binding.tvPontDate.setText(dateFormat.format(actPoint.getDeadline()));
-        User responsible=actPoint.getUser();
-        new Thread(()->{
-            try {
-                UserDao udao = new UserDao(BaseConnection.getConnectionSource());
-                udao.refresh(responsible);
-                binding.tvPersonResponsible.setText(responsible.getName()+ " "+ responsible.getSurname());
-                Log.i("todo", String.valueOf(responsible.getName() == null));
-            }catch (SQLException throwables){
-                throwables.printStackTrace();
-            }
-        }).start();
-
-
+        User responsible = actPoint.getUser();
+        binding.tvPersonResponsible.setText(responsible.getName() + " " + responsible.getSurname());
         binding.cbDone.setChecked(actPoint.isDone());
     }
 
@@ -91,7 +78,6 @@ public class TodoDetailsFragment extends Fragment {
                 PreparationPointDao pointDao = new PreparationPointDao(BaseConnection.getConnectionSource());
                 pointDao.delete(actPoint);
                 Log.i("todo", "usunieto todo");
-                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -103,6 +89,5 @@ public class TodoDetailsFragment extends Fragment {
         Bundle bundle = new Bundle();
         bundle.putSerializable(TODO_KEY, actPoint);
         NavHostFragment.findNavController(this).navigate(R.id.action_todoDetailsFragment_to_todoEditFragment, bundle);
-        //Navigation.findNavController(getView()).navigate(R.id.todoEditFragment, bundle);
     }
 }

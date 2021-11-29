@@ -10,9 +10,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
-import android.media.ThumbnailUtils;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.TextView;
 
@@ -21,8 +19,6 @@ import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.models.MultimediaFile;
 import com.example.zpi.models.Trip;
 import com.example.zpi.repositories.PhotoDao;
-
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -76,12 +72,7 @@ public class PhotoGalleryActivity extends AppCompatActivity {
 
                 runOnUiThread(() -> {
                     PhotoAdapter photoAdapter = new PhotoAdapter(multimediaFiles);
-                    photoAdapter.setOnItemClickListener(new PhotoAdapter.ClickListener() {
-                        @Override
-                        public void onItemClick(int position, View v) {
-                            showImage(position);
-                        }
-                    });
+                    photoAdapter.setOnItemClickListener((position, v) -> showImage(position));
                     galleryRV.setAdapter(photoAdapter);
                     LinearLayoutManager upcomingLayoutManager = new GridLayoutManager(this, 3);
                     galleryRV.setLayoutManager(upcomingLayoutManager);
@@ -109,7 +100,4 @@ public class PhotoGalleryActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void back(View view) {
-        finish();
-    }
 }

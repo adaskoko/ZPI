@@ -66,14 +66,12 @@ public class AddToDoFragment extends Fragment implements DatePickerDialog.OnDate
 
         new Thread(() -> {
             try {
-//                currTrip = new TripDao(BaseConnection.getConnectionSource()).queryForEq("ID", 1).get(0);
                 List<User> userList = new UserDao(BaseConnection.getConnectionSource()).getUsersFromTrip(currTrip);
                 Log.i("todo size fragemnt", String.valueOf(userList.size()));
                 getActivity().runOnUiThread(() -> {
                     PersonSpinnerAdapter personAdapter = new PersonSpinnerAdapter(requireContext(), userList);
                     binding.assignedTo.setAdapter(personAdapter);
                 });
-                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -83,8 +81,6 @@ public class AddToDoFragment extends Fragment implements DatePickerDialog.OnDate
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 chosenUser = (User) parent.getItemAtPosition(position);
-                String clickedUSer = chosenUser.getName();
-                Toast.makeText(getContext(), clickedUSer + " selected", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -136,7 +132,6 @@ public class AddToDoFragment extends Fragment implements DatePickerDialog.OnDate
                         PreparationPoint point = new PreparationPoint(title, description, finalDate, chosenUser, currTrip);
                         pointDao.create(point);
                         Log.i("todo", "todo dodane");
-                        //BaseConnection.closeConnection();
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }

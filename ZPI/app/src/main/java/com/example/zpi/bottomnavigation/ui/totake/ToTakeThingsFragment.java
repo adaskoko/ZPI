@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -25,7 +24,6 @@ import com.example.zpi.databinding.FragmentToTakeThingsBinding;
 import com.example.zpi.models.ProductToTake;
 import com.example.zpi.models.Trip;
 import com.example.zpi.repositories.ProductToTakeDao;
-import com.example.zpi.repositories.TripDao;
 
 import java.sql.SQLException;
 import java.util.Date;
@@ -48,8 +46,6 @@ public class ToTakeThingsFragment extends Fragment implements ToTakeThingRecycle
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
-        //toTakeThingsViewModel = new ViewModelProvider(this).get(ToTakeThingsViewModel.class);
 
         binding = FragmentToTakeThingsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -78,7 +74,6 @@ public class ToTakeThingsFragment extends Fragment implements ToTakeThingRecycle
                     toTakeThingRecyclerViewAdapter = new ToTakeThingRecyclerViewAdapter(products, this);
                     toTakeThingsRV.setAdapter(toTakeThingRecyclerViewAdapter);
                 });
-                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }

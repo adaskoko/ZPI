@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.zpi.adapters.InvoiceAdapter;
-import com.example.zpi.adapters.PhotoInTripAdapter;
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.models.Invoice;
 import com.example.zpi.models.Trip;
@@ -50,12 +49,7 @@ public class InvoicesActivity extends AppCompatActivity {
                     RecyclerView invoicesRV = findViewById(R.id.rv_invoices);
                     InvoiceAdapter invoiceAdapter = new InvoiceAdapter(invoices);
 
-                    invoiceAdapter.setOnItemClickListener(new InvoiceAdapter.ClickListener() {
-                        @Override
-                        public void onItemClick(int position, View v) {
-                            showInvoice(position);
-                        }
-                    });
+                    invoiceAdapter.setOnItemClickListener((position, v) -> showInvoice(position));
                     invoicesRV.setAdapter(invoiceAdapter);
                     LinearLayoutManager upcomingLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
                     invoicesRV.setLayoutManager(upcomingLayoutManager);

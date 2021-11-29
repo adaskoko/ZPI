@@ -50,9 +50,7 @@ public class ChangeUserPasswordActivity extends AppCompatActivity {
                         UserDao userDao = new UserDao(BaseConnection.getConnectionSource());
                         userDao.update(loggedUser);
                         SharedPreferencesHandler.saveLoggedInUser(getApplicationContext(), loggedUser);
-
                         //finish();
-                        //BaseConnection.closeConnection();
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }
@@ -72,8 +70,4 @@ public class ChangeUserPasswordActivity extends AppCompatActivity {
         }
     }
 
-    public void backToDetails(View v){
-        Intent intent=new Intent(this, UpdateUserActivity.class);
-        startActivity(intent);
-    }
 }

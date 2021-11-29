@@ -2,7 +2,6 @@ package com.example.zpi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -42,8 +41,6 @@ public class ChangeUserSurnameActivity extends AppCompatActivity {
                     UserDao userDao = new UserDao(BaseConnection.getConnectionSource());
                     userDao.update(loggedUser);
                     SharedPreferencesHandler.saveLoggedInUser(getApplicationContext(), loggedUser);
-
-                    //BaseConnection.closeConnection();
                     finish();
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
@@ -53,10 +50,5 @@ public class ChangeUserSurnameActivity extends AppCompatActivity {
             Toast.makeText(this, "Podane nazwisko jest puste", Toast.LENGTH_LONG).show();
             newSurnameET.getText().clear();
         }
-    }
-
-    public void backToDetails(View v){
-        Intent intent=new Intent(this, UpdateUserActivity.class);
-        startActivity(intent);
     }
 }

@@ -9,13 +9,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.zpi.adapters.InvoiceAdapter;
 import com.example.zpi.adapters.UserCheckboxAdapter;
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.data_handling.SharedPreferencesHandler;
@@ -65,18 +63,15 @@ public class InvoiceDetailsActivity extends AppCompatActivity {
                         RecyclerView userRV = findViewById(R.id.rv_users);
                         UserCheckboxAdapter adapter = new UserCheckboxAdapter(users, null);
 
-                        adapter.setOnItemClickListener(new UserCheckboxAdapter.ClickListener() {
-                            @Override
-                            public void onItemClick(int position, View v) {
-                                CheckBox checkBox = (CheckBox) v.findViewById(R.id.checkBox);
-                                checkBox.setChecked(!checkBox.isChecked());
-                                if(checkBox.isChecked()){
-                                    chosenUsers.add(users.get(position));
-                                } else {
-                                    chosenUsers.remove(users.get(position));
-                                }
-                                Log.i("size", String.valueOf(chosenUsers.size()));
+                        adapter.setOnItemClickListener((position, v) -> {
+                            CheckBox checkBox = v.findViewById(R.id.checkBox);
+                            checkBox.setChecked(!checkBox.isChecked());
+                            if(checkBox.isChecked()){
+                                chosenUsers.add(users.get(position));
+                            } else {
+                                chosenUsers.remove(users.get(position));
                             }
+                            Log.i("size", String.valueOf(chosenUsers.size()));
                         });
                         userRV.setAdapter(adapter);
                         LinearLayoutManager upcomingLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -105,13 +100,13 @@ public class InvoiceDetailsActivity extends AppCompatActivity {
 
     public void show(){
         runOnUiThread(() -> {
-            ((Button) findViewById(R.id.save_button)).setVisibility(View.GONE);
+            (findViewById(R.id.save_button)).setVisibility(View.GONE);
 
-            EditText nameET = (EditText) findViewById(R.id.et_name);
+            EditText nameET = findViewById(R.id.et_name);
             nameET.setText(invoice.getDescription());
             nameET.setKeyListener(null);
 
-            EditText priceET = (EditText) findViewById(R.id.et_price);
+            EditText priceET = findViewById(R.id.et_price);
             priceET.setText(String.valueOf(invoice.getPrice()));
             priceET.setKeyListener(null);
         });
@@ -127,11 +122,8 @@ public class InvoiceDetailsActivity extends AppCompatActivity {
                 RecyclerView userRV = findViewById(R.id.rv_users);
                 UserCheckboxAdapter adapter = new UserCheckboxAdapter(users, users);
 
-                adapter.setOnItemClickListener(new UserCheckboxAdapter.ClickListener() {
-                    @Override
-                    public void onItemClick(int position, View v) {
+                adapter.setOnItemClickListener((position, v) -> {
 
-                    }
                 });
 
                 userRV.setAdapter(adapter);
@@ -149,10 +141,10 @@ public class InvoiceDetailsActivity extends AppCompatActivity {
 
     public void edit(){
         runOnUiThread(() -> {
-            EditText nameET = (EditText) findViewById(R.id.et_name);
+            EditText nameET = findViewById(R.id.et_name);
             nameET.setText(invoice.getDescription());
 
-            EditText priceET = (EditText) findViewById(R.id.et_price);
+            EditText priceET = findViewById(R.id.et_price);
             priceET.setText(String.valueOf(invoice.getPrice()));
         });
 
@@ -173,18 +165,15 @@ public class InvoiceDetailsActivity extends AppCompatActivity {
                 RecyclerView userRV = findViewById(R.id.rv_users);
                 UserCheckboxAdapter adapter = new UserCheckboxAdapter(users, debtUsers);
 
-                adapter.setOnItemClickListener(new UserCheckboxAdapter.ClickListener() {
-                    @Override
-                    public void onItemClick(int position, View v) {
-                        CheckBox checkBox = (CheckBox) v.findViewById(R.id.checkBox);
-                        checkBox.setChecked(!checkBox.isChecked());
-                        if(checkBox.isChecked()){
-                            chosenUsers.add(users.get(position));
-                        } else {
-                            chosenUsers.removeIf(user -> user.getID() == users.get(position).getID());
-                        }
-                        Log.i("size", String.valueOf(chosenUsers.size()));
+                adapter.setOnItemClickListener((position, v) -> {
+                    CheckBox checkBox = v.findViewById(R.id.checkBox);
+                    checkBox.setChecked(!checkBox.isChecked());
+                    if(checkBox.isChecked()){
+                        chosenUsers.add(users.get(position));
+                    } else {
+                        chosenUsers.removeIf(user -> user.getID() == users.get(position).getID());
                     }
+                    Log.i("size", String.valueOf(chosenUsers.size()));
                 });
 
                 userRV.setAdapter(adapter);

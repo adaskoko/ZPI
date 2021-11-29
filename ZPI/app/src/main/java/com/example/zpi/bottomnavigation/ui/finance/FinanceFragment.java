@@ -1,6 +1,5 @@
 package com.example.zpi.bottomnavigation.ui.finance;
 
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.ProgressDialog;
@@ -8,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -16,11 +14,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.example.zpi.R;
 import com.example.zpi.adapters.FinanceAdapter;
-import com.example.zpi.adapters.TripAdapter;
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.data_handling.SharedPreferencesHandler;
 import com.example.zpi.databinding.FragmentFinanceBinding;
@@ -32,11 +27,9 @@ import com.example.zpi.models.User;
 import com.example.zpi.models.UserAmount;
 import com.example.zpi.repositories.DebtorDao;
 import com.example.zpi.repositories.InvoiceDao;
-import com.google.android.gms.maps.MapFragment;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -158,10 +151,7 @@ public class FinanceFragment extends Fragment {
             getActivity().runOnUiThread(() -> {
                 FinanceAdapter adapter = new FinanceAdapter(debts, loggedUser);
 
-                adapter.setOnItemClickListener(new FinanceAdapter.ClickListener() {
-                    @Override
-                    public void onItemClick(int position, View v) {
-                    }
+                adapter.setOnItemClickListener((position, v) -> {
                 });
 
                 LinearLayoutManager upcomingLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);

@@ -6,82 +6,122 @@
     android:layout_height="match_parent"
     >
 
-    <LinearLayout
+    <View
+        android:id="@+id/clickOutView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
+    <TableRow
+        android:id="@+id/topBar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="100"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="15"
-            android:background="#263238"
-            android:orientation="vertical">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/poppins_light"
-                    android:text="Nowa wiadomość"
-                    android:textColor="@color/white"
-                    android:textSize="30sp"
-                    android:layout_weight="1"/>
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/ic_x"
-                    android:onClick="finishSUFNC"/>
-            </TableRow>
-        </LinearLayout>
-
+        android:layout_height="wrap_content"
+        android:background="@color/primary_dark"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="22dp">
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:fontFamily="@font/poppins_light"
-            android:text="Do"
-            android:textColor="@color/black"
-            android:layout_marginTop="30dp"
-            android:textSize="24sp"></TextView>
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_bold"
+            android:gravity="center_vertical"
+            android:text="Nowa wiadomość"
+            android:textAlignment="gravity"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
 
-        <EditText
-            android:id="@+id/etSearchPerson"
-            android:layout_width="340dp"
-            android:layout_height="48dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/rounded"
-            android:drawableTint="@color/white"
-            android:ems="10"
-            android:fontFamily="@font/poppins_light"
-            android:hint="imię i nazwisko"
-            android:inputType="text"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"></EditText>
-
-        <ImageButton
-            android:id="@+id/btnSearch"
+        <ImageView
+            android:id="@+id/imageView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@android:color/transparent"
-            android:src="@drawable/button_begin_chat"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
+            android:onClick="finishSUFNC"
+            android:padding="7dp"
+            app:srcCompat="@drawable/ic_x" />
 
-            />
+    </TableRow>
 
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/poppins_light"
+        android:text="Do"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topBar"></TextView>
+
+    <SearchView
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/rounded_search"
+        android:iconifiedByDefault="false"
+        android:queryHint="imię i nazwisko"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView17"
+        tools:queryHint="imię i nazwisko">
+
+    </SearchView>
+
+    <ImageButton
+        android:id="@+id/btnSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+
+        android:backgroundTint="@android:color/transparent"
+        android:src="@drawable/button_begin_chat_greyed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="30dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search">
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Wybrany użytkownik:"
+            android:textColor="@color/black"
+            android:textSize="14sp"></TextView>
+
+        <TextView
+            android:id="@+id/chosen_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/black" />
     </LinearLayout>
+
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/search"
+        tools:layout_editor_absoluteX="16dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

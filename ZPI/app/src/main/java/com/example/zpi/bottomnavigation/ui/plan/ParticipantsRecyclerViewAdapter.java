@@ -1,6 +1,5 @@
 package com.example.zpi.bottomnavigation.ui.plan;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,15 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.zpi.R;
-import com.example.zpi.data_handling.BaseConnection;
-import com.example.zpi.models.TripParticipant;
-import com.example.zpi.models.TripPoint;
 import com.example.zpi.models.TripPointParticipant;
-import com.example.zpi.repositories.ProductToTakeDao;
-import com.example.zpi.repositories.TripPointDao;
-import com.example.zpi.repositories.TripPointParticipantDao;
-
-import java.sql.SQLException;
 import java.util.List;
 
 public class ParticipantsRecyclerViewAdapter extends RecyclerView.Adapter<ParticipantsRecyclerViewAdapter.ParticipantViewHolder> {
@@ -50,18 +41,6 @@ public class ParticipantsRecyclerViewAdapter extends RecyclerView.Adapter<Partic
     }
 
     public void deleteParticipant(int position) {
-//        TripPointParticipant participant = participants.get(position);
-//
-//        new Thread(() -> {
-//            try {
-//                TripPointDao tripPointDao = new TripPointDao(BaseConnection.getConnectionSource());
-//                tripPointDao.removeUserFromTripPoint(participant.getUser(), );
-//                Log.i("participant delete", "positon " + position);
-//            } catch (SQLException throwables) {
-//                throwables.printStackTrace();
-//            }
-//        }).start();
-
         participants.remove(position);
         notifyItemRemoved(position);
     }

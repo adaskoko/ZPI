@@ -59,13 +59,11 @@
                     android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:layout_centerInParent="false"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="11dp"
+                    android:layout_marginBottom="12dp"
                     android:background="@drawable/rounded"
-                    android:drawableTint="@color/white"
                     android:ems="10"
                     android:inputType="textPersonName"
+                    android:padding="12dp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 <ImageButton
@@ -105,11 +103,11 @@
                     android:id="@+id/surname"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginBottom="12dp"
                     android:background="@drawable/rounded"
-                    android:drawableTint="@color/white"
                     android:ems="10"
                     android:inputType="textPersonName"
+                    android:padding="12dp"
                     tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
                 <ImageButton
@@ -146,11 +144,11 @@
                     android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginBottom="12dp"
                     android:background="@drawable/rounded"
-                    android:drawableTint="@color/white"
                     android:ems="10"
                     android:gravity="center_vertical"
+                    android:padding="12dp"
                     android:textSize="18sp" />
 
             </RelativeLayout>
@@ -176,9 +174,9 @@
                     android:layout_height="48dp"
                     android:layout_marginBottom="50dp"
                     android:background="@drawable/rounded"
-                    android:drawableTint="@color/white"
                     android:ems="10"
                     android:inputType="textPassword"
+                    android:padding="12dp"
                     tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
                 <ImageButton

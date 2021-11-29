@@ -1,6 +1,9 @@
 package com.example.zpi;
 
-import android.annotation.SuppressLint;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.location.Location;
@@ -110,7 +113,7 @@ public class TripListActivity extends AppCompatActivity {
                 User user = SharedPreferencesHandler.getLoggedInUser(getApplicationContext());
                 TextView currentUser = findViewById(R.id.userTV);
                 assert user != null;
-                String userName = user.getName()+" "+user.getSurname();
+                String userName = user.getName();
                 currentUser.setText(userName);
                 TripDao tripDao = new TripDao(BaseConnection.getConnectionSource());
                 List<List<Trip>> allTrips = tripDao.getPastAndFutureTripsForUser(user);
@@ -148,12 +151,7 @@ public class TripListActivity extends AppCompatActivity {
     private void setUpUpcomingRecyclerView(){
         runOnUiThread(() -> {
             TripAdapter upcomingAdapter = new TripAdapter(threeUpcomingTrips);
-            upcomingAdapter.setOnItemClickListener(new TripAdapter.ClickListener() {
-                @Override
-                public void onItemClick(int position, View v) {
-                    goToTrip(upcomingTrips.get(position));
-                }
-            });
+            upcomingAdapter.setOnItemClickListener((position, v) -> goToTrip(upcomingTrips.get(position)));
             upcomingTripsRV.setAdapter(upcomingAdapter);
             LinearLayoutManager upcomingLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
             upcomingTripsRV.setLayoutManager(upcomingLayoutManager);
@@ -163,12 +161,7 @@ public class TripListActivity extends AppCompatActivity {
     private void setUpPastRecyclerView(){
         runOnUiThread(() -> {
             TripAdapter pastAdapter = new TripAdapter(threePastTrips);
-            pastAdapter.setOnItemClickListener(new TripAdapter.ClickListener() {
-                @Override
-                public void onItemClick(int position, View v) {
-                    goToTrip(pastTrips.get(position));
-                }
-            });
+            pastAdapter.setOnItemClickListener((position, v) -> goToTrip(pastTrips.get(position)));
             pastTripsRV.setAdapter(pastAdapter);
             LinearLayoutManager pastLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
             pastTripsRV.setLayoutManager(pastLayoutManager);

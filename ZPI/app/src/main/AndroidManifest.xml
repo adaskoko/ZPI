@@ -26,9 +26,6 @@
             android:name=".AddForumThreadActivity"
             android:exported="false" />
         <activity
-            android:name=".MatchingUsersForChatActivity"
-            android:exported="false" />
-        <activity
             android:name=".SearchUserForNewConversationActivity"
             android:exported="false" />
         <activity

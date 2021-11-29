@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.zpi.R;
 import com.example.zpi.models.User;
@@ -42,7 +41,8 @@ public class PersonSpinnerAdapter extends ArrayAdapter<User> {
         User chosenUser = getItem(position);
 
         if (chosenUser != null) {
-            personName.setText(chosenUser.getName());
+            String user = chosenUser.getName()+" "+chosenUser.getSurname()+" ("+chosenUser.getEmail()+")";
+            personName.setText(user);
         }
 
         return convertView;

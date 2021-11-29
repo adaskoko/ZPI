@@ -27,4 +27,5 @@
 
     <!--GOOGLE KEY-->
     <string name="google_maps_api_key">AIzaSyAx41htAO8b4ikTCZL-v2BMKRzBaD-oHOE</string>
+    <string name="delete_comment"><u>usuń komentarz</u></string>
 </resources>

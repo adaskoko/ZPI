@@ -15,7 +15,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,24 +33,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class ForumActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    List<Comment> commentsForThread=new ArrayList<>();
-    ForumAdapter forumAdapter;
     User loggedUser;
     ForumThread current;
     TextView trip;
     TextView thread;
+    TextView thread2;
     Trip currentTrip;
     ConstraintLayout response;
     ImageView addResponse;
     ImageView cancel1;
+    ImageView respond;
     TextView respCount;
     TextView initials;
     TextView name;
+    View darkened;
+    TextView assignedElement;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,17 +62,24 @@ public class ForumActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         loggedUser = SharedPreferencesHandler.getLoggedInUser(getApplicationContext());
         trip=findViewById(R.id.tv_nameOfTrip1);
-        thread=findViewById(R.id.tv_name2);
+        thread=findViewById(R.id.tv_nameOfThread);
+        thread2=findViewById(R.id.tv_nameOfThread2);
+        respond=findViewById(R.id.respond);
+        darkened = findViewById(R.id.darkenedView);
 
         current=(ForumThread) getIntent().getSerializableExtra(THREAD_KEY);
         thread.setText(current.getTitle());
+        thread2.setText(current.getTitle());
+
+        assignedElement = findViewById(R.id.tv_assignedElement2);
+        assignedElement.setText(current.getSummary());
 
         currentTrip=(Trip) getIntent().getSerializableExtra(TRIP_KEY);
         trip.setText(currentTrip.getName());
 
         response=findViewById(R.id.response_layout);
 
-        addResponse=findViewById(R.id.btn_respond);
+        addResponse=findViewById(R.id.btn_send_response);
         cancel1=findViewById(R.id.btn_cancel1);
 
         hideResponseLayout();
@@ -99,9 +106,10 @@ public class ForumActivity extends AppCompatActivity {
     }
 
     public void hideResponseLayout(){
-        response.setVisibility(View.INVISIBLE);
-        addResponse.setVisibility(View.INVISIBLE);
-        cancel1.setVisibility(View.INVISIBLE);
+        response.setVisibility(View.GONE);
+        addResponse.setVisibility(View.GONE);
+        cancel1.setVisibility(View.GONE);
+        darkened.setVisibility(View.GONE);
     }
 
     public void getCommentsForThreadInitially(){
@@ -162,22 +170,25 @@ public class ForumActivity extends AppCompatActivity {
     }
 
     public void getResponseCount(){
-        AtomicInteger resps = new AtomicInteger();
         new Thread(()->{
             try{
                 ForumThreadDao ftdao=new ForumThreadDao(BaseConnection.getConnectionSource());
-                resps.set(ftdao.getResponsesCount(current));
-                runOnUiThread(()->{respCount.setText(String.valueOf(resps)+ " odpowiedzi");});
+                int resps = ftdao.getResponsesCount(current);
+                runOnUiThread(()->{
+                    if (resps == 1) respCount.setText(resps + " odpowiedź");
+                    else respCount.setText(resps + " odpowiedzi");
+                });
             }catch(SQLException throwables){
                 throwables.printStackTrace();
             }
         }).start();
     }
 
-    public void respond(View v){
+    public void respond(View v) {
         response.setVisibility(View.VISIBLE);
         addResponse.setVisibility(View.VISIBLE);
         cancel1.setVisibility(View.VISIBLE);
+        darkened.setVisibility(View.VISIBLE);
     }
 
     public void addResponse(View v){
@@ -186,7 +197,6 @@ public class ForumActivity extends AppCompatActivity {
             new Thread(()->{
                 try{
                     CommentDao cdao=new CommentDao(BaseConnection.getConnectionSource());
-                    //Comment newComment=new Comment(content.getText().toString(), current, loggedUser);
                     cdao.create(new Comment(content.getText().toString(), current, loggedUser));
                     runOnUiThread(()->{
                         content.getEditableText().clear();
@@ -202,9 +212,10 @@ public class ForumActivity extends AppCompatActivity {
     }
 
     public void cancelResp(View v){
-        response.setVisibility(View.INVISIBLE);
-        addResponse.setVisibility(View.INVISIBLE);
-        cancel1.setVisibility(View.INVISIBLE);
+        response.setVisibility(View.GONE);
+        addResponse.setVisibility(View.GONE);
+        cancel1.setVisibility(View.GONE);
+        darkened.setVisibility(View.GONE);
     }
 
     public void deleteComment(Comment comment){
@@ -216,15 +227,10 @@ public class ForumActivity extends AppCompatActivity {
                     getCommentsForThread();
                     getResponseCount();
                 });
-                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
         }).start();
-    }
-
-    public void finishForum(View v){
-        super.finish();
     }
 
     private class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumVh> {
@@ -277,7 +283,7 @@ public class ForumActivity extends AppCompatActivity {
             TextView comment;
             TextView initials;
             TextView person;
-            ImageButton btnDelete;
+            TextView btnDelete;
 
 
             public ForumVh(@NonNull View itemView){
@@ -285,8 +291,8 @@ public class ForumActivity extends AppCompatActivity {
                 comment=itemView.findViewById(R.id.tv_comment);
                 initials=itemView.findViewById(R.id.tv_initials1);
                 person=itemView.findViewById(R.id.tv_personName1);
-                btnDelete=itemView.findViewById(R.id.btn_deleteComment);
-                btnDelete.setVisibility(View.INVISIBLE);
+                btnDelete=itemView.findViewById(R.id.deleteComment);
+                btnDelete.setVisibility(View.GONE);
             }
         }
     }

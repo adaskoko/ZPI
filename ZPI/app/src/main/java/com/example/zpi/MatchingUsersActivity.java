@@ -3,8 +3,6 @@ package com.example.zpi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -38,37 +36,6 @@ public class MatchingUsersActivity extends AppCompatActivity {
         String[] input= (String[])getIntent().getSerializableExtra("MATCH");
         String name=input[0];
         String surname=input[1];
-        //get users with matching name and surname
-        /*List<String> results=getMatchingUsers(name, surname);
-        //populate list with results
-        adapter = new ArrayAdapter<String>(this, R.layout.found_user_in_list, results);
-        //set adapter to listview
-        users.setAdapter(adapter);
-        //make list clickable- click means adding trip participant
-        users.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
-            public void onItemClick(AdapterView<?> arg0,View arg1, int position, long arg3)
-            {
-                String data=(String) arg0.getAdapter().getItem(position);
-                String[] splitData=data.split("\\(");
-                String email=splitData[1].substring(0, splitData[1].length()-1);
-
-                new Thread(() -> {
-                    try {
-                        UserDao userDao=new UserDao(BaseConnection.getConnectionSource());
-                        User user=userDao.findByEmail(email);
-                        if(user!=null){
-                            TripDao tripDao=new TripDao(BaseConnection.getConnectionSource());
-                            tripDao.addRegularParticipant(currentTrip, user);
-                            finish();
-                        }
-
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
-                }).start();
-            }
-        });*/
         getMatchingUsers(name, surname);
     }
 
@@ -84,7 +51,6 @@ public class MatchingUsersActivity extends AppCompatActivity {
                         returnList.add(currentRow);
                     }
                 }
-                //BaseConnection.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -96,32 +62,25 @@ public class MatchingUsersActivity extends AppCompatActivity {
 
     public void updateList(List<String> returnList){
         adapter = new ArrayAdapter<String>(this, R.layout.found_user_in_list, returnList);
-        //set adapter to listview
         users.setAdapter(adapter);
-        //make list clickable- click means adding trip participant
-        users.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
-            public void onItemClick(AdapterView<?> arg0,View arg1, int position, long arg3)
-            {
-                String data=(String) arg0.getAdapter().getItem(position);
-                String[] splitData=data.split("\\(");
-                String email=splitData[1].substring(0, splitData[1].length()-1);
+        users.setOnItemClickListener((arg0, arg1, position, arg3) -> {
+            String data=(String) arg0.getAdapter().getItem(position);
+            String[] splitData=data.split("\\(");
+            String email=splitData[1].substring(0, splitData[1].length()-1);
 
-                new Thread(() -> {
-                    try {
-                        UserDao userDao=new UserDao(BaseConnection.getConnectionSource());
-                        User user=userDao.findByEmail(email);
-                        if(user!=null){
-                            TripDao tripDao=new TripDao(BaseConnection.getConnectionSource());
-                            tripDao.addRegularParticipant(currentTrip, user);
-                            finish();
-                        }
-                        //BaseConnection.closeConnection();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
+            new Thread(() -> {
+                try {
+                    UserDao userDao=new UserDao(BaseConnection.getConnectionSource());
+                    User user=userDao.findByEmail(email);
+                    if(user!=null){
+                        TripDao tripDao=new TripDao(BaseConnection.getConnectionSource());
+                        tripDao.addRegularParticipant(currentTrip, user);
+                        finish();
                     }
-                }).start();
-            }
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }).start();
         });
     }
 

@@ -23,7 +23,6 @@ import android.widget.TextView;
 
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.data_handling.SharedPreferencesHandler;
-import com.example.zpi.models.ForumThread;
 import com.example.zpi.models.Message;
 import com.example.zpi.models.User;
 import com.example.zpi.repositories.MessageDao;
@@ -37,7 +36,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class ChatListActivity extends AppCompatActivity {
 
@@ -76,7 +74,6 @@ public class ChatListActivity extends AppCompatActivity {
         new Timer().scheduleAtFixedRate(new TimerTask(){
             @Override
             public void run(){
-
                 getChatsForUser();
             }
         }, 0, 60000);
@@ -118,7 +115,7 @@ public class ChatListActivity extends AppCompatActivity {
     }
 
     private void getChatsInitially(){
-        Map<Integer, Message> dictionary =new HashMap<Integer, Message>();
+        Map<Integer, Message> dictionary =new HashMap<>();
         ProgressDialog progressDialog = new ProgressDialog(this, ProgressDialog.THEME_DEVICE_DEFAULT_LIGHT);
         progressDialog.setTitle("Pobieranie danych...");
         progressDialog.show();
@@ -146,11 +143,11 @@ public class ChatListActivity extends AppCompatActivity {
                 throwables.printStackTrace();
                 progressDialog.dismiss();
             }
-        }).start();;
+        }).start();
     }
 
     private void getChatsForUser(){
-        Map<Integer, Message> dictionary =new HashMap<Integer, Message>();
+        Map<Integer, Message> dictionary =new HashMap<>();
         new Thread(()->{
             try{
                 ArrayList<User> convos = new ArrayList<>();
@@ -198,7 +195,6 @@ public class ChatListActivity extends AppCompatActivity {
         @Override
         public ChatListAdapter.ChatListAdapterVh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             context=parent.getContext();
-            //return new ChatListAdapterVh(LayoutInflater.from(context).inflate(R.layout.row_chat, null));
             View itemView=LayoutInflater.from(parent.getContext()).inflate(R.layout.row_chat, parent, false);
             return new ChatListAdapterVh(itemView);
         }
@@ -223,7 +219,7 @@ public class ChatListActivity extends AppCompatActivity {
             String mes=current.getContent();
 
             holder.tvMsg.setText(mes);
-            if(current.isRead()==false && loggedUser.getID()==receiver.getID()){
+            if(!current.isRead() && loggedUser.getID()==receiver.getID()){
                 holder.tvMsg.setTypeface(holder.tvMsg.getTypeface(), Typeface.BOLD);
                 holder.tvNew.setVisibility(View.VISIBLE);
                 Log.i("msg", "is not read");

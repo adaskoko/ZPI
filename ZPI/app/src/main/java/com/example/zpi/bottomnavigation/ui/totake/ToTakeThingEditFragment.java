@@ -57,7 +57,9 @@ public class ToTakeThingEditFragment extends Fragment {
                 Log.i("todo size fragemnt", String.valueOf(userList.size()));
                 getActivity().runOnUiThread(() -> {
                     PersonSpinnerAdapter personAdapter = new PersonSpinnerAdapter(requireContext(), userList);
+                    int index = getUserIndex(userList, actPoint.getUser());
                     binding.spParticipants.setAdapter(personAdapter);
+                    binding.spParticipants.setSelection(index);
                 });
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
@@ -71,9 +73,6 @@ public class ToTakeThingEditFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 chosenUser = (User) parent.getItemAtPosition(position);
-                String clickedUsr = chosenUser.getName();
-                //??nie brakuje tu tego actPoint.setUser(chosenUser);
-                Toast.makeText(getContext(), clickedUsr + " selected", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -128,5 +127,12 @@ public class ToTakeThingEditFragment extends Fragment {
                 throwables.printStackTrace();
             }
         }).start();
+    }
+
+    public static int getUserIndex(List<User> list, User user){
+        for (User userList: list){
+            if (userList.getID() == user.getID()) return list.indexOf(userList);
+        }
+        return -1;
     }
 }

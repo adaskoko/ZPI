@@ -78,11 +78,8 @@ public class AddAttractionFragment extends Fragment implements DatePickerDialog.
         binding = FragmentAddAttractionBinding.inflate(inflater, container, false);
 
         binding.nameTripPointET.setOnClickListener(v -> {
-            // Set the fields to specify which types of place data to
-            // return after the user has made a selection.
             List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG, Place.Field.ADDRESS);
 
-            // Start the autocomplete intent.
             Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields)
                     .build(requireContext());
             startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE);
