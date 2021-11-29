@@ -129,7 +129,7 @@ public class TodoEditFragment extends Fragment implements DatePickerDialog.OnDat
         binding.etTodoName.setText(actPoint.getName());
         binding.etTodoDesc.setText(actPoint.getDescription());
         binding.cbDone.setChecked(actPoint.isDone());
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String date = dateFormat.format(actPoint.getDeadline());
         binding.tvPontDate.setText(date);
     }
@@ -158,10 +158,12 @@ public class TodoEditFragment extends Fragment implements DatePickerDialog.OnDat
     private void showDatePickerDialog() {
         DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
                 this,
-                Calendar.YEAR,
-                Calendar.MONTH,
-                Calendar.DAY_OF_MONTH
+                Calendar.getInstance().get(Calendar.YEAR),
+                Calendar.getInstance().get(Calendar.MONTH),
+                Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
         );
+        datePickerDialog.getDatePicker().setMaxDate(actTrip.getEndDate().getTime());
+        datePickerDialog.getDatePicker().setMinDate(new Date().getTime());
         datePickerDialog.show();
     }
 

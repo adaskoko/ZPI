@@ -86,7 +86,7 @@ import okhttp3.Response;
 
 public class MapsFragment extends Fragment implements GoogleMap.OnInfoWindowClickListener, GoogleMap.OnPolylineClickListener, DatePickerDialog.OnDateSetListener {
 
-    private static final float DEFAULT_ZOOM = 15f;
+    private static final float DEFAULT_ZOOM = 10f;
     private static final String TAG = "MapsFragment";
 
     //vars
@@ -629,7 +629,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnInfoWindowClic
 
         //directions.alternatives(true);
         ArrayList<com.google.maps.model.LatLng> waypoints = new ArrayList<>();
-        directions.optimizeWaypoints(true);
+        //directions.optimizeWaypoints(true);
         for (int i = 2; i < tripPointLocationList.size(); i++) {
             waypoints.add(new com.google.maps.model.LatLng(
                     tripPointLocationList.get(i).getLatitude(),

@@ -65,7 +65,7 @@ public class TodoDetailsFragment extends Fragment {
     private void fillTextView() {
         binding.pointNameTV.setText(actPoint.getName());
         binding.tvPointDesc.setText(actPoint.getDescription());
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         binding.tvPontDate.setText(dateFormat.format(actPoint.getDeadline()));
         User responsible = actPoint.getUser();
         binding.tvPersonResponsible.setText(responsible.getName() + " " + responsible.getSurname());
