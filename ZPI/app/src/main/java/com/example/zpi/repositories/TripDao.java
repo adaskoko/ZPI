@@ -12,6 +12,7 @@ import com.j256.ormlite.support.ConnectionSource;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
@@ -149,6 +150,7 @@ public class TripDao extends BaseDaoImpl<Trip, Integer> implements ITripDao {
             }
         }
         pastTrips.sort(Comparator.comparing(Trip::getStartDate));
+        Collections.reverse(pastTrips);
         futureTrips.sort(Comparator.comparing(Trip::getStartDate));
         List<List<Trip>> allTrips = new ArrayList<>();
         allTrips.add(pastTrips);
