@@ -78,6 +78,12 @@ public class TripPointDao extends BaseDaoImpl<TripPoint, Integer> implements ITr
             dao.refresh(point.getTripPointType());
         }
 
+        points.sort(new Comparator<TripPoint>() {
+            public int compare(TripPoint o1, TripPoint o2) {
+                return o1.getArrivalDate().compareTo(o2.getArrivalDate());
+            }
+        });
+
         return points;
     }
 
