@@ -511,7 +511,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnInfoWindowClic
             if (likelyPlaceAttributions[which] != null) {
                 markerSnippet = markerSnippet + "\n" + likelyPlaceAttributions[which];
             }
-
+            Log.d(TAG, "openPlacesDialog: point 1");
             // Add a marker for the selected place, with an info window
             // showing information about that place.
             Marker marker = mMap.addMarker(new MarkerOptions()
@@ -520,6 +520,7 @@ public class MapsFragment extends Fragment implements GoogleMap.OnInfoWindowClic
                     .snippet(markerSnippet)
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN))
             );
+            Log.d(TAG, "openPlacesDialog: point 2");
 
             // Position the map's camera at the location of the marker.
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(markerLatLng,
@@ -527,12 +528,15 @@ public class MapsFragment extends Fragment implements GoogleMap.OnInfoWindowClic
 
             POIList.add(marker);
         };
+        Log.d(TAG, "openPlacesDialog: point 3");
 
         // Display the dialog.
         AlertDialog dialog = new AlertDialog.Builder(getContext())
                 .setTitle("Wybierz miejsce")
                 .setItems(likelyPlaceNames, listener)
                 .show();
+        Log.d(TAG, "openPlacesDialog: point 4");
+
     }
 
     private void removeUserMarkers() {

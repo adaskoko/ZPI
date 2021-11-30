@@ -183,6 +183,9 @@ public class AddAttractionFragment extends Fragment implements DatePickerDialog.
         String time = binding.hhOfTripPointET.getText().toString();
         java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("HH:mm yyyy-MM-dd");
         Date arrivalDate = null;
+        if (time.equals("")) {
+            time = "23:59";
+        }
         String date = time+" "+sDate;
         Log.i("add atraction date", date);
 
@@ -197,12 +200,12 @@ public class AddAttractionFragment extends Fragment implements DatePickerDialog.
         }
 
         Date finalArrivalDate = arrivalDate;
-        Date departureDate=new Date(finalArrivalDate.getYear(), finalArrivalDate.getMonth(), finalArrivalDate.getDay(), 23,59);
+//        Date departureDate=new Date(finalArrivalDate.getYear(), finalArrivalDate.getMonth(), finalArrivalDate.getDay(), 23,59);
         new Thread(() -> {
             try {
                 TripPointDao tripPointDao = new TripPointDao(BaseConnection.getConnectionSource());
                 TripPointType tripPointType = new TripPointTypeDao(BaseConnection.getConnectionSource()).getAtrakcjaTripPointType();
-                tripPointDao.createTripPoint(title, finalArrivalDate, departureDate, null, currTrip, tripPointLocation, tripPointType);
+                tripPointDao.createTripPoint(title, finalArrivalDate, null, null, currTrip, tripPointLocation, tripPointType);
                 sendNotification();
             } catch (SQLException | JSONException throwables){
                 throwables.printStackTrace();

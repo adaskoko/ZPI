@@ -27,6 +27,9 @@ import com.example.zpi.repositories.TripPointDao;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.sql.SQLException;
 import java.util.List;
@@ -50,6 +53,33 @@ public class PlanFragment extends Fragment implements PlanChildRecyclerViewAdapt
         currTrip = (Trip) intent.getSerializableExtra(TRIP_KEY);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Thread databaseThread = new Thread(() -> {
+            try {
+                points = new TripPointDao(BaseConnection.getConnectionSource()).getTripPointsByTrip(currTrip);
+                points.sort((o1, o2) -> {
+                    if (o1.getArrivalDate() == null || o2.getArrivalDate() == null)
+                        return 0;
+                    return o1.getArrivalDate().compareTo(o2.getArrivalDate());
+                });
+                init();
+                getActivity().runOnUiThread(() -> {
+                    PlanRecyclerViewAdapter planRecyclerViewAdapter = new PlanRecyclerViewAdapter(attractionPoints, this);
+                    binding.parentList.setAdapter(planRecyclerViewAdapter);
+
+                    AccommodationRecyclerViewAdapter accommodationRecyclerViewAdapter = new AccommodationRecyclerViewAdapter(accommodationList, this);
+                    binding.accommodationList.setAdapter(accommodationRecyclerViewAdapter);
+
+                });
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        });
+        databaseThread.start();
+    }
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -67,6 +97,13 @@ public class PlanFragment extends Fragment implements PlanChildRecyclerViewAdapt
         Thread databaseThread = new Thread(() -> {
             try {
                 points = new TripPointDao(BaseConnection.getConnectionSource()).getTripPointsByTrip(currTrip);
+                points.sort(new Comparator<TripPoint>() {
+                    public int compare(TripPoint o1, TripPoint o2) {
+                        if (o1.getArrivalDate() == null || o2.getArrivalDate() == null)
+                            return 0;
+                        return o1.getArrivalDate().compareTo(o2.getArrivalDate());
+                    }
+                });
                 init();
                 getActivity().runOnUiThread(() -> {
                     PlanRecyclerViewAdapter planRecyclerViewAdapter = new PlanRecyclerViewAdapter(attractionPoints, this);
@@ -112,12 +149,15 @@ public class PlanFragment extends Fragment implements PlanChildRecyclerViewAdapt
     private void init() {
         HashList<String, TripPoint> list = new HashList<>();
         accommodationList = new ArrayList<>();
+
         for (TripPoint point : points) {
+            Log.d(getClass().getSimpleName(), "init date: " + point.getArrivalDate().toString());
             if (point.getTripPointType().getName().equals("Nocleg")) {
                 accommodationList.add(point);
             } else {
                 Date date = point.getArrivalDate();
                 DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                //DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 list.put(dateFormat.format(date), point);
             }
         }
