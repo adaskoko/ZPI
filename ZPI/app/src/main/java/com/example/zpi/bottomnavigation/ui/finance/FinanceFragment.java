@@ -101,17 +101,23 @@ public class FinanceFragment extends Fragment {
                     }
                 }
 
-                for(UserAmount payer : paid){
-                    for(UserAmount debtor : owes){
+                //for(UserAmount payer : paid){
+                for(int i =0; i< paid.size(); i++){
+                    UserAmount payer = paid.get(i);
+                    //for(UserAmount debtor : owes){
+                    for(int j =0; j < owes.size(); j++){
+                        UserAmount debtor = owes.get(j);
                         if(payer.getUser().getID() == debtor.getUser().getID()){
                             Double amount = Math.min(payer.getAmount(), debtor.getAmount());
                             payer.subtractAmount(amount);
                             debtor.subtractAmount(amount);
                             if(payer.getAmount() == 0){
-                                paid.remove(payer);
+                                paid.remove(i);
+                                i--;
                             }
                             if(debtor.getAmount() == 0){
-                                owes.remove(debtor);
+                                owes.remove(j);
+                                j--;
                             }
                         }
                     }
