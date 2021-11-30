@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.location.Location;
@@ -58,6 +59,8 @@ public class TripListActivity extends AppCompatActivity {
         pastTripsRV = findViewById(R.id.rv_past_trips);
 
         saveUserLocation();
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
