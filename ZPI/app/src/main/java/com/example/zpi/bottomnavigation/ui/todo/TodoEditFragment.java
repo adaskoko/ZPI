@@ -112,7 +112,11 @@ public class TodoEditFragment extends Fragment implements DatePickerDialog.OnDat
                     PreparationPointDao pointDao = new PreparationPointDao(BaseConnection.getConnectionSource());
                     actPoint.setName(title);
                     actPoint.setDescription(description);
-                    actPoint.setDeadline(finalDate);
+                    if((finalDate.equals(new Date()) || finalDate.after(new Date())) && !finalDate.after(actTrip.getEndDate())){
+                        actPoint.setDeadline(finalDate);
+                    }else{
+                        Toast.makeText(getContext(), "Zły zakres dat, brak edycji", Toast.LENGTH_SHORT).show();
+                    }
                     actPoint.setDone(isDone);
                     actPoint.setUser(chosenUser);
                     pointDao.update(actPoint);
