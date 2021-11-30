@@ -64,14 +64,20 @@ public class AddToDoFragment extends Fragment implements DatePickerDialog.OnDate
     public AddToDoFragment() {
         // Required empty public constructor
     }
+
+    private String getTopicName(){
+        String tripname=currTrip.getName();
+        return tripname.replaceAll("\\s+","");
+    }
     private void sendNotification() throws JSONException {
         mRequestQueue= Volley.newRequestQueue(getContext());
         JSONObject main=new JSONObject();
-        main.put("to", "/topics/"+ currTrip.getName());
+        main.put("to", "/topics/"+ getTopicName());
         JSONObject sub=new JSONObject();
-        sub.put("title", "notification");
-        sub.put("message", "Dodato todoska do "+ currTrip.getName());
+        sub.put("title", "UWAGA");
+        sub.put("message", "Dodato punkt przygotowań do "+ currTrip.getName());
         main.put("data", sub);
+
         JsonObjectRequest request=new JsonObjectRequest(Request.Method.POST, URL, main, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {

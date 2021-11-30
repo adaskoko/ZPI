@@ -56,7 +56,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
             navController.navigate(R.id.singleTripFragment);
         });
         NavigationUI.setupWithNavController(binding.navView, navController);
-        FirebaseMessaging.getInstance().subscribeToTopic(trip.getName());
+        FirebaseMessaging.getInstance().subscribeToTopic(getTopicName());
     }
 
     public void goToPhotos(View v){
@@ -74,6 +74,11 @@ public class BottomNavigationActivity extends AppCompatActivity {
     public void openChat(View v){
         Intent intent=new Intent(this, ChatListActivity.class);
         startActivity(intent);
+    }
+
+    private String getTopicName(){
+        String tripname=trip.getName();
+        return tripname.replaceAll("\\s+","");
     }
 
 }

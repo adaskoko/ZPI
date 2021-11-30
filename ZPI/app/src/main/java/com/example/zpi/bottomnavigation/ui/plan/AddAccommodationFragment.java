@@ -18,7 +18,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.DatePicker;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.zpi.R;
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.databinding.FragmentAddAccomodationBinding;
@@ -34,6 +42,9 @@ import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.AutocompleteActivity;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -41,8 +52,10 @@ import java.util.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 
 public class AddAccommodationFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
@@ -53,7 +66,45 @@ public class AddAccommodationFragment extends Fragment implements DatePickerDial
     private static final int AUTOCOMPLETE_REQUEST_CODE = 1;
     private TripPointLocation accommodationLocation = null;
     private int iYear, iMonth, iDay, iHour, iMinute, iFlag;
+    RequestQueue mRequestQueue;
+    private String URL="https://fcm.googleapis.com/fcm/send";
+    private String serverKey="key="+"AAAATTz1BGM:APA91bFqP2Xnkl67JXawBGQ0tpMGiQFH9QPz1yBVYV6x5LT1_DOCUmCseexqFC0guffW7qXN_ke0DgOTujrRRmYw6CijP4H0cG4VpA8Rk6bf6ovPejnRfU8dRlCbzAQhyc6ZkPZCNljY";
+    private String contentType= "application/json";
 
+
+    private String getTopicName(){
+        String tripname=currTrip.getName();
+        return tripname.replaceAll("\\s+","");
+    }
+    private void sendNotification() throws JSONException {
+        mRequestQueue= Volley.newRequestQueue(getContext());
+        JSONObject main=new JSONObject();
+        main.put("to", "/topics/"+getTopicName());
+        JSONObject sub=new JSONObject();
+        sub.put("title", "UWAGA");
+        sub.put("message", "Dodano nocleg: "+ currTrip.getName());
+        main.put("data", sub);
+        JsonObjectRequest request=new JsonObjectRequest(Request.Method.POST, URL, main, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Toast.makeText(getContext(), response.toString(), Toast.LENGTH_SHORT).show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> header=new HashMap<>();
+                header.put("content-type",contentType );
+                header.put("authorization", serverKey);
+                return header;
+            }
+        };
+        mRequestQueue.add(request);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

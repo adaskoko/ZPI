@@ -11,6 +11,7 @@ import android.graphics.Color
 import android.media.RingtoneManager
 import android.os.Build
 import android.os.IBinder
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
@@ -25,6 +26,8 @@ class MyService :  FirebaseMessagingService() {
         if (p0 != null) {
             super.onMessageReceived(p0)
         }
+
+        Log.i("got", "notification")
 
         val intent = Intent(this, LoginActivity::class.java)
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -78,5 +81,6 @@ class MyService :  FirebaseMessagingService() {
         adminChannel.lightColor = Color.RED
         adminChannel.enableVibration(true)
         notificationManager?.createNotificationChannel(adminChannel)
+        Log.i("got", "admin channel")
     }
 }
