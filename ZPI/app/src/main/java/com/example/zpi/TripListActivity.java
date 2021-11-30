@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.location.Location;
@@ -55,10 +54,13 @@ public class TripListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip_list);
 
-        upcomingTripsRV = (RecyclerView) findViewById(R.id.rv_upcoming_trips);
-        pastTripsRV = (RecyclerView) findViewById(R.id.rv_past_trips);
+        upcomingTripsRV = findViewById(R.id.rv_upcoming_trips);
+        pastTripsRV = findViewById(R.id.rv_past_trips);
 
         saveUserLocation();
+    @Override
+    protected void onResume() {
+        super.onResume();
         loadTrips();
     }
 
@@ -130,7 +132,6 @@ public class TripListActivity extends AppCompatActivity {
                 tripDao.getConnectionSource().close();
 
                 progressDialog.dismiss();
-                //BaseConnection.closeConnection();
             } catch (SQLException | IOException throwables) {
                 throwables.printStackTrace();
                 progressDialog.dismiss();
