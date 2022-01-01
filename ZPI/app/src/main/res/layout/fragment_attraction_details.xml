@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
-            android:fontFamily="@font/poppins_light"
+            android:fontFamily="@font/poppins"
             android:text="PUNKT WYCIECZKI"
             android:textColor="@color/black"
             android:textSize="12sp" />
@@ -34,17 +34,17 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Brama Brandenburska"
                 android:textColor="@color/black"
-                android:textSize="20sp"></TextView>
+                android:textSize="20sp" />
 
             <ImageButton
                 android:id="@+id/btn_editAttraction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
+                android:layout_gravity="end"
                 android:layout_weight="10"
                 android:backgroundTint="@android:color/transparent"
                 android:scaleType="fitEnd"
-                android:src="@drawable/ic_edit"></ImageButton>
+                android:src="@drawable/ic_edit" />
         </TableRow>
 
         <ScrollView
@@ -63,7 +63,7 @@
                     android:fontFamily="@font/poppins_medium"
                     android:text="Adres"
                     android:textColor="@color/black"
-                    android:textSize="16sp"></TextView>
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/tv_pointAddress"
@@ -84,7 +84,7 @@
                     android:fontFamily="@font/poppins_medium"
                     android:text="Data"
                     android:textColor="@color/black"
-                    android:textSize="16sp"></TextView>
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/tv_pointDate"
@@ -132,7 +132,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
-                    android:fontFamily="@font/poppins_light"
+                    android:fontFamily="@font/poppins"
                     android:text="Osoby biorące udział"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
@@ -149,7 +149,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/button_delete"></ImageButton>
+                    android:src="@drawable/button_delete" />
 
 
             </LinearLayout>

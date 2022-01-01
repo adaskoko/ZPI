@@ -76,6 +76,8 @@ public class TripPointDao extends BaseDaoImpl<TripPoint, Integer> implements ITr
 
         for(TripPoint point : points){
             dao.refresh(point.getTripPointType());
+            TripPointLocationDao locDao = new TripPointLocationDao(connectionSource);
+            locDao.refresh(point.getTripPointLocation());
         }
 
         points.sort(new Comparator<TripPoint>() {

@@ -130,7 +130,7 @@
             android:layout_marginBottom="32dp"
             android:background="@drawable/rounded_button"
             android:backgroundTint="#96D76F"
-            android:fontFamily="@font/poppins_light"
+            android:fontFamily="@font/poppins"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
@@ -143,7 +143,6 @@
 </ScrollView>-->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
@@ -288,7 +287,7 @@
                 android:fontFamily="@font/poppins"
                 android:text="Hasło"
                 android:textColor="@color/black"
-                android:textSize="14sp"></TextView>
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/et_password"

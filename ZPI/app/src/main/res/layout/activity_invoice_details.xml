@@ -13,7 +13,6 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/poppins_bold"
-        android:gravity="center"
         android:text="Szczegóły rachunku"
         android:textAlignment="viewStart"
         android:textColor="@color/black"

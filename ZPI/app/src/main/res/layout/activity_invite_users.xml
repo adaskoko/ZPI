@@ -92,7 +92,7 @@
             android:fontFamily="@font/poppins_semibold"
             android:text="Zaproś na wycieczkę"
             android:textColor="@color/black"
-            android:textSize="20sp"></TextView>
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -101,7 +101,7 @@
             android:fontFamily="@font/poppins_medium"
             android:text="Wyszukaj użytkowników"
             android:textColor="@color/black"
-            android:textSize="16sp"></TextView>
+            android:textSize="16sp" />
 
         <SearchView
             android:id="@+id/search"
@@ -134,7 +134,7 @@
                 android:fontFamily="@font/poppins_medium"
                 android:text="Zaproszeni użytkownicy:"
                 android:textColor="@color/black"
-                android:textSize="16sp"></TextView>
+                android:textSize="16sp" />
 
             <ListView
                 android:id="@+id/lv_participants"

@@ -18,7 +18,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:maxImageSize="36dp"
         app:srcCompat="@drawable/ic_chat_dots"
-        app:tint="@null" />
+        app:tint="@null"
+        android:contentDescription="@string/chat" />
 
     <ImageView
         android:id="@+id/imageView7"
@@ -28,7 +29,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_trip_mail_image" />
+        app:srcCompat="@drawable/ic_trip_mail_image"
+        android:contentDescription="@string/trip_list_background" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -62,7 +64,6 @@
                 android:id="@+id/userTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginTop="12dp"
                 android:layout_weight="4"
                 android:fontFamily="@font/poppins_medium"
@@ -141,7 +142,6 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -173,7 +173,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
                 android:fontFamily="@font/poppins_semibold"
-                android:gravity="left"
+                android:gravity="start"
                 android:text="Nadchodzące wycieczki"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
@@ -207,7 +207,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
                 android:fontFamily="@font/poppins_semibold"
-                android:gravity="left"
+                android:gravity="start"
                 android:text="Minione wycieczki"
                 android:textColor="@color/black"
                 android:textSize="20sp" />

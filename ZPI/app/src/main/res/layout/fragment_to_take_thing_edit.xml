@@ -113,7 +113,7 @@
                     android:backgroundTint="@android:color/transparent"
                     android:src="@drawable/button_confirm"
 
-                    ></ImageButton>
+                    />
 
             </LinearLayout>
         </ScrollView>
