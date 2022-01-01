@@ -44,6 +44,7 @@ public class InviteUsersActivity extends AppCompatActivity implements SearchView
     TextView chosenUserTV;
     User chosenUser;
     View clickOutView;
+    ArrayList<Integer> currTripParticipantsIDs= new ArrayList<>();
 
 
     @Override
@@ -83,7 +84,7 @@ public class InviteUsersActivity extends AppCompatActivity implements SearchView
 
             new Thread(() -> {
                 try {
-                    if(chosenUser!=null && !arraylist.contains(chosenUser)){
+                    if(chosenUser!=null && !currTripParticipantsIDs.contains(chosenUser.getID())){
                         TripDao tripDao=new TripDao(BaseConnection.getConnectionSource());
                         tripDao.addRegularParticipant(currentTrip, chosenUser);
                         getTripParticipants();
@@ -148,7 +149,11 @@ public class InviteUsersActivity extends AppCompatActivity implements SearchView
                         User u=tp.getUser();
                         String currentRow=u.getName()+" "+ u.getSurname()+"("+u.getEmail()+")";
                         parts.add(currentRow);
+                        if(!currTripParticipantsIDs.contains(u.getID())){
+                            currTripParticipantsIDs.add(u.getID());
+                        }
                     }
+
                 }
 
                 runOnUiThread(() -> {

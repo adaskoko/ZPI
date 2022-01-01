@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.data_handling.SharedPreferencesHandler;
@@ -144,18 +145,23 @@ public class ChatActivity extends AppCompatActivity {
         User receiver = otherUser;
         Date sendDate = new Date();
 
-        new Thread(() -> {
-            try {
-                MessageDao mdao = new MessageDao(BaseConnection.getConnectionSource());
-                Message currentMessage = new Message(content, sendDate, sender, receiver);
-                mdao.create(currentMessage);
-                displayChat();
-                text.getText().clear();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+        if(content.length()>0) {
+            new Thread(() -> {
+                try {
+                    MessageDao mdao = new MessageDao(BaseConnection.getConnectionSource());
 
-        }).start();
+                    Message currentMessage = new Message(content, sendDate, sender, receiver);
+                    mdao.create(currentMessage);
+                    displayChat();
+                    text.getText().clear();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+
+            }).start();
+        }else{
+            Toast.makeText(this, "Wiadomość jest pusta!", Toast.LENGTH_SHORT).show();
+        }
 
     }
 

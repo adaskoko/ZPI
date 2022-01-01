@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +53,7 @@ public class SearchUserForNewConversationActivity extends AppCompatActivity impl
             try {
                 UserDao userDao = new UserDao(BaseConnection.getConnectionSource());
                 ArrayList<User> al = (ArrayList<User>) userDao.getAllUsers();
+
                 runOnUiThread(() -> {
                     this.arraylist = al;
                     adapter = new ListViewAdapter(this, arraylist);

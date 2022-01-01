@@ -10,8 +10,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.zpi.R;
+import com.example.zpi.data_handling.BaseConnection;
 import com.example.zpi.models.TripPoint;
+import com.example.zpi.models.TripPointLocation;
+import com.example.zpi.repositories.TripPointLocationDao;
 
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -38,11 +42,21 @@ public class PlanChildRecyclerViewAdapter extends RecyclerView.Adapter<PlanChild
     @Override
     public void onBindViewHolder(@NonNull ChildViewHolder holder, int position) {
         TripPoint point = tripPoints.get(position);
+        TripPointLocation tpl=point.getTripPointLocation();
+        new Thread(()->{
+            try{
+                TripPointLocationDao tpld=new TripPointLocationDao(BaseConnection.getConnectionSource());
+                tpld.refresh(tpl);
+            }catch(SQLException throwables){
+                throwables.printStackTrace();
+            }
+        }).start();
 
         holder.pointTitle.setText(point.getName());
         DateFormat dateFormat = new SimpleDateFormat("HH:mm");
         holder.pointTime.setText(dateFormat.format(point.getArrivalDate()));
-        holder.pointAddress.setText(point.getTripPointLocation().getAddress());
+        holder.pointAddress.setText(tpl.getAddress());
+        Log.i("adres", String.valueOf(tpl.getAddress()!=null));
         holder.pointId = point.getID();
     }
 
