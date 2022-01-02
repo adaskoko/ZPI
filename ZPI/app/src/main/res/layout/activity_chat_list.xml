@@ -60,14 +60,14 @@
                 android:fontFamily="@font/poppins"
                 android:hint="Wyszukaj..."
                 android:paddingHorizontal="20dp"
-                android:textSize="14sp"></EditText>
+                android:textSize="14sp" />
 
             <ImageButton
                 android:id="@+id/btn_newMessage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_write"
-                android:onClick="newMessage"></ImageButton>
+                android:onClick="newMessage" />
         </TableRow>
 
 

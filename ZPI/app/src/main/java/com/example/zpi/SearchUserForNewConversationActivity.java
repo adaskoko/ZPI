@@ -171,7 +171,8 @@ public class SearchUserForNewConversationActivity extends AppCompatActivity impl
                 users.addAll(arraylist);
             } else {
                 for (User wp : arraylist) {
-                    if (wp.getName().toLowerCase(Locale.getDefault()).contains(charText)) {
+                    String name = wp.getName()+" "+wp.getSurname();
+                    if (name.toLowerCase(Locale.getDefault()).contains(charText)) {
                         users.add(wp);
                     }
                 }

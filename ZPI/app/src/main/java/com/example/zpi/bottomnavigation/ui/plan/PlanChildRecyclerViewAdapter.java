@@ -42,7 +42,8 @@ public class PlanChildRecyclerViewAdapter extends RecyclerView.Adapter<PlanChild
         holder.pointTitle.setText(point.getName());
         DateFormat dateFormat = new SimpleDateFormat("HH:mm");
         holder.pointTime.setText(dateFormat.format(point.getArrivalDate()));
-        holder.pointAddress.setText(point.getTripPointLocation().getAddress());
+        String address = point.getTripPointLocation().getAddress();
+        holder.pointAddress.setText(address);
         holder.pointId = point.getID();
     }
 

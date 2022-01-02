@@ -82,7 +82,7 @@
                     android:fontFamily="@font/poppins_medium"
                     android:text="Data zameldowania"
                     android:textColor="@color/black"
-                    android:textSize="16sp"></TextView>
+                    android:textSize="16sp" />
 
                 <EditText
                     android:id="@+id/dateOfAccET"
@@ -161,7 +161,7 @@
                     android:fontFamily="@font/poppins_medium"
                     android:text="Godzina wymeldowania"
                     android:textColor="@color/black"
-                    android:textSize="16sp"></TextView>
+                    android:textSize="16sp" />
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -220,7 +220,7 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="5dp"
                     android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/button_add"></ImageButton>
+                    android:src="@drawable/button_add" />
 
             </LinearLayout>
         </ScrollView>

@@ -181,7 +181,7 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="5dp"
                     android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/button_add"></ImageButton>
+                    android:src="@drawable/button_add" />
 
             </LinearLayout>
         </ScrollView>
