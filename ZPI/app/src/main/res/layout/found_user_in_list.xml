@@ -7,4 +7,4 @@
     android:paddingBottom="8dp"
     android:text="Jan Kowalski"
     android:textColor="@color/black"
-    android:textSize="12sp"></TextView>
+    android:textSize="12sp" />

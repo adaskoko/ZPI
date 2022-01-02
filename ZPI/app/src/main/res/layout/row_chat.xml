@@ -12,12 +12,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        <TextView
             android:id="@+id/tvInitials"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/text_view_circle"
-            android:fontFamily="@font/poppins_light"
+            android:fontFamily="@font/poppins"
             android:gravity="center"
             android:padding="8dp"
             android:text="AR"
@@ -29,9 +29,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/tvInitials"
-            android:layout_marginLeft="30dp"
+            android:layout_marginStart="30dp"
             android:layout_toEndOf="@id/tvInitials"
-            android:fontFamily="@font/poppins_light"
+            android:fontFamily="@font/poppins"
             android:text="Aleksandra Rzepecka"
             android:textColor="@color/black"
             android:textSize="14sp" />
@@ -41,9 +41,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tvName"
-            android:layout_alignLeft="@id/tvName"
-            android:layout_alignRight="@id/tvName"
-            android:fontFamily="@font/poppins_light"
+            android:layout_alignStart="@id/tvName"
+            android:layout_alignEnd="@id/tvName"
+            android:fontFamily="@font/poppins"
             android:text="Co tam"
             android:textSize="14sp" />
 
@@ -52,19 +52,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="17:20"
-            android:fontFamily="@font/poppins_light"
+            android:fontFamily="@font/poppins"
             android:textColor="@color/black"
             android:textSize="14sp"
             android:layout_alignTop="@id/tvName"
             android:layout_toEndOf="@id/tvName"
-            android:layout_marginLeft="30dp"/>
+            android:layout_marginStart="30dp"/>
 
         <TextView
             android:id="@+id/tvNew"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tvMsg"
-            android:layout_alignLeft="@id/tvName"
+            android:layout_alignStart="@id/tvName"
             android:text="NOWA"
             android:textColor="@android:color/holo_red_dark" />
 

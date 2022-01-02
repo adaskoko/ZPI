@@ -24,14 +24,14 @@
             android:background="@drawable/rounded_component"
             android:drawablePadding="8dp"
             android:fontFamily="@font/poppins"
-            android:onClick="chooseList"
             android:paddingHorizontal="8dp"
             android:paddingVertical="4dp"
-            android:text="punkt wycieczki"
+            android:text="@string/punkt_wycieczki"
             android:textColor="#ACACAC"
             android:textSize="10sp"
             app:drawableStartCompat="@drawable/ic_link"
-            tools:drawablePadding="8dp" />
+            tools:drawablePadding="8dp"
+            tools:ignore="SmallSp,TextContrastCheck,TouchTargetSizeCheck" />
 
         <TextView
             android:id="@+id/tv_nameOfThread2"
@@ -40,9 +40,10 @@
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/poppins_medium"
-            android:text="Zdjęcia z Bramy Brandenburskiej"
+            android:text="@string/zdjecia_z_bramy_brandenburskiej"
             android:textColor="@color/black"
-            android:textSize="20sp"></TextView>
+            android:textSize="20sp"
+            tools:ignore="TextContrastCheck" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_comments"
@@ -75,18 +76,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_medium"
-            android:text="Zdjęcia z Bramy Brandenburskiej"
+            android:text="@string/zdjecia_z_bramy_brandenburskiej"
             android:textColor="@color/white"
-            android:textSize="18sp"></TextView>
+            android:textSize="18sp"
+            tools:ignore="TextContrastCheck" />
 
         <TextView
             android:id="@+id/tv_nameOfTrip1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins"
-            android:text="Wycieczka do Berlina"
+            android:text="@string/wycieczka_do_berlina"
             android:textColor="#D3D3D3"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            tools:ignore="TextContrastCheck" />
 
     </LinearLayout>
 
@@ -107,9 +110,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:text="1 odpowiedź"
+            android:text="@string/ile_odpowiedzi"
             android:textAlignment="viewEnd"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            tools:ignore="TextContrastCheck" />
     </LinearLayout>
 
     <ImageView
@@ -121,7 +125,8 @@
         android:onClick="respond"
         app:layout_constraintBottom_toBottomOf="@id/bottombar"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_button_respond" />
+        app:srcCompat="@drawable/ic_button_respond"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck,ImageContrastCheck" />
 
     <View
         android:id="@+id/darkenedView"
@@ -151,7 +156,7 @@
             android:id="@+id/tableRow2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="end"
             android:layout_marginTop="20dp"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
@@ -163,14 +168,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:onClick="cancelResp"
-                app:srcCompat="@drawable/button_cancel" />
+                app:srcCompat="@drawable/button_cancel"
+                tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <ImageView
                 android:id="@+id/btn_send_response"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="addResponse"
-                app:srcCompat="@drawable/button_send" />
+                app:srcCompat="@drawable/button_send"
+                tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         </TableRow>
 
@@ -182,12 +189,13 @@
             android:background="@android:color/transparent"
             android:fontFamily="@font/poppins"
             android:gravity="start"
-            android:hint="Tu wpisz swoją odpowiedź"
+            android:hint="@string/tu_wpisz_swoja_odpowiedz"
             android:textAlignment="gravity"
             android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tr_icon3">
+            app:layout_constraintTop_toBottomOf="@id/tr_icon3"
+            tools:ignore="Autofill,TextContrastCheck,TextFields,TouchTargetSizeCheck">
 
             <requestFocus />
         </EditText>
@@ -206,12 +214,13 @@
                 android:layout_height="50dp"
                 android:background="@drawable/text_view_circle"
                 android:backgroundTint="#263238"
-                android:fontFamily="@font/poppins_light"
+                android:fontFamily="@font/poppins"
                 android:gravity="center"
                 android:padding="8dp"
                 android:text="AR"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/tv_personName3"
@@ -222,7 +231,8 @@
                 android:text="Ty (Aleksandra Rzepecka)"
                 android:textAlignment="gravity"
                 android:textColor="@color/black"
-                android:textSize="16sp"></TextView>
+                android:textSize="16sp"
+                tools:ignore="HardcodedText" />
 
         </TableRow>
 

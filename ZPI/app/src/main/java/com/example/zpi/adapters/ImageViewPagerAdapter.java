@@ -92,6 +92,7 @@ public class ImageViewPagerAdapter extends PagerAdapter {
                 Uri mVideo = Uri.parse(multimediaFile.getUrl());
                 videoView.setMediaController(mediacontroller);
                 videoView.setVideoURI(mVideo);
+                videoView.seekTo(1);
 
             } catch (Exception e) {
                 e.printStackTrace();

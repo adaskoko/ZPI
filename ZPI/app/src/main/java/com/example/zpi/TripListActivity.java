@@ -44,7 +44,11 @@ public class TripListActivity extends AppCompatActivity {
 
         upcomingTripsRV = findViewById(R.id.rv_upcoming_trips);
         pastTripsRV = findViewById(R.id.rv_past_trips);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
         loadTrips();
     }
 

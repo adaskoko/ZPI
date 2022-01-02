@@ -28,4 +28,11 @@
     <!--GOOGLE KEY-->
     <string name="google_maps_api_key">AIzaSyAx41htAO8b4ikTCZL-v2BMKRzBaD-oHOE</string>
     <string name="delete_comment"><u>usuń komentarz</u></string>
+    <string name="chat">Chat</string>
+    <string name="trip_list_background">trip list background</string>
+    <string name="punkt_wycieczki">punkt wycieczki</string>
+    <string name="zdjecia_z_bramy_brandenburskiej">Zdjęcia z Bramy Brandenburskiej</string>
+    <string name="wycieczka_do_berlina">Wycieczka do Berlina</string>
+    <string name="ile_odpowiedzi">1 odpowiedź</string>
+    <string name="tu_wpisz_swoja_odpowiedz">Tu wpisz swoją odpowiedź</string>
 </resources>

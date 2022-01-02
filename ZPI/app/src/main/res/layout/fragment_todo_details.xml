@@ -17,7 +17,7 @@
             android:fontFamily="@font/poppins"
             android:text="PUNKT PRZYGOTOWAŃ"
             android:textColor="@color/black"
-            android:textSize="12sp"></TextView>
+            android:textSize="12sp" />
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,18 +31,18 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Zamów noclegi"
                 android:textColor="@color/black"
-                android:textSize="20sp"></TextView>
+                android:textSize="20sp" />
 
 
             <ImageButton
                 android:id="@+id/btnEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
+                android:layout_gravity="end"
                 android:layout_weight="10"
                 android:backgroundTint="@android:color/transparent"
                 android:scaleType="fitEnd"
-                android:src="@drawable/ic_edit"></ImageButton>
+                android:src="@drawable/ic_edit" />
         </TableRow>
 
         <ScrollView

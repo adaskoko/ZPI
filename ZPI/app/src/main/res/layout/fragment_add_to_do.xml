@@ -19,7 +19,7 @@
             android:fontFamily="@font/poppins_semibold"
             android:text="Dodaj punkt przygotowań"
             android:textColor="@color/black"
-            android:textSize="20sp"></TextView>
+            android:textSize="20sp" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -157,8 +157,7 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="5dp"
                     android:backgroundTint="@android:color/transparent"
-                    android:onClick="TODO"
-                    android:src="@drawable/button_add"></ImageButton>
+                    android:src="@drawable/button_add" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
